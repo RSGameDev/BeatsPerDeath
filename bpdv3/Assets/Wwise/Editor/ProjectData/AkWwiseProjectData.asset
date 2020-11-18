@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8136fa58a44787b5f7f079ba5827f, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 092b7a56ed323c48bcc2d4fb7122369f
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: a5f1757ae256c544b477937411caf6a6
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      Path: Default Work Unit/Master Audio Bus
+  BankWwu:
+  - PhysicalPath: SoundBanks/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 0456703534305e468f68f47283dc9eaf
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  - PhysicalPath: SoundBanks/Music.wwu
+    PathAndIcons:
+    - ElementName: Music
+      ObjectType: 12
+    ParentPath: Music
+    guid: 4545cc115da4f94e8353240d94edd50a
+    GuidInternal: 
+    m_lastTime: -8585959534934775808
+    List:
+    - name: GPlayMusicBank
+      guid: aa3c64affa1fbb4faa7667ef93f28b53
+      id: 710938993
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: GPlayMusicBank
+        ObjectType: 7
+      Path: Music/GPlayMusicBank
+    - name: MenuMusicBank
+      guid: 81b0d45ee3f1ca4aa3d7f28f84c3c60c
+      id: 2595390611
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: MenuMusicBank
+        ObjectType: 7
+      Path: Music/MenuMusicBank
+  - PhysicalPath: SoundBanks/UISounds.wwu
+    PathAndIcons:
+    - ElementName: UISounds
+      ObjectType: 12
+    ParentPath: UISounds
+    guid: 9ab3f952520a9145a58b0d8968ae1a6e
+    GuidInternal: 
+    m_lastTime: -8585959534934775808
+    List:
+    - name: UISounds
+      guid: 9f860999919ecf44830854316aac47f2
+      id: 2761892727
+      PathAndIcons:
+      - ElementName: UISounds
+        ObjectType: 12
+      - ElementName: UISounds
+        ObjectType: 7
+      Path: UISounds/UISounds
+  EventWwu:
+  - PhysicalPath: Events/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 01422c3cf291434288fc2043d633d501
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  - PhysicalPath: Events/Music.wwu
+    PathAndIcons:
+    - ElementName: Music
+      ObjectType: 12
+    ParentPath: Music
+    guid: 24dd52b4bee6fc40be64aeda279c00c2
+    GuidInternal: 
+    m_lastTime: -8585959533704775808
+    List:
+    - name: GPlay_Music
+      guid: bb21575a62ae8d46a38b002f65803c44
+      id: 2667809542
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: GPlay_Music
+        ObjectType: 3
+      Path: Music/GPlay_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Menu_Music
+      guid: 7d26986b2a3dbe4fa09b7029ccefa9f0
+      id: 4055567060
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Menu_Music
+        ObjectType: 3
+      Path: Music/Menu_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  - PhysicalPath: Events/SFX.wwu
+    PathAndIcons:
+    - ElementName: SFX
+      ObjectType: 12
+    ParentPath: SFX
+    guid: f3c50cc21347b649b335c3969dcf5205
+    GuidInternal: 
+    m_lastTime: -8585959537424775808
+    List:
+    - name: Hover
+      guid: ea14c6adf7b8b3479af76f8215b16ab4
+      id: 3753593413
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Hover
+        ObjectType: 3
+      Path: SFX/Hover
+      maxAttenuation: 0
+      maxDuration: 0.234376
+      minDuration: 0.234376
+    - name: Quit
+      guid: 133034c2754d3f4b9e38e8cd27875eda
+      id: 3930794392
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Quit
+        ObjectType: 3
+      Path: SFX/Quit
+      maxAttenuation: 0
+      maxDuration: 0.937506
+      minDuration: 0.937506
+    - name: Select
+      guid: 4e68a202216671428a393d9d330f7800
+      id: 1432588725
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Select
+        ObjectType: 3
+      Path: SFX/Select
+      maxAttenuation: 0
+      maxDuration: 0.234376
+      minDuration: 0.234376
+  RtpcWwu:
+  - PhysicalPath: Game Parameters/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 5a73d6f3ccc8544da825411797b8f3a0
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  StateWwu:
+  - PhysicalPath: States/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 4af9532c45ccf148a18e64b96178cd03
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 013d76336cc1bb40836dfae85dc19363
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 9206f9b76c7d6343801773196031b4f0
+    GuidInternal: 
+    m_lastTime: -8585959567874775808
+    List: []
+  ExpandedItems:
+  - /bpdv3_WwiseProject
+  autoPopulateEnabled: 1
+  CurrentPluginConfig: 

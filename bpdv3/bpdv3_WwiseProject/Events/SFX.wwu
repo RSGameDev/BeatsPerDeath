@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C20CC5F3-4713-49B6-B335-C3969DCF5205}" SchemaVersion="97">
+	<Events>
+		<WorkUnit Name="SFX" ID="{C20CC5F3-4713-49B6-B335-C3969DCF5205}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Hover" ID="{ADC614EA-B8F7-47B3-9AF7-6F8215B16AB4}">
+					<ChildrenList>
+						<Action Name="" ID="{3F790F64-D1F4-4489-9144-75C9AE8DE6C2}" ShortID="25056975">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button_Hover" ID="{8ABDBDA3-24D2-4D9F-8624-7436B911B007}" WorkUnitID="{BE673B74-0F77-4D85-9D59-A9583F1347EF}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Quit" ID="{C2343013-4D75-4B3F-9E38-E8CD27875EDA}">
+					<ChildrenList>
+						<Action Name="" ID="{D3606960-7A69-4BB2-B0AE-B7778AEC1381}" ShortID="956324891">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button_Cancel" ID="{1E228DC1-9738-4AFA-970F-808771BC198C}" WorkUnitID="{BE673B74-0F77-4D85-9D59-A9583F1347EF}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Select" ID="{02A2684E-6621-4271-8A39-3D9D330F7800}">
+					<ChildrenList>
+						<Action Name="" ID="{BF681906-AC74-471D-B4FD-AD378B15DD36}" ShortID="613646967">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button_Select" ID="{C5F4C180-8252-49E0-93DE-86E2DB466EBE}" WorkUnitID="{BE673B74-0F77-4D85-9D59-A9583F1347EF}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

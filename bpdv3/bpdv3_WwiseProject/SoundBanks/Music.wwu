@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{11CC4545-A45D-4EF9-8353-240D94EDD50A}" SchemaVersion="97">
+	<SoundBanks>
+		<WorkUnit Name="Music" ID="{11CC4545-A45D-4EF9-8353-240D94EDD50A}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="MenuMusicBank" ID="{5ED4B081-F1E3-4ACA-A3D7-F28F84C3C60C}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Menu_Music" ID="{6B98267D-3D2A-4FBE-A09B-7029CCEFA9F0}" WorkUnitID="{B452DD24-E6BE-40FC-BE64-AEDA279C00C2}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="GPlayMusicBank" ID="{AF643CAA-1FFA-4FBB-AA76-67EF93F28B53}">
+					<ObjectInclusionList>
+						<ObjectRef Name="GPlay_Music" ID="{5A5721BB-AE62-468D-A38B-002F65803C44}" WorkUnitID="{B452DD24-E6BE-40FC-BE64-AEDA279C00C2}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

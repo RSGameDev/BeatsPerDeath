@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BE673B74-0F77-4D85-9D59-A9583F1347EF}" SchemaVersion="97">
+	<AudioObjects>
+		<WorkUnit Name="UI_SFX" ID="{BE673B74-0F77-4D85-9D59-A9583F1347EF}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Button_Cancel" ID="{1E228DC1-9738-4AFA-970F-808771BC198C}" ShortID="844721092">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3B4E78A0-01D9-420B-B7E4-1E51E55644EE}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7A75F1A5-56E2-44C5-B477-937411CAF6A6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Button_Cancel" ID="{64749FA4-71B2-4DA4-BEFC-2F7E38051226}">
+							<Language>SFX</Language>
+							<AudioFile>Button_Cancel.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="269038420"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Button_Cancel" ID="{64749FA4-71B2-4DA4-BEFC-2F7E38051226}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Button_Hover" ID="{8ABDBDA3-24D2-4D9F-8624-7436B911B007}" ShortID="518681601">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3B4E78A0-01D9-420B-B7E4-1E51E55644EE}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7A75F1A5-56E2-44C5-B477-937411CAF6A6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Button_Hover" ID="{F98B678A-295A-40C8-B769-03E9FC3D7DD4}">
+							<Language>SFX</Language>
+							<AudioFile>Button_Hover.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="916675540"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Button_Hover" ID="{F98B678A-295A-40C8-B769-03E9FC3D7DD4}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Button_Select" ID="{C5F4C180-8252-49E0-93DE-86E2DB466EBE}" ShortID="876634235">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{3B4E78A0-01D9-420B-B7E4-1E51E55644EE}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7A75F1A5-56E2-44C5-B477-937411CAF6A6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Button_Select" ID="{28FD36B2-7C71-4E8A-B8CB-B5B0330AF41C}">
+							<Language>SFX</Language>
+							<AudioFile>Button_Select.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="215519574"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Button_Select" ID="{28FD36B2-7C71-4E8A-B8CB-B5B0330AF41C}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

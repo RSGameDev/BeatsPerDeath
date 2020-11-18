@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{52F9B39A-0A52-4591-A58B-0D8968AE1A6E}" SchemaVersion="97">
+	<SoundBanks>
+		<WorkUnit Name="UISounds" ID="{52F9B39A-0A52-4591-A58B-0D8968AE1A6E}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="UISounds" ID="{9909869F-9E91-44CF-8308-54316AAC47F2}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Select" ID="{02A2684E-6621-4271-8A39-3D9D330F7800}" WorkUnitID="{C20CC5F3-4713-49B6-B335-C3969DCF5205}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Hover" ID="{ADC614EA-B8F7-47B3-9AF7-6F8215B16AB4}" WorkUnitID="{C20CC5F3-4713-49B6-B335-C3969DCF5205}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Quit" ID="{C2343013-4D75-4B3F-9E38-E8CD27875EDA}" WorkUnitID="{C20CC5F3-4713-49B6-B335-C3969DCF5205}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
