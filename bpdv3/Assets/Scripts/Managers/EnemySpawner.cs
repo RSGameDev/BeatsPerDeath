@@ -18,37 +18,107 @@ public class EnemySpawner : MonoBehaviour
 
     bool hasSpawned;
 
+    public float timer;
+
+    public enum LevelStage
+    {
+        Minute1, Minute2, Minute3
+    }
+    public LevelStage currentLevelStageType;
+
+    bool triggerMin1;
+    bool triggerMin2;
+
+    int rookCountMinute2;
+    int rookCountMinute3;
+
     private void Awake()
     {
         objectPoolScript = GetComponent<ObjectPool>();
+        currentLevelStageType = LevelStage.Minute1;
     }
         
     private void Update()
     {
-        //////////// because of old wwise taken out
-        ///////////if (MusicScript.spawnBeatCount == 1)
+        timer += Time.deltaTime;
+
+        if (timer >= 60 && !triggerMin1)
+        {
+            triggerMin1 = true;
+            currentLevelStageType = LevelStage.Minute2;
+        }
+
+        if (timer >= 120 && !triggerMin2)
+        {
+            triggerMin2 = true;
+            currentLevelStageType = LevelStage.Minute3;
+        }
+
+        if (SceneController.instance.spawnBeatCount == 1)
         {
             ResetSpawning();
         }
 
         if (startLevel)
         {
-            //////////// because of old wwise taken out
-            /////////if (MusicScript.spawnBeatCount == 4)
+            if (SceneController.instance.spawnBeatCount == 4)
             {
                 startLevel = false;
                 ShroomPoolObject();
-                //RookPoolObject();
             }
         }
 
-        //////////// because of old wwise taken out
-        //////////if (MusicScript.spawnBeatCount == 8 && !hasSpawned)
+        switch (currentLevelStageType)
         {
-            ShroomPoolObject();
-            //RookPoolObject();
-            hasSpawned = true;
+            case LevelStage.Minute1:
+                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                {
+                    ShroomPoolObject();
+                    hasSpawned = true;
+                }
+                break;
+            case LevelStage.Minute2:
+                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                {
+                    rookCountMinute2++;
+                    if (rookCountMinute2 == 3)
+                    {
+                        RookPoolObject();
+                        rookCountMinute2 = 0;
+                    }
+                    else
+                    {
+                        ShroomPoolObject();
+                    }
+                    hasSpawned = true;
+                }
+                break;
+            case LevelStage.Minute3:
+                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                {
+                    rookCountMinute3++;
+                    if (rookCountMinute3 == 2)
+                    {
+                        RookPoolObject();
+                        rookCountMinute3 = 0;
+                    }
+                    else
+                    {
+                        ShroomPoolObject();
+                    }
+                    hasSpawned = true;
+                }
+                break;
+            default:
+                break;
         }
+
+        //if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+        //{
+        //    ShroomPoolObject();
+        //    //RookPoolObject();
+        //    hasSpawned = true;
+        //}
     }
 
     void ResetSpawning()

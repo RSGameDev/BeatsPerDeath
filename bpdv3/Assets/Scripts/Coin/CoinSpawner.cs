@@ -24,22 +24,15 @@ public class CoinSpawner : MonoBehaviour
     }
 
     private void Update()
-    {
-        //////////// because of old wwise taken out
-        ////////////if (MusicScript.gameBeatCount == 1)
-        {
-            ResetSpawning();
-        }
-
-        //////////// because of old wwise taken out
-        ///////////if (MusicScript.gameBeatCount == 4 && !hasSpawned)
+    {      
+        if (SceneController.instance.gameBeatCount == 4 && !hasSpawned)
         {
             hasSpawned = true;
             CoinPoolObject();
         }
     }
 
-    void ResetSpawning()
+    public void ResetSpawning()
     {
         hasSpawned = false;
 

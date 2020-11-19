@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     Player playerScript;
 
     public bool pushBack;
+    public bool isMoving;
+    public bool onBeat;
+    public GameObject hitZone;
 
     public string direction;
 
@@ -38,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("w"))
         {
+            isMoving = true;
+            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
             direction = "w";
             transform.LookAt(transform.position + Vector3.forward);
             transform.position += new Vector3(0, 0, 1.25f);
@@ -49,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("s"))
         {
+            isMoving = true;
+            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
             direction = "s";
             transform.LookAt(transform.position + Vector3.back);
             transform.position += new Vector3(0, 0, -1.25f);
@@ -60,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("a"))
         {
+            isMoving = true;
+            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
             direction = "a";
             transform.LookAt(transform.position + Vector3.left);
             transform.position += new Vector3(-1.25f, 0, 0);
@@ -71,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("d"))
         {
+            isMoving = true;
+            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
             direction = "d";
             transform.LookAt(transform.position + Vector3.right);
             transform.position += new Vector3(1.25f, 0, 0);

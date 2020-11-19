@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class SceneController : MonoBehaviour
 {
@@ -23,8 +24,37 @@ public class SceneController : MonoBehaviour
     [SerializeField] int warningDelay = 3;
     int currentSceneIndex;
 
+    public TextMeshProUGUI timeUiValue;
+    public float timer;
+    public TextMeshProUGUI beatUiValue;
+    public TextMeshProUGUI spawnUiValue;
+    bool isReferenced;
+
+    public float beatStartTime;
+    public float currentTime;
+    public float beatDurationTime;
+    public bool timeCheck;
+    bool isDone;
+    public bool beatStarted;
+    
+    public int gameBeatCount;
+    public int spawnBeatCount;
+    public int scrollBeatCount;
+
+    public static SceneController instance;
+
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         warningScreen.transform.localScale = Vector3.zero;
         mainMenu.transform.localScale = Vector3.zero;
         optionsMenu.transform.localScale = Vector3.zero;
@@ -48,6 +78,28 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(splashDelay);
         splashScreen.transform.localScale = Vector3.zero;
         LoadWarningScreen();
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !isReferenced)
+        {
+            isReferenced = true;
+            var temp = GameObject.Find("BeatUITestValue (TMP)");
+            beatUiValue = temp.GetComponent<TextMeshProUGUI>();
+
+            var temp1 = GameObject.Find("ScoreUITest Value (TMP) (1)");
+            spawnUiValue = temp1.GetComponent<TextMeshProUGUI>();
+
+            var temp2 = GameObject.Find("TimeTest Value (TMP) (2)");
+            timeUiValue = temp2.GetComponent<TextMeshProUGUI>();
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            timer += Time.deltaTime; 
+            timeUiValue.text = timer.ToString("00");
+        }
     }
 
     private void LoadWarningScreen()
@@ -126,9 +178,46 @@ public class SceneController : MonoBehaviour
     //AudioEngine Code to give us information on beat detection from WWise.
     void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
     {
+        gameBeatCount++;
+        spawnBeatCount++;
+
+        if (gameBeatCount == 5)
+        {
+            gameBeatCount = 1;
+        }
+
+        if (spawnBeatCount == 9)
+        {
+            spawnBeatCount = 1;
+        }
+
+        
+
+        beatUiValue.text = gameBeatCount.ToString();
+        spawnUiValue.text = spawnBeatCount.ToString();
+
+        scrollBeatCount++;
+
+        if (!beatStarted)
+        {
+            //beatStartTime = Time.timeSinceLevelLoad;
+            beatStarted = true;
+        }
+        
+        //if (!timeCheck)
+        //{
+        //    currentTime = Time.time;
+        //    timeCheck = true;
+        //}
+        //else if (timeCheck && !isDone)
+        //{
+        //    beatDurationTime = Time.time - currentTime;
+        //    isDone = true;
+        //}
+        //
+        //print("beatdurationtime " + beatDurationTime);
 
         Debug.Log("Beat detected");
-
     }
     //public void LoadGameOver()
     //{

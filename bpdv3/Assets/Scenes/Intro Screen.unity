@@ -486,8 +486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaac4f756c1eedb45b58993f89fe2400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  listenerId: 0
 --- !u!20 &1380412224
 Camera:
   m_ObjectHideFlags: 0
@@ -557,16 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7168cfb6640121040bf7eedc9a9bbe76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!114 &1380412227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,6 +1017,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9739e2322cdf54d83a9c573457950477,
         type: 2}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: splashDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: warningDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 645535477020085284, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
       propertyPath: m_LocalPosition.x

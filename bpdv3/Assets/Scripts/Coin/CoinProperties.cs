@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class CoinProperties : MonoBehaviour
 {
+    GameObject gameUiGo;
+    CoinSpawner coinSpawnerScript;
     Anchor anchorScript;
+
+    int coinValue = 50;
 
     private void Awake()
     {
         anchorScript = GetComponentInChildren<Anchor>();
+        coinSpawnerScript = FindObjectOfType<CoinSpawner>();
+        gameUiGo = GameObject.FindGameObjectWithTag("GameUI");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -16,7 +22,9 @@ public class CoinProperties : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             print("coincollision");
-            anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();            
+            anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+            gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
+            coinSpawnerScript.ResetSpawning();
             gameObject.SetActive(false);            
         }
     }

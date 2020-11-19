@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameUI gameUIScript;
+
+    public int livesCountPlayer = 3;
+
     bool isAlive;
 
     public bool isPushBack;
@@ -16,12 +20,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            PlayerDied();   // To reset coin spawn detection when player dies - SpawnDetectPlayer
-            gameObject.SetActive(false);
-        }
-
         if (isAlive)
         {
         //    Movement(); 
@@ -35,9 +33,14 @@ public class Player : MonoBehaviour
 
     public void PlayerDied()    // To reset coin spawn detection when player dies - SpawnDetectPlayer
     {
+        livesCountPlayer--;
+        gameUIScript.PlayerLoseLife(livesCountPlayer);
+
         foreach (GameObject go in spawnPlayerDetect)
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
+
+        //gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ public class OnTile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("NextMove") || other.gameObject.CompareTag("coin"))
         {
-            print("ontile " + other.name);
+            //print("ontile " + other.name);
             GetComponentInParent<TileProperties>().OccupiedIncreased();
         }
 

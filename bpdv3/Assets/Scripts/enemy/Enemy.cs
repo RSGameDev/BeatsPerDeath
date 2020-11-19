@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    GameObject gameUiGo;
+    GameObject scoreManagerGo;
+
     Anchor anchorScript;
     EnemyNextMove nextMoveScript;
     EnemyMovement enemyMovementScript;
@@ -24,6 +28,8 @@ public class Enemy : MonoBehaviour
         anchorScript = GetComponentInChildren<Anchor>();
         enemyMovementScript = GetComponent<EnemyMovement>();
         nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
+        gameUiGo = GameObject.FindGameObjectWithTag("GameUI");
+        scoreManagerGo = GameObject.FindGameObjectWithTag("ScoreManager");
     }
             
     // Update is called once per frame
@@ -68,6 +74,9 @@ public class Enemy : MonoBehaviour
             {
                 anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
                 nextMoveScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+                string enemytype = currentEnemyType.ToString();
+                int score = scoreManagerGo.GetComponent<ScoreManager>().EnemyScore(enemytype);
+                gameUiGo.GetComponent<GameUI>().Scoring(score);
                 gameObject.SetActive(false);
             }            
         }

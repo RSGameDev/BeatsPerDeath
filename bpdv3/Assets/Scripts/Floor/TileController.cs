@@ -25,8 +25,7 @@ public class TileController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //////////// because of old wwise taken out
-        ///////////if (MusicScript.scrollBeatCount >= 6)
+        if (SceneController.instance.scrollBeatCount >= 6)
         {
             foreach (GameObject go in tilesArray)
             {
@@ -44,11 +43,9 @@ public class TileController : MonoBehaviour {
             }
         }
 
-        //////////// because of old wwise taken out
-        ////////////if (MusicScript.scrollBeatCount == 12)
+        if (SceneController.instance.scrollBeatCount == 12)
         {
-            //////////// because of old wwise taken out
-            ////////////MusicScript.scrollBeatCount = 0;
+            SceneController.instance.scrollBeatCount = 0;
         }
     }
 

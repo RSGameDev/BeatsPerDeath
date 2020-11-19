@@ -50,7 +50,6 @@ public class MusicManager : MonoBehaviour
 
     void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
     {
-
         Debug.Log("Beat detected");
 
     }

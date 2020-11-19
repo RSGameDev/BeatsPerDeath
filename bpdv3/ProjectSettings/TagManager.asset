@@ -17,6 +17,8 @@ TagManager:
   - NextMove
   - tile
   - tempp
+  - ScoreManager
+  - GameUI
   layers:
   - Default
   - TransparentFX
