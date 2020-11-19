@@ -7,14 +7,19 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    #region Score
     // Add score code
     [Header("Score")]
     public int score = 0;
     public TextMeshProUGUI scoreUiValue;
+    #endregion
 
+    #region Life
     [Header("Life Count")]
     public Image[] lifeCount;
+    #endregion
 
+    #region Grading
     [Header("Grading Dial")]
     //public GameObject dial;
     //public ParticleSystem pS;
@@ -25,7 +30,9 @@ public class GameUI : MonoBehaviour
     bool newGrade;
     public TextMeshProUGUI text;
     [Range(0f, 30f)] public float speed;
+    #endregion
 
+    #region Beat Bar
     [Header("Beat bar")]
     // Beatbar
     public GameObject beatBar;
@@ -40,39 +47,100 @@ public class GameUI : MonoBehaviour
     Vector3 direction;
     public float distance;
     public GameObject theCore;
+    #endregion
 
+    #region Multiplier
     [Header("Multiplier")]
     public GameObject multiplierGO;
+    #endregion
+
+
 
     public GameObject player;
 
-    Player playerScript;    
+    PlayerMovement playerMoveScript;    
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = player.GetComponent<Player>();
+        scoreUiValue.text = score.ToString();
+
+        playerMoveScript = player.GetComponent<PlayerMovement>();
 
         direction = startBar.position - endBar.position;
         distance = direction.magnitude;
     }
 
+    void Update()
+    {
+        // todo Score in update
+
+        #region lifecount
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    Debug.Log("loselife3rd");
+        //    PlayerLoseLife(3);
+        //}
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            PlayerLoseLife(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerLoseLife(1);
+        }
+        #endregion
+
+        Grading();                    
+
+        BeatBarBehaviour();
+
+        // todo this code may not be needed, keep for now
+        #region MultiplierStatus
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            MultiplerStatus(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            MultiplerStatus(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            MultiplerStatus(3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            MultiplerStatus(4);
+        }
+        #endregion
+
+    }
 
     // todo Score function ////////////////////////////////////////////
-
+    public void Scoring(int value)
+    {
+        score += value;
+        scoreUiValue.text = score.ToString();
+    }
 
     public void PlayerLoseLife(int lifecount)
     {
         //switch (playerScript.lifeCount)
         switch (lifecount)
         {
-            case 3:
+            case 2:
                 lifeCount[2].GetComponent<Image>().color = new Color32(0, 0, 0, 100);
                 break;
-            case 2:
+            case 1:
                 lifeCount[1].GetComponent<Image>().color = new Color32(0, 0, 0, 100);
                 break;
-            case 1:
+            case 0:
                 lifeCount[0].GetComponent<Image>().color = new Color32(0, 0, 0, 100);
                 break;
                 //default:
@@ -93,7 +161,7 @@ public class GameUI : MonoBehaviour
                 text.text = "C";
                 return;
             } 
-
+    
             if (text.text == "C")
             {
                 anim.Play("PopIn");
@@ -101,7 +169,7 @@ public class GameUI : MonoBehaviour
                 text.text = "B";
                 return;
             }
-
+    
             if (text.text == "B")
             {
                 anim.Play("PopIn");
@@ -115,8 +183,7 @@ public class GameUI : MonoBehaviour
     void BeatBarBehaviour()
     {
         //beatMark1.GetComponent<RectTransform>().anchoredPosition
-        //////////// because of old wwise taken out
-        ////////////if (MusicScript.beatStarted)
+        if (SceneController.instance.beatStarted)
         {
             beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
             beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
@@ -166,101 +233,50 @@ public class GameUI : MonoBehaviour
                 break;
                 //default:
         }
-    }
+    }     
 
-    void Update()
+    private void Grading()
     {
-        // todo Score in update
-
-        #region lifecount
-        if (Input.GetKeyDown(KeyCode.U))
+        if (playerMoveScript.isMoving)
         {
-            Debug.Log("loselife3rd");
-            PlayerLoseLife(3);
+            if (!playerMoveScript.onBeat)
+            {
+                slider.value -= speed * Time.deltaTime;
+                if (slider.value <= sliderStartValue - 20)
+                {
+                    //playerScript.hitBeat = false;
+                    playerMoveScript.isMoving = false;
+                    sliderStartValue = slider.value;
+                    //testLose = false;
+                }
+            }
+    
+            // Hit on the beat 
+            if (playerMoveScript.onBeat)
+            {
+                slider.value += speed * Time.deltaTime;
+                if (slider.value >= sliderStartValue + 20)
+                {
+                    playerMoveScript.onBeat = false;
+                    playerMoveScript.isMoving = false;
+                    sliderStartValue = slider.value;
+                }
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
+    
+        // Miss a beat
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            PlayerLoseLife(2);
+            testLose = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.O))
+    
+        Grading(slider.value);
+    
+        if (newGrade)
         {
-            PlayerLoseLife(1);
+            //playerMoveScript.hitBeat = false;
+            newGrade = false;
         }
-        #endregion
-
-    //----    Grading();                    
-                        
-        BeatBarBehaviour();
-
-        // todo this code may not be needed, keep for now
-        #region MultiplierStatus
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            MultiplerStatus(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            MultiplerStatus(2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            MultiplerStatus(3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            MultiplerStatus(4);
-        }
-        #endregion
-
-    }    
-
-    //-----private void Grading()
-    //{
-    //    if (playerScript.isMoving)
-    //    {
-    //        if (!playerScript.onBeat)
-    //        {
-    //            slider.value -= speed * Time.deltaTime;
-    //            if (slider.value <= sliderStartValue - 20)
-    //            {
-    //                //playerScript.hitBeat = false;
-    //                playerScript.isMoving = false;
-    //                sliderStartValue = slider.value;
-    //                //testLose = false;
-    //            }
-    //        }
-    //
-    //        // Hit on the beat 
-    //        if (playerScript.onBeat)
-    //        {
-    //            slider.value += speed * Time.deltaTime;
-    //            if (slider.value >= sliderStartValue + 20)
-    //            {
-    //                playerScript.onBeat = false;
-    //                playerScript.isMoving = false;
-    //                sliderStartValue = slider.value;
-    //            }
-    //        }
-    //    }
-    //
-    //    // Miss a beat
-    //    if (Input.GetKeyDown(KeyCode.Y))
-    //    {
-    //        testLose = true;
-    //    }
-    //
-    //    Grading(slider.value);
-    //
-    //    if (newGrade)
-    //    {
-    //        playerScript.hitBeat = false;
-    //        newGrade = false;
-    //    }
-    //}
+    }
 }
 

@@ -25,7 +25,7 @@ public class Anchor : MonoBehaviour
 
             if (!other.gameObject.GetComponent<TileProperties>().hasEnemy)
             {
-                print("anchormsg");
+                //print("anchormsg");
                 gameObject.transform.parent.GetComponent<Player>().isPushBack = false;
             }
         }

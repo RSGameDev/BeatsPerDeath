@@ -32,15 +32,13 @@ public class EnemyMovement : MonoBehaviour
    
     public void FirstMove()
     {
-        //////////// because of old wwise taken out
-        ////////////if (MusicScript.gameBeatCount == 1 && !firstMoveFlag)
+        if (SceneController.instance.gameBeatCount == 1 && !firstMoveFlag)
         {
             firstMoveFlag = true;
             firstMoveTick++;
         }
 
-        //////////// because of old wwise taken out
-        //////////if (MusicScript.gameBeatCount == 4 && firstMoveTick == 1)
+        if (SceneController.instance.gameBeatCount == 4 && firstMoveTick == 1)
         {            
             transform.position += new Vector3(0, 0, -1.25f);
             hasMoved = true;
@@ -51,8 +49,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void MovementReset()
     {
-        //////////// because of old wwise taken out
-        ///////////if (MusicScript.gameBeatCount == 1)
+        if (SceneController.instance.gameBeatCount == 1)
         {
             ResetFlags();
         }
@@ -60,8 +57,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Direction()
     {
-        //////////// because of old wwise taken out
-        //////////if (MusicScript.gameBeatCount == 2 && !hasFacedDirection)
+        if (SceneController.instance.gameBeatCount == 2 && !hasFacedDirection)
         {
             FaceDirection();
             hasFacedDirection = true;
@@ -72,8 +68,7 @@ public class EnemyMovement : MonoBehaviour
     {           
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
         {
-            //////////// because of old wwise taken out
-            /////////if (MusicScript.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
                 hasMoved = true;
@@ -82,8 +77,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
         {
-            //////////// because of old wwise taken out
-            //////////if (MusicScript.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
             }

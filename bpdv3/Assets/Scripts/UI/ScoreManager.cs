@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score = 100;
+    public int score;
     //float times1_2 = 1.2f;
     //float times1_6 = 1.6f;
     //float times2_2 = 2.2f;
@@ -21,6 +21,22 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int EnemyScore(string enemyType)
+    {
+        switch (enemyType)
+        {
+            case "Shroom":
+                score = 100;
+                break;
+            case "Rook":
+                score = 200;
+                break;
+            default:
+                break;
+        }
+        return score;
     }
 
     void PlayerDefeatEnemy()
