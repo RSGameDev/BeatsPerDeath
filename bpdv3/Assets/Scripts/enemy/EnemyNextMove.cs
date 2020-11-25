@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is a gameobject placed in front of the enemy. It checks the tile in front of it to work out if another object is destined to go there.
 public class EnemyNextMove : MonoBehaviour
 {
     public GameObject tileObj;

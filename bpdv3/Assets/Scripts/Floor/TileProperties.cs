@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// A majority of code in this script was to help with the development process for the enemy AI, seeing the numbers for each tile and to see visually with different colour changes also.
+// There is a core purpose for this script to, that takes the value of occupancy 'occupiedNum'. Which another script retrieves the value for it's own purposes.
 public class TileProperties : MonoBehaviour
 {
     public bool hasEnemy;
@@ -23,10 +25,11 @@ public class TileProperties : MonoBehaviour
 
     private void Update()
     {
-        tmp.text = occupiedNum.ToString();
+        tmp.text = occupiedNum.ToString();                          // Dev purpose only - to see the value for each tile, occupancy status.
         TileColour();
     }
 
+    // Dev purpose only - Visual recognition for tile occupancy
     private void TileColour()
     {
         if (occupiedNum == 0)
@@ -62,8 +65,9 @@ public class TileProperties : MonoBehaviour
         {
             occupiedNum = 0;
         }
-    }    
+    }
 
+    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero. Ready for when it scrolls back to the top of the level to be used again.
     public void ResetValue()
     {
         occupiedNum = 0;

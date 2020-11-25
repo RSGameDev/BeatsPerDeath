@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Handles the GameUI in the game scene, this is one of the more bigger scripts in the project.
+// I tried to keep them in sections relating to the areas of the UI they cover; Scoring, lives, grade, combo metre, multiplier.
 public class GameUI : MonoBehaviour
 {
     #region Score
@@ -21,8 +23,7 @@ public class GameUI : MonoBehaviour
 
     #region Grading
     [Header("Grading Dial")]
-    //public GameObject dial;
-    //public ParticleSystem pS;
+    public ParticleSystem pS;             // I believe this worked when i tried this out in the past. Adds a particle effect to when a new grade occurs.
     public Animator anim;
     public Slider slider;
     public float sliderStartValue = 0;    
@@ -54,8 +55,6 @@ public class GameUI : MonoBehaviour
     public GameObject multiplierGO;
     #endregion
 
-
-
     public GameObject player;
 
     PlayerMovement playerMoveScript;    
@@ -72,9 +71,7 @@ public class GameUI : MonoBehaviour
     }
 
     void Update()
-    {
-        // todo Score in update
-
+    {        
         #region lifecount
         //if (Input.GetKeyDown(KeyCode.U))
         //{
@@ -93,7 +90,7 @@ public class GameUI : MonoBehaviour
         }
         #endregion
 
-        Grading();                    
+        ComboMetre();                    
 
         BeatBarBehaviour();
 
@@ -121,8 +118,7 @@ public class GameUI : MonoBehaviour
         #endregion
 
     }
-
-    // todo Score function ////////////////////////////////////////////
+        
     public void Scoring(int value)
     {
         score += value;
@@ -131,7 +127,6 @@ public class GameUI : MonoBehaviour
 
     public void PlayerLoseLife(int lifecount)
     {
-        //switch (playerScript.lifeCount)
         switch (lifecount)
         {
             case 2:
@@ -143,7 +138,6 @@ public class GameUI : MonoBehaviour
             case 0:
                 lifeCount[0].GetComponent<Image>().color = new Color32(0, 0, 0, 100);
                 break;
-                //default:
         }
     }
 
@@ -160,8 +154,8 @@ public class GameUI : MonoBehaviour
                 //pS.Play();
                 text.text = "C";
                 return;
-            } 
-    
+            }
+
             if (text.text == "C")
             {
                 anim.Play("PopIn");
@@ -169,7 +163,7 @@ public class GameUI : MonoBehaviour
                 text.text = "B";
                 return;
             }
-    
+
             if (text.text == "B")
             {
                 anim.Play("PopIn");
@@ -179,22 +173,64 @@ public class GameUI : MonoBehaviour
             }
         }
     }
-    
+
+    private void ComboMetre()
+    {
+        if (playerMoveScript.isMoving)
+        {
+            if (!playerMoveScript.onBeat)
+            {
+                slider.value -= speed * Time.deltaTime;
+                if (slider.value <= sliderStartValue - 20)
+                {
+                    //playerScript.hitBeat = false;
+                    playerMoveScript.isMoving = false;
+                    sliderStartValue = slider.value;
+                    //testLose = false;
+                }
+            }
+
+            // Hit on the beat 
+            if (playerMoveScript.onBeat)
+            {
+                slider.value += speed * Time.deltaTime;
+                if (slider.value >= sliderStartValue + 20)
+                {
+                    playerMoveScript.onBeat = false;
+                    playerMoveScript.isMoving = false;
+                    sliderStartValue = slider.value;
+                }
+            }
+        }
+
+        // Miss a beat
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            testLose = true;
+        }
+
+        Grading(slider.value);
+
+        if (newGrade)
+        {
+            //playerMoveScript.hitBeat = false;
+            newGrade = false;
+        }
+    }
+
     void BeatBarBehaviour()
     {
         //beatMark1.GetComponent<RectTransform>().anchoredPosition
         if (SceneController.instance.beatStarted)
         {
-            beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
-            beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
-            beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
-            beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
-                                                                                                              
-                                                                                                              
+            beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // The dots in the beat bar scroll along.  
+            beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // The dots in the beat bar scroll along.
+            beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // 
+            beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // 
         }
         
-        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)
-        {
+        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)                                      // When they reach the end they go back to the start position and repeat scrolling.
+        {                                                                                                           // When they reach the end they go back to the start position and repeat scrolling.
             beatMark1.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
 
@@ -213,8 +249,7 @@ public class GameUI : MonoBehaviour
             beatMark4.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
     }
-
-    // todo keep for time being, deletion possibly
+        
     void MultiplerStatus(int multiplier)
     {
         switch (multiplier)
@@ -233,50 +268,6 @@ public class GameUI : MonoBehaviour
                 break;
                 //default:
         }
-    }     
-
-    private void Grading()
-    {
-        if (playerMoveScript.isMoving)
-        {
-            if (!playerMoveScript.onBeat)
-            {
-                slider.value -= speed * Time.deltaTime;
-                if (slider.value <= sliderStartValue - 20)
-                {
-                    //playerScript.hitBeat = false;
-                    playerMoveScript.isMoving = false;
-                    sliderStartValue = slider.value;
-                    //testLose = false;
-                }
-            }
-    
-            // Hit on the beat 
-            if (playerMoveScript.onBeat)
-            {
-                slider.value += speed * Time.deltaTime;
-                if (slider.value >= sliderStartValue + 20)
-                {
-                    playerMoveScript.onBeat = false;
-                    playerMoveScript.isMoving = false;
-                    sliderStartValue = slider.value;
-                }
-            }
-        }
-    
-        // Miss a beat
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            testLose = true;
-        }
-    
-        Grading(slider.value);
-    
-        if (newGrade)
-        {
-            //playerMoveScript.hitBeat = false;
-            newGrade = false;
-        }
-    }
+    }         
 }
 

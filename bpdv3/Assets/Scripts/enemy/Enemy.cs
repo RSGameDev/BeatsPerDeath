@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Added to each enemy in game.
 public class Enemy : MonoBehaviour
 {
     GameObject gameUiGo;
@@ -63,22 +64,20 @@ public class Enemy : MonoBehaviour
             {
                 other.GetComponent<PlayerMovement>().pushBack = true;
             }
-
-            //if (other.GetComponent<Player>().isPushBack)
-            //{
-            //    string direction = enemyMovementScript.direction;
-            //    other.GetComponent<PlayerMovement>().pushBack = true;
-            //    other.GetComponent<PlayerMovement>().pushBackDirection = direction;
-            //}
             else
             {
-                anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-                nextMoveScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-                string enemytype = currentEnemyType.ToString();
-                int score = scoreManagerGo.GetComponent<ScoreManager>().EnemyScore(enemytype);
-                gameUiGo.GetComponent<GameUI>().Scoring(score);
-                gameObject.SetActive(false);
-            }            
+                EnemyDies();
+            }
         }
+    }
+
+    private void EnemyDies()
+    {
+        anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+        nextMoveScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+        string enemytype = currentEnemyType.ToString();
+        int score = scoreManagerGo.GetComponent<ScoreManager>().EnemyScore(enemytype);
+        gameUiGo.GetComponent<GameUI>().Scoring(score);
+        gameObject.SetActive(false);
     }
 }

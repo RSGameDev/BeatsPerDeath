@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script attached to the player.
 public class PlayerMovement : MonoBehaviour
 {
     Player playerScript;
@@ -16,13 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerScript = GetComponent<Player>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    }        
 
     // Update is called once per frame
     void Update()
@@ -92,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // When the player meets the enemy but not at a weakpoint, so the player gets pushed back a tile.
     public void PlayerPushBack(string direction)
     {
         switch (direction)

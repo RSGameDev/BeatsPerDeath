@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This detects when an object has moved on a tile and if it is an enemy.
 public class OnTile : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("NextMove") || other.gameObject.CompareTag("coin"))
         {
-            //print("ontile " + other.name);
             GetComponentInParent<TileProperties>().OccupiedIncreased();
         }
 

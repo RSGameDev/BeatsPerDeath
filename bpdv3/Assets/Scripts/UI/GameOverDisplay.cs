@@ -4,19 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// WIP - Had been worked on recently. Has not been included in the game yet though.
 public class GameOverDisplay : MonoBehaviour
 {
     Player playerScript;
 
     bool hasFaded;
     float duration = 1f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+          
     // Update is called once per frame
     void Update()
     {
