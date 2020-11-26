@@ -7,8 +7,6 @@ public class CoinSpawner : MonoBehaviour
 {
     ObjectPool objectPoolScript;
 
-    bool startLevel = true;
-
     int spawnPosRand;
     public List<GameObject> spawnPoint;
     Vector3 startPos;
