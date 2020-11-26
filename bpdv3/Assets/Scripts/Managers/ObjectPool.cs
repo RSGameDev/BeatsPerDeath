@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Sourced from https://learn.unity.com/tutorial/introduction-to-object-pooling#5cf1fc18edbc2a4c9daf6993
+// For optimising performance.
+
 public class ObjectPool : MonoBehaviour
 {
     public List<GameObject> pooledObjectsCoin;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script spawns the coins. HAndles when it spawns as well.
 public class CoinSpawner : MonoBehaviour
 {
     ObjectPool objectPoolScript;
@@ -46,11 +47,6 @@ public class CoinSpawner : MonoBehaviour
     {
         if (firstSpawn)
         {
-            //do
-            //{
-            //    spawnPosRand = UnityEngine.Random.Range(0, 5);
-            //} while (spawnPoint[spawnPosRand].GetComponentInChildren<SpawnDetectPlayer>().playerInFront);
-
             lastSpawnPos = SpawnRandom();
             firstSpawn = false;
         }
@@ -78,41 +74,7 @@ public class CoinSpawner : MonoBehaviour
                 break;
         }
         return startPos;
-    }
-
-    //Vector3 SpawnPosition()
-    //{
-    //    if (firstSpawn)
-    //    {
-    //        spawnPosRand = UnityEngine.Random.Range(0, 5);
-    //        lastSpawnPos = spawnPosRand;
-    //        firstSpawn = false;
-    //    }
-    //    else
-    //    {
-    //        spawnPosRand = NonDuplicatePosition(lastSpawnPos);
-    //    }
-    //
-    //    switch (spawnPosRand)
-    //    {
-    //        case 0:
-    //            startPos = spawnPoint[0].transform.position;
-    //            break;
-    //        case 1:
-    //            startPos = spawnPoint[1].transform.position;
-    //            break;
-    //        case 2:
-    //            startPos = spawnPoint[2].transform.position;
-    //            break;
-    //        case 3:
-    //            startPos = spawnPoint[3].transform.position;
-    //            break;
-    //        case 4:
-    //            startPos = spawnPoint[4].transform.position;
-    //            break;
-    //    }
-    //    return startPos;
-    //}
+    }    
 
     int SpawnRandom()
     {
@@ -134,81 +96,5 @@ public class CoinSpawner : MonoBehaviour
         lastSpawnPos = tempSpawnPos;
 
         return tempSpawnPos;
-    }
-
-    //int NonDuplicatePosition(int lastPos)
-    //{
-    //    do
-    //    {
-    //        spawnPosRand = UnityEngine.Random.Range(0, 5);
-    //    } while (spawnPosRand == lastSpawnPos);
-    //
-    //    lastSpawnPos = spawnPosRand;
-    //
-    //    return spawnPosRand;
-    //}
+    }    
 }
-
-//public class CoinSpawner : MonoBehaviour
-//{
-//    public GameObject coin;
-//    public GameObject[] spawnPoint;
-//
-//    public float timer;
-//    public float spawnInterval = 7f;
-//    public int randomNumber;
-//    //public int recentRandomNumber = 4;
-//
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        timer = Time.time;
-//    }
-//
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        timer += Time.deltaTime;
-//
-//        if (timer > spawnInterval)
-//        {
-//            CoinSpawn();
-//        }
-//    }
-//
-//    void CoinSpawn()
-//    {
-//        List<GameObject> temp = new List<GameObject>();
-//
-//        randomNumber = Random.Range(0, 6);
-//
-//        foreach (GameObject go in spawnPoint)
-//        {
-//            if (go.transform.position.z >= 6.25)
-//            {
-//                temp.Add(go);
-//            }
-//        }
-//
-//        GameObject coinSpawnGO = temp[randomNumber];
-//
-//        coinSpawnGO.transform.GetChild(0).gameObject.SetActive(true);
-//        //////       coinSpawnGO.GetComponent<TileProperties>().hasCoin = true;
-//
-//        timer = 0f;
-//        //do
-//        //{
-//        //    randomNumber = Random.Range(0, spawnPoint.Length);
-//        //
-//        //} while (randomNumber == recentRandomNumber);
-//        //
-//        //recentRandomNumber = randomNumber;
-//        //
-//        //Vector3 pos = new Vector3(spawnPoint[randomNumber].position.x, spawnPoint[randomNumber].position.y+1, 6.25f);
-//        //GameObject go = Instantiate(coin,pos, Quaternion.identity);
-//        //go.SetActive(true);
-//        //timer = 0f;
-//    }
-//
-//
-//}

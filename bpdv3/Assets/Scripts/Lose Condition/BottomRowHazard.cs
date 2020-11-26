@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// The last row represented with the flame/laser was the intention from the GDD but we couldnt find laser placeholder for time being.
 public class BottomRowHazard : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)

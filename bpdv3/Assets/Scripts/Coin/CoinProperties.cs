@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is attached to a coin prefab.
 public class CoinProperties : MonoBehaviour
 {
     GameObject gameUiGo;

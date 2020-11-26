@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Added to each enemy in game.
 public class EnemyMovement : MonoBehaviour
 {
     #region Variables
@@ -30,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
         nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
     }
    
+    // Enemy spawns on 1st row, then moves down 1 space, always the same direction. The enemy moves normally after the first move.
     public void FirstMove()
     {
         if (SceneController.instance.gameBeatCount == 1 && !firstMoveFlag)
@@ -82,8 +84,6 @@ public class EnemyMovement : MonoBehaviour
                 Move();
             }
         }
-
-
     }    
 
     public void ResetFlags()
@@ -140,28 +140,28 @@ public class EnemyMovement : MonoBehaviour
             {
                 case 0:
                     transform.position += new Vector3(0, 0, 1.25f);
-                    if (transform.position.z > 7) 
+                    if (transform.position.z > 7)                       // This keeps the enemy from going further up the floor. Keeps the movement restricted.
                     {
                         transform.position = lastPosition;
                     }
                     break;
                 case 1:
                     transform.position += new Vector3(0, 0, -1.25f);
-                    if (transform.position.z < 0)
+                    if (transform.position.z < 0)                       // This keeps the enemy from going further down the floor. Keeps the movement restricted.
                     {
                         transform.position = lastPosition;
                     }
                     break;
                 case 2:
                     transform.position += new Vector3(-1.25f, 0, 0);
-                    if (transform.position.x < 0)
+                    if (transform.position.x < 0)                       // Same for left side.
                     {
                         transform.position = lastPosition;
                     }
                     break;
                 case 3:
                     transform.position += new Vector3(1.25f, 0, 0);
-                    if (transform.position.x > 5)
+                    if (transform.position.x > 5)                       // Same for right side.
                     {
                         transform.position = lastPosition;
                     }
@@ -174,7 +174,7 @@ public class EnemyMovement : MonoBehaviour
             switch (faceDirectionRandRook)
             {             
                 case 0:
-                    if (nextMoveScript.nextMoveTrigger)                     // allow time for trigger on other object to trigger.
+                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
                     {
                         transform.position += new Vector3(-1.25f, 0, 0);
                         nextMoveScript.nextMoveTrigger = false;
@@ -192,7 +192,7 @@ public class EnemyMovement : MonoBehaviour
                     }                   
                     break;
                 case 1:
-                    if (nextMoveScript.nextMoveTrigger)
+                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
                     {
                         transform.position += new Vector3(1.25f, 0, 0);
                         nextMoveScript.nextMoveTrigger = false;
@@ -209,39 +209,7 @@ public class EnemyMovement : MonoBehaviour
                         transform.position = lastPosition;
                     }
                     break;
-            }            
-
-            //switch (faceDirectionRandRook)
-            //{
-            //    case 0:
-            //        transform.position += new Vector3(-1.25f, 0, 0);
-            //        if (transform.position.x < 0)
-            //        {
-            //            transform.position = position;
-            //        }
-            //        break;
-            //    case 1:
-            //        transform.position += new Vector3(1.25f, 0, 0);
-            //        if (transform.position.x > 5)
-            //        {
-            //            transform.position = position;
-            //        }
-            //        break;
-            //}
+            }       
         }
-    }
-
-    void MoveLeft()
-    {
-        transform.position += new Vector3(-1.25f, 0, 0);
-    }
-
-    void MoveRight()
-    {
-        transform.position += new Vector3(1.25f, 0, 0);
-    }
-
-    private void Update()
-    {
-    }
+    }    
 }
