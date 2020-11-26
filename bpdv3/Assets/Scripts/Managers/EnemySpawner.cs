@@ -22,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
 
     public float timer;
 
-    public enum LevelStage                      // How to spawn enemy types at different stages of the level 
+    // How to spawn enemy types at different stages of the level
+    public enum LevelStage                       
     {
         Minute1, Minute2, Minute3
     }
@@ -41,9 +42,9 @@ public class EnemySpawner : MonoBehaviour
         objectPoolScript = GetComponent<ObjectPool>();
         currentLevelStageType = LevelStage.Minute1;
     }
-        
-    private void Update()                                       // The demo was for a 3minute life span so I recently made this to carry out the course of the 3 minutes.
-                                                                // Currently it has 3 stages but the game continues past 3 minutes. This hasn't been coded yet to end at 3 minutes.
+
+    // The demo was for a 3minute life span so I recently made this to carry out the course of the 3 minutes. Currently it has 3 stages but the game continues past 3 minutes. This hasn't been coded yet to end at 3 minutes.
+    private void Update()                                       
     {
         timer += Time.deltaTime;
 
@@ -154,7 +155,8 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            spawnPosRand = NonDuplicatePosition(lastSpawnPos);      // So the enemy will appear on a new column to previously. To add variety.
+            // So the enemy will appear on a new column to previously. To add variety.
+            spawnPosRand = NonDuplicatePosition(lastSpawnPos);      
         }        
 
         switch (spawnPosRand)

@@ -8,9 +8,14 @@ public class TileController : MonoBehaviour {
     [Header("Tile movement speed")]
     [Range(0f, 10f)]
     public float speed;
+    const int s_BeatToStartScroll = 6;
+    const int s_PositionToResetTileValue = 0;
+    const float s_PositionToEndScrolling = -1.25f;
+    const int s_BeatToEndScroll = 12;
 
     public GameObject[] tilesArray;
     public GameObject player;
+    
 
     Vector3 direction;
     public float distance;
@@ -26,27 +31,27 @@ public class TileController : MonoBehaviour {
     void Update()
     {
         // Specified by the GDD, on the 6th beat the floor moves until it reaches the 12th beat. Seen below **.
-        if (SceneController.instance.scrollBeatCount >= 6)
+        if (SceneController.instance.scrollBeatCount >= s_BeatToStartScroll)
         {
-            foreach (GameObject go in tilesArray)
+            foreach (GameObject gameObject in tilesArray)
             {
-                go.transform.Translate(direction.normalized * (Time.deltaTime * (1.25f / 4f)));
+                var tileMovement = direction.normalized * (Time.deltaTime * (1.25f / 4f));
+                gameObject.transform.Translate(tileMovement);
 
-                if (go.transform.position.z <= 0)
+                if (gameObject.transform.position.z <= s_PositionToResetTileValue)
                 {
-                    go.GetComponent<TileProperties>().ResetValue();         // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
-                                                                            // Ready for when it scrolls back to the top of the level to be used again.
+                    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero. Ready for when it scrolls back to the top of the level to be used again.
+                    gameObject.GetComponent<TileProperties>().ResetValue();         
                 }
 
-                if (go.transform.position.z <= -1.25)
+                if (gameObject.transform.position.z <= s_PositionToEndScrolling)
                 {
-                    go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 8.75f);
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 8.75f);
                 }
             }
         }
 
-        // ** The 12th beat.
-        if (SceneController.instance.scrollBeatCount == 12)
+        if (SceneController.instance.scrollBeatCount == s_BeatToEndScroll)
         {
             SceneController.instance.scrollBeatCount = 0;
         }

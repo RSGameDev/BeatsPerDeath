@@ -27,7 +27,6 @@ public class GameUI : MonoBehaviour
     public Animator anim;
     public Slider slider;
     public float sliderStartValue = 0;    
-    bool testLose;
     bool newGrade;
     public TextMeshProUGUI text;
     [Range(0f, 30f)] public float speed;
@@ -71,25 +70,7 @@ public class GameUI : MonoBehaviour
     }
 
     void Update()
-    {        
-        #region lifecount
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    Debug.Log("loselife3rd");
-        //    PlayerLoseLife(3);
-        //}
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            PlayerLoseLife(2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            PlayerLoseLife(1);
-        }
-        #endregion
-
+    {    
         ComboMetre();                    
 
         BeatBarBehaviour();
@@ -183,10 +164,8 @@ public class GameUI : MonoBehaviour
                 slider.value -= speed * Time.deltaTime;
                 if (slider.value <= sliderStartValue - 20)
                 {
-                    //playerScript.hitBeat = false;
                     playerMoveScript.isMoving = false;
                     sliderStartValue = slider.value;
-                    //testLose = false;
                 }
             }
 
@@ -201,36 +180,30 @@ public class GameUI : MonoBehaviour
                     sliderStartValue = slider.value;
                 }
             }
-        }
-
-        // Miss a beat
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            testLose = true;
-        }
+        }        
 
         Grading(slider.value);
 
         if (newGrade)
         {
-            //playerMoveScript.hitBeat = false;
             newGrade = false;
         }
     }
 
     void BeatBarBehaviour()
     {
-        //beatMark1.GetComponent<RectTransform>().anchoredPosition
         if (SceneController.instance.beatStarted)
         {
-            beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // The dots in the beat bar scroll along.  
-            beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // The dots in the beat bar scroll along.
-            beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // 
-            beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        // 
+            // The dots in the beat bar scroll along. 
+            beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
+            beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
+            beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
+            beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
         }
-        
-        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)                                      // When they reach the end they go back to the start position and repeat scrolling.
-        {                                                                                                           // When they reach the end they go back to the start position and repeat scrolling.
+
+        // When they reach the end they go back to the start position and repeat scrolling.
+        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)                                      
+        {                                                                                                           
             beatMark1.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
 
@@ -266,7 +239,6 @@ public class GameUI : MonoBehaviour
             case 4:
                 multiplierGO.GetComponentInChildren<TextMeshProUGUI>().text = "Multiplier x8";
                 break;
-                //default:
         }
     }         
 }
