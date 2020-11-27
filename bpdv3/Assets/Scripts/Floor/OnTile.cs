@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This detects when an object has moved on a tile and if it is an enemy.
 public class OnTile : MonoBehaviour
 {
+    const string s_Enemy = "enemy";
+    const string s_NextMove = "NextMove";
+    const string s_Coin = "coin";
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("NextMove") || other.gameObject.CompareTag("coin"))
-        {
-            //print("ontile " + other.name);
-            GetComponentInParent<TileProperties>().OccupiedIncreased();
-        }
+        var tag = other.gameObject.tag;
 
-        if (other.gameObject.CompareTag("enemy"))
+        if (tag == s_Enemy || tag == s_NextMove || tag == s_Coin)
+        {
+            GetComponentInParent<TileProperties>().OccupiedIncreased();
+        }        
+
+        if (tag == s_Enemy)
         {
             GetComponentInParent<TileProperties>().hasEnemy = true;
         }
@@ -20,12 +26,14 @@ public class OnTile : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("NextMove") || other.gameObject.CompareTag("enemy"))
+        var tag = other.gameObject.tag;
+
+        if (tag == s_Enemy || tag == s_NextMove)
         {
             GetComponentInParent<TileProperties>().OccupiedDecreased();
-        }
+        }        
 
-        if (other.gameObject.CompareTag("enemy"))
+        if (tag == s_Enemy)
         {
             GetComponentInParent<TileProperties>().hasEnemy = false;
         }

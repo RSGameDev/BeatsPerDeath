@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Script attached to the player.
 public class Player : MonoBehaviour
 {
     public GameUI gameUIScript;
@@ -20,18 +21,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (isAlive)
+        if (isAlive)                    // Not quite implemented this yet as one can see. The idea was there but nothing done yet with this.
         {
         //    Movement(); 
         }
     }
 
+    // When the player dies this function is called.
     public void StartPosition()
     {
         transform.position = startPos;
     }
 
-    public void PlayerDied()    // To reset coin spawn detection when player dies - SpawnDetectPlayer
+    public void PlayerDied()    
     {
         livesCountPlayer--;
         gameUIScript.PlayerLoseLife(livesCountPlayer);
@@ -40,7 +42,5 @@ public class Player : MonoBehaviour
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
-
-        //gameObject.SetActive(false);
     }
 }
