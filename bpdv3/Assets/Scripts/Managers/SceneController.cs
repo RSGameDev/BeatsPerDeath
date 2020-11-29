@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Assets.Scripts.Core;
 
+// Script for handling changes of scenes, panels etc.
+// Note - Recently the music was added to the game scene. At the bottom of this script is a 'CallBackBeatFunction' that we are looking to have in another script 'a music script'.
+//        So the code at the bottom of this script is here temporarily and will be moved. This was done just so we can get a build out early for people to see. 
 public class SceneController : Singleton<SceneController>
 {
     public AK.Wwise.Event menuEvent;
@@ -33,9 +36,9 @@ public class SceneController : Singleton<SceneController>
     bool isDone;
     public bool beatStarted;
     
-    public int gameBeatCount;
-    public int spawnBeatCount;
-    public int scrollBeatCount;
+    public int gameBeatCount;                    // This variable allows the enemies to move correctly.
+    public int spawnBeatCount;                   // This variable allows the enemies to spawn correctly.
+    public int scrollBeatCount;                 
 
     private new void Awake()
     {
@@ -174,11 +177,13 @@ public class SceneController : Singleton<SceneController>
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    //AudioEngine Code to give us information on beat detection from WWise.
-    void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
+    //AudioEngine Code to give us information on beat detection from WWise. < John comment
+    void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)         // The code i mentioned at the top of the script. We will look to have this in a different script
+                                                                                                // to SceneController as the functioning behind it relates heavily on music and so we shall look to
+                                                                                                // have this in a music script in the future.  < Richard comment
     {
-        gameBeatCount++;
-        spawnBeatCount++;
+        gameBeatCount++;            
+        spawnBeatCount++;           
 
         if (gameBeatCount == 5)
         {
@@ -188,39 +193,24 @@ public class SceneController : Singleton<SceneController>
         if (spawnBeatCount == 9)
         {
             spawnBeatCount = 1;
-        }
+        }        
 
         beatUiValue.text = gameBeatCount.ToString();
         spawnUiValue.text = spawnBeatCount.ToString();
 
         scrollBeatCount++;
 
+        // This triggers the beat bar in the GameUi to start working.
         if (!beatStarted)
         {
-            //beatStartTime = Time.timeSinceLevelLoad;
             beatStarted = true;
-        }
-        
-        //if (!timeCheck)
-        //{
-        //    currentTime = Time.time;
-        //    timeCheck = true;
-        //}
-        //else if (timeCheck && !isDone)
-        //{
-        //    beatDurationTime = Time.time - currentTime;
-        //    isDone = true;
-        //}
-        //
-        //print("beatdurationtime " + beatDurationTime);
+        }              
 
         Debug.Log("Beat detected");
     }
+
     //public void LoadGameOver()
     //{
     //    SceneManager.LoadScene("Game Over");
     //}
-
-
-
 }

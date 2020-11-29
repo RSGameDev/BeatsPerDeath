@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+// This can spawn all enemy types, two currently; shroom , rook.
 public class EnemySpawner : MonoBehaviour
 {
+    #region Variables
     ObjectPool objectPoolScript;
 
     bool startLevel = true;
@@ -20,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
 
     public float timer;
 
-    public enum LevelStage
+    // How to spawn enemy types at different stages of the level
+    public enum LevelStage                       
     {
         Minute1, Minute2, Minute3
     }
@@ -32,22 +35,27 @@ public class EnemySpawner : MonoBehaviour
     int rookCountMinute2;
     int rookCountMinute3;
 
+    #endregion
+
     private void Awake()
     {
         objectPoolScript = GetComponent<ObjectPool>();
         currentLevelStageType = LevelStage.Minute1;
     }
-        
-    private void Update()
+
+    // The demo was for a 3minute life span so I recently made this to carry out the course of the 3 minutes. Currently it has 3 stages but the game continues past 3 minutes. This hasn't been coded yet to end at 3 minutes.
+    private void Update()                                       
     {
         timer += Time.deltaTime;
 
+        // 0 to 1 minute mark
         if (timer >= 60 && !triggerMin1)
         {
             triggerMin1 = true;
             currentLevelStageType = LevelStage.Minute2;
         }
 
+        // 1 to 2 minute mark
         if (timer >= 120 && !triggerMin2)
         {
             triggerMin2 = true;
@@ -68,8 +76,10 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        // This orchestrates how the enemies appear in the level, created for the build that was done recently.
         switch (currentLevelStageType)
         {
+            // 0 to 1 minute there are just shrooms spawning.
             case LevelStage.Minute1:
                 if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
@@ -77,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
                     hasSpawned = true;
                 }
                 break;
+            // 1 to 2 minute there are shrooms spawning but with a rook spawning every 24 beat (8 beat * 3 rookcount).
             case LevelStage.Minute2:
                 if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
@@ -93,6 +104,7 @@ public class EnemySpawner : MonoBehaviour
                     hasSpawned = true;
                 }
                 break;
+            // 2 to ongoing, there are shrooms spawning but with a rook spawning every 16 beat (8 beat * 2 rookcount).
             case LevelStage.Minute3:
                 if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
@@ -111,14 +123,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             default:
                 break;
-        }
-
-        //if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
-        //{
-        //    ShroomPoolObject();
-        //    //RookPoolObject();
-        //    hasSpawned = true;
-        //}
+        }        
     }
 
     void ResetSpawning()
@@ -150,7 +155,8 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            spawnPosRand = NonDuplicatePosition(lastSpawnPos);
+            // So the enemy will appear on a new column to previously. To add variety.
+            spawnPosRand = NonDuplicatePosition(lastSpawnPos);      
         }        
 
         switch (spawnPosRand)
@@ -174,12 +180,13 @@ public class EnemySpawner : MonoBehaviour
         return startPos;
     }
 
+    // So the enemy will appear on a new column to previously. To add variety.
     int NonDuplicatePosition(int lastPos)
     {
         do
         {
             spawnPosRand = UnityEngine.Random.Range(0, 5);
-        } while (spawnPosRand == lastSpawnPos);
+        } while (spawnPosRand == lastPos);
 
         lastSpawnPos = spawnPosRand;
 

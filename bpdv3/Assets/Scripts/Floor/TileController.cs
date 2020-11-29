@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles the scrolling of the floor.
 public class TileController : MonoBehaviour {
 
     [Header("Tile movement speed")]
     [Range(0f, 10f)]
     public float speed;
+    const int s_BeatToStartScroll = 6;
+    const int s_PositionToResetTileValue = 0;
+    const float s_PositionToEndScrolling = -1.25f;
+    const int s_BeatToEndScroll = 12;
 
-    //public GameObject Tile;
     public GameObject[] tilesArray;
     public GameObject player;
+    
 
     Vector3 direction;
     public float distance;
@@ -27,23 +32,25 @@ public class TileController : MonoBehaviour {
     {
         if (SceneController.Instance.scrollBeatCount >= 6)
         {
-            foreach (GameObject go in tilesArray)
+            foreach (GameObject gameObject in tilesArray)
             {
-                go.transform.Translate(direction.normalized * (Time.deltaTime * (1.25f / 4.0000005f)));
+                var tileMovement = direction.normalized * (Time.deltaTime * (1.25f / 4f));
+                gameObject.transform.Translate(tileMovement);
 
-                if (go.transform.position.z <= 0)
+                if (gameObject.transform.position.z <= s_PositionToResetTileValue)
                 {
-                    go.GetComponent<TileProperties>().ResetValue();
+                    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero. Ready for when it scrolls back to the top of the level to be used again.
+                    gameObject.GetComponent<TileProperties>().ResetValue();         
                 }
 
-                if (go.transform.position.z <= -1.25)
+                if (gameObject.transform.position.z <= s_PositionToEndScrolling)
                 {
-                    go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, 8.75f);
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 8.75f);
                 }
             }
         }
 
-        if (SceneController.Instance.scrollBeatCount == 12)
+        if (SceneController.Instance.scrollBeatCount == s_BeatToEndScroll)
         {
             SceneController.Instance.scrollBeatCount = 0;
         }
