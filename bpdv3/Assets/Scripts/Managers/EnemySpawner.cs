@@ -54,14 +54,14 @@ public class EnemySpawner : MonoBehaviour
             currentLevelStageType = LevelStage.Minute3;
         }
 
-        if (SceneController.instance.spawnBeatCount == 1)
+        if (SceneController.Instance.spawnBeatCount == 1)
         {
             ResetSpawning();
         }
 
         if (startLevel)
         {
-            if (SceneController.instance.spawnBeatCount == 4)
+            if (SceneController.Instance.spawnBeatCount == 4)
             {
                 startLevel = false;
                 ShroomPoolObject();
@@ -71,14 +71,14 @@ public class EnemySpawner : MonoBehaviour
         switch (currentLevelStageType)
         {
             case LevelStage.Minute1:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     ShroomPoolObject();
                     hasSpawned = true;
                 }
                 break;
             case LevelStage.Minute2:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     rookCountMinute2++;
                     if (rookCountMinute2 == 3)
@@ -94,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 break;
             case LevelStage.Minute3:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     rookCountMinute3++;
                     if (rookCountMinute3 == 2)

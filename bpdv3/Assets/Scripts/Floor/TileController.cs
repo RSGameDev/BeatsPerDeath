@@ -25,7 +25,7 @@ public class TileController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (SceneController.instance.scrollBeatCount >= 6)
+        if (SceneController.Instance.scrollBeatCount >= 6)
         {
             foreach (GameObject go in tilesArray)
             {
@@ -43,9 +43,9 @@ public class TileController : MonoBehaviour {
             }
         }
 
-        if (SceneController.instance.scrollBeatCount == 12)
+        if (SceneController.Instance.scrollBeatCount == 12)
         {
-            SceneController.instance.scrollBeatCount = 0;
+            SceneController.Instance.scrollBeatCount = 0;
         }
     }
 

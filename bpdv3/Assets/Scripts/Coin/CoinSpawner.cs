@@ -25,7 +25,7 @@ public class CoinSpawner : MonoBehaviour
 
     private void Update()
     {      
-        if (SceneController.instance.gameBeatCount == 4 && !hasSpawned)
+        if (SceneController.Instance.gameBeatCount == 4 && !hasSpawned)
         {
             hasSpawned = true;
             CoinPoolObject();

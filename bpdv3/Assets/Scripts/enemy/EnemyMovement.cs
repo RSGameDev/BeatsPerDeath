@@ -32,13 +32,13 @@ public class EnemyMovement : MonoBehaviour
    
     public void FirstMove()
     {
-        if (SceneController.instance.gameBeatCount == 1 && !firstMoveFlag)
+        if (SceneController.Instance.gameBeatCount == 1 && !firstMoveFlag)
         {
             firstMoveFlag = true;
             firstMoveTick++;
         }
 
-        if (SceneController.instance.gameBeatCount == 4 && firstMoveTick == 1)
+        if (SceneController.Instance.gameBeatCount == 4 && firstMoveTick == 1)
         {            
             transform.position += new Vector3(0, 0, -1.25f);
             hasMoved = true;
@@ -49,7 +49,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void MovementReset()
     {
-        if (SceneController.instance.gameBeatCount == 1)
+        if (SceneController.Instance.gameBeatCount == 1)
         {
             ResetFlags();
         }
@@ -57,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Direction()
     {
-        if (SceneController.instance.gameBeatCount == 2 && !hasFacedDirection)
+        if (SceneController.Instance.gameBeatCount == 2 && !hasFacedDirection)
         {
             FaceDirection();
             hasFacedDirection = true;
@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
     {           
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
         {
-            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
                 hasMoved = true;
@@ -77,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
         {
-            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
             }

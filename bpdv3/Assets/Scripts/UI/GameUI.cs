@@ -183,7 +183,7 @@ public class GameUI : MonoBehaviour
     void BeatBarBehaviour()
     {
         //beatMark1.GetComponent<RectTransform>().anchoredPosition
-        if (SceneController.instance.beatStarted)
+        if (SceneController.Instance.beatStarted)
         {
             beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  
             beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));  

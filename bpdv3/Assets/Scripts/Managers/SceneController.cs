@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using TMPro;
+using Assets.Scripts.Core;
 
-public class SceneController : MonoBehaviour
+public class SceneController : Singleton<SceneController>
 {
     public AK.Wwise.Event menuEvent;
     public AK.Wwise.Event gplayEvent;
@@ -24,8 +22,6 @@ public class SceneController : MonoBehaviour
     [SerializeField] int warningDelay = 3;
     int currentSceneIndex;
 
-    public TextMeshProUGUI timeUiValue;
-    public float timer;
     public TextMeshProUGUI beatUiValue;
     public TextMeshProUGUI spawnUiValue;
     bool isReferenced;
@@ -41,19 +37,9 @@ public class SceneController : MonoBehaviour
     public int spawnBeatCount;
     public int scrollBeatCount;
 
-    public static SceneController instance;
-
-    private void Awake()
+    private new void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.Awake();
 
         warningScreen.transform.localScale = Vector3.zero;
         mainMenu.transform.localScale = Vector3.zero;
@@ -65,12 +51,34 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
+        SetSceneSettings();
+    }
+
+    private void SetSceneSettings()
+    {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentSceneIndex == 0)
+
+        switch (currentSceneIndex)
         {
-            menuEvent.Post(gameObject);
-            StartCoroutine(DelayOnSplashScreen());
+            case 0:
+                SetIntroSceneSettings();
+                break;
+            case 1:
+                SetGamePlaySceneSettings();
+                break;
         }
+    }
+
+    // TODO temporary method will be deleted with the implenentation of the AudioManager
+    private void SetGamePlaySceneSettings()
+    {
+        gplayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
+    }
+
+    private void SetIntroSceneSettings()
+    {
+        menuEvent.Post(gameObject);
+        StartCoroutine(DelayOnSplashScreen());
     }
 
     IEnumerator DelayOnSplashScreen()
@@ -90,15 +98,6 @@ public class SceneController : MonoBehaviour
 
             var temp1 = GameObject.Find("ScoreUITest Value (TMP) (1)");
             spawnUiValue = temp1.GetComponent<TextMeshProUGUI>();
-
-            var temp2 = GameObject.Find("TimeTest Value (TMP) (2)");
-            timeUiValue = temp2.GetComponent<TextMeshProUGUI>();
-        }
-
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            timer += Time.deltaTime; 
-            timeUiValue.text = timer.ToString("00");
         }
     }
 
@@ -128,7 +127,7 @@ public class SceneController : MonoBehaviour
         //AkSoundEngine.SetState("Music_State", "Gameplay");
         //AkSoundEngine.SetSwitch("Level", "Main_Level", MusicObject);
         SceneManager.LoadScene("scene1");
-        gplayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
+        SetGamePlaySceneSettings();
     }
 
 
@@ -190,8 +189,6 @@ public class SceneController : MonoBehaviour
         {
             spawnBeatCount = 1;
         }
-
-        
 
         beatUiValue.text = gameBeatCount.ToString();
         spawnUiValue.text = spawnBeatCount.ToString();
