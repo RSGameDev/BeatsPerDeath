@@ -5,34 +5,34 @@ using UnityEngine;
 // Script attached to the player.
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] TileController tileControllerScript;
-    Player playerScript;
-    [SerializeField] Anchor anchorScript;
+    #region Public variables
+    public GameObject hitZone;
+
+    public Anchor _anchor;
+    public Player _player;
+    public TileController _tileController;
+
+    public string direction;
 
     public bool pushBack;
     public bool isMoving;
     public bool onBeat;
-    public GameObject hitZone;
+    #endregion
 
-    public string direction;
+    #region Function
+    // Lerp    
+    private Vector3 destination;
 
-    // Lerping
-    public bool lerp;
-    [SerializeField] Vector3 testactualposition;
-    [SerializeField] Vector3 destination;
-    public float speed = 1.0F;
     private float startTime;
     private float journeyLength;
+    public float speed = 1.0F;
 
-    private void Awake()
-    {
-        playerScript = GetComponent<Player>();
-    }        
+    public bool lerp;
+    #endregion    
 
     // Update is called once per frame
     void Update()
     {
-        testactualposition = transform.position;
         Movement();
 
         if (lerp)
@@ -53,18 +53,15 @@ public class PlayerMovement : MonoBehaviour
         float distCovered = (Time.time - startTime) * speed;
         float fractionOfJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(transform.position, destination, fractionOfJourney);
-        if (fractionOfJourney >= 0.1f || !playerScript.isAlive)
+        if (fractionOfJourney >= 0.1f || !_player.isAlive)
         {
             lerp = false;
-            anchorScript.PlaceInPosition();
+            _anchor.PlaceInPosition();
         }
     }
 
     void Movement()
     {
-        //Vector3 position;
-        //position = transform.position;
-
         if (Input.GetKeyDown("w"))
         {
             startTime = Time.time;
@@ -118,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             lerp = false;
         }
 
-        if (!tileControllerScript.tilesScrolling)
+        if (!_tileController.tilesScrolling)
         {
             if (transform.position.z < 1.25)
             {
@@ -127,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
            
-
         if (transform.position.x < 0)
         {
             transform.position = new Vector3(0, transform.position.y, transform.position.z);
@@ -164,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.position = playerScript.startPos;
+        transform.position = _player.startPos;
         destination = transform.position;
     }
 }

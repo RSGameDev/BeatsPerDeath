@@ -6,14 +6,20 @@ using UnityEngine;
 // Added to each enemy in game.
 public class Enemy : MonoBehaviour
 {
-    GameObject gameUiGo;
-    GameObject scoreManagerGo;
+    #region Private variables
+    private GameObject _gameUiGO;
+    private GameObject _scoreManagerGO;
 
-    Anchor anchorScript;
-    EnemyNextMove nextMoveScript;
-    EnemyMovement enemyMovementScript;
+    private Anchor _anchor;
+    private EnemyMovement _enemyMovement;
+    private EnemyNextMove _nextMove;
+    #endregion
 
-    public bool isPushBack;
+    #region Public variables
+    public bool isPushBack; 
+    public bool isAlive = true;
+    public bool isNew = true;
+    #endregion
 
     public enum EnemyType
     {
@@ -21,16 +27,15 @@ public class Enemy : MonoBehaviour
     }
     public EnemyType currentEnemyType;
 
-    public bool isAlive = true;
-    public bool isNew = true;
+    
 
     private void Awake()
     {
-        anchorScript = GetComponentInChildren<Anchor>();
-        enemyMovementScript = GetComponent<EnemyMovement>();
-        nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
-        gameUiGo = GameObject.FindGameObjectWithTag("GameUI");
-        scoreManagerGo = GameObject.FindGameObjectWithTag("ScoreManager");
+        _gameUiGO = GameObject.FindGameObjectWithTag("GameUI");
+        _scoreManagerGO = GameObject.FindGameObjectWithTag("ScoreManager");
+        _anchor = GetComponentInChildren<Anchor>();
+        _nextMove = transform.GetChild(2).GetComponent<EnemyNextMove>();
+        _enemyMovement = GetComponent<EnemyMovement>();
     }
             
     // Update is called once per frame
@@ -38,20 +43,20 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
-            enemyMovementScript.MovementReset();
+            _enemyMovement.MovementReset();
 
             if (!isNew)
             {
-                enemyMovementScript.Direction();
+                _enemyMovement.Direction();
 
-                if (nextMoveScript.CanMove())
+                if (_nextMove.CanMove())
                 {
-                    enemyMovementScript.Movement();
+                    _enemyMovement.Movement();
                 }
             }
-            else if (nextMoveScript.CanMove())
+            else if (_nextMove.CanMove())
             {
-                enemyMovementScript.FirstMove();
+                _enemyMovement.FirstMove();
             }
         }
     }
@@ -73,11 +78,11 @@ public class Enemy : MonoBehaviour
 
     private void EnemyDies()
     {
-        anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-        nextMoveScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+        _anchor.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+        _nextMove.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
         string enemytype = currentEnemyType.ToString();
-        int score = scoreManagerGo.GetComponent<ScoreManager>().EnemyScore(enemytype);
-        gameUiGo.GetComponent<GameUI>().Scoring(score);
+        int score = _scoreManagerGO.GetComponent<ScoreManager>().EnemyScore(enemytype);
+        _gameUiGO.GetComponent<GameUI>().Scoring(score);
         gameObject.SetActive(false);
     }
 }

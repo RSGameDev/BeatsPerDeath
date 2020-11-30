@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
 
         // 0 to 1 minute mark
-        if (timer >= 20 && !triggerMin1)
+        if (timer >= 60 && !triggerMin1)
         {
             triggerMin1 = true;
             currentLevelStageType = LevelStage.Minute2;

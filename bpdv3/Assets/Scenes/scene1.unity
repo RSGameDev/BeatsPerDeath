@@ -819,6 +819,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3047989383954285368}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301873090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+    type: 3}
+  m_PrefabInstance: {fileID: 3047989383954285368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301873088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd84aa0c632271d408c144bf86ee0201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &329914883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 607809920495890664, guid: 724cc971c7f731e41a8f7e50df1da444,
@@ -3557,9 +3569,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPushBack: 0
-  currentEnemyType: 0
   isAlive: 1
   isNew: 1
+  currentEnemyType: 0
 --- !u!65 &1013583615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18506,7 +18518,7 @@ PrefabInstance:
     - target: {fileID: 3047989384907030481, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
@@ -18523,6 +18535,21 @@ PrefabInstance:
       propertyPath: anchorScript
       value: 
       objectReference: {fileID: 1211210766}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: _tileController
+      value: 
+      objectReference: {fileID: 524371307}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: _anchor
+      value: 
+      objectReference: {fileID: 1211210766}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 301873090}
     - target: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: spawnPlayerDetect.Array.size

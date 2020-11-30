@@ -6,45 +6,43 @@ using UnityEngine;
 // Added to each enemy in game.
 public class EnemyMovement : MonoBehaviour
 {
+    #region Private variables
+    private Enemy _enemy;
+    private EnemyNextMove _nextMove;
+    private TileController _tileController;
+
+    #endregion
+
+    #region Public variables
     public GameObject nextMoveGO;
 
-    [SerializeField] TileController tileControllerScript;
+    public Anchor anchorScript;
 
-    #region Variables
-    Enemy enemyScript;
-    EnemyNextMove nextMoveScript;
-    [SerializeField] Anchor anchorScript;
+    private int firstMoveTick;
+    private int faceDirectionRandShroom;
+    private int faceDirectionRandRook;
 
-    [SerializeField] int firstMoveTick;
-    [SerializeField] bool firstMoveFlag;
+    private bool firstMoveFlag;    
+    private bool hasFacedDirection;
+    private bool hasMoved;  
+    #endregion
 
-    [SerializeField] bool hasFacedDirection;
-    [SerializeField] bool hasMoved;
-
-    [SerializeField] int faceDirectionRandShroom;
-    [SerializeField] int faceDirectionRandRook;
-
-    [SerializeField] bool rookMove;
-
-    //[SerializeField] Vector3 lastPosition;
-
-    // Lerping
-    public bool lerp;
-    [SerializeField] Vector3 testactualposition;
+    #region Function
+    // Lerp    
     [SerializeField] Vector3 destination;
-    public float speed = 1.0F;
     private float startTime;
     private float journeyLength;
-
+    public float speed = 1.0F;
+    public bool lerp;
     #endregion
 
     private void Awake()
     {
-        enemyScript = GetComponent<Enemy>();
-        nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
+        _enemy = GetComponent<Enemy>();
+        _nextMove = transform.GetChild(2).GetComponent<EnemyNextMove>();
 
         GameObject temp = GameObject.FindGameObjectWithTag("TileController");
-        tileControllerScript = temp.GetComponent<TileController>();
+        _tileController = temp.GetComponent<TileController>();
     }
 
     void Update()
@@ -62,9 +60,9 @@ public class EnemyMovement : MonoBehaviour
         float distCovered = (Time.time - startTime) * speed;
         float fractionOfJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(transform.position, destination, fractionOfJourney);
-        if (fractionOfJourney >= 0.1f || !enemyScript.isAlive)
+        if (fractionOfJourney >= 0.1f || !_enemy.isAlive)
         {
-            enemyScript.isNew = false;
+            _enemy.isNew = false;
             lerp = false;
             anchorScript.PlaceInPosition();
         }
@@ -85,8 +83,7 @@ public class EnemyMovement : MonoBehaviour
             destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1.25f);
             journeyLength = Vector3.Distance(transform.position, destination);
             lerp = true;
-        }
-        
+        }        
     }
 
     public void MovementReset()
@@ -108,7 +105,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Movement()
     {           
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Shroom)
         {
             if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
@@ -117,7 +114,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Rook)
         {
             if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
@@ -137,7 +134,7 @@ public class EnemyMovement : MonoBehaviour
         faceDirectionRandShroom = UnityEngine.Random.Range(0, 4);
         faceDirectionRandRook = UnityEngine.Random.Range(0, 2);
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Shroom)
         {
             switch (faceDirectionRandShroom)
             {
@@ -156,7 +153,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Rook)
         {
             switch (faceDirectionRandRook)
             {
@@ -172,7 +169,7 @@ public class EnemyMovement : MonoBehaviour
       
     void Move()
     {
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Shroom)
         {
             switch (faceDirectionRandShroom)
             {
@@ -203,40 +200,40 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
+        if (_enemy.currentEnemyType == Enemy.EnemyType.Rook)
         {
             switch (faceDirectionRandRook)
             {             
                 case 0:
-                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
+                    if (_nextMove.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
                     {                    
                         startTime = Time.time;
                         destination = new Vector3(transform.position.x - 1.25f, transform.position.y, transform.position.z);
                         journeyLength = Vector3.Distance(transform.position, destination);
                         lerp = true;
-                        nextMoveScript.nextMoveTrigger = false;
+                        _nextMove.nextMoveTrigger = false;
                     }
                     
-                    if (!nextMoveScript.CanMove())
+                    if (!_nextMove.CanMove())
                     {
-                        transform.position = new Vector3 (nextMoveScript.tileObj.transform.position.x + 1.25f, nextMoveScript.tileObj.transform.position.y + 1, nextMoveScript.tileObj.transform.position.z);
+                        transform.position = new Vector3 (_nextMove.tileObj.transform.position.x + 1.25f, _nextMove.tileObj.transform.position.y + 1, _nextMove.tileObj.transform.position.z);
                         anchorScript.PlaceInPosition();
                         hasMoved = true;
                     }                                    
                     break;
                 case 1:
-                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
+                    if (_nextMove.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
                     {
                         startTime = Time.time;
                         destination = new Vector3(transform.position.x + 1.25f, transform.position.y, transform.position.z);
                         journeyLength = Vector3.Distance(transform.position, destination);
                         lerp = true;
-                        nextMoveScript.nextMoveTrigger = false;
+                        _nextMove.nextMoveTrigger = false;
                     }
         
-                    if (!nextMoveScript.CanMove())
+                    if (!_nextMove.CanMove())
                     {
-                        transform.position = new Vector3(nextMoveScript.tileObj.transform.position.x - 1.25f, nextMoveScript.tileObj.transform.position.y + 1, nextMoveScript.tileObj.transform.position.z);
+                        transform.position = new Vector3(_nextMove.tileObj.transform.position.x - 1.25f, _nextMove.tileObj.transform.position.y + 1, _nextMove.tileObj.transform.position.z);
                         anchorScript.PlaceInPosition();
                         hasMoved = true;
                     }
@@ -247,7 +244,7 @@ public class EnemyMovement : MonoBehaviour
 
     void CheckBoundaries()
     {
-        if (!enemyScript.isNew)
+        if (!_enemy.isNew)
         {
             if (transform.position.z > 6.25)
             {
@@ -256,7 +253,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }        
 
-        if (!tileControllerScript.tilesScrolling)
+        if (!_tileController.tilesScrolling)
         {
             if (transform.position.z < 1.25)
             {

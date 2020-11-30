@@ -6,33 +6,37 @@ using UnityEngine;
 // Script attached to the player.
 public class Player : MonoBehaviour
 {
+    #region Private variables
+    private PlayerMovement _playerMovement;
+    #endregion
+
+    #region Public variables
+    public GameObject[] spawnPlayerDetect;
+
     public GameUI gameUIScript;
-    PlayerMovement playerMovementScript;
-
-    public int livesCountPlayer = 3;
-    public bool isAlive = true;
-
-    public bool isPushBack;
-    
     public Vector3 startPos;
 
-    public GameObject[] spawnPlayerDetect;
+    public int livesCountPlayer = 3;
+
+    public bool isAlive = true;
+    public bool isPushBack;
+    #endregion    
 
     private void Awake()
     {
-        playerMovementScript = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Start()
     {
-        playerMovementScript.enabled = true;
+        _playerMovement.enabled = true;
     }
 
     private void Update()
     {
         if (!isAlive)                    
         {
-            playerMovementScript.enabled = false;
+            _playerMovement.enabled = false;
         }
     }
 
@@ -53,15 +57,14 @@ public class Player : MonoBehaviour
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
         StartPosition();
-        playerMovementScript.ResetPosition();   // This is use so the lerp function does not continue to use the old values still.
+        _playerMovement.ResetPosition();   // This is use so the lerp function does not continue to use the old values still.
         StartCoroutine(EnableMove());
-        //gameObject.SetActive(false);
     }
 
     IEnumerator EnableMove()
     {
         yield return new WaitForSeconds(0.5f);
         isAlive = true;
-        playerMovementScript.enabled = true;
+        _playerMovement.enabled = true;
     }
 }
