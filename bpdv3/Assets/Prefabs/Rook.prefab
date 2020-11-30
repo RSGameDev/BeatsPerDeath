@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileObj: {fileID: 0}
+  tilepos: {x: 0, y: 0, z: 0}
 --- !u!1 &4979954964625793132
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPushBack: 0
   currentEnemyType: 1
+  isAlive: 1
   isNew: 1
 --- !u!114 &4979954964625793123
 MonoBehaviour:
@@ -603,7 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 
+  nextMoveGO: {fileID: 7414543834890495136}
+  tileControllerScript: {fileID: 0}
+  anchorScript: {fileID: 4979954963609130313}
   firstMoveTick: 0
   firstMoveFlag: 0
   hasFacedDirection: 0
@@ -611,7 +615,10 @@ MonoBehaviour:
   faceDirectionRandShroom: 0
   faceDirectionRandRook: 0
   rookMove: 0
-  lastPosition: {x: 0, y: 0, z: 0}
+  lerp: 0
+  testactualposition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  speed: 1
 --- !u!1 &7414543834890495136
 GameObject:
   m_ObjectHideFlags: 0

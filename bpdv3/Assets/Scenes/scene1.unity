@@ -2023,7 +2023,7 @@ GameObject:
   - component: {fileID: 524371307}
   m_Layer: 0
   m_Name: Tile Controller
-  m_TagString: Untagged
+  m_TagString: TileController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2083,6 +2083,7 @@ MonoBehaviour:
   - {fileID: 1393645346}
   - {fileID: 1087811966}
   player: {fileID: 0}
+  tilesScrolling: 0
   distance: 1.25
 --- !u!4 &524371308
 Transform:
@@ -3515,6 +3516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextMoveGO: {fileID: 0}
+  tileControllerScript: {fileID: 0}
+  anchorScript: {fileID: 0}
   firstMoveTick: 0
   firstMoveFlag: 0
   hasFacedDirection: 0
@@ -3522,7 +3526,10 @@ MonoBehaviour:
   faceDirectionRandShroom: 0
   faceDirectionRandRook: 0
   rookMove: 0
-  lastPosition: {x: 0, y: 0, z: 0}
+  lerp: 0
+  testactualposition: {x: 0, y: 0, z: 0}
+  destination: {x: 0, y: 0, z: 0}
+  speed: 1
 --- !u!114 &1013583614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3537,6 +3544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPushBack: 0
   currentEnemyType: 0
+  isAlive: 1
   isNew: 1
 --- !u!65 &1013583615
 BoxCollider:
@@ -3668,6 +3676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileObj: {fileID: 0}
+  tilepos: {x: 0, y: 0, z: 0}
 --- !u!54 &1028175112
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4164,6 +4173,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.25, z: 6}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &1211210766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3047989383526647873, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+    type: 3}
+  m_PrefabInstance: {fileID: 3047989383954285368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1227393001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5330,6 +5351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileObj: {fileID: 0}
+  tilepos: {x: 0, y: 0, z: 0}
 --- !u!54 &1533761429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18057,7 +18079,7 @@ PrefabInstance:
     - target: {fileID: 2176821013286377456, guid: b28e53fdcfdbd0046999c4a19c526702,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2176821013286377457, guid: b28e53fdcfdbd0046999c4a19c526702,
         type: 3}
@@ -18470,13 +18492,23 @@ PrefabInstance:
     - target: {fileID: 3047989384907030481, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: hitZone
       value: 
       objectReference: {fileID: 1559805033}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: tileControllerScript
+      value: 
+      objectReference: {fileID: 524371307}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: anchorScript
+      value: 
+      objectReference: {fileID: 1211210766}
     - target: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: spawnPlayerDetect.Array.size
@@ -18594,6 +18626,11 @@ PrefabInstance:
     - target: {fileID: 4979954964625793123, guid: 311ca4bb5686d8a4b8ddbcdec16faf1d,
         type: 3}
       propertyPath: nextMovGO
+      value: 
+      objectReference: {fileID: 460835405}
+    - target: {fileID: 4979954964625793123, guid: 311ca4bb5686d8a4b8ddbcdec16faf1d,
+        type: 3}
+      propertyPath: nextMoveGO
       value: 
       objectReference: {fileID: 460835405}
     - target: {fileID: 4979954964625793132, guid: 311ca4bb5686d8a4b8ddbcdec16faf1d,

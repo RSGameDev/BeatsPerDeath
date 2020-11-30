@@ -7,12 +7,16 @@ public class Anchor : MonoBehaviour
 {
     public GameObject tileObj;
 
+    Vector3 newPos;
+
+    [SerializeField] Vector3 tilepos;
+
     private void OnTriggerEnter(Collider other)
     {
         if ((gameObject.transform.parent.CompareTag("enemy") || gameObject.transform.parent.CompareTag("coin")) && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             tileObj = other.gameObject;
-            Vector3 newPos = other.GetComponent<Renderer>().bounds.center;
+            newPos = other.GetComponent<Renderer>().bounds.center;
             transform.parent.position = new Vector3(newPos.x, newPos.y+1f, newPos.z);
             transform.parent.SetParent(other.transform);
         }        
@@ -20,8 +24,11 @@ public class Anchor : MonoBehaviour
         if (gameObject.transform.parent.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             tileObj = other.gameObject;
-            Vector3 newPos = other.GetComponent<Renderer>().bounds.center;
+            newPos = other.GetComponent<Renderer>().bounds.center;
+            //tilepos = newPos;
+            
             transform.parent.position = new Vector3(newPos.x, newPos.y + 1f, newPos.z);
+           
             transform.parent.SetParent(other.transform);
 
             // ~~ Having trouble recalling the functioning behind this although is must be necessary otherwise it would not be included. I'll have to get back to you on this one Kerem.
@@ -39,5 +46,11 @@ public class Anchor : MonoBehaviour
         {
             transform.parent.SetParent(transform);
         }
-    }    
+    }   
+    
+    public void PlaceInPosition()
+    {
+        newPos = tileObj.GetComponent<Renderer>().bounds.center;
+        transform.parent.position = new Vector3(newPos.x, newPos.y + 1f, newPos.z);
+    }
 }

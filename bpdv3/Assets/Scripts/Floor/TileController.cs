@@ -15,16 +15,19 @@ public class TileController : MonoBehaviour {
 
     public GameObject[] tilesArray;
     public GameObject player;
-    
 
+    public bool tilesScrolling;
+    
     Vector3 direction;
     public float distance;
+
+    Vector3 tileMovement;
 
     // Use this for initialization
     void Start()
     {
         direction = Vector3.back;
-        distance = direction.magnitude;
+        distance = 1.25f;
     }
 
     // Update is called once per frame
@@ -33,9 +36,11 @@ public class TileController : MonoBehaviour {
         // Specified by the GDD, on the 6th beat the floor moves until it reaches the 12th beat. Seen below **.
         if (SceneController.instance.scrollBeatCount >= s_BeatToStartScroll)
         {
+            tilesScrolling = true;
+
             foreach (GameObject gameObject in tilesArray)
             {
-                var tileMovement = direction.normalized * (Time.deltaTime * (1.25f / 4f));
+                tileMovement = direction * (Time.deltaTime * (distance / 3f));                
                 gameObject.transform.Translate(tileMovement);
 
                 if (gameObject.transform.position.z <= s_PositionToResetTileValue)
@@ -53,6 +58,8 @@ public class TileController : MonoBehaviour {
 
         if (SceneController.instance.scrollBeatCount == s_BeatToEndScroll)
         {
+            tilesScrolling = false;
+
             SceneController.instance.scrollBeatCount = 0;
         }
     }

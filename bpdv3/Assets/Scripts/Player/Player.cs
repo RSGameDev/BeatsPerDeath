@@ -7,10 +7,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameUI gameUIScript;
+    PlayerMovement playerMovementScript;
 
     public int livesCountPlayer = 3;
-
-    bool isAlive;
+    public bool isAlive = true;
 
     public bool isPushBack;
     
@@ -18,12 +18,21 @@ public class Player : MonoBehaviour
 
     public GameObject[] spawnPlayerDetect;
 
+    private void Awake()
+    {
+        playerMovementScript = GetComponent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        playerMovementScript.enabled = true;
+    }
 
     private void Update()
     {
-        if (isAlive)                    // Not quite implemented this yet as one can see. The idea was there but nothing done yet with this.
+        if (!isAlive)                    
         {
-        //    Movement(); 
+            playerMovementScript.enabled = false;
         }
     }
 
@@ -35,6 +44,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDied()    
     {
+        isAlive = false;
         livesCountPlayer--;
         gameUIScript.PlayerLoseLife(livesCountPlayer);
 
@@ -42,5 +52,16 @@ public class Player : MonoBehaviour
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
+        StartPosition();
+        playerMovementScript.ResetPosition();   // This is use so the lerp function does not continue to use the old values still.
+        StartCoroutine(EnableMove());
+        //gameObject.SetActive(false);
+    }
+
+    IEnumerator EnableMove()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isAlive = true;
+        playerMovementScript.enabled = true;
     }
 }

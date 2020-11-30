@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     }
     public EnemyType currentEnemyType;
 
-    bool isAlive = true;
+    public bool isAlive = true;
     public bool isNew = true;
 
     private void Awake()

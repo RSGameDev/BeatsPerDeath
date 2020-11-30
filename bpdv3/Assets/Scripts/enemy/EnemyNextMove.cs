@@ -7,8 +7,7 @@ public class EnemyNextMove : MonoBehaviour
 {
     public GameObject tileObj;
     public int occupiedNum;
-    bool canMove;
-
+    public bool canMove;
     public bool nextMoveTrigger;
 
     private void OnTriggerStay(Collider other)

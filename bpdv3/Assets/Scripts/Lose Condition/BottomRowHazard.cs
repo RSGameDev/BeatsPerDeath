@@ -15,7 +15,7 @@ public class BottomRowHazard : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<Player>().PlayerDied();
-            other.GetComponent<Player>().StartPosition();
+            //other.GetComponent<Player>().StartPosition();
         }
     }
 }

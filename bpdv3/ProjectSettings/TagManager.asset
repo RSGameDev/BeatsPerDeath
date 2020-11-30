@@ -19,6 +19,7 @@ TagManager:
   - tempp
   - ScoreManager
   - GameUI
+  - TileController
   layers:
   - Default
   - TransparentFX

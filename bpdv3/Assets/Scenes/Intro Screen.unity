@@ -1020,12 +1020,12 @@ PrefabInstance:
     - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
       propertyPath: splashDelay
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
       propertyPath: warningDelay
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 645535477020085284, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
