@@ -6,7 +6,7 @@ using Assets.Scripts.Core;
 
 // Script for handling changes of scenes, panels etc.
 // Note - Recently the music was added to the game scene. At the bottom of this script is a 'CallBackBeatFunction' that we are looking to have in another script 'a music script'.
-//        So the code at the bottom of this script is here temporarily and will be moved. This was done just so we can get a build out early for people to see. 
+// So the code at the bottom of this script is here temporarily and will be moved. This was done just so we can get a build out early for people to see.
 public class SceneController : Singleton<SceneController>
 {
     public AK.Wwise.Event menuEvent;
