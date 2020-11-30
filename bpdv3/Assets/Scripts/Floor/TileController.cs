@@ -30,8 +30,7 @@ public class TileController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // Specified by the GDD, on the 6th beat the floor moves until it reaches the 12th beat. Seen below **.
-        if (SceneController.instance.scrollBeatCount >= s_BeatToStartScroll)
+        if (SceneController.Instance.scrollBeatCount >= 6)
         {
             foreach (GameObject gameObject in tilesArray)
             {
@@ -51,9 +50,9 @@ public class TileController : MonoBehaviour {
             }
         }
 
-        if (SceneController.instance.scrollBeatCount == s_BeatToEndScroll)
+        if (SceneController.Instance.scrollBeatCount == s_BeatToEndScroll)
         {
-            SceneController.instance.scrollBeatCount = 0;
+            SceneController.Instance.scrollBeatCount = 0;
         }
     }
 

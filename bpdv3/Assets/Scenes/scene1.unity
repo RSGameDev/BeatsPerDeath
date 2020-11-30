@@ -3250,6 +3250,7 @@ GameObject:
   - component: {fileID: 927400227}
   - component: {fileID: 927400229}
   - component: {fileID: 927400228}
+  - component: {fileID: 927400230}
   m_Layer: 5
   m_Name: Beat Panel Test
   m_TagString: Untagged
@@ -3320,6 +3321,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927400226}
   m_CullTransparentMesh: 0
+--- !u!114 &927400230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927400226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761eb069d9d956442ae1bdaf499bdbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerUiElement: {fileID: 1833893336}
 --- !u!1 &930185149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 607809920495890664, guid: 724cc971c7f731e41a8f7e50df1da444,
