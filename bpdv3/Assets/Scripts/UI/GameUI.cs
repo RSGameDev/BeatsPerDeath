@@ -192,7 +192,8 @@ public class GameUI : MonoBehaviour
 
     void BeatBarBehaviour()
     {
-        if (SceneController.instance.beatStarted)
+        //beatMark1.GetComponent<RectTransform>().anchoredPosition
+        if (SceneController.Instance.beatStarted)
         {
             // The dots in the beat bar scroll along. 
             beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        

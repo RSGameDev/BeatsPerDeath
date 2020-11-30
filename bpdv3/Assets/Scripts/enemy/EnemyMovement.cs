@@ -73,13 +73,13 @@ public class EnemyMovement : MonoBehaviour
     // Enemy spawns on 1st row, then moves down 1 space, always the same direction. The enemy moves normally after the first move.
     public void FirstMove()
     {
-        if (SceneController.instance.gameBeatCount == 1 && !firstMoveFlag)
+        if (SceneController.Instance.gameBeatCount == 1 && !firstMoveFlag)
         {
             firstMoveFlag = true;
             firstMoveTick++;
         }
 
-        if (SceneController.instance.gameBeatCount == 4 && firstMoveTick == 1)
+        if (SceneController.Instance.gameBeatCount == 4 && firstMoveTick == 1)
         {
             startTime = Time.time;
             destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1.25f);
@@ -91,7 +91,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void MovementReset()
     {
-        if (SceneController.instance.gameBeatCount == 1)
+        if (SceneController.Instance.gameBeatCount == 1)
         {
             ResetFlags();
         }
@@ -99,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Direction()
     {
-        if (SceneController.instance.gameBeatCount == 2 && !hasFacedDirection)
+        if (SceneController.Instance.gameBeatCount == 2 && !hasFacedDirection)
         {
             FaceDirection();
             hasFacedDirection = true;
@@ -110,7 +110,7 @@ public class EnemyMovement : MonoBehaviour
     {           
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
         {
-            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
                 hasMoved = true;
@@ -119,7 +119,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
         {
-            if (SceneController.instance.gameBeatCount == 4 && !hasMoved)
+            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
             {
                 Move();
             }

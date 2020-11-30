@@ -62,14 +62,14 @@ public class EnemySpawner : MonoBehaviour
             currentLevelStageType = LevelStage.Minute3;
         }
 
-        if (SceneController.instance.spawnBeatCount == 1)
+        if (SceneController.Instance.spawnBeatCount == 1)
         {
             ResetSpawning();
         }
 
         if (startLevel)
         {
-            if (SceneController.instance.spawnBeatCount == 4)
+            if (SceneController.Instance.spawnBeatCount == 4)
             {
                 startLevel = false;
                 ShroomPoolObject();
@@ -81,7 +81,7 @@ public class EnemySpawner : MonoBehaviour
         {
             // 0 to 1 minute there are just shrooms spawning.
             case LevelStage.Minute1:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     ShroomPoolObject();
                     hasSpawned = true;
@@ -89,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             // 1 to 2 minute there are shrooms spawning but with a rook spawning every 24 beat (8 beat * 3 rookcount).
             case LevelStage.Minute2:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     rookCountMinute2++;
                     if (rookCountMinute2 == 3)
@@ -106,7 +106,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             // 2 to ongoing, there are shrooms spawning but with a rook spawning every 16 beat (8 beat * 2 rookcount).
             case LevelStage.Minute3:
-                if (SceneController.instance.spawnBeatCount == 8 && !hasSpawned)
+                if (SceneController.Instance.spawnBeatCount == 8 && !hasSpawned)
                 {
                     rookCountMinute3++;
                     if (rookCountMinute3 == 2)
