@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
 public class Player : MonoBehaviour
 {
@@ -11,15 +12,14 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public variables
-    public GameObject[] spawnPlayerDetect;
+    public GameObject[] SpawnPlayerDetect;
 
-    public GameUI gameUIScript;
-    public Vector3 startPos;
+    public GameUI GameUIScript;
+    public Vector3 StartPosition;
 
-    public int livesCountPlayer = 3;
-
-    public bool isAlive = true;
-    public bool isPushBack;
+    public int LivesCountPlayer = 3;
+    public bool IsPlayerAlive = true;
+    public bool IsPlayerPushedBack;
     #endregion    
 
     private void Awake()
@@ -34,29 +34,29 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!isAlive)                    
+        if (!IsPlayerAlive)                    
         {
             _playerMovement.enabled = false;
         }
     }
 
     // When the player dies this function is called.
-    public void StartPosition()
+    public void StartingPosition()
     {
-        transform.position = startPos;
+        transform.position = StartPosition;
     }
 
     public void PlayerDied()    
     {
-        isAlive = false;
-        livesCountPlayer--;
-        gameUIScript.PlayerLoseLife(livesCountPlayer);
+        IsPlayerAlive = false;
+        LivesCountPlayer--;
+        GameUIScript.PlayerLoseLife(LivesCountPlayer);
 
-        foreach (GameObject go in spawnPlayerDetect)
+        foreach (GameObject go in SpawnPlayerDetect)
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
-        StartPosition();
+        StartingPosition();
         _playerMovement.ResetPosition();   // This is use so the lerp function does not continue to use the old values still.
         StartCoroutine(EnableMove());
     }
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     IEnumerator EnableMove()
     {
         yield return new WaitForSeconds(0.5f);
-        isAlive = true;
+        IsPlayerAlive = true;
         _playerMovement.enabled = true;
     }
 }

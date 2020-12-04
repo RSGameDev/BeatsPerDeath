@@ -5,30 +5,30 @@ using UnityEngine;
 // This script is a gameobject placed in front of the enemy. It checks the tile in front of it to work out if another object is destined to go there.
 public class EnemyNextMove : MonoBehaviour
 {
-    public GameObject tileObj;
-    public int occupiedNum;
-    public bool canMove;
-    public bool nextMoveTrigger;
+    public GameObject EnemyNextMoveTileObject;
+    public int OccupiedNumber;
+    public bool CanEnemyMove;
+    public bool NextMoveTrigger; // <- i may remove this, not sure this is needed fyi. 4/12/20 pm
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            nextMoveTrigger = true;
-            tileObj = other.gameObject;
-            occupiedNum = other.GetComponent<TileProperties>().occupiedNum;
+            NextMoveTrigger = true;
+            EnemyNextMoveTileObject = other.gameObject;
+            OccupiedNumber = other.GetComponent<TileProperties>().occupiedNum;
         }
     }
 
     public int CheckNumber()
     {
-        occupiedNum = tileObj.GetComponent<TileProperties>().occupiedNum;        
-        return occupiedNum;
+        OccupiedNumber = EnemyNextMoveTileObject.GetComponent<TileProperties>().occupiedNum;        
+        return OccupiedNumber;
     }
 
     public bool CanMove()
     {
-        canMove = occupiedNum == 1 ? true : false;        
-        return canMove;
+        CanEnemyMove = OccupiedNumber == 1 ? true : false;        
+        return CanEnemyMove;
     }
 }

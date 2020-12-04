@@ -2,32 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 // Script attached to the player.
 public class PlayerMovement : MonoBehaviour
 {
-    #region Public variables
-    public GameObject hitZone;
-
-    public Anchor _anchor;
-    public Player _player;
-    public TileController _tileController;
-
-    public string direction;
-
-    public bool pushBack;
-    public bool isMoving;
-    public bool onBeat;
+    #region Private Variables
+    private const float s_moveUnits = 1.25F;
+    private const float s_verticalTopLimit = 6.25F;
+    private const float s_verticalBottomLimit = 1.25F;
+    private const float s_horizontalLeftLimit = 0F;
+    private const float s_horizontalRightLimit = 5F;
     #endregion
 
-    #region Function
-    // Lerp    
-    private Vector3 destination;
+    #region Public variables
+    public GameObject BeatHitZone;
 
-    private float startTime;
-    private float journeyLength;
-    public float speed = 1.0F;
+    public Anchor PlayerAnchor;
+    public Player Player;
+    public TileController TileController;
 
-    public bool lerp;
+    public string Direction;
+    public bool PushBack;
+    public bool IsMoving;
+    public bool IsOnBeat;
+    #endregion
+
+    #region Lerp Behaviour
+    private Vector3 _destination;
+
+    private float _startTime;
+    private float _journeyLength;
+    public const float s_Speed = 1.0F;
+    public bool IsLerpingStarted;
     #endregion    
 
     // Update is called once per frame
@@ -35,105 +41,110 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
 
-        if (lerp)
+        if (IsLerpingStarted)
         {
-            Lerp();
+            SmoothMovement();
         }
 
         CheckBoundaries();
 
-        if (pushBack)
+        if (PushBack)
         {
-            PlayerPushBack(direction);
+            PlayerPushBack(Direction);
         }        
     }
-
-    private void Lerp()
+       
+    private void SmoothMovement()
     {
-        float distCovered = (Time.time - startTime) * speed;
-        float fractionOfJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, destination, fractionOfJourney);
-        if (fractionOfJourney >= 0.1f || !_player.isAlive)
+        float distCovered = (Time.time - _startTime) * s_Speed;
+        float fractionOfJourney = distCovered / _journeyLength;
+        transform.position = Vector3.Lerp(transform.position, _destination, fractionOfJourney);
+        if (fractionOfJourney >= 0.1f || !Player.IsPlayerAlive)
         {
-            lerp = false;
-            _anchor.PlaceInPosition();
+            IsLerpingStarted = false;
+            PlayerAnchor.PlaceInPosition();
         }
     }
 
-    void Movement()
+    private void Movement()
     {
+        // Upon input, The lerp time starts, currently this code shows the player has hit on beat (this will have to change i'm sure). The direction key has been logged to help wth push back workings.
+        // According to the input the player will face the set direction. The destination is now set due to the way the player is facing and will move 1.25f (s_MoveUnits) units in that direction.
+        // The lerp distance is calculated and then lerp can commence after the previous lines of code have been processed.
+        //
+        // IsOnBeat - this allows the combo metre to rise. So when the player moves on beat or however the design document requires, the combo metre can then rise using code like this.
         if (Input.GetKeyDown("w"))
         {
-            startTime = Time.time;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "w";
+            _startTime = Time.time;
+            IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
+            Direction = "w";
             transform.LookAt(transform.position + Vector3.forward);
-            destination = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.25f);
-            journeyLength = Vector3.Distance(transform.position, destination);
-            lerp = true;
+            _destination = new Vector3(transform.position.x, transform.position.y, transform.position.z + s_moveUnits);
+            _journeyLength = Vector3.Distance(transform.position, _destination);
+            IsLerpingStarted = true;
         }
 
         if (Input.GetKeyDown("s"))
         {
-            startTime = Time.time;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "s";
+            _startTime = Time.time;
+            IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
+            Direction = "s";
             transform.LookAt(transform.position + Vector3.back);
-            destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1.25f);
-            journeyLength = Vector3.Distance(transform.position, destination);
-            lerp = true;
+            _destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - s_moveUnits);
+            _journeyLength = Vector3.Distance(transform.position, _destination);
+            IsLerpingStarted = true;
         }
 
         if (Input.GetKeyDown("a"))
         {
-            startTime = Time.time;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "a";
+            _startTime = Time.time;
+            IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
+            Direction = "a";
             transform.LookAt(transform.position + Vector3.left);
-            destination = new Vector3(transform.position.x - 1.25f, transform.position.y, transform.position.z);
-            journeyLength = Vector3.Distance(transform.position, destination);
-            lerp = true;
+            _destination = new Vector3(transform.position.x - s_moveUnits, transform.position.y, transform.position.z);
+            _journeyLength = Vector3.Distance(transform.position, _destination);
+            IsLerpingStarted = true;
         }
 
         if (Input.GetKeyDown("d"))
         {
-            startTime = Time.time;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "d";
+            _startTime = Time.time;
+            IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
+            Direction = "d";
             transform.LookAt(transform.position + Vector3.right);
-            destination = new Vector3(transform.position.x + 1.25f, transform.position.y, transform.position.z);
-            journeyLength = Vector3.Distance(transform.position, destination);
-            lerp = true;
+            _destination = new Vector3(transform.position.x + s_moveUnits, transform.position.y, transform.position.z);
+            _journeyLength = Vector3.Distance(transform.position, _destination);
+            IsLerpingStarted = true;
         }
     }
 
-    void CheckBoundaries()
+    private void CheckBoundaries()
     {
-        if (transform.position.z > 6.25)
+        if (transform.position.z > s_verticalTopLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 6.25f);
-            lerp = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, s_verticalTopLimit);
+            IsLerpingStarted = false;
         }
 
-        if (!_tileController.tilesScrolling)
+        if (!TileController.IsPlatformMoving)
         {
-            if (transform.position.z < 1.25)
+            if (transform.position.z < s_verticalBottomLimit)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 1.25f);
-                lerp = false;
+                transform.position = new Vector3(transform.position.x, transform.position.y, s_verticalBottomLimit);
+                IsLerpingStarted = false;
             }
         }
            
-        if (transform.position.x < 0)
+        if (transform.position.x < s_horizontalLeftLimit)
         {
-            transform.position = new Vector3(0, transform.position.y, transform.position.z);
-            lerp = false;
+            transform.position = new Vector3(s_horizontalLeftLimit, transform.position.y, transform.position.z);
+            IsLerpingStarted = false;
         }
 
-        if (transform.position.x > 5)
+        if (transform.position.x > s_horizontalRightLimit)
         {
-            transform.position = new Vector3(5, transform.position.y, transform.position.z);
-            lerp = false;
+            transform.position = new Vector3(s_horizontalRightLimit, transform.position.y, transform.position.z);
+            IsLerpingStarted = false;
         }
     }
 
@@ -143,24 +154,24 @@ public class PlayerMovement : MonoBehaviour
         switch (direction)
         {
             case "w":
-                transform.position += new Vector3(0, 0, -1.25f);
+                transform.position += new Vector3(0, 0, -s_moveUnits);
                 break;
             case "s":
-                transform.position += new Vector3(0, 0, 1.25f);
+                transform.position += new Vector3(0, 0, s_moveUnits);
                 break;
             case "a":
-                transform.position += new Vector3(1.25f, 0, 0);
+                transform.position += new Vector3(s_moveUnits, 0, 0);
                 break;
             case "d":
-                transform.position += new Vector3(-1.25f, 0, 0);
+                transform.position += new Vector3(-s_moveUnits, 0, 0);
                 break;                
         }
-        pushBack = false;
+        PushBack = false;
     }
 
     public void ResetPosition()
     {
-        transform.position = _player.startPos;
-        destination = transform.position;
+        transform.position = Player.StartPosition;
+        _destination = transform.position;
     }
 }

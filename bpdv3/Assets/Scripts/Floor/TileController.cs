@@ -16,7 +16,7 @@ public class TileController : MonoBehaviour {
     public GameObject[] tilesArray;
     public GameObject player;
 
-    public bool tilesScrolling;
+    public bool IsPlatformMoving;
     
     Vector3 direction;
     public float distance;
@@ -35,7 +35,7 @@ public class TileController : MonoBehaviour {
     {
         if (SceneController.Instance.scrollBeatCount >= 6)
         {
-            tilesScrolling = true;
+            IsPlatformMoving = true;
 
             foreach (GameObject gameObject in tilesArray)
             {
@@ -57,7 +57,7 @@ public class TileController : MonoBehaviour {
 
         if (SceneController.Instance.scrollBeatCount == s_BeatToEndScroll)
         {
-            tilesScrolling = false;
+            IsPlatformMoving = false;
 
             SceneController.Instance.scrollBeatCount = 0;
         }

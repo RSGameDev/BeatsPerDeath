@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyMovement))]
 // Added to each enemy in game.
 public class Enemy : MonoBehaviour
 {
@@ -16,16 +17,16 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Public variables
-    public bool isPushBack; 
-    public bool isAlive = true;
-    public bool isNew = true;
+    public bool IsPushBack; 
+    public bool IsEnemyAlive = true;
+    public bool IsNewEnemy = true;
     #endregion
 
     public enum EnemyType
     {
         Shroom, Rook
     }
-    public EnemyType currentEnemyType;
+    public EnemyType CurrentEnemyType;
 
     
 
@@ -41,11 +42,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAlive)
+        if (IsEnemyAlive)
         {
             _enemyMovement.MovementReset();
 
-            if (!isNew)
+            if (!IsNewEnemy)
             {
                 _enemyMovement.Direction();
 
@@ -65,9 +66,9 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (other.GetComponent<Player>().isPushBack)
+            if (other.GetComponent<Player>().IsPlayerPushedBack)
             {
-                other.GetComponent<PlayerMovement>().pushBack = true;
+                other.GetComponent<PlayerMovement>().PushBack = true;
             }
             else
             {
@@ -78,9 +79,9 @@ public class Enemy : MonoBehaviour
 
     private void EnemyDies()
     {
-        _anchor.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-        _nextMove.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-        string enemytype = currentEnemyType.ToString();
+        _anchor.AnchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
+        _nextMove.EnemyNextMoveTileObject.GetComponent<TileProperties>().OccupiedDecreased();
+        string enemytype = CurrentEnemyType.ToString();
         int score = _scoreManagerGO.GetComponent<ScoreManager>().EnemyScore(enemytype);
         _gameUiGO.GetComponent<GameUI>().Scoring(score);
         gameObject.SetActive(false);

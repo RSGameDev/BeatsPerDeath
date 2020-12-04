@@ -5,36 +5,37 @@ using UnityEngine;
 // This script is attached to an object beneath the player, enemy, coin. So it can attach itself to the tile. As when the tile moves across the object needs to be moving along with it.
 public class Anchor : MonoBehaviour
 {
-    public GameObject tileObj;
+    #region Private variables
+    private Vector3 _newPosition;
+    #endregion
 
-    Vector3 newPos;
-
-    [SerializeField] Vector3 tilepos;
+    #region Public variables
+    public GameObject AnchorTileObject;
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
         if ((gameObject.transform.parent.CompareTag("enemy") || gameObject.transform.parent.CompareTag("coin")) && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            tileObj = other.gameObject;
-            newPos = other.GetComponent<Renderer>().bounds.center;
-            transform.parent.position = new Vector3(newPos.x, newPos.y+1f, newPos.z);
+            AnchorTileObject = other.gameObject;
+            _newPosition = other.GetComponent<Renderer>().bounds.center;
+            transform.parent.position = new Vector3(_newPosition.x, _newPosition.y+1f, _newPosition.z);
             transform.parent.SetParent(other.transform);
         }        
 
         if (gameObject.transform.parent.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            tileObj = other.gameObject;
-            newPos = other.GetComponent<Renderer>().bounds.center;
-            //tilepos = newPos;
+            AnchorTileObject = other.gameObject;
+            _newPosition = other.GetComponent<Renderer>().bounds.center;
             
-            transform.parent.position = new Vector3(newPos.x, newPos.y + 1f, newPos.z);
+            transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
            
             transform.parent.SetParent(other.transform);
 
             // ~~ Having trouble recalling the functioning behind this although is must be necessary otherwise it would not be included. I'll have to get back to you on this one Kerem.
             if (!other.gameObject.GetComponent<TileProperties>().hasEnemy)
             {
-                gameObject.transform.parent.GetComponent<Player>().isPushBack = false;      // 'Push back' is for when the player moves into the enemy but not on an enemy weakpoint, so the player gets pushed back.
+                gameObject.transform.parent.GetComponent<Player>().IsPlayerPushedBack = false;      // 'Push back' is for when the player moves into the enemy but not on an enemy weakpoint, so the player gets pushed back.
             }
         }
     }
@@ -50,7 +51,7 @@ public class Anchor : MonoBehaviour
     
     public void PlaceInPosition()
     {
-        newPos = tileObj.GetComponent<Renderer>().bounds.center;
-        transform.parent.position = new Vector3(newPos.x, newPos.y + 1f, newPos.z);
+        _newPosition = AnchorTileObject.GetComponent<Renderer>().bounds.center;
+        transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
     }
 }

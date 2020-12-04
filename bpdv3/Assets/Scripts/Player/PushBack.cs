@@ -8,7 +8,7 @@ public class PushBack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().isPushBack = true;
+            other.GetComponent<Player>().IsPlayerPushedBack = true;
         }
     }
 }

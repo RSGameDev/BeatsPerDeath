@@ -2095,7 +2095,7 @@ MonoBehaviour:
   - {fileID: 1393645346}
   - {fileID: 1087811966}
   player: {fileID: 0}
-  tilesScrolling: 0
+  IsPlatformMoving: 0
   distance: 1.25
 --- !u!4 &524371308
 Transform:
@@ -3542,20 +3542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMoveGO: {fileID: 0}
-  tileControllerScript: {fileID: 0}
-  anchorScript: {fileID: 0}
-  firstMoveTick: 0
-  firstMoveFlag: 0
-  hasFacedDirection: 0
-  hasMoved: 0
-  faceDirectionRandShroom: 0
-  faceDirectionRandRook: 0
-  rookMove: 0
-  lerp: 0
-  testactualposition: {x: 0, y: 0, z: 0}
-  destination: {x: 0, y: 0, z: 0}
-  speed: 1
+  NextMoveGO: {fileID: 0}
+  Anchor: {fileID: 0}
+  IsLerpingStarted: 0
 --- !u!114 &1013583614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3568,10 +3557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badd00b316731ed4d98c5194a1eaad30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPushBack: 0
-  isAlive: 1
-  isNew: 1
-  currentEnemyType: 0
+  IsPushBack: 0
+  IsEnemyAlive: 1
+  IsNewEnemy: 1
+  CurrentEnemyType: 0
 --- !u!65 &1013583615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3701,8 +3690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObj: {fileID: 0}
-  tilepos: {x: 0, y: 0, z: 0}
+  AnchorTileObject: {fileID: 0}
 --- !u!54 &1028175112
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5376,8 +5364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObj: {fileID: 0}
-  tilepos: {x: 0, y: 0, z: 0}
+  AnchorTileObject: {fileID: 0}
 --- !u!54 &1533761429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18550,6 +18537,26 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 301873090}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: BeatHitZone
+      value: 
+      objectReference: {fileID: 1559805033}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: PlayerAnchor
+      value: 
+      objectReference: {fileID: 1211210766}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 301873090}
+    - target: {fileID: 3047989384907030483, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: TileController
+      value: 
+      objectReference: {fileID: 524371307}
     - target: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: spawnPlayerDetect.Array.size

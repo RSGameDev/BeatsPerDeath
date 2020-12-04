@@ -157,26 +157,26 @@ public class GameUI : MonoBehaviour
 
     private void ComboMetre()
     {
-        if (playerMoveScript.isMoving)
+        if (playerMoveScript.IsMoving)
         {
-            if (!playerMoveScript.onBeat)
+            if (!playerMoveScript.IsOnBeat)
             {
                 slider.value -= speed * Time.deltaTime;
                 if (slider.value <= sliderStartValue - 20)
                 {
-                    playerMoveScript.isMoving = false;
+                    playerMoveScript.IsMoving = false;
                     sliderStartValue = slider.value;
                 }
             }
 
             // Hit on the beat 
-            if (playerMoveScript.onBeat)
+            if (playerMoveScript.IsOnBeat)
             {
                 slider.value += speed * Time.deltaTime;
                 if (slider.value >= sliderStartValue + 20)
                 {
-                    playerMoveScript.onBeat = false;
-                    playerMoveScript.isMoving = false;
+                    playerMoveScript.IsOnBeat = false;
+                    playerMoveScript.IsMoving = false;
                     sliderStartValue = slider.value;
                 }
             }
