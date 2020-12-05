@@ -12,9 +12,9 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Public variables
-    public GameObject[] SpawnPlayerDetect;
+    public GameObject[] SpawnPlayerDetectionGO;
 
-    public GameUI GameUIScript;
+    public GameUI GameUI;
     public Vector3 StartPosition;
 
     public int LivesCountPlayer = 3;
@@ -46,13 +46,13 @@ public class Player : MonoBehaviour
         transform.position = StartPosition;
     }
 
-    public void PlayerDied()    
+    public void KillPlayer()    
     {
         IsPlayerAlive = false;
         LivesCountPlayer--;
-        GameUIScript.PlayerLoseLife(LivesCountPlayer);
+        GameUI.PlayerLoseLife(LivesCountPlayer);
 
-        foreach (GameObject go in SpawnPlayerDetect)
+        foreach (GameObject go in SpawnPlayerDetectionGO)
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         StartCoroutine(EnableMove());
     }
 
-    IEnumerator EnableMove()
+    private IEnumerator EnableMove()
     {
         yield return new WaitForSeconds(0.5f);
         IsPlayerAlive = true;

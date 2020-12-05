@@ -6,6 +6,10 @@ using UnityEngine;
 public class Anchor : MonoBehaviour
 {
     #region Private variables
+    const string s_Enemy = "enemy";
+    const string s_Coin = "coin";
+    const string s_Player = "Player";
+    const string s_FloorLayer = "Floor";
     private Vector3 _newPosition;
     #endregion
 
@@ -15,35 +19,39 @@ public class Anchor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((gameObject.transform.parent.CompareTag("enemy") || gameObject.transform.parent.CompareTag("coin")) && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
-        {
-            AnchorTileObject = other.gameObject;
-            _newPosition = other.GetComponent<Renderer>().bounds.center;
-            transform.parent.position = new Vector3(_newPosition.x, _newPosition.y+1f, _newPosition.z);
-            transform.parent.SetParent(other.transform);
-        }        
+        var tag = gameObject.transform.parent.tag;
 
-        if (gameObject.transform.parent.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if ((tag == s_Enemy || tag == s_Coin) && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
         {
-            AnchorTileObject = other.gameObject;
-            _newPosition = other.GetComponent<Renderer>().bounds.center;
-            
-            transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
-           
-            transform.parent.SetParent(other.transform);
+            AttachObjectToTile(other);
+        }
 
-            // ~~ Having trouble recalling the functioning behind this although is must be necessary otherwise it would not be included. I'll have to get back to you on this one Kerem.
+        if (tag == s_Player && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
+        {
+            print("fsavda");
+            AttachObjectToTile(other);
+
+            // This is for the pushback but it's still a work in progress. Since adding the lerping this isnt working as well. So the pushback feature will need creating again to make it work well again.
             if (!other.gameObject.GetComponent<TileProperties>().hasEnemy)
             {
-                gameObject.transform.parent.GetComponent<Player>().IsPlayerPushedBack = false;      // 'Push back' is for when the player moves into the enemy but not on an enemy weakpoint, so the player gets pushed back.
+                gameObject.transform.parent.GetComponent<Player>().IsPlayerPushedBack = false;      
             }
         }
     }
 
-    // When the the object moves of the tile. It (the anchor) detaches itself from the tile. 
+    // This function was made so that the objects will stick to the tiles as the level scrolls. Otherwise the objects would stay in place and the level moves underneath them.
+    private void AttachObjectToTile(Collider other)
+    {
+        AnchorTileObject = other.gameObject;
+        _newPosition = other.GetComponent<Renderer>().bounds.center;
+        transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
+        transform.parent.SetParent(other.transform);
+    }
+
+    // When the object moves off a tile, the parent for the objecxt is reassigned.
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if (other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
         {
             transform.parent.SetParent(transform);
         }

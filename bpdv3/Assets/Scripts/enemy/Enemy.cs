@@ -72,12 +72,12 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                EnemyDies();
+                KillEnemy();
             }
         }
     }
 
-    private void EnemyDies()
+    private void KillEnemy()
     {
         _anchor.AnchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
         _nextMove.EnemyNextMoveTileObject.GetComponent<TileProperties>().OccupiedDecreased();

@@ -453,8 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObj: {fileID: 0}
-  tilepos: {x: 0, y: 0, z: 0}
+  AnchorTileObject: {fileID: 0}
 --- !u!1 &4979954964625793132
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,10 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badd00b316731ed4d98c5194a1eaad30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPushBack: 0
-  currentEnemyType: 1
-  isAlive: 1
-  isNew: 1
+  IsPushBack: 0
+  IsEnemyAlive: 1
+  IsNewEnemy: 1
+  CurrentEnemyType: 0
 --- !u!114 &4979954964625793123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,20 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMoveGO: {fileID: 7414543834890495136}
-  tileControllerScript: {fileID: 0}
-  anchorScript: {fileID: 4979954963609130313}
-  firstMoveTick: 0
-  firstMoveFlag: 0
-  hasFacedDirection: 0
-  hasMoved: 0
-  faceDirectionRandShroom: 0
-  faceDirectionRandRook: 0
-  rookMove: 0
-  lerp: 0
-  testactualposition: {x: 0, y: 0, z: 0}
-  destination: {x: 0, y: 0, z: 0}
-  speed: 1
+  NextMoveGO: {fileID: 7414543834890495136}
+  Anchor: {fileID: 4979954963609130313}
+  IsLerpingStarted: 0
 --- !u!1 &7414543834890495136
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,9 +681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObj: {fileID: 0}
-  occupiedNum: 0
-  nextMoveTrigger: 0
+  EnemyNextMoveTileObject: {fileID: 0}
+  OccupiedNumber: 0
+  CanEnemyMove: 0
+  NextMoveTrigger: 0
 --- !u!1 &8182742575512789981
 GameObject:
   m_ObjectHideFlags: 0

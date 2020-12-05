@@ -2052,8 +2052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6f73364611db64097c052a4f2ed6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
-  tilesArray:
+  TilesGOArray:
   - {fileID: 1246376756}
   - {fileID: 1657280832}
   - {fileID: 661901720}
@@ -2094,9 +2093,7 @@ MonoBehaviour:
   - {fileID: 329914883}
   - {fileID: 1393645346}
   - {fileID: 1087811966}
-  player: {fileID: 0}
   IsPlatformMoving: 0
-  distance: 1.25
 --- !u!4 &524371308
 Transform:
   m_ObjectHideFlags: 0
@@ -18442,6 +18439,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3047989383526647873, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: AnchorTileObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3047989384907030472, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18605,6 +18607,11 @@ PrefabInstance:
     - target: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
         type: 3}
       propertyPath: gameUIScript
+      value: 
+      objectReference: {fileID: 1151763812}
+    - target: {fileID: 3047989384907030484, guid: 88e53559f1b15fa44abf7b45d7c62aca,
+        type: 3}
+      propertyPath: GameUI
       value: 
       objectReference: {fileID: 1151763812}
     m_RemovedComponents: []
