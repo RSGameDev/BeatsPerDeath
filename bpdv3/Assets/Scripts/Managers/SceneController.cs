@@ -25,20 +25,11 @@ public class SceneController : Singleton<SceneController>
     [SerializeField] int warningDelay = 3;
     int currentSceneIndex;
 
+    // TODO will be deleted, here for debug purposes
     public TextMeshProUGUI beatUiValue;
+    // TODO will be deleted, here for debug purposes
     public TextMeshProUGUI spawnUiValue;
-    bool isReferenced;
-
-    public float beatStartTime;
-    public float currentTime;
-    public float beatDurationTime;
-    public bool timeCheck;
-    bool isDone;
-    public bool beatStarted;
-    
-    public int gameBeatCount;                    // This variable allows the enemies to move correctly.
-    public int spawnBeatCount;                   // This variable allows the enemies to spawn correctly.
-    public int scrollBeatCount;                 
+    bool isReferenced;           
 
     private new void Awake()
     {
@@ -70,6 +61,11 @@ public class SceneController : Singleton<SceneController>
                 SetGamePlaySceneSettings();
                 break;
         }
+
+        // TODO will be deleted, here for debug purposes
+        BeatManager.Instance.AddListenerToAll(UpdateBeatUI);
+        // TODO will be deleted, here for debug purposes
+        BeatManager.Instance.AddListenerToAll(UpdateSpawnCountUI);
     }
 
     // TODO temporary method will be deleted with the implenentation of the AudioManager
@@ -126,9 +122,6 @@ public class SceneController : Singleton<SceneController>
     public void StartGame()
     {
         menuEvent.Stop(gameObject);
-
-        //AkSoundEngine.SetState("Music_State", "Gameplay");
-        //AkSoundEngine.SetSwitch("Level", "Main_Level", MusicObject);
         SceneManager.LoadScene("scene1");
         SetGamePlaySceneSettings();
     }
@@ -177,36 +170,22 @@ public class SceneController : Singleton<SceneController>
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
+    // TODO will be moved into audio class
     //AudioEngine Code to give us information on beat detection from WWise. < John comment
-    void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)         // The code i mentioned at the top of the script. We will look to have this in a different script
-                                                                                                // to SceneController as the functioning behind it relates heavily on music and so we shall look to
-                                                                                                // have this in a music script in the future.  < Richard comment
+    void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)                                                                                         
     {
-        BeatManager.Instance.UpdateBeat();
-        gameBeatCount++;            
-        spawnBeatCount++;           
+        BeatManager.Instance.UpdateBeat();          
+    }
 
-        if (gameBeatCount == 5)
-        {
-            gameBeatCount = 1;
-        }
+    private void UpdateBeatUI() 
+    {
+        var currentBeat = BeatManager.Instance.BeatIndex % 4;
+        beatUiValue.text = currentBeat.ToString();
+    }
 
-        if (spawnBeatCount == 9)
-        {
-            spawnBeatCount = 1;
-        }        
-
-        beatUiValue.text = gameBeatCount.ToString();
-        spawnUiValue.text = spawnBeatCount.ToString();
-
-        scrollBeatCount++;
-
-        // This triggers the beat bar in the GameUi to start working.
-        if (!beatStarted)
-        {
-            beatStarted = true;
-        }              
-
-        Debug.Log("Beat detected");
+    private void UpdateSpawnCountUI()
+    {
+        var currentBeat = BeatManager.Instance.BeatIndex % 8;
+        spawnUiValue.text = currentBeat.ToString();
     }
 }

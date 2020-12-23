@@ -20,6 +20,10 @@ public class CoinSpawner : MonoBehaviour
     private void Awake()
     {
         objectPoolScript = GetComponent<ObjectPool>();
+    }
+
+    private void Start()
+    {
         BeatManager.Instance.AddListener(4, PoolCoin);
     }
 

@@ -8,6 +8,7 @@ using UnityEngine;
 public class BeatManager : Singleton<BeatManager>
 {
     #region Private & Const Variables
+
     /// <summary>
     /// Time between beats in second
     /// </summary>
@@ -51,6 +52,8 @@ public class BeatManager : Singleton<BeatManager>
     /// </summary>
     private bool _isOnBeat;
 
+    private bool _isBeatsStarted = false;
+
     /// <summary>
     /// Actions that will be performed on specific beats
     /// </summary>
@@ -62,6 +65,9 @@ public class BeatManager : Singleton<BeatManager>
 
     public bool IsOnBeat => _isOnBeat;
 
+    public int BeatIndex => _beatIndex;
+
+    public bool AreBeatsStarted => _isBeatsStarted;
     #endregion
 
     #region Constructors
@@ -83,6 +89,9 @@ public class BeatManager : Singleton<BeatManager>
         }
     }
 
+    /// <summary>
+    /// Used for test purposes
+    /// </summary>
     private void UpdateAutoBeat()
     {
         _time += Time.deltaTime;
@@ -97,6 +106,10 @@ public class BeatManager : Singleton<BeatManager>
         UpdateBeat();
     }
 
+    /// <summary>
+    /// Small time gap after the beat for not exact player moves 
+    /// (Should be discussed with desing team)
+    /// </summary>
     private void StartOnBeatInterval()
     {
         Task.Run(() =>
@@ -111,21 +124,27 @@ public class BeatManager : Singleton<BeatManager>
 
     #region Public & Protected Methods		
 
+    /// <summary>
+    /// Add listener to a specific beat
+    /// </summary>
+    /// <param name="beatIndex">Index starts from 0. So Beat for is index 3</param>
+    /// <param name="beatAction"></param>
     public void AddListener(int beatIndex, Action beatAction)
     {
-        if (beatIndex >= s_BeatLimit)
+        var indexMod = beatIndex & s_BeatLimit;
+
+        if (!_beatListeners.ContainsKey(indexMod))
         {
-            throw new Exception($"Given beat index can not be bigger than the beat limit. BeatLimit: {s_BeatLimit}");
+            _beatListeners.Add(indexMod, new List<Action>());
         }
 
-        if (!_beatListeners.ContainsKey(beatIndex))
-        {
-            _beatListeners.Add(beatIndex, new List<Action>());
-        }
-
-        _beatListeners[beatIndex].Add(beatAction);
+        _beatListeners[indexMod].Add(beatAction);
     }
 
+    /// <summary>
+    /// Add listener to every beat
+    /// </summary>
+    /// <param name="beatAction"></param>
     public void AddListenerToAll(Action beatAction)
     {
         for (var index = 0; index < s_BeatLimit; index++)
@@ -134,8 +153,13 @@ public class BeatManager : Singleton<BeatManager>
         }
     }
 
+    /// <summary>
+    /// Call this for every beat
+    /// </summary>
     public void UpdateBeat()
     {
+        _isBeatsStarted = true;
+
         StartOnBeatInterval();
 
         _beatIndex++;

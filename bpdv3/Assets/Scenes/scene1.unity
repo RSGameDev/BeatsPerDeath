@@ -5945,7 +5945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeatLenght: 0.2
-  IsAutoBeatOn: 1
+  IsAutoBeatOn: 0
 --- !u!4 &1589872605
 Transform:
   m_ObjectHideFlags: 0
