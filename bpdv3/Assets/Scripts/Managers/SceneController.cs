@@ -182,6 +182,7 @@ public class SceneController : Singleton<SceneController>
                                                                                                 // to SceneController as the functioning behind it relates heavily on music and so we shall look to
                                                                                                 // have this in a music script in the future.  < Richard comment
     {
+        BeatManager.Instance.UpdateBeat();
         gameBeatCount++;            
         spawnBeatCount++;           
 
@@ -208,9 +209,4 @@ public class SceneController : Singleton<SceneController>
 
         Debug.Log("Beat detected");
     }
-
-    //public void LoadGameOver()
-    //{
-    //    SceneManager.LoadScene("Game Over");
-    //}
 }
