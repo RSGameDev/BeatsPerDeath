@@ -22,13 +22,9 @@ public class CoinSpawner : MonoBehaviour
         objectPoolScript = GetComponent<ObjectPool>();
     }
 
-    private void Update()
-    {      
-        if (SceneController.Instance.gameBeatCount == 4 && !hasSpawned)
-        {
-            hasSpawned = true;
-            CoinPoolObject();
-        }
+    private void Start()
+    {
+        BeatManager.Instance.AddListener(4, PoolCoin);
     }
 
     public void ResetSpawning()
@@ -36,8 +32,13 @@ public class CoinSpawner : MonoBehaviour
         hasSpawned = false;
 
     }
-    void CoinPoolObject()
+    void PoolCoin()
     {
+        if (hasSpawned) 
+        {
+            return;
+        }
+
         GameObject obj = objectPoolScript.GetPooledCoinObject();
         obj.transform.position = SpawnPosition();
         obj.SetActive(true);

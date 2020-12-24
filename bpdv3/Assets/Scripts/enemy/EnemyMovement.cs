@@ -34,13 +34,13 @@ public class EnemyMovement : MonoBehaviour
     // Enemy spawns on 1st row, then moves down 1 space, always the same direction. The enemy moves normally after the first move.
     public void FirstMove()
     {
-        if (SceneController.Instance.gameBeatCount == 1 && !firstMoveFlag)
+        if (BeatManager.Instance.BeatIndex == 0 && !firstMoveFlag)
         {
             firstMoveFlag = true;
             firstMoveTick++;
         }
 
-        if (SceneController.Instance.gameBeatCount == 4 && firstMoveTick == 1)
+        if (BeatManager.Instance.BeatIndex == 3 && firstMoveTick == 1)
         {            
             transform.position += new Vector3(0, 0, -1.25f);
             hasMoved = true;
@@ -51,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void MovementReset()
     {
-        if (SceneController.Instance.gameBeatCount == 1)
+        if (BeatManager.Instance.BeatIndex == 0)
         {
             ResetFlags();
         }
@@ -59,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Direction()
     {
-        if (SceneController.Instance.gameBeatCount == 2 && !hasFacedDirection)
+        if (BeatManager.Instance.BeatIndex == 1 && !hasFacedDirection)
         {
             FaceDirection();
             hasFacedDirection = true;
@@ -70,7 +70,7 @@ public class EnemyMovement : MonoBehaviour
     {           
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
         {
-            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
+            if (BeatManager.Instance.BeatIndex == 3 && !hasMoved)
             {
                 Move();
                 hasMoved = true;
@@ -79,7 +79,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
         {
-            if (SceneController.Instance.gameBeatCount == 4 && !hasMoved)
+            if (BeatManager.Instance.BeatIndex == 3 && !hasMoved)
             {
                 Move();
             }

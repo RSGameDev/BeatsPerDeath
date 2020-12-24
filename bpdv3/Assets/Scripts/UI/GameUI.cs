@@ -192,19 +192,20 @@ public class GameUI : MonoBehaviour
 
     void BeatBarBehaviour()
     {
-        //beatMark1.GetComponent<RectTransform>().anchoredPosition
-        if (SceneController.Instance.beatStarted)
+        if (!BeatManager.Instance.AreBeatsStarted)
         {
-            // The dots in the beat bar scroll along. 
-            beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
-            beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
-            beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
-            beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));        
+            return;
         }
 
+        // The dots in the beat bar scroll along. 
+        beatMark1.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
+        beatMark2.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
+        beatMark3.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
+        beatMark4.transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
+
         // When they reach the end they go back to the start position and repeat scrolling.
-        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)                                      
-        {                                                                                                           
+        if (beatMark1.GetComponent<RectTransform>().anchoredPosition.x >= 230)
+        {
             beatMark1.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
 
@@ -212,12 +213,12 @@ public class GameUI : MonoBehaviour
         {
             beatMark2.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
-        
+
         if (beatMark3.GetComponent<RectTransform>().anchoredPosition.x >= 230)
         {
             beatMark3.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
         }
-        
+
         if (beatMark4.GetComponent<RectTransform>().anchoredPosition.x >= 230)
         {
             beatMark4.GetComponent<RectTransform>().anchoredPosition = new Vector3(-230, 0.5f, 0);
