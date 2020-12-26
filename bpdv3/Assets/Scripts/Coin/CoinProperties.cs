@@ -23,7 +23,7 @@ public class CoinProperties : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             print("coincollision");
-            anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
+            anchorScript.AnchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
             gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
             coinSpawnerScript.ResetSpawning();
             gameObject.SetActive(false);            

@@ -3,44 +3,42 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
 public class Player : MonoBehaviour
 {
-    public GameUI gameUIScript;
+    #region Private variables
+    private PlayerMovement _playerMovement;
+    #endregion
 
-    public int livesCountPlayer = 3;
+    #region Public variables
+    public GameObject[] SpawnPlayerDetectionGO;
 
-    bool isAlive;
+    public GameUI GameUI;
+    public Vector3 StartPosition;
 
-    public bool isPushBack;
+    public int LivesCountPlayer = 3;
+    public bool IsPlayerAlive = true;
+    public bool IsPlayerPushedBack;
+    #endregion    
     
-    public Vector3 startPos;
-
-    public GameObject[] spawnPlayerDetect;
-
-
-    private void Update()
-    {
-        if (isAlive)                    // Not quite implemented this yet as one can see. The idea was there but nothing done yet with this.
-        {
-        //    Movement(); 
-        }
-    }
-
     // When the player dies this function is called.
-    public void StartPosition()
+    public void StartingPosition()
     {
-        transform.position = startPos;
+        transform.position = StartPosition;
     }
 
-    public void PlayerDied()    
+    public void KillPlayer()
     {
-        livesCountPlayer--;
-        gameUIScript.PlayerLoseLife(livesCountPlayer);
+        IsPlayerAlive = false;
+        LivesCountPlayer--;
+        GameUI.PlayerLoseLife(LivesCountPlayer);
 
-        foreach (GameObject go in spawnPlayerDetect)
+        foreach (GameObject go in SpawnPlayerDetectionGO)
         {
             go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
         }
+        StartingPosition();
+        _playerMovement.IsInput = false;
     }
 }

@@ -19,6 +19,7 @@ TagManager:
   - tempp
   - ScoreManager
   - GameUI
+  - OnTile
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - FireHazard
   - Floor
   - OnTile
-  - 
+  - AreaLimit
   - 
   - 
   - 

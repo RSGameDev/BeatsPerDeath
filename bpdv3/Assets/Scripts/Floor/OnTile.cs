@@ -38,4 +38,16 @@ public class OnTile : MonoBehaviour
             GetComponentInParent<TileProperties>().hasEnemy = false;
         }
     }
+
+    private void Update()
+    {
+        if (transform.position.z >= 6.5f || transform.position.z <= 1f)
+        {
+            GetComponent<Collider>().enabled = false;
+        }
+        else
+        {
+            GetComponent<Collider>().enabled = true;
+        }
+    }
 }

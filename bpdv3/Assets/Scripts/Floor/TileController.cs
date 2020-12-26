@@ -19,7 +19,7 @@ public class TileController : MonoBehaviour {
     Vector3 direction;
     public float distance;
 
-    private bool _isMoving = false;
+    public bool _isMoving = false;
 
     private void Start()
     {
