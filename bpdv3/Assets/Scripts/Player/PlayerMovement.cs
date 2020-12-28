@@ -8,10 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Private Variables
     private const float s_moveUnits = 1.25F;
-    private const float s_verticalTopLimit = 6.25F;
-    private const float s_verticalBottomLimit = 1.25F;
-    private const float s_horizontalLeftLimit = 0F;
-    private const float s_horizontalRightLimit = 5F;
     #endregion
 
     #region Public variables
@@ -56,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 IsInput = true;
                 PlayerDestination.IsObtained = false;
-                /////IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
                 transform.LookAt(transform.position + Vector3.forward);
                 PlayerDestinationGO.GetComponent<Collider>().enabled = true;
             }            
@@ -65,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 IsInput = true;
                 PlayerDestination.IsObtained = false;
-                /////IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
                 transform.LookAt(transform.position + Vector3.back);
                 PlayerDestinationGO.GetComponent<Collider>().enabled = true;
             }
@@ -74,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 IsInput = true;
                 PlayerDestination.IsObtained = false;
-                ////IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
                 transform.LookAt(transform.position + Vector3.left);
                 PlayerDestinationGO.GetComponent<Collider>().enabled = true;
             }
@@ -83,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 IsInput = true;
                 PlayerDestination.IsObtained = false;
-                /////IsOnBeat = BeatHitZone.GetComponent<CoreHitzone>().onBeat;
                 transform.LookAt(transform.position + Vector3.right);
                 PlayerDestinationGO.GetComponent<Collider>().enabled = true;
             }

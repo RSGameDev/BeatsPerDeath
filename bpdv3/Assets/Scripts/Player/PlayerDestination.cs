@@ -64,10 +64,10 @@ public class PlayerDestination : MonoBehaviour
 
     private void Update()
     {
-        PositionContraint(VacantDestination);
+        MovementBoundary(VacantDestination);
     }
 
-    private void PositionContraint(Collider other)
+    private void MovementBoundary(Collider other)
     {
         if (transform.position.z >= s_verticalTopLimit || transform.position.z <= s_verticalBottomLimit)
         {

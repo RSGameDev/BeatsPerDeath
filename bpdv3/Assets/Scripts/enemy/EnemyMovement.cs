@@ -11,63 +11,43 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Enemy _enemy;
     [SerializeField] private EnemyNextMove _enemyNextMove;
 
-    private const float s_verticalTopLimit = 6.25F;
-    private const float s_verticalBottomLimit = 1.25F;
-
-    private const int s_firstBeat = 1;
-    private const int s_secondBeat = 2;
-    private const int s_fourthBeat = 4;
-    
-    public int _faceDirectionRandRook;
-    
+    [SerializeField] private int _faceDirectionRandShroom;
+    [SerializeField] private int _faceDirectionRandRook;
+    [SerializeField] private bool _hasFacedDirection;
     #endregion
 
     #region Public variables
     public GameObject NextMoveGO;
-
-    public Anchor Anchor;
-    #endregion
-
     public GameObject NextMoveLocationGO;
 
-    //public string Direction;
-    [Header("new")]
+    public Anchor Anchor;
+
     public float Speed = 2.0f;
     public float Step;
-    //public bool PushBack;
     public bool IsOnBeat;
-    
-    [SerializeField] private bool _hasFacedDirection;
-    [SerializeField] private int _faceDirectionRandShroom;
 
-    public bool startMoveEnemy;
+    public bool StartMoveEnemy;
     public bool IsEnemyMoving;
-
-    public bool firstMoveMet;
-
-    public bool firstMoveBool;
-    public int firstMoveBeatCount;
-
-    public bool fourthBeatTriggered;
-
-    [SerializeField] Vector3 lastPosition;
-
-    public bool hasDirection;
+    public bool FirstMoveMet;
+    public bool FirstMoveBool;
+    public int FirstMoveBeatCount;
+    public bool FourthBeatTriggered;
+    #endregion
 
     void Update()
     {
-        if (_enemyNextMove.IsDestinationObtained && !firstMoveMet)
+        if (_enemyNextMove.IsDestinationObtained && !FirstMoveMet)
         {
             Move();
         }
 
-        if (fourthBeatTriggered && startMoveEnemy)
+        if (FourthBeatTriggered && StartMoveEnemy)
         {
             if (_enemy.CurrentEnemyType  == Enemy.EnemyType.Rook)
             {
                 if (_enemyNextMove.CanMove())
                 {
-                    startMoveEnemy = false;
+                    StartMoveEnemy = false;
                     NextMoveGO.transform.position += Vector3.forward * 5;
                     NextMoveGO.GetComponent<Collider>().enabled = true;
                     return;
@@ -75,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
             }
             Move();
         }
-        else if (fourthBeatTriggered && !startMoveEnemy)
+        else if (FourthBeatTriggered && !StartMoveEnemy)
         {           
             ResetValues();
         }        
@@ -87,10 +67,10 @@ public class EnemyMovement : MonoBehaviour
         print("firstmove");
         if (BeatManager.Instance.BeatIndex == 0)
         {
-            firstMoveBool = true;
+            FirstMoveBool = true;
         }
 
-        if (BeatManager.Instance.BeatIndex == 3 && firstMoveBool)
+        if (BeatManager.Instance.BeatIndex == 3 && FirstMoveBool)
         {
             transform.LookAt(transform.position + Vector3.back);
             NextMoveGO.GetComponent<Collider>().enabled = true;            
@@ -164,12 +144,12 @@ public class EnemyMovement : MonoBehaviour
         
         if (BeatManager.Instance.BeatIndex == 3 && _enemyNextMove.IsDestinationObtained)
         {
-            startMoveEnemy = true;
-            fourthBeatTriggered = true;
+            StartMoveEnemy = true;
+            FourthBeatTriggered = true;
         }
         else if (BeatManager.Instance.BeatIndex == 3 && !_enemyNextMove.IsDestinationObtained)
         {
-            fourthBeatTriggered = true;
+            FourthBeatTriggered = true;
         }       
     }
 
@@ -183,34 +163,20 @@ public class EnemyMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
         {
             transform.position = NextMoveLocationGO.transform.position;
-            //NextMoveGO.transform.position = _enemyNextMove.originPosition.transform.position;
             ResetValues();
         }             
-    }
-
-    //private void Move()
-    //{
-    //    IsEnemyMoving = true;
-    //    Step = Speed * Time.deltaTime;
-    //    transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
-    //
-    //    if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
-    //    {
-    //        transform.position = NextMoveLocationGO.transform.position;
-    //        ResetValues();
-    //    }
-    //}
+    }    
 
     public void ResetValues()
     {
         print("resetvalues");
         NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
         _enemy.IsNewEnemy = false;
-        firstMoveMet = true;
+        FirstMoveMet = true;
         IsEnemyMoving = false;
         _hasFacedDirection = false;        
-        startMoveEnemy = false;
-        fourthBeatTriggered = false;
+        StartMoveEnemy = false;
+        FourthBeatTriggered = false;
         _enemyNextMove.IsOutOfBounds = false;
     }   
 
