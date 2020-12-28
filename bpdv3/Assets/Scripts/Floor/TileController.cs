@@ -6,38 +6,42 @@ using UnityEngine;
 // Handles the scrolling of the floor.
 public class TileController : MonoBehaviour {
 
-    [Header("Tile movement speed")]
-    [Range(0f, 10f)]
-    public float speed;
+    #region Private variables    
+    private Vector3 _direction;
+
     const int s_BeatToStartScroll = 6;
     const int s_PositionToResetTileValue = 0;
     const float s_PositionToEndScrolling = -1.25f;
-    const int s_BeatToEndScroll = 12;
+    const int s_BeatToEndScroll = 12;    
+    #endregion
 
-    public GameObject[] tilesArray;
-    public GameObject player;
-    Vector3 direction;
-    public float distance;
+    #region Public variables
+    public GameObject[] TilesArray;
 
-    private bool _isMoving = false;
+    [Header("Tile movement speed")]
+    [Range(0f, 10f)]
+    public float Speed; 
+    public float Distance;
+    public bool IsMoving = false;
+    #endregion
 
     private void Start()
     {
-        direction = Vector3.back;
-        distance = direction.magnitude;
+        _direction = Vector3.back;
+        Distance = _direction.magnitude;
         SetBeatListeners();
     }
 
     private void Update()
     {
-        if (!_isMoving)
+        if (!IsMoving)
         {
             return;
         }
 
-        foreach (GameObject gameObject in tilesArray)
+        foreach (GameObject gameObject in TilesArray)
         {
-            var tileMovement = direction.normalized * (Time.deltaTime * (1.25f / 4f));
+            var tileMovement = _direction.normalized * (Time.deltaTime * (1.25f / 4f));
             gameObject.transform.Translate(tileMovement);
 
             if (gameObject.transform.position.z <= s_PositionToResetTileValue)
@@ -61,12 +65,12 @@ public class TileController : MonoBehaviour {
 
     private void StartMovement() 
     {
-        _isMoving = true;
+        IsMoving = true;
     }
 
     private void EndMovement() 
     {
-        _isMoving = false;
+        IsMoving = false;
     }
 
 }

@@ -3,81 +3,49 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyMovement))]
 // Added to each enemy in game.
 public class Enemy : MonoBehaviour
 {
-    GameObject gameUiGo;
-    GameObject scoreManagerGo;
+    #region Private variables
 
-    Anchor anchorScript;
-    EnemyNextMove nextMoveScript;
-    EnemyMovement enemyMovementScript;
+    [SerializeField] private Anchor _anchor;
+    [SerializeField] private EnemyMovement _enemyMovement;
+    [SerializeField] private EnemyNextMove _nextMove;
+    #endregion
 
-    public bool isPushBack;
+    #region Public variables
+    public bool IsPushBack;
+    public bool IsEnemyAlive = true;
+    public bool IsNewEnemy = true;
+    #endregion
 
     public enum EnemyType
     {
         Shroom, Rook
     }
-    public EnemyType currentEnemyType;
+    public EnemyType CurrentEnemyType;
 
-    bool isAlive = true;
-    public bool isNew = true;
-
-    private void Awake()
-    {
-        anchorScript = GetComponentInChildren<Anchor>();
-        enemyMovementScript = GetComponent<EnemyMovement>();
-        nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
-        gameUiGo = GameObject.FindGameObjectWithTag("GameUI");
-        scoreManagerGo = GameObject.FindGameObjectWithTag("ScoreManager");
-    }
-            
     // Update is called once per frame
     void Update()
     {
-        if (isAlive)
+        if (IsEnemyAlive)
         {
-            enemyMovementScript.MovementReset();
-
-            if (!isNew)
+            if (IsNewEnemy)
             {
-                enemyMovementScript.Direction();
+                _enemyMovement.FirstMove();
+            }
 
-                if (nextMoveScript.CanMove())
-                {
-                    enemyMovementScript.Movement();
-                }
-            }
-            else if (nextMoveScript.CanMove())
+            if (!IsNewEnemy)
             {
-                enemyMovementScript.FirstMove();
-            }
+                _enemyMovement.Direction();
+            
+                _enemyMovement.Movement();
+                
+            }            
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (other.GetComponent<Player>().isPushBack)
-            {
-                other.GetComponent<PlayerMovement>().pushBack = true;
-            }
-            else
-            {
-                EnemyDies();
-            }
-        }
-    }
-
-    private void EnemyDies()
-    {
-        anchorScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-        nextMoveScript.tileObj.GetComponent<TileProperties>().OccupiedDecreased();
-        string enemytype = currentEnemyType.ToString();
-        int score = scoreManagerGo.GetComponent<ScoreManager>().EnemyScore(enemytype);
-        gameUiGo.GetComponent<GameUI>().Scoring(score);
-        gameObject.SetActive(false);
     }
 }
+    
+
+

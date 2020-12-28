@@ -2,90 +2,98 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 // Script attached to the player.
 public class PlayerMovement : MonoBehaviour
 {
-    Player playerScript;
+    #region Private Variables
+    private const float s_moveUnits = 1.25F;
+    #endregion
 
-    public bool pushBack;
-    public bool isMoving;
-    public bool onBeat;
-    public GameObject hitZone;
+    #region Public variables
+    public GameObject BeatHitZone;
+    public GameObject PlayerDestinationGO;
+    public GameObject NextMoveLocationGO;
 
-    public string direction;
+    public Anchor PlayerAnchor;
+    public Player Player;
+    public PlayerDestination PlayerDestination;
+    public TileController TileController;
 
-    private void Awake()
-    {
-        playerScript = GetComponent<Player>();
-    }        
+    public string Direction;
+    [Header("new")]
+    public float Speed = 1.0f;
+    public float Step;
+    public bool PushBack;
+    public bool IsMoving;
+    public bool IsOnBeat;
+    public bool IsStartMove = true;
+    public bool IsInput;
+    #endregion
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        if (pushBack)
+        InputCapture();
+
+        if (PlayerDestination.IsObtained)
         {
-            PlayerPushBack(direction);
+            Move();
+        }            
+    }
+
+    // IsOnBeat - this gives idea how it can be used, for now keep. But will likely be moved to where is actually needed. Temp keep if that;s ok Kerem.
+    //            it shows how it can be used anyways.
+    private void InputCapture()
+    {
+        if (!IsInput)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                IsInput = true;
+                PlayerDestination.IsObtained = false;
+                transform.LookAt(transform.position + Vector3.forward);
+                PlayerDestinationGO.GetComponent<Collider>().enabled = true;
+            }            
+    
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                IsInput = true;
+                PlayerDestination.IsObtained = false;
+                transform.LookAt(transform.position + Vector3.back);
+                PlayerDestinationGO.GetComponent<Collider>().enabled = true;
+            }
+    
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                IsInput = true;
+                PlayerDestination.IsObtained = false;
+                transform.LookAt(transform.position + Vector3.left);
+                PlayerDestinationGO.GetComponent<Collider>().enabled = true;
+            }
+    
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                IsInput = true;
+                PlayerDestination.IsObtained = false;
+                transform.LookAt(transform.position + Vector3.right);
+                PlayerDestinationGO.GetComponent<Collider>().enabled = true;
+            }
         }        
     }
 
-    void Movement()
-    {
-        Vector3 position;
-        position = transform.position;
-
-        if (Input.GetKeyDown("w"))
+    private void Move()
+    {    
+        Step = Speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
+    
+        if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
         {
-            isMoving = true;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "w";
-            transform.LookAt(transform.position + Vector3.forward);
-            transform.position += new Vector3(0, 0, 1.25f);
-            if (transform.position.z > 7)
-            {
-                transform.position = position;
-            }
+            transform.position = NextMoveLocationGO.transform.position;
+            NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
+            IsInput = false;
         }
-
-        if (Input.GetKeyDown("s"))
-        {
-            isMoving = true;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "s";
-            transform.LookAt(transform.position + Vector3.back);
-            transform.position += new Vector3(0, 0, -1.25f);
-            if (transform.position.z < 0)
-            {
-                transform.position = position;
-            }
-        }
-
-        if (Input.GetKeyDown("a"))
-        {
-            isMoving = true;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "a";
-            transform.LookAt(transform.position + Vector3.left);
-            transform.position += new Vector3(-1.25f, 0, 0);
-            if (transform.position.x < 0)
-            {
-                transform.position = position;
-            }
-        }
-
-        if (Input.GetKeyDown("d"))
-        {
-            isMoving = true;
-            onBeat = hitZone.GetComponent<CoreHitzone>().onBeat;
-            direction = "d";
-            transform.LookAt(transform.position + Vector3.right);
-            transform.position += new Vector3(1.25f, 0, 0);
-            if (transform.position.x > 5)
-            {
-                transform.position = position;
-            }
-        }
-    }
+    }   
 
     // When the player meets the enemy but not at a weakpoint, so the player gets pushed back a tile.
     public void PlayerPushBack(string direction)
@@ -93,18 +101,18 @@ public class PlayerMovement : MonoBehaviour
         switch (direction)
         {
             case "w":
-                transform.position += new Vector3(0, 0, -1.25f);
+                transform.position += new Vector3(0, 0, -s_moveUnits);
                 break;
             case "s":
-                transform.position += new Vector3(0, 0, 1.25f);
+                transform.position += new Vector3(0, 0, s_moveUnits);
                 break;
             case "a":
-                transform.position += new Vector3(1.25f, 0, 0);
+                transform.position += new Vector3(s_moveUnits, 0, 0);
                 break;
             case "d":
-                transform.position += new Vector3(-1.25f, 0, 0);
+                transform.position += new Vector3(-s_moveUnits, 0, 0);
                 break;                
         }
-        pushBack = false;
+        PushBack = false;
     }
 }

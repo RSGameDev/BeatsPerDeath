@@ -131,7 +131,7 @@ public class BeatManager : Singleton<BeatManager>
     /// <param name="beatAction"></param>
     public void AddListener(int beatIndex, Action beatAction)
     {
-        var indexMod = beatIndex & s_BeatLimit;
+        var indexMod = beatIndex % s_BeatLimit;
 
         if (!_beatListeners.ContainsKey(indexMod))
         {

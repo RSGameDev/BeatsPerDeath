@@ -3,213 +3,181 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 // Added to each enemy in game.
 public class EnemyMovement : MonoBehaviour
 {
-    #region Variables
-    Enemy enemyScript;
-    EnemyNextMove nextMoveScript;
+    #region Private variables
+    [SerializeField] private Enemy _enemy;
+    [SerializeField] private EnemyNextMove _enemyNextMove;
 
-    [SerializeField] int firstMoveTick;
-    [SerializeField] bool firstMoveFlag;
-
-    [SerializeField] bool hasFacedDirection;
-    [SerializeField] bool hasMoved;
-
-    [SerializeField] int faceDirectionRandShroom;
-    [SerializeField] int faceDirectionRandRook;
-
-    [SerializeField] bool rookMove;
-
-    [SerializeField] Vector3 lastPosition;
-
+    [SerializeField] private int _faceDirectionRandShroom;
+    [SerializeField] private int _faceDirectionRandRook;
+    [SerializeField] private bool _hasFacedDirection;
     #endregion
 
-    private void Awake()
+    #region Public variables
+    public GameObject NextMoveGO;
+    public GameObject NextMoveLocationGO;
+
+    public Anchor Anchor;
+
+    public float Speed = 2.0f;
+    public float Step;
+    public bool IsOnBeat;
+
+    public bool StartMoveEnemy;
+    public bool IsEnemyMoving;
+    public bool FirstMoveMet;
+    public bool FirstMoveBool;
+    public int FirstMoveBeatCount;
+    public bool FourthBeatTriggered;
+    #endregion
+
+    void Update()
     {
-        enemyScript = GetComponent<Enemy>();
-        nextMoveScript = transform.GetChild(2).GetComponent<EnemyNextMove>();
+        if (_enemyNextMove.IsDestinationObtained && !FirstMoveMet)
+        {
+            Move();
+        }
+
+        if (FourthBeatTriggered && StartMoveEnemy)
+        {
+            if (_enemy.CurrentEnemyType  == Enemy.EnemyType.Rook)
+            {
+                if (_enemyNextMove.CanMove())
+                {
+                    StartMoveEnemy = false;
+                    NextMoveGO.transform.position += Vector3.forward * 5;
+                    NextMoveGO.GetComponent<Collider>().enabled = true;
+                    return;
+                }                
+            }
+            Move();
+        }
+        else if (FourthBeatTriggered && !StartMoveEnemy)
+        {           
+            ResetValues();
+        }        
     }
-   
-    // Enemy spawns on 1st row, then moves down 1 space, always the same direction. The enemy moves normally after the first move.
+
+    // The enemy waits for a moment then starts to move.
     public void FirstMove()
     {
-        if (BeatManager.Instance.BeatIndex == 0 && !firstMoveFlag)
-        {
-            firstMoveFlag = true;
-            firstMoveTick++;
-        }
-
-        if (BeatManager.Instance.BeatIndex == 3 && firstMoveTick == 1)
-        {            
-            transform.position += new Vector3(0, 0, -1.25f);
-            hasMoved = true;
-            enemyScript.isNew = false;
-        }
-        
-    }
-
-    public void MovementReset()
-    {
+        print("firstmove");
         if (BeatManager.Instance.BeatIndex == 0)
         {
-            ResetFlags();
+            FirstMoveBool = true;
         }
+
+        if (BeatManager.Instance.BeatIndex == 3 && FirstMoveBool)
+        {
+            transform.LookAt(transform.position + Vector3.back);
+            NextMoveGO.GetComponent<Collider>().enabled = true;            
+        }    
     }
 
     public void Direction()
     {
-        if (BeatManager.Instance.BeatIndex == 1 && !hasFacedDirection)
+        if (BeatManager.Instance.BeatIndex == 1 && !_hasFacedDirection)
         {
+            _hasFacedDirection = true;
             FaceDirection();
-            hasFacedDirection = true;
         }
-    }
-
-    public void Movement()
-    {           
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
-        {
-            if (BeatManager.Instance.BeatIndex == 3 && !hasMoved)
-            {
-                Move();
-                hasMoved = true;
-            }
-        }
-
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
-        {
-            if (BeatManager.Instance.BeatIndex == 3 && !hasMoved)
-            {
-                Move();
-            }
-        }
-    }    
-
-    public void ResetFlags()
-    {
-        hasFacedDirection = false;
-        hasMoved = false;
     }
 
     void FaceDirection()
     {
-        faceDirectionRandShroom = UnityEngine.Random.Range(0, 4);
-        faceDirectionRandRook = UnityEngine.Random.Range(0, 2);
+        _faceDirectionRandShroom = UnityEngine.Random.Range(0, 4);
+        _faceDirectionRandRook = UnityEngine.Random.Range(0, 2);
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
-        {
-            switch (faceDirectionRandShroom)
-            {
-                case 0:
-                    transform.LookAt(transform.position + Vector3.forward);
-                    break;
-                case 1:
-                    transform.LookAt(transform.position + Vector3.back);
-                    break;
-                case 2:
-                    transform.LookAt(transform.position + Vector3.left);
-                    break;
-                case 3:
-                    transform.LookAt(transform.position + Vector3.right);
-                    break;
-            }
-        }
+        var enemyType = _enemy.CurrentEnemyType;
 
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
+        switch (enemyType)
         {
-            switch (faceDirectionRandRook)
-            {
-                case 0:
-                    transform.LookAt(transform.position + Vector3.left);
-                    break;
-                case 1:
-                    transform.LookAt(transform.position + Vector3.right);
-                    break;
-            }
+            case Enemy.EnemyType.Shroom:
+                switch (_faceDirectionRandShroom)
+                {
+                    case 0:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.forward);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                    case 1:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.back);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                    case 2:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.left);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                    case 3:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.right);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                }
+                break;
+            case Enemy.EnemyType.Rook:
+                switch (_faceDirectionRandRook)
+                {
+                    case 0:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.left);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                    case 1:
+                        _enemyNextMove.IsDestinationObtained = false;
+                        transform.LookAt(transform.position + Vector3.right);
+                        NextMoveGO.GetComponent<Collider>().enabled = true;
+                        break;
+                }
+                break;
         }
     }
-      
-    void Move()
+
+    public void Movement()
     {
-        lastPosition = transform.position;
-
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Shroom)
+        print("movement");
+        
+        if (BeatManager.Instance.BeatIndex == 3 && _enemyNextMove.IsDestinationObtained)
         {
-            switch (faceDirectionRandShroom)
-            {
-                case 0:
-                    transform.position += new Vector3(0, 0, 1.25f);
-                    if (transform.position.z > 7)                       // This keeps the enemy from going further up the floor. Keeps the movement restricted.
-                    {
-                        transform.position = lastPosition;
-                    }
-                    break;
-                case 1:
-                    transform.position += new Vector3(0, 0, -1.25f);
-                    if (transform.position.z < 0)                       // This keeps the enemy from going further down the floor. Keeps the movement restricted.
-                    {
-                        transform.position = lastPosition;
-                    }
-                    break;
-                case 2:
-                    transform.position += new Vector3(-1.25f, 0, 0);
-                    if (transform.position.x < 0)                       // Same for left side.
-                    {
-                        transform.position = lastPosition;
-                    }
-                    break;
-                case 3:
-                    transform.position += new Vector3(1.25f, 0, 0);
-                    if (transform.position.x > 5)                       // Same for right side.
-                    {
-                        transform.position = lastPosition;
-                    }
-                    break;
-            }
+            StartMoveEnemy = true;
+            FourthBeatTriggered = true;
         }
-
-        if (enemyScript.currentEnemyType == Enemy.EnemyType.Rook)
+        else if (BeatManager.Instance.BeatIndex == 3 && !_enemyNextMove.IsDestinationObtained)
         {
-            switch (faceDirectionRandRook)
-            {             
-                case 0:
-                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
-                    {
-                        transform.position += new Vector3(-1.25f, 0, 0);
-                        nextMoveScript.nextMoveTrigger = false;
-                    }
+            FourthBeatTriggered = true;
+        }       
+    }
 
-                    if (!nextMoveScript.CanMove())
-                    {
-                        transform.position = lastPosition;
-                        hasMoved = true;
-                    }
-                                        
-                    if (transform.position.x < 0)
-                    {
-                        transform.position = lastPosition;
-                    }                   
-                    break;
-                case 1:
-                    if (nextMoveScript.nextMoveTrigger)                     // A reference to detect if the rook enemy type can carry on moving.
-                    {
-                        transform.position += new Vector3(1.25f, 0, 0);
-                        nextMoveScript.nextMoveTrigger = false;
-                    }
+    private void Move()
+    {
+        print("move");
+        IsEnemyMoving = true;
+        Step = Speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
 
-                    if (!nextMoveScript.CanMove())
-                    {
-                        transform.position = lastPosition;
-                        hasMoved = true;
-                    }
-
-                    if (transform.position.x >5)
-                    {
-                        transform.position = lastPosition;
-                    }
-                    break;
-            }       
-        }
+        if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
+        {
+            transform.position = NextMoveLocationGO.transform.position;
+            ResetValues();
+        }             
     }    
+
+    public void ResetValues()
+    {
+        print("resetvalues");
+        NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
+        _enemy.IsNewEnemy = false;
+        FirstMoveMet = true;
+        IsEnemyMoving = false;
+        _hasFacedDirection = false;        
+        StartMoveEnemy = false;
+        FourthBeatTriggered = false;
+        _enemyNextMove.IsOutOfBounds = false;
+    }   
+
 }
