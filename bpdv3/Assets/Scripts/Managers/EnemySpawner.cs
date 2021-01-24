@@ -75,8 +75,6 @@ public class EnemySpawner : MonoBehaviour
             case 2:
                 SpawnLevelThreeEnemies();
                 break;
-            default:
-                break;
         }
 
         return;
@@ -133,7 +131,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (firstSpawn)
         {
-            spawnPosRand = UnityEngine.Random.Range(0, 5);
+            spawnPosRand = Random.Range(0, 5);
             lastSpawnPos = spawnPosRand;
             firstSpawn = false;
         }
@@ -169,7 +167,7 @@ public class EnemySpawner : MonoBehaviour
     {
         do
         {
-            spawnPosRand = UnityEngine.Random.Range(0, 5);
+            spawnPosRand = Random.Range(0, 5);
         } while (spawnPosRand == lastPos);
 
         lastSpawnPos = spawnPosRand;

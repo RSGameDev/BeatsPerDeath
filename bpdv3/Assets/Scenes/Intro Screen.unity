@@ -624,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 3285520690126278317, guid: d8edca75f4cff7846b35a637fd49163a,
         type: 3}
       propertyPath: m_text
-      value: Richard Suarez
+      value: --
       objectReference: {fileID: 0}
     - target: {fileID: 3285520690270339324, guid: d8edca75f4cff7846b35a637fd49163a,
         type: 3}
@@ -635,6 +635,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285520690278559974, guid: d8edca75f4cff7846b35a637fd49163a,
+        type: 3}
+      propertyPath: m_text
+      value: ---
       objectReference: {fileID: 0}
     - target: {fileID: 3285520690293399785, guid: d8edca75f4cff7846b35a637fd49163a,
         type: 3}
@@ -760,6 +765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadOptionsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285520691021786583, guid: d8edca75f4cff7846b35a637fd49163a,
+        type: 3}
+      propertyPath: m_text
+      value: --
       objectReference: {fileID: 0}
     - target: {fileID: 3285520691088980454, guid: d8edca75f4cff7846b35a637fd49163a,
         type: 3}

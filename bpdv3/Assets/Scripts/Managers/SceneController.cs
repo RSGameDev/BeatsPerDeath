@@ -179,13 +179,13 @@ public class SceneController : Singleton<SceneController>
 
     private void UpdateBeatUI() 
     {
-        var currentBeat = BeatManager.Instance.BeatIndex % 4;
+        var currentBeat = BeatManager.Instance.BeatIndex % 4 + 1;
         beatUiValue.text = currentBeat.ToString();
     }
 
     private void UpdateSpawnCountUI()
     {
-        var currentBeat = BeatManager.Instance.BeatIndex % 8;
+        var currentBeat = BeatManager.Instance.BeatIndex % 8 + 1;
         spawnUiValue.text = currentBeat.ToString();
     }
 }

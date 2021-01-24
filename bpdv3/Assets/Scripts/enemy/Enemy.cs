@@ -38,10 +38,8 @@ public class Enemy : MonoBehaviour
 
             if (!IsNewEnemy)
             {
-                _enemyMovement.Direction();
-            
-                _enemyMovement.Movement();
-                
+                _enemyMovement.Direction();                                
+                _enemyMovement.Movement();                   
             }            
         }
     }

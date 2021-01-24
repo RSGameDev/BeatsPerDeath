@@ -41,7 +41,7 @@ public class TileController : MonoBehaviour {
 
         foreach (GameObject gameObject in TilesArray)
         {
-            var tileMovement = _direction.normalized * (Time.deltaTime * (1.25f / 4f));
+            var tileMovement = _direction.normalized * (Time.deltaTime * (1.25f / 3f));
             gameObject.transform.Translate(tileMovement);
 
             if (gameObject.transform.position.z <= s_PositionToResetTileValue)
