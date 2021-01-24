@@ -155,16 +155,24 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
-        print("move");
-        IsEnemyMoving = true;
-        Step = Speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
-
-        if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
+        if (_enemyNextMove.CanMove())
         {
-            transform.position = NextMoveLocationGO.transform.position;
+            print("move");
+            IsEnemyMoving = true;
+            Step = Speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
+
+            if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
+            {
+                transform.position = NextMoveLocationGO.transform.position;
+                ResetValues();
+            }
+        }
+        else
+        {
             ResetValues();
-        }             
+        }
+        
     }    
 
     public void ResetValues()

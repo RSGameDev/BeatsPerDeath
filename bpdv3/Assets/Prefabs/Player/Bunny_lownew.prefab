@@ -126,8 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd84aa0c632271d408c144bf86ee0201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPushBack: 0
-  startPos: {x: 0, y: 0, z: 0}
+  SpawnPlayerDetectionGO: []
+  GameUI: {fileID: 0}
+  StartPosition: {x: 0, y: 0, z: 0}
+  LivesCountPlayer: 3
+  IsPlayerAlive: 1
+  IsPlayerPushedBack: 0
 --- !u!114 &5445598500877916374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,5 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f08bfaa43dff1e4b9f78c099a2dbde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackDirection: 
-  pushBack: 0
+  BeatHitZone: {fileID: 0}
+  PlayerDestinationGO: {fileID: 0}
+  NextMoveLocationGO: {fileID: 0}
+  PlayerAnchor: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerDestination: {fileID: 0}
+  TileController: {fileID: 0}
+  Direction: 
+  Speed: 1
+  Step: 0
+  PushBack: 0
+  IsMoving: 0
+  IsOnBeat: 0
+  IsStartMove: 1
+  IsInput: 0
