@@ -85,11 +85,12 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {    
         Step = Speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, NextMoveLocationGO.transform.position, Step);
+        var location = new Vector3(NextMoveLocationGO.transform.position.x, NextMoveLocationGO.transform.position.y - 0.5f, NextMoveLocationGO.transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, location, Step);
     
-        if (Vector3.Distance(transform.position, NextMoveLocationGO.transform.position) < 0.01f)
+        if (Vector3.Distance(transform.position, location) < 0.01f)
         {
-            transform.position = NextMoveLocationGO.transform.position;
+            transform.position = location;
             NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
             IsInput = false;
         }
