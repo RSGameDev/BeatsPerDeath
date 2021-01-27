@@ -63,7 +63,7 @@ public class Anchor : MonoBehaviour
     {
         AnchorTileObject = other.gameObject;
         _newPosition = other.GetComponent<Renderer>().bounds.center;
-        transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
+        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+1f, AnchorTileObject.transform.position.z);
         transform.parent.SetParent(other.transform);
     }
 
@@ -83,7 +83,7 @@ public class Anchor : MonoBehaviour
 
     public void PlaceInPosition()
     {
-        _newPosition = AnchorTileObject.GetComponent<Renderer>().bounds.center;
-        transform.parent.position = new Vector3(_newPosition.x, _newPosition.y + 1f, _newPosition.z);
+        //_newPosition = AnchorTileObject.GetComponent<Renderer>().bounds.center;
+        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+1f, AnchorTileObject.transform.position.z);
     }
 }

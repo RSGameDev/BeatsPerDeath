@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2667809542	GPlay_Music			\Music\GPlay_Music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	901612342	Blank_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\GamePlayFinal\Blank_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\Blank_120bpm4-4_L8M-P0		3073084
+
