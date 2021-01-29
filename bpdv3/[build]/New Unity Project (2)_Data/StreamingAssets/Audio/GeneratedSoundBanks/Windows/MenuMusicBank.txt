@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	4055567060	Menu_Music			\Music\Menu_Music	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	141695539	MenuMusicTwo	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\MenuMusic\MenuMusicTwo_D79FB2B7.wem		\Interactive Music Hierarchy\Music\MenuMusic\MenuMusic\MenuMusicTwo		8507292
-
