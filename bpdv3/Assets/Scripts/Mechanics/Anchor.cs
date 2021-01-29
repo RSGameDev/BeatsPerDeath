@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class Anchor : MonoBehaviour
     //new
     public PlayerMovement playermovement;
     public EnemyMovement enemymovement;
-
+  
     private void OnTriggerStay(Collider other)
     {
         var tag = gameObject.transform.parent.tag;
@@ -63,7 +64,11 @@ public class Anchor : MonoBehaviour
     {
         AnchorTileObject = other.gameObject;
         _newPosition = other.GetComponent<Renderer>().bounds.center;
-        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+1f, AnchorTileObject.transform.position.z);
+        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+0.5f, AnchorTileObject.transform.position.z);
+        if (gameObject.transform.parent.CompareTag(s_Enemy))
+        {
+            transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+1f, AnchorTileObject.transform.position.z);
+        }
         transform.parent.SetParent(other.transform);
     }
 
@@ -84,6 +89,6 @@ public class Anchor : MonoBehaviour
     public void PlaceInPosition()
     {
         //_newPosition = AnchorTileObject.GetComponent<Renderer>().bounds.center;
-        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+1f, AnchorTileObject.transform.position.z);
+        transform.parent.position = new Vector3(AnchorTileObject.transform.position.x, AnchorTileObject.transform.position.y+0.5f, AnchorTileObject.transform.position.z);
     }
 }
