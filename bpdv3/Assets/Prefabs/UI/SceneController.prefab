@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 645535477020085284}
   - component: {fileID: 645535477020085283}
   m_Layer: 0
-  m_Name: Level Loader
+  m_Name: SceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,4 +43,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a1f0b30241cd4c945f27c0e087cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 4
+  menuEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f16d94b3aff8846248723e2c1aec8700,
+      type: 2}
+  gplayEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9739e2322cdf54d83a9c573457950477,
+      type: 2}
+  splashScreen: {fileID: 0}
+  warningScreen: {fileID: 0}
+  mainMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
+  gameplayMenu: {fileID: 0}
+  soundsMenu: {fileID: 0}
+  creditsScreen: {fileID: 0}
+  splashDelay: 4
+  warningDelay: 3
+  beatUiValue: {fileID: 0}
+  spawnUiValue: {fileID: 0}

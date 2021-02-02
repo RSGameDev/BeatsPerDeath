@@ -4,7 +4,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3930794392	Quit			\SFX\Quit	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	215519574	Button_Select	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Select_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Select		41408
-	269038420	Button_Cancel	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Cancel_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Cancel		165440
-	916675540	Button_Hover	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Hover_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Hover		41408
+	215519574	Button_Select	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Select_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Select		41408
+	269038420	Button_Cancel	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Cancel_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Cancel		165440
+	916675540	Button_Hover	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\Button_Hover_10C4C929.wem		\Actor-Mixer Hierarchy\UI_SFX\Button_Hover		41408
 

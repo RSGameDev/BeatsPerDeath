@@ -9,8 +9,7 @@ using Assets.Scripts.Core;
 // So the code at the bottom of this script is here temporarily and will be moved. This was done just so we can get a build out early for people to see.
 public class SceneController : Singleton<SceneController>
 {
-    public AK.Wwise.Event menuEvent;
-    public AK.Wwise.Event gplayEvent;
+
 
     public GameObject splashScreen;
     public GameObject warningScreen;
@@ -19,7 +18,7 @@ public class SceneController : Singleton<SceneController>
     public GameObject gameplayMenu;
     public GameObject soundsMenu;
     public GameObject creditsScreen;
-
+    public AudioManager audioManagerObj;
 
     [SerializeField] int splashDelay = 4;
     [SerializeField] int warningDelay = 3;
@@ -41,11 +40,13 @@ public class SceneController : Singleton<SceneController>
         gameplayMenu.transform.localScale = Vector3.zero;
         soundsMenu.transform.localScale = Vector3.zero;
         creditsScreen.transform.localScale = Vector3.zero;
+        audioManagerObj.ResetAudioStates();
     }
 
     void Start()
     {
         SetSceneSettings();
+        
     }
 
     private void SetSceneSettings()
@@ -55,10 +56,10 @@ public class SceneController : Singleton<SceneController>
         switch (currentSceneIndex)
         {
             case 0:
-                SetIntroSceneSettings();
+                audioManagerObj.SetIntroSceneSettings();
                 break;
             case 1:
-                SetGamePlaySceneSettings();
+                audioManagerObj.SetGamePlaySceneSettings();
                 break;
         }
 
@@ -68,15 +69,8 @@ public class SceneController : Singleton<SceneController>
         BeatManager.Instance.AddListenerToAll(UpdateSpawnCountUI);
     }
 
-    // TODO temporary method will be deleted with the implenentation of the AudioManager
-    private void SetGamePlaySceneSettings()
+    public void DelaySplashScreen()
     {
-        gplayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
-    }
-
-    private void SetIntroSceneSettings()
-    {
-        menuEvent.Post(gameObject);
         StartCoroutine(DelayOnSplashScreen());
     }
 
@@ -98,6 +92,8 @@ public class SceneController : Singleton<SceneController>
             var temp1 = GameObject.Find("ScoreUITest Value (TMP) (1)");
             spawnUiValue = temp1.GetComponent<TextMeshProUGUI>();
         }
+
+        audioManagerObj.MusicLayering();
     }
 
     private void LoadWarningScreen()
@@ -121,9 +117,8 @@ public class SceneController : Singleton<SceneController>
 
     public void StartGame()
     {
-        menuEvent.Stop(gameObject);
         SceneManager.LoadScene("scene1");
-        SetGamePlaySceneSettings();
+        audioManagerObj.SetGamePlaySceneSettings();
     }
 
 
@@ -170,13 +165,7 @@ public class SceneController : Singleton<SceneController>
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    // TODO will be moved into audio class
-    //AudioEngine Code to give us information on beat detection from WWise. < John comment
-    void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)                                                                                         
-    {
-        BeatManager.Instance.UpdateBeat();          
-    }
-
+    
     private void UpdateBeatUI() 
     {
         var currentBeat = BeatManager.Instance.BeatIndex % 4 + 1;
