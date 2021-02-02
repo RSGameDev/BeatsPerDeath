@@ -1,3 +1,19 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	1589478550	C_State			\GPlayStates\C_State	
+	2234821919	B_State			\GPlayStates\B_State	
+	2896168400	A_State			\GPlayStates\A_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	C_State			
+	788884573	Stop	C_State			
+	1256202815	Play	C_State			
+	748895195	None	B_State			
+	788884573	Stop	B_State			
+	1256202815	Play	B_State			
+	748895195	None	A_State			
+	788884573	Stop	A_State			
+	1256202815	Play	A_State			
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
