@@ -9,7 +9,7 @@ using Assets.Scripts.Core;
 // So the code at the bottom of this script is here temporarily and will be moved. This was done just so we can get a build out early for people to see.
 public class SceneController : Singleton<SceneController>
 {
-
+//errgergsaergaergaegr
 
     public GameObject splashScreen;
     public GameObject warningScreen;
