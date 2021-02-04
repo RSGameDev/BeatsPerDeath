@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{EF1FB117-196D-4625-A976-15B00C82F7EB}" SchemaVersion="97">
+	<States>
+		<WorkUnit Name="GPlayStates" ID="{EF1FB117-196D-4625-A976-15B00C82F7EB}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="A_State" ID="{3570E5E7-515C-4ED3-AE05-520AFFEFCF58}">
+					<ChildrenList>
+						<State Name="None" ID="{8A09AB31-C432-4232-9E0B-54F9D953841E}"/>
+						<State Name="Play" ID="{65C34A14-9C79-49AF-9FA4-74B1AFCA9A32}"/>
+						<State Name="Stop" ID="{FDAEA16F-AA01-41F2-B330-0DCD921A89E8}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="B_State" ID="{D0E3B781-E5B6-408A-8899-BDE7897B0874}">
+					<ChildrenList>
+						<State Name="None" ID="{908C1468-553E-40DA-BF88-81AF81D58E77}"/>
+						<State Name="Play" ID="{FF28900E-0A0C-4B57-B888-D8EC841B9B7D}"/>
+						<State Name="Stop" ID="{F1B6B351-2BA7-405C-B596-FBC2CD6EFCFB}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="C_State" ID="{6E55ED1A-FE69-4F01-906D-5344072F9D3E}">
+					<ChildrenList>
+						<State Name="None" ID="{28841A17-4406-4B59-8CA7-ABC496168179}"/>
+						<State Name="Play" ID="{62C623A2-EC99-4867-AD3A-0BF37A3123D0}"/>
+						<State Name="Stop" ID="{E6B54359-932A-46AC-9B10-AD55E4879AB8}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</States>
+</WwiseDocument>

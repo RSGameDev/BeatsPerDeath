@@ -12,14 +12,319 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee8136fa58a44787b5f7f079ba5827f, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  AcousticTextureWwu: []
-  AuxBusWwu: []
-  BankWwu: []
-  EventWwu: []
-  RtpcWwu: []
-  StateWwu: []
-  SwitchWwu: []
-  TriggerWwu: []
-  ExpandedItems: []
-  autoPopulateEnabled: 1
-  CurrentPluginConfig: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 092b7a56ed323c48bcc2d4fb7122369f
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: a5f1757ae256c544b477937411caf6a6
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 0456703534305e468f68f47283dc9eaf
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  - PhysicalPath: SoundBanks\Music.wwu
+    PathAndIcons:
+    - ElementName: Music
+      ObjectType: 12
+    ParentPath: Music
+    guid: 4545cc115da4f94e8353240d94edd50a
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List:
+    - name: GPlayMusicBank
+      guid: aa3c64affa1fbb4faa7667ef93f28b53
+      id: 710938993
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: GPlayMusicBank
+        ObjectType: 7
+      Path: Music\GPlayMusicBank
+    - name: MenuMusicBank
+      guid: 81b0d45ee3f1ca4aa3d7f28f84c3c60c
+      id: 2595390611
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: MenuMusicBank
+        ObjectType: 7
+      Path: Music\MenuMusicBank
+  - PhysicalPath: SoundBanks\UISounds.wwu
+    PathAndIcons:
+    - ElementName: UISounds
+      ObjectType: 12
+    ParentPath: UISounds
+    guid: 9ab3f952520a9145a58b0d8968ae1a6e
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List:
+    - name: UISounds
+      guid: 9f860999919ecf44830854316aac47f2
+      id: 2761892727
+      PathAndIcons:
+      - ElementName: UISounds
+        ObjectType: 12
+      - ElementName: UISounds
+        ObjectType: 7
+      Path: UISounds\UISounds
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 01422c3cf291434288fc2043d633d501
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  - PhysicalPath: Events\Music.wwu
+    PathAndIcons:
+    - ElementName: Music
+      ObjectType: 12
+    ParentPath: Music
+    guid: 24dd52b4bee6fc40be64aeda279c00c2
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List:
+    - name: GPlay_Music
+      guid: bb21575a62ae8d46a38b002f65803c44
+      id: 2667809542
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: GPlay_Music
+        ObjectType: 3
+      Path: Music\GPlay_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Menu_Music
+      guid: 7d26986b2a3dbe4fa09b7029ccefa9f0
+      id: 4055567060
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Menu_Music
+        ObjectType: 3
+      Path: Music\Menu_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  - PhysicalPath: Events\SFX.wwu
+    PathAndIcons:
+    - ElementName: SFX
+      ObjectType: 12
+    ParentPath: SFX
+    guid: f3c50cc21347b649b335c3969dcf5205
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List:
+    - name: Hover
+      guid: ea14c6adf7b8b3479af76f8215b16ab4
+      id: 3753593413
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Hover
+        ObjectType: 3
+      Path: SFX\Hover
+      maxAttenuation: 0
+      maxDuration: 0.234376
+      minDuration: 0.234376
+    - name: Quit
+      guid: 133034c2754d3f4b9e38e8cd27875eda
+      id: 3930794392
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Quit
+        ObjectType: 3
+      Path: SFX\Quit
+      maxAttenuation: 0
+      maxDuration: 0.937506
+      minDuration: 0.937506
+    - name: Select
+      guid: 4e68a202216671428a393d9d330f7800
+      id: 1432588725
+      PathAndIcons:
+      - ElementName: SFX
+        ObjectType: 12
+      - ElementName: Select
+        ObjectType: 3
+      Path: SFX\Select
+      maxAttenuation: 0
+      maxDuration: 0.234376
+      minDuration: 0.234376
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 5a73d6f3ccc8544da825411797b8f3a0
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 4af9532c45ccf148a18e64b96178cd03
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  - PhysicalPath: States\GPlayStates.wwu
+    PathAndIcons:
+    - ElementName: GPlayStates
+      ObjectType: 12
+    ParentPath: GPlayStates
+    guid: 17b11fef6d192546a97615b00c82f7eb
+    GuidInternal: 
+    m_lastTime: -8585893986634775808
+    List:
+    - name: A_State
+      guid: e7e570355c51d34eae05520affefcf58
+      id: 2896168400
+      PathAndIcons:
+      - ElementName: GPlayStates
+        ObjectType: 12
+      - ElementName: A_State
+        ObjectType: 9
+      Path: GPlayStates\A_State
+      values:
+      - name: None
+        guid: 31ab098a32c432429e0b54f9d953841e
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Play
+        guid: 144ac365799caf499fa474b1afca9a32
+        id: 1256202815
+        PathAndIcons:
+        - ElementName: Play
+          ObjectType: 8
+      - name: Stop
+        guid: 6fa1aefd01aaf241b3300dcd921a89e8
+        id: 788884573
+        PathAndIcons:
+        - ElementName: Stop
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: B_State
+      guid: 81b7e3d0b6e58a408899bde7897b0874
+      id: 2234821919
+      PathAndIcons:
+      - ElementName: GPlayStates
+        ObjectType: 12
+      - ElementName: B_State
+        ObjectType: 9
+      Path: GPlayStates\B_State
+      values:
+      - name: None
+        guid: 68148c903e55da40bf8881af81d58e77
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Play
+        guid: 0e9028ff0c0a574bb888d8ec841b9b7d
+        id: 1256202815
+        PathAndIcons:
+        - ElementName: Play
+          ObjectType: 8
+      - name: Stop
+        guid: 51b3b6f1a72b5c40b596fbc2cd6efcfb
+        id: 788884573
+        PathAndIcons:
+        - ElementName: Stop
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: C_State
+      guid: 1aed556e69fe014f906d5344072f9d3e
+      id: 1589478550
+      PathAndIcons:
+      - ElementName: GPlayStates
+        ObjectType: 12
+      - ElementName: C_State
+        ObjectType: 9
+      Path: GPlayStates\C_State
+      values:
+      - name: None
+        guid: 171a84280644594b8ca7abc496168179
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Play
+        guid: a223c66299ec6748ad3a0bf37a3123d0
+        id: 1256202815
+        PathAndIcons:
+        - ElementName: Play
+          ObjectType: 8
+      - name: Stop
+        guid: 5943b5e62a93ac469b10ad55e4879ab8
+        id: 788884573
+        PathAndIcons:
+        - ElementName: Stop
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 013d76336cc1bb40836dfae85dc19363
+    GuidInternal: 
+    m_lastTime: -8585893986634775808
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 9206f9b76c7d6343801773196031b4f0
+    GuidInternal: 
+    m_lastTime: -8585896980614775808
+    List: []
+  ExpandedItems:
+  - /bpdv3_WwiseProject

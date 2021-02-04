@@ -1,6 +1,30 @@
 Event	ID	Name			Wwise Object Path	Notes
 	2667809542	GPlay_Music			\Music\GPlay_Music	
 
+State Group	ID	Name			Wwise Object Path	Notes
+	1589478550	C_State			\GPlayStates\C_State	
+	2234821919	B_State			\GPlayStates\B_State	
+	2896168400	A_State			\GPlayStates\A_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	C_State			
+	788884573	Stop	C_State			
+	1256202815	Play	C_State			
+	748895195	None	B_State			
+	788884573	Stop	B_State			
+	1256202815	Play	B_State			
+	748895195	None	A_State			
+	788884573	Stop	A_State			
+	1256202815	Play	A_State			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	165185375	Stop	B_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		
+	265390218	Stop	C_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		
+	276029171	Stop	A_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	901612342	Blank_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BPDv3\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\GamePlayFinal\Blank_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\Blank_120bpm4-4_L8M-P0		3073084
+	35435106	D_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\D_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		3454556
+	576404282	S_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\S_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		3071244
+	669491340	B_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\B_120bpm4-4_L8M-P0_291027D2.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		3074712
+	901612342	Blank_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Mac\SFX\GamePlayFinal\Blank_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\Blank_120bpm4-4_L8M-P0		3073084
 
