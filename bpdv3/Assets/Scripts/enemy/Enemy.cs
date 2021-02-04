@@ -12,13 +12,20 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Anchor _anchor;
     [SerializeField] private EnemyMovement _enemyMovement;
     [SerializeField] private EnemyNextMove _nextMove;
+    [SerializeField] private Transform pushBackTransform = null;
+    [SerializeField] private GameObject inFront = null;
+    [SerializeField] private bool isInFront = false;
     #endregion
 
     #region Public variables
-    public bool IsPushBack;
     public bool IsEnemyAlive = true;
     public bool IsNewEnemy = true;
     #endregion
+
+    public Transform PushBackTransform()
+    {
+        return pushBackTransform;
+    }
 
     public enum EnemyType
     {
@@ -26,9 +33,24 @@ public class Enemy : MonoBehaviour
     }
     public EnemyType CurrentEnemyType;
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            var playerMovement = other.GetComponent<PlayerMovement>();
+            playerMovement.enemy = this;
+            playerMovement.isPushBack = true;
+            FindObjectOfType<Player>().DealDamage();
+        }
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
+        
         if (IsEnemyAlive)
         {
             if (IsNewEnemy)

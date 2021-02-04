@@ -14,7 +14,7 @@ public class BottomRowHazard : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().KillPlayer();
+            other.GetComponent<Player>().OnPlayerDie();
         }
     }
 }

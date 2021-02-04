@@ -305,10 +305,11 @@ MonoBehaviour:
   Player: {fileID: 5063443912005615155}
   PlayerDestination: {fileID: 2434035745363287116}
   TileController: {fileID: 0}
+  enemy: {fileID: 0}
   Direction: 
   Speed: 1.5
   Step: 0
-  PushBack: 0
+  isPushBack: 0
   IsMoving: 0
   IsOnBeat: 0
   IsStartMove: 1

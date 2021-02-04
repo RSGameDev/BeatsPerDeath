@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -28,17 +29,47 @@ public class Player : MonoBehaviour
         transform.position = StartPosition;
     }
 
-    public void KillPlayer()
+
+    //#Note Bad code! 
+    /*public void KillPlayer()
+    //{
+    //    IsPlayerAlive = false;
+    //    LivesCountPlayer--;
+    //    GameUI.PlayerLoseLife(LivesCountPlayer);
+
+    //    foreach (GameObject go in SpawnPlayerDetectionGO)
+    //    {
+    //        go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
+    //    }
+    //    StartingPosition();
+    //    _playerMovement.IsInput = false;
+      }
+    */
+    /// <summary>
+    /// Deal Damage to the player
+    /// </summary>
+    public void DealDamage()
     {
-        IsPlayerAlive = false;
         LivesCountPlayer--;
         GameUI.PlayerLoseLife(LivesCountPlayer);
 
-        foreach (GameObject go in SpawnPlayerDetectionGO)
+        if (LivesCountPlayer == 0)
         {
-            go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
+            OnPlayerDie();
         }
-        StartingPosition();
-        _playerMovement.IsInput = false;
+    }
+
+
+    /// <summary>
+    /// OnPlayerDie should call when you want to kill the player!
+    /// </summary>
+    public void OnPlayerDie()
+    {
+        GameUI.enabled = false;
+        /*
+         * #TODO a canvas
+         * FindObjectOfType<GameOverDisplay>().enabled = true; 
+        */
+        Destroy(gameObject);
     }
 }

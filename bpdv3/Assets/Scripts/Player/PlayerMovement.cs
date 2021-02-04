@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject BeatHitZone;
     public GameObject PlayerDestinationGO;
     public GameObject NextMoveLocationGO;
-
+    public Enemy enemy = null;
     public Anchor PlayerAnchor;
     public Player Player;
     public PlayerDestination PlayerDestination;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("new")]
     public float Speed = 1.0f;
     public float Step;
-    public bool PushBack;
+    public bool isPushBack = false;
     public bool IsMoving;
     public bool IsOnBeat;
     public bool IsStartMove = true;
@@ -83,20 +83,34 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Move()
-    {    
+    {
         Step = Speed * Time.deltaTime;
-        var location = new Vector3(NextMoveLocationGO.transform.position.x, NextMoveLocationGO.transform.position.y - 0.5f, NextMoveLocationGO.transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, location, Step);
-    
-        if (Vector3.Distance(transform.position, location) < 0.01f)
-        {
-            transform.position = location;
-            NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
-            IsInput = false;
-        }
-    }   
+        Vector3 location;
 
-    // When the player meets the enemy but not at a weakpoint, so the player gets pushed back a tile.
+        if (isPushBack)
+        {
+            IsInput = false;
+            location = enemy.PushBackTransform().position;
+            transform.position = location;
+            isPushBack = false;
+        }
+        else if(!isPushBack && IsInput)
+        {
+            location = new Vector3(NextMoveLocationGO.transform.position.x, NextMoveLocationGO.transform.position.y - 0.5f, NextMoveLocationGO.transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, location, Step);
+            if (Vector3.Distance(transform.position, location) < 0.01f)
+            {
+                transform.position = location;
+                Debug.Log(transform.position);
+                NextMoveLocationGO.GetComponentInParent<TileProperties>().OccupiedDecreased();
+                IsInput = false;
+            }
+        }
+        isPushBack = false;
+    }
+
+    // When the player meets the enemy but not at a weakpoint, so the player gets pushed back a tile.'
+    /*
     public void PlayerPushBack(string direction)
     {
         switch (direction)
@@ -114,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position += new Vector3(-s_moveUnits, 0, 0);
                 break;                
         }
-        PushBack = false;
     }
+
+    */
 }
