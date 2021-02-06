@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
             var playerMovement = other.GetComponent<PlayerMovement>();
             playerMovement.enemy = this;
             playerMovement.isPushBack = true;
+            playerMovement.IsInput = false;
+            other.gameObject.transform.position = pushBackTransform.position;
             FindObjectOfType<Player>().DealDamage();
         }
     }
