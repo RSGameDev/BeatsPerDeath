@@ -982,6 +982,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 645535477020085282, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: m_TagString
+      value: SceneController
+      objectReference: {fileID: 0}
     - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
       propertyPath: mainMenu
@@ -1054,6 +1059,51 @@ PrefabInstance:
       propertyPath: audioManagerObj
       value: 
       objectReference: {fileID: 1269410865}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _splashScreen
+      value: 
+      objectReference: {fileID: 1566193360}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _warningScreen
+      value: 
+      objectReference: {fileID: 268932449}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _mainMenu
+      value: 
+      objectReference: {fileID: 43875921}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _optionsMenu
+      value: 
+      objectReference: {fileID: 569059146}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _gameplayMenu
+      value: 
+      objectReference: {fileID: 834528922}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _soundsMenu
+      value: 
+      objectReference: {fileID: 408731547}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: _creditsScreen
+      value: 
+      objectReference: {fileID: 599196075}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: s_SplashDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 645535477020085283, guid: 1dfa29a8945712c4186e21502cb25eab,
+        type: 3}
+      propertyPath: s_warningDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 645535477020085284, guid: 1dfa29a8945712c4186e21502cb25eab,
         type: 3}
       propertyPath: m_LocalPosition.x

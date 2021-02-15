@@ -1,75 +1,65 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement))]
-// Script attached to the player.
-public class Player : MonoBehaviour
+namespace Scripts.Player
 {
-    #region Private variables
-    private PlayerMovement _playerMovement;
-    #endregion
-
-    #region Public variables
-    public GameObject[] SpawnPlayerDetectionGO;
-
-    public GameUI GameUI;
-    public Vector3 StartPosition;
-
-    public int LivesCountPlayer = 3;
-    public bool IsPlayerAlive = true;
-    public bool IsPlayerPushedBack;
-    #endregion    
+    [RequireComponent(typeof(PlayerMovement))]
+// Script attached to the player.
+    public class Player : MonoBehaviour
+    {
+        #region Private & Constant Variables
     
-    // When the player dies this function is called.
-    public void StartingPosition()
-    {
-        transform.position = StartPosition;
-    }
+        [SerializeField] private GameUI _gameUI;
+        [SerializeField] private Vector3 _startPosition;
+        private PlayerMovement _playerMovement;
+        private int _livesCountPlayer = 3;
 
+        #endregion
 
-    //#Note Bad code! 
-    /*public void KillPlayer()
-    //{
-    //    IsPlayerAlive = false;
-    //    LivesCountPlayer--;
-    //    GameUI.PlayerLoseLife(LivesCountPlayer);
+        #region Public & Protected Variables
+        #endregion
 
-    //    foreach (GameObject go in SpawnPlayerDetectionGO)
-    //    {
-    //        go.GetComponentInChildren<SpawnDetectPlayer>().playerInFront = false;
-    //    }
-    //    StartingPosition();
-    //    _playerMovement.IsInput = false;
-      }
-    */
-    /// <summary>
-    /// Deal Damage to the player
-    /// </summary>
-    public void DealDamage()
-    {
-        LivesCountPlayer--;
-        GameUI.PlayerLoseLife(LivesCountPlayer);
+        #region Constructors
+        #endregion
 
-        if (LivesCountPlayer == 0)
+        #region Private Methods
+        #endregion
+
+        #region Public Methods
+
+        // When the player dies this function is called.
+        public void StartingPosition()
         {
-            OnPlayerDie();
+            transform.position = _startPosition;
         }
-    }
+    
+        /// <summary>
+        /// Deal Damage to the player
+        /// </summary>
+        public void DealDamage()
+        {
+            _livesCountPlayer--;
+            _gameUI.PlayerLoseLife(_livesCountPlayer);
 
+            if (_livesCountPlayer == 0)
+            {
+                OnPlayerDie();
+            }
+        }
 
-    /// <summary>
-    /// OnPlayerDie should call when you want to kill the player!
-    /// </summary>
-    public void OnPlayerDie()
-    {
-        GameUI.enabled = false;
-        /*
+        /// <summary>
+        /// OnPlayerDie should call when you want to kill the player!
+        /// </summary>
+        public void OnPlayerDie()
+        {
+            _gameUI.enabled = false;
+            /*
          * #TODO a canvas
          * FindObjectOfType<GameOverDisplay>().enabled = true; 
         */
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+    
+        #endregion
     }
 }
+

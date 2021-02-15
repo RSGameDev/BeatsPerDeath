@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Core;
+using Floor;
+using Mechanics;
 using UnityEngine;
 
 // This script is attached to a coin prefab.
 public class CoinProperties : MonoBehaviour
 {
     GameObject gameUiGo;
-    CoinSpawner coinSpawnerScript;
     Anchor anchorScript;
 
     int coinValue = 50;
@@ -14,7 +16,6 @@ public class CoinProperties : MonoBehaviour
     private void Awake()
     {
         anchorScript = GetComponentInChildren<Anchor>();
-        coinSpawnerScript = FindObjectOfType<CoinSpawner>();
         gameUiGo = GameObject.FindGameObjectWithTag("GameUI");
     }
 
@@ -23,9 +24,9 @@ public class CoinProperties : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             print("coincollision");
-            anchorScript.AnchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
+            anchorScript.anchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
             gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
-            coinSpawnerScript.ResetSpawning();
+            Spawner.HasCoinSpawned = false;
             gameObject.SetActive(false);            
         }
     }

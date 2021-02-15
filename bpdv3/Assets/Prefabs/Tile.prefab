@@ -184,9 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3b854d73f09ed478e4fef62a44122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasEnemy: 0
-  occupiedNum: 0
-  text: {fileID: 5701259465172064685}
+  _occupancyValue: {fileID: 1347133510364349957}
   material0: {fileID: 2100000, guid: 381b78b4299e1564a8034d7f583e5e04, type: 2}
   material1: {fileID: 2100000, guid: 8a09c78da66da8f43908997cbd4e5b6f, type: 2}
   material2: {fileID: 2100000, guid: 115456002df532340a8df013d8cd8fd5, type: 2}

@@ -1,71 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using Mechanics;
+using Scripts.Player;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMovement))]
-// Added to each enemy in game.
-public class Enemy : MonoBehaviour
+namespace Scripts.Enemy
 {
-    #region Private variables
-
-    [SerializeField] private Anchor _anchor;
-    [SerializeField] private EnemyMovement _enemyMovement;
-    [SerializeField] private EnemyNextMove _nextMove;
-    [SerializeField] private Transform pushBackTransform = null;
-    [SerializeField] private GameObject inFront = null;
-    [SerializeField] private bool isInFront = false;
-    #endregion
-
-    #region Public variables
-    public bool IsEnemyAlive = true;
-    public bool IsNewEnemy = true;
-    #endregion
-
-    public Transform PushBackTransform()
+    [RequireComponent(typeof(EnemyMovement))]
+    public class Enemy : MonoBehaviour
     {
-        return pushBackTransform;
-    }
+        #region Private & Constant Variables
 
-    public enum EnemyType
-    {
-        Shroom, Rook
-    }
-    public EnemyType CurrentEnemyType;
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            var playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.enemy = this;
-            playerMovement.isPushBack = true;
-            playerMovement.IsInput = false;
-            other.gameObject.transform.position = pushBackTransform.position;
-            FindObjectOfType<Player>().DealDamage();
-        }
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] private EnemyMovement _enemyMovement;
+        [SerializeField] private Transform pushBackTransform = null;
+        [SerializeField] private GameObject inFront = null;
+        [SerializeField] private bool isInFront = false;
+        private const string s_Player = "Player";
+        private bool _isEnemyAlive = true;
         
-        if (IsEnemyAlive)
-        {
-            if (IsNewEnemy)
-            {
-                _enemyMovement.FirstMove();
-            }
+        #endregion
 
-            if (!IsNewEnemy)
+        #region Public & Protected Variables
+
+        public bool IsNewEnemy { private get; set; } = true;
+        
+        #endregion
+
+        #region Constructors
+        #endregion
+
+        #region Private Methods
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (!_isEnemyAlive) return;
+            
+            switch (IsNewEnemy)
             {
-                _enemyMovement.Direction();                                
-                _enemyMovement.Movement();                   
-            }            
+                case true:
+                    _enemyMovement.FirstMove();
+                    break;
+                case false:
+                    _enemyMovement.Direction();                                
+                    _enemyMovement.Movement();
+                    break;
+            }
         }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == s_Player)
+            {
+                var playerMovement = other.GetComponent<PlayerMovement>();
+                playerMovement.enemy = this;
+                playerMovement.isPushBack = true;
+                playerMovement.IsPlayerInputDetected = false;
+                other.gameObject.transform.position = pushBackTransform.position;
+                FindObjectOfType<Player.Player>().DealDamage();
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public Transform PushBackTransform()
+        {
+            return pushBackTransform;
+        }
+
+        public enum EnemyType
+        {
+            Shroom, Rook
+        }
+        public EnemyType CurrentEnemyType;
+
+        #endregion
     }
 }
     

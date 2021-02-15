@@ -1,85 +1,103 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 // Sourced from https://learn.unity.com/tutorial/introduction-to-object-pooling#5cf1fc18edbc2a4c9daf6993
 // For optimising performance.
 
-public class ObjectPool : MonoBehaviour
+namespace Managers
 {
-    public List<GameObject> pooledObjectsCoin;
-    public int amountToPoolCoin;
-    public GameObject objectToPoolCoin;
-
-    public List<GameObject> pooledObjectsShroom;
-    public int amountToPoolShroom;
-    public GameObject objectToPoolShroom;
-
-    public List<GameObject> pooledObjectsRook;    
-    public int amountToPoolRook;    
-    public GameObject objectToPoolRook;    
-
-    // Start is called before the first frame update
-    void Start()
+    public class ObjectPool : MonoBehaviour
     {
-        pooledObjectsCoin = new List<GameObject>();
-        for (int i = 0; i < amountToPoolCoin; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(objectToPoolCoin);
-            obj.SetActive(false);
-            pooledObjectsCoin.Add(obj);
-        }
+        #region Private & Constant variables
+        #endregion
 
-        pooledObjectsShroom = new List<GameObject>();
-        for (int i = 0; i < amountToPoolShroom; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(objectToPoolShroom);
-            obj.SetActive(false);
-            pooledObjectsShroom.Add(obj);
-        }
+        #region Public & Protected variables
+        
+        public List<GameObject> pooledObjectsCoin;
+        public int amountToPoolCoin;
+        public GameObject objectToPoolCoin;
 
-        pooledObjectsRook = new List<GameObject>();
-        for (int i = 0; i < amountToPoolRook; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(objectToPoolRook);
-            obj.SetActive(false);
-            pooledObjectsRook.Add(obj);
-        }
-    }
+        public List<GameObject> pooledObjectsShroom;
+        public int amountToPoolShroom;
+        public GameObject objectToPoolShroom;
 
-    public GameObject GetPooledCoinObject()
-    {
-        for (int i = 0; i < pooledObjectsCoin.Count; i++)
+        public List<GameObject> pooledObjectsRook;    
+        public int amountToPoolRook;    
+        public GameObject objectToPoolRook;    
+        #endregion
+
+        #region Constructors
+        
+        private void Start()
         {
-            if (!pooledObjectsCoin[i].activeInHierarchy)
+            pooledObjectsCoin = new List<GameObject>();
+            for (var i = 0; i < amountToPoolCoin; i++)
             {
-                return pooledObjectsCoin[i];
+                var obj = Instantiate(objectToPoolCoin);
+                obj.SetActive(false);
+                pooledObjectsCoin.Add(obj);
+            }
+
+            pooledObjectsShroom = new List<GameObject>();
+            for (var i = 0; i < amountToPoolShroom; i++)
+            {
+                var obj = Instantiate(objectToPoolShroom);
+                obj.SetActive(false);
+                pooledObjectsShroom.Add(obj);
+            }
+
+            pooledObjectsRook = new List<GameObject>();
+            for (var i = 0; i < amountToPoolRook; i++)
+            {
+                var obj = Instantiate(objectToPoolRook);
+                obj.SetActive(false);
+                pooledObjectsRook.Add(obj);
             }
         }
-        return null;
-    }
+        
+        #endregion
 
-    public GameObject GetPooledShroomObject()
-    {
-        for (int i = 0; i < pooledObjectsShroom.Count; i++)
-        {
-            if (!pooledObjectsShroom[i].activeInHierarchy)
-            {
-                return pooledObjectsShroom[i];
-            }
-        }
-        return null;
-    }
+        #region Private Methods
+        #endregion
 
-    public GameObject GetPooledRookObject()
-    {
-        for (int i = 0; i < pooledObjectsRook.Count; i++)
+        #region Public Methods
+
+        public GameObject GetPooledCoinObject()
         {
-            if (!pooledObjectsRook[i].activeInHierarchy)
+            for (int i = 0; i < pooledObjectsCoin.Count; i++)
             {
-                return pooledObjectsRook[i];
+                if (!pooledObjectsCoin[i].activeInHierarchy)
+                {
+                    return pooledObjectsCoin[i];
+                }
             }
+            return null;
         }
-        return null;
+
+        public GameObject GetPooledShroomObject()
+        {
+            for (int i = 0; i < pooledObjectsShroom.Count; i++)
+            {
+                if (!pooledObjectsShroom[i].activeInHierarchy)
+                {
+                    return pooledObjectsShroom[i];
+                }
+            }
+            return null;
+        }
+
+        public GameObject GetPooledRookObject()
+        {
+            for (int i = 0; i < pooledObjectsRook.Count; i++)
+            {
+                if (!pooledObjectsRook[i].activeInHierarchy)
+                {
+                    return pooledObjectsRook[i];
+                }
+            }
+            return null;
+        }
+
+        #endregion
     }
 }
