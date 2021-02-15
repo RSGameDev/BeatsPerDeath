@@ -20,6 +20,9 @@ TagManager:
   - ScoreManager
   - GameUI
   - OnTile
+  - GameManager
+  - SceneController
+  - Spawner
   layers:
   - Default
   - TransparentFX

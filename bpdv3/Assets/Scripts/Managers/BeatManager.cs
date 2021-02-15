@@ -1,177 +1,183 @@
-﻿using Assets.Scripts.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Assets.Scripts.Core;
 using UnityEngine;
 
-public class BeatManager : Singleton<BeatManager>
+namespace Managers
 {
-    #region Private & Const Variables
-
-    /// <summary>
-    /// Time between beats in second
-    /// </summary>
-    [SerializeField]
-    private const int s_BeatInterval = 2;
-
-    /// <summary>
-    /// Period of time that IsOnBeat value stays true
-    /// </summary>
-    [SerializeField]
-    private float BeatLenght = 0.1f;
-
-    /// <summary>
-    /// Bool to activate auto beats for debug
-    /// </summary>
-    [SerializeField]
-    private bool IsAutoBeatOn = false;
-
-    /// <summary>
-    /// Total beats
-    /// </summary>
-    private const int s_BeatLimit = 8;
-
-    /// <summary>
-    /// scond to milisecond multiplier
-    /// </summary>
-    private const int s_MiliSecondMultiplier = 1000;
-
-    /// <summary>
-    /// Variable to increment in auto beat functionality
-    /// </summary>
-    private float _time;
-
-    /// <summary>
-    /// Active beat index
-    /// </summary>
-    private int _beatIndex;
-
-    /// <summary>
-    /// Stays true for BeatLenght second
-    /// </summary>
-    private bool _isOnBeat;
-
-    private bool _isBeatsStarted = false;
-
-    /// <summary>
-    /// Actions that will be performed on specific beats
-    /// </summary>
-    private Dictionary<int, List<Action>> _beatListeners;
-
-    #endregion
-
-    #region Public & Protected Variables  
-
-    public bool IsOnBeat => _isOnBeat;
-
-    public int BeatIndex => _beatIndex;
-
-    public bool AreBeatsStarted => _isBeatsStarted;
-    #endregion
-
-    #region Constructors
-
-    private BeatManager()
+    public class BeatManager : Singleton<BeatManager>
     {
-        _beatListeners = new Dictionary<int, List<Action>>();
-    }
+        #region Private & Const Variables
 
-    #endregion
+        /// <summary>
+        /// Time between beats in second
+        /// </summary>
+        [SerializeField]
+        private const int s_BeatInterval = 2;
 
-    #region Private Methods
+        /// <summary>
+        /// Period of time that IsOnBeat value stays true
+        /// </summary>
+        [SerializeField]
+        private float BeatLenght = 0.1f;
 
-    private void Update()
-    {
-        if (IsAutoBeatOn)
+        /// <summary>
+        /// Bool to activate auto beats for debug
+        /// </summary>
+        [SerializeField]
+        private bool IsAutoBeatOn = false;
+
+        /// <summary>
+        /// Total beats
+        /// </summary>
+        private const int s_BeatLimit = 8;
+
+        /// <summary>
+        /// scond to milisecond multiplier
+        /// </summary>
+        private const int s_MiliSecondMultiplier = 1000;
+
+        /// <summary>
+        /// Variable to increment in auto beat functionality
+        /// </summary>
+        private float _time;
+
+        /// <summary>
+        /// Active beat index
+        /// </summary>
+        private int _beatIndex;
+
+        public int BeatIndexForLevel { get; private set; }
+    
+        /// <summary>
+        /// Stays true for BeatLenght second
+        /// </summary>
+        private bool _isOnBeat;
+
+        private bool _isBeatsStarted = false;
+
+        /// <summary>
+        /// Actions that will be performed on specific beats
+        /// </summary>
+        private Dictionary<int, List<Action>> _beatListeners;
+
+        #endregion
+
+        #region Public & Protected Variables  
+
+        public bool IsOnBeat => _isOnBeat;
+
+        public int BeatIndex => _beatIndex;
+
+        public bool AreBeatsStarted => _isBeatsStarted;
+        #endregion
+
+        #region Constructors
+
+        private BeatManager()
         {
-            UpdateAutoBeat();
-        }
-    }
-
-    /// <summary>
-    /// Used for test purposes
-    /// </summary>
-    private void UpdateAutoBeat()
-    {
-        _time += Time.deltaTime;
-
-        if (_time < s_BeatInterval)
-        {
-            return;
+            _beatListeners = new Dictionary<int, List<Action>>();
         }
 
-        _time = 0;
+        #endregion
 
-        UpdateBeat();
-    }
+        #region Private Methods
 
-    /// <summary>
-    /// Small time gap after the beat for not exact player moves 
-    /// (Should be discussed with desing team)
-    /// </summary>
-    private void StartOnBeatInterval()
-    {
-        Task.Run(() =>
+        private void Update()
         {
-            _isOnBeat = true;
-            Thread.Sleep((int)(BeatLenght * s_MiliSecondMultiplier));
-            _isOnBeat = false;
-        });
-    }
-
-    #endregion
-
-    #region Public & Protected Methods		
-
-    /// <summary>
-    /// Add listener to a specific beat
-    /// </summary>
-    /// <param name="beatIndex">Index starts from 0. So Beat for is index 3</param>
-    /// <param name="beatAction"></param>
-    public void AddListener(int beatIndex, Action beatAction)
-    {
-        var indexMod = beatIndex % s_BeatLimit;
-
-        if (!_beatListeners.ContainsKey(indexMod))
-        {
-            _beatListeners.Add(indexMod, new List<Action>());
+            if (IsAutoBeatOn)
+            {
+                UpdateAutoBeat();
+            }
         }
 
-        _beatListeners[indexMod].Add(beatAction);
-    }
-
-    /// <summary>
-    /// Add listener to every beat
-    /// </summary>
-    /// <param name="beatAction"></param>
-    public void AddListenerToAll(Action beatAction)
-    {
-        for (var index = 0; index < s_BeatLimit; index++)
+        /// <summary>
+        /// Used for test purposes
+        /// </summary>
+        private void UpdateAutoBeat()
         {
-            AddListener(index, beatAction);
-        }
-    }
+            _time += Time.deltaTime;
 
-    /// <summary>
-    /// Call this for every beat
-    /// </summary>
-    public void UpdateBeat()
-    {
-        _isBeatsStarted = true;
+            if (_time < s_BeatInterval)
+            {
+                return;
+            }
 
-        StartOnBeatInterval();
+            _time = 0;
 
-        _beatIndex++;
-        _beatIndex %= s_BeatLimit;
-
-        if (!_beatListeners.ContainsKey(_beatIndex))
-        {
-            return;
+            UpdateBeat();
         }
 
-        _beatListeners[_beatIndex].ForEach(x => x?.Invoke()); ;
-    }
+        /// <summary>
+        /// Small time gap after the beat for not exact player moves 
+        /// (Should be discussed with desing team)
+        /// </summary>
+        private void StartOnBeatInterval()
+        {
+            Task.Run(() =>
+            {
+                _isOnBeat = true;
+                Thread.Sleep((int)(BeatLenght * s_MiliSecondMultiplier));
+                _isOnBeat = false;
+            });
+        }
 
-    #endregion
+        #endregion
+
+        #region Public & Protected Methods		
+
+        /// <summary>
+        /// Add listener to a specific beat
+        /// </summary>
+        /// <param name="beatIndex">Index starts from 0. So Beat for is index 3</param>
+        /// <param name="beatAction"></param>
+        public void AddListener(int beatIndex, Action beatAction)
+        {
+            var indexMod = beatIndex % s_BeatLimit;
+
+            if (!_beatListeners.ContainsKey(indexMod))
+            {
+                _beatListeners.Add(indexMod, new List<Action>());
+            }
+
+            _beatListeners[indexMod].Add(beatAction);
+        }
+
+        /// <summary>
+        /// Add listener to every beat
+        /// </summary>
+        /// <param name="beatAction"></param>
+        public void AddListenerToAll(Action beatAction)
+        {
+            for (var index = 0; index < s_BeatLimit; index++)
+            {
+                AddListener(index, beatAction);
+            }
+        }
+
+        /// <summary>
+        /// Call this for every beat
+        /// </summary>
+        public void UpdateBeat()
+        {
+            _isBeatsStarted = true;
+
+            StartOnBeatInterval();
+
+            _beatIndex++;
+            BeatIndexForLevel = _beatIndex;
+            _beatIndex %= s_BeatLimit;
+
+            if (!_beatListeners.ContainsKey(_beatIndex))
+            {
+                return;
+            }
+
+            _beatListeners[_beatIndex].ForEach(x => x?.Invoke()); ;
+        }
+
+        #endregion
+    }
 }

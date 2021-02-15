@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorTileObject: {fileID: 0}
+  anchorTileObject: {fileID: 0}
   playermovement: {fileID: 5063443912005615154}
   enemymovement: {fileID: 0}
 --- !u!54 &2434035746163784741
@@ -122,11 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666d22bb88924c1499adef0831a2b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorPlayer: {fileID: 2434035744771536102}
-  PlayerMovement: {fileID: 5063443912005615154}
-  VacantDestination: {fileID: 0}
-  IsObtained: 0
-  IsOutOfBounds: 0
+  _playerMovement: {fileID: 5063443912005615154}
+  _vacantDestination: {fileID: 0}
 --- !u!65 &2434035745363287105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -301,11 +298,11 @@ MonoBehaviour:
   BeatHitZone: {fileID: 0}
   PlayerDestinationGO: {fileID: 2434035745363287117}
   NextMoveLocationGO: {fileID: 0}
+  enemy: {fileID: 0}
   PlayerAnchor: {fileID: 2434035744771536102}
   Player: {fileID: 5063443912005615155}
   PlayerDestination: {fileID: 2434035745363287116}
   TileController: {fileID: 0}
-  enemy: {fileID: 0}
   Direction: 
   Speed: 1.5
   Step: 0
@@ -326,9 +323,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd84aa0c632271d408c144bf86ee0201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPlayerDetectionGO: []
-  GameUI: {fileID: 0}
-  StartPosition: {x: 0, y: 0, z: 0}
-  LivesCountPlayer: 3
-  IsPlayerAlive: 1
-  IsPlayerPushedBack: 0
+  _gameUI: {fileID: 0}
+  _startPosition: {x: 0, y: 0, z: 0}

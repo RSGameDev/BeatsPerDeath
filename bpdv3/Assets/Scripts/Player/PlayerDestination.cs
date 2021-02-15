@@ -1,82 +1,98 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Floor;
 using UnityEngine;
 
-public class PlayerDestination : MonoBehaviour
+namespace Scripts.Player
 {
-    #region Private variables
-    const string s_nextMoveLayer = "OnTile";
-    const string s_noGoMoveLayer = "AreaLimit";
-
-    private const float s_verticalTopLimit = 7.5F;
-    private const float s_verticalBottomLimit = 0F;
-    #endregion
-
-    #region Public variables
-    public Anchor AnchorPlayer;
-    public PlayerMovement PlayerMovement;
-    public Collider VacantDestination;
-
-    public bool IsObtained;
-    public bool IsOutOfBounds;
-    #endregion
-
-    private void Awake()
+    public class PlayerDestination : MonoBehaviour
     {
-        gameObject.GetComponent<Collider>().enabled = false;
-    }
+        #region Private & Constant Variables
 
-    private void OnTriggerEnter(Collider other)
-    {
-        VacantDestination = other;
+        const string s_nextMoveLayer = "OnTile";
+        const string s_noGoMoveLayer = "AreaLimit";
+        private const float s_verticalTopLimit = 7.5F;
+        private const float s_verticalBottomLimit = 0F;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer(s_nextMoveLayer))
-        {
-            if (!IsObtained)
-            {
-                PlayerMovement.NextMoveLocationGO = other.gameObject;
-                CheckBoundaries(other);
-                gameObject.GetComponent<Collider>().enabled = false;
-            }
-        }
-        // This is for the left and right side of the level, when the object detects there is no tile to move onto, the following code executes.
-        else if (other.gameObject.layer == LayerMask.NameToLayer(s_noGoMoveLayer))
+        #endregion
+
+        #region Public & Protected Variables
+
+        [SerializeField] private PlayerMovement _playerMovement;
+        [SerializeField] private Collider _vacantDestinationCollider;
+        public bool IsDestinationObtained { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        private void Awake()
         {
             gameObject.GetComponent<Collider>().enabled = false;
-            PlayerMovement.IsInput = false;
         }
-    }
+    
+        #endregion
 
-    private void CheckBoundaries(Collider other)
-    {
-        if (transform.position.z >= s_verticalTopLimit || transform.position.z <= s_verticalBottomLimit)
-        {
-            IsObtained = false;
-            PlayerMovement.IsInput = false;
-            other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
-            IsOutOfBounds = true;
-        }
-        else
-        {
-            IsObtained = true;
-        }
-    }
+        #region Private Methods
 
-    private void Update()
-    {
-        MovementBoundary(VacantDestination);
-    }
-
-    private void MovementBoundary(Collider other)
-    {
-        if (transform.position.z >= s_verticalTopLimit || transform.position.z <= s_verticalBottomLimit)
+        private void OnTriggerEnter(Collider other)
         {
-            PlayerMovement.IsInput = false;
-            IsObtained = false;
-            other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
-            IsOutOfBounds = true;
+            _vacantDestinationCollider = other;
+
+            if (other.gameObject.layer == LayerMask.NameToLayer(s_nextMoveLayer))
+            {
+                if (!IsDestinationObtained)
+                {
+                    _playerMovement.nextMoveTileGO = other.gameObject;
+                    _playerMovement.tilePropertiesOnNextMoveTileGO = other.gameObject.GetComponentInParent<TileProperties>();
+                    CheckBoundaries(other);
+                    gameObject.GetComponent<Collider>().enabled = false;
+                }
+            }
+            // This is for the left and right side of the level, when the object detects there is no tile to move onto, the following code executes.
+            else if (other.gameObject.layer == LayerMask.NameToLayer(s_noGoMoveLayer))
+            {
+                gameObject.GetComponent<Collider>().enabled = false;
+                _playerMovement.IsPlayerInputDetected = false;
+            }
         }
+
+        private void CheckBoundaries(Collider other)
+        {
+            if (transform.position.z >= s_verticalTopLimit || transform.position.z <= s_verticalBottomLimit)
+            {
+                IsDestinationObtained = false;
+                _playerMovement.IsPlayerInputDetected = false;
+                other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
+            }
+            else
+            {
+                IsDestinationObtained = true;
+            }
+        }
+
+        private void Update()
+        {
+            MovementBoundary(_vacantDestinationCollider);
+        }
+
+        private void MovementBoundary(Collider other)
+        {
+            // TODO repeat code here and in check boundaries
+            if (transform.position.z >= s_verticalTopLimit || transform.position.z <= s_verticalBottomLimit)
+            {
+                IsDestinationObtained = false;
+                _playerMovement.IsPlayerInputDetected = false;
+                other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+        #endregion
+    
     }
 }
+
+
     
 

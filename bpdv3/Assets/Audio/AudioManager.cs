@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Assets.Scripts.Core;
+using Managers;
 
 public class AudioManager : Singleton<AudioManager>
 {

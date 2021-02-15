@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
+using Scripts.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,7 +73,7 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {    
-        ComboMetre();                    
+        //ComboMetre();                    
 
         BeatBarBehaviour();
 
@@ -155,40 +157,41 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void ComboMetre()
-    {
-        if (playerMoveScript.IsMoving)
-        {
-            if (!playerMoveScript.IsOnBeat)
-            {
-                slider.value -= speed * Time.deltaTime;
-                if (slider.value <= sliderStartValue - 20)
-                {
-                    playerMoveScript.IsMoving = false;
-                    sliderStartValue = slider.value;
-                }
-            }
+    //TEMP out of action - Richard working on
+    //private void ComboMetre()
+    //{
+    //    if (playerMoveScript.IsMoving)
+    //    {
+    //        if (!playerMoveScript.IsOnBeat)
+    //        {
+    //            slider.value -= speed * Time.deltaTime;
+    //            if (slider.value <= sliderStartValue - 20)
+    //            {
+    //                playerMoveScript.IsMoving = false;
+    //                sliderStartValue = slider.value;
+    //            }
+    //        }
 
-            // Hit on the beat 
-            if (playerMoveScript.IsOnBeat)
-            {
-                slider.value += speed * Time.deltaTime;
-                if (slider.value >= sliderStartValue + 20)
-                {
-                    playerMoveScript.IsOnBeat = false;
-                    playerMoveScript.IsMoving = false;
-                    sliderStartValue = slider.value;
-                }
-            }
-        }        
+    //        // Hit on the beat 
+    //        if (playerMoveScript.IsOnBeat)
+    //        {
+    //            slider.value += speed * Time.deltaTime;
+    //            if (slider.value >= sliderStartValue + 20)
+    //            {
+    //                playerMoveScript.IsOnBeat = false;
+    //                playerMoveScript.IsMoving = false;
+    //                sliderStartValue = slider.value;
+    //            }
+    //        }
+    //    }        
 
-        Grading(slider.value);
+    //    Grading(slider.value);
 
-        if (newGrade)
-        {
-            newGrade = false;
-        }
-    }
+    //    if (newGrade)
+    //    {
+    //        newGrade = false;
+    //    }
+    //}
 
     void BeatBarBehaviour()
     {

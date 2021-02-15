@@ -131,14 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badd00b316731ed4d98c5194a1eaad30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anchor: {fileID: 6105365929403866135}
   _enemyMovement: {fileID: 1052731159642050709}
-  _nextMove: {fileID: 6105365929920215926}
   pushBackTransform: {fileID: 6105365929766841669}
   inFront: {fileID: 0}
   isInFront: 0
-  IsEnemyAlive: 1
-  IsNewEnemy: 1
   CurrentEnemyType: 0
 --- !u!114 &1052731159642050709
 MonoBehaviour:
@@ -152,23 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nextMoveValidityGO: {fileID: 6105365929920215920}
   _enemy: {fileID: 6652264778726549562}
   _enemyNextMove: {fileID: 6105365929920215926}
-  _faceDirectionRandShroom: 0
-  _faceDirectionRandRook: 0
+  _randomDirectionForShroomToFace: 0
   _hasFacedDirection: 0
-  NextMoveGO: {fileID: 6105365929920215920}
-  NextMoveLocationGO: {fileID: 0}
-  Anchor: {fileID: 6105365929403866135}
-  Speed: 2
-  Step: 0
-  IsOnBeat: 0
-  StartMoveEnemy: 0
-  IsEnemyMoving: 0
-  FirstMoveMet: 0
+  _speed: 2
   FirstMoveBool: 0
-  FirstMoveBeatCount: 0
-  FourthBeatTriggered: 0
 --- !u!1 &6105365929403866129
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorTileObject: {fileID: 0}
+  anchorTileObject: {fileID: 0}
   playermovement: {fileID: 0}
   enemymovement: {fileID: 1052731159642050709}
 --- !u!1 &6105365929766841670
@@ -350,14 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 6652264778726549562}
-  EnemyMovement: {fileID: 1052731159642050709}
-  VacantDestination: {fileID: 0}
-  OccupiedNumber: 0
-  CanEnemyMove: 0
-  NextMoveTrigger: 0
-  IsDestinationObtained: 0
-  IsOutOfBounds: 0
+  _enemyMovement: {fileID: 1052731159642050709}
 --- !u!1 &6105365931089644099
 GameObject:
   m_ObjectHideFlags: 0

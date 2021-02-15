@@ -23,9 +23,8 @@
       <Path>.vs</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
-      <Path>Temp</Path>
       <Path>UserSettings</Path>
-      <Path>[build]</Path>
+      <Path>[Build]</Path>
       <Path>bpdv3_WwiseProject</Path>
       <Path>obj</Path>
     </explicitExcludes>

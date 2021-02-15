@@ -1,20 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Scripts.Player;
 using UnityEngine;
 
 // The last row represented with the flame/laser was the intention from the GDD but we couldnt find laser placeholder for time being.
-public class BottomRowHazard : MonoBehaviour
+namespace Lose_Condition
 {
-    private void OnTriggerStay(Collider other)
+    public class BottomRowHazard : MonoBehaviour
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("FireHazard"))
-        {
-            other.transform.parent.gameObject.SetActive(false);
-        }
+        #region Private & Constant Variables
 
-        if (other.gameObject.CompareTag("Player"))
+        private const string s_FireHazard = "FireHazard";
+        private const string s_Player = "Player";
+
+        #endregion
+
+        #region Public & Protected Variables
+        #endregion
+
+        #region Constructors
+        #endregion
+
+        #region Private Methods
+
+        private void OnTriggerStay(Collider other)
         {
-            other.GetComponent<Player>().OnPlayerDie();
+            if (other.gameObject.layer == LayerMask.NameToLayer(s_FireHazard))
+            {
+                other.transform.parent.gameObject.SetActive(false);
+            }
+
+            if (other.gameObject.CompareTag(s_Player))
+            {
+                other.GetComponent<Player>().OnPlayerDie();
+            }
         }
+        
+        #endregion
+
+        #region Public Methods
+        #endregion
+        
     }
 }
