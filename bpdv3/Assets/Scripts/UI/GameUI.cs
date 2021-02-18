@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Managers;
-using Scripts.Player;
+using Scripts.A;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

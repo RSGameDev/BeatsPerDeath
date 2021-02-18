@@ -1,47 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Scripts.Player;
+using Scripts.A;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Managers;
 
 // WIP - Had been worked on recently. Has not been included in the game yet though.
 public class GameOverDisplay : MonoBehaviour
 {
-    Player playerScript;
-
-    bool hasFaded;
-    float duration = 1f;
-          
-    // Update is called once per frame
-    void Update()
+    [SerializeField] SceneController sceneController;
+    public void Restart()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Fade();
-        }
+        sceneController.StartGame();
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 
-    public void Fade()
-    {
-        var canvGroup = GetComponent<CanvasGroup>();
-
-        StartCoroutine(FadeIn(canvGroup, canvGroup.alpha, hasFaded ? 1 : 0));
-
-        hasFaded = !hasFaded;
-    }
-   
-
-    public IEnumerator FadeIn(CanvasGroup canvGroup, float start, float end)
-    {
-        float timer = 0f;
-
-        while (timer < duration)
-        {
-            timer += Time.deltaTime;
-            canvGroup.alpha = Mathf.Lerp(start, end, timer / duration);
-
-            yield return null;
-        }
-    }
 }

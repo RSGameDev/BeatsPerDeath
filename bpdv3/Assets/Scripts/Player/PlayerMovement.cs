@@ -1,7 +1,7 @@
 ﻿using Floor;
 using UnityEngine;
 
-namespace Scripts.Player
+namespace Scripts.A
 {
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
@@ -106,7 +106,6 @@ namespace Scripts.Player
                 if (Vector3.Distance(transform.position, location) < 0.01f)
                 {
                     transform.position = location;
-                    Debug.Log(transform.position);
                     tilePropertiesOnNextMoveTileGO.OccupiedDecreased();
                     IsPlayerInputDetected = false;
                 }

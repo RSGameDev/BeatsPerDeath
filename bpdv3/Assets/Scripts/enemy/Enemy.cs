@@ -1,5 +1,5 @@
 ﻿using Mechanics;
-using Scripts.Player;
+using Scripts.A;
 using UnityEngine;
 
 namespace Scripts.Enemy
@@ -21,14 +21,13 @@ namespace Scripts.Enemy
         #region Public & Protected Variables
 
         public bool IsNewEnemy { private get; set; } = true;
-        
+
         #endregion
 
         #region Constructors
         #endregion
 
         #region Private Methods
-
         // Update is called once per frame
         private void Update()
         {
@@ -55,7 +54,7 @@ namespace Scripts.Enemy
                 playerMovement.isPushBack = true;
                 playerMovement.IsPlayerInputDetected = false;
                 other.gameObject.transform.position = pushBackTransform.position;
-                FindObjectOfType<Player.Player>().DealDamage();
+                other.gameObject.GetComponent<Player>().DealDamage();
             }
         }
 

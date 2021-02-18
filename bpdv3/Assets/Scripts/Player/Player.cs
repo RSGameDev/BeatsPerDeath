@@ -1,6 +1,8 @@
-﻿using UnityEngine;
-
-namespace Scripts.Player
+﻿using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+//You can not put a namespace with the same name of the script!!!!
+namespace Scripts.A
 {
     [RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
@@ -8,13 +10,12 @@ namespace Scripts.Player
     {
         #region Private & Constant Variables
     
-        [SerializeField] private GameUI _gameUI;
+        private GameUI _gameUI;
         [SerializeField] private Vector3 _startPosition;
         private PlayerMovement _playerMovement;
         private int _livesCountPlayer = 3;
 
         #endregion
-
         #region Public & Protected Variables
         #endregion
 
@@ -22,6 +23,10 @@ namespace Scripts.Player
         #endregion
 
         #region Private Methods
+        private void Awake()
+        {
+            _gameUI = FindObjectOfType<GameUI>();
+        }
         #endregion
 
         #region Public Methods
@@ -39,7 +44,7 @@ namespace Scripts.Player
         {
             _livesCountPlayer--;
             _gameUI.PlayerLoseLife(_livesCountPlayer);
-
+            Debug.Log(_livesCountPlayer);
             if (_livesCountPlayer == 0)
             {
                 OnPlayerDie();
@@ -52,13 +57,17 @@ namespace Scripts.Player
         public void OnPlayerDie()
         {
             _gameUI.enabled = false;
-            /*
-         * #TODO a canvas
-         * FindObjectOfType<GameOverDisplay>().enabled = true; 
-        */
             Destroy(gameObject);
+            GameOver();
         }
-    
+
+
+        public void GameOver()
+        {
+            SceneManager.LoadScene(2);
+        }
+
+
         #endregion
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Floor;
 using UnityEngine;
 
-namespace Scripts.Player
+namespace Scripts.A
 {
     public class PlayerDestination : MonoBehaviour
     {
