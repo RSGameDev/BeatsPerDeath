@@ -14,6 +14,9 @@ public class GameOverDisplay : MonoBehaviour
     public void Restart()
     {
         sceneController.StartGame();
+        Debug.Log("Click");
+
+
     }
     public void Quit()
     {
