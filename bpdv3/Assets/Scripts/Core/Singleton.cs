@@ -20,7 +20,6 @@
                 {
                     return _instance;
                 }
-
                 _instance = FindObjectOfType<T>();
 
                 if (_instance == null)

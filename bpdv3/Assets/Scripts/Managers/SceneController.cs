@@ -206,7 +206,6 @@ namespace Managers
         {
             SceneManager.LoadScene(CurrentSceneIndex + 1);
         }
-        
         #endregion
     }
 }
