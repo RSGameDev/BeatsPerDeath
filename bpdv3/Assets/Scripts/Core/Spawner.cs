@@ -25,7 +25,7 @@ namespace Core
         public static bool HasCoinSpawned { get; set; }
     
         #endregion
-   
+
         #region Constructors
 
         private void Start()

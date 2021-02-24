@@ -1,4 +1,8 @@
-﻿using Scripts.Player;
+﻿using System.Collections;
+using Floor;
+using Mechanics;
+using Scripts.Enemy;
+using Scripts.Player;
 using UnityEngine;
 
 // The last row represented with the flame/laser was the intention from the GDD but we couldnt find laser placeholder for time being.
@@ -14,9 +18,11 @@ namespace Lose_Condition
         #endregion
 
         #region Public & Protected Variables
+
         #endregion
 
         #region Constructors
+
         #endregion
 
         #region Private Methods
@@ -33,11 +39,11 @@ namespace Lose_Condition
                 other.GetComponent<Player>().OnPlayerDie();
             }
         }
-        
+
         #endregion
 
         #region Public Methods
+
         #endregion
-        
     }
 }

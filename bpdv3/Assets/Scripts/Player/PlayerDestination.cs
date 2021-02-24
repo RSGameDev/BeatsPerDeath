@@ -28,7 +28,7 @@ namespace Scripts.Player
         {
             gameObject.GetComponent<Collider>().enabled = false;
         }
-    
+
         #endregion
 
         #region Private Methods
@@ -42,7 +42,8 @@ namespace Scripts.Player
                 if (!IsDestinationObtained)
                 {
                     _playerMovement.nextMoveTileGO = other.gameObject;
-                    _playerMovement.tilePropertiesOnNextMoveTileGO = other.gameObject.GetComponentInParent<TileProperties>();
+                    _playerMovement.tilePropertiesOnNextMoveTileGO =
+                        other.gameObject.GetComponentInParent<TileProperties>();
                     CheckBoundaries(other);
                     gameObject.GetComponent<Collider>().enabled = false;
                 }
@@ -61,7 +62,6 @@ namespace Scripts.Player
             {
                 IsDestinationObtained = false;
                 _playerMovement.IsPlayerInputDetected = false;
-                other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
             }
             else
             {
@@ -81,18 +81,13 @@ namespace Scripts.Player
             {
                 IsDestinationObtained = false;
                 _playerMovement.IsPlayerInputDetected = false;
-                other.gameObject.GetComponentInParent<TileProperties>().OccupiedDecreased();
             }
         }
 
         #endregion
 
         #region Public Methods
+
         #endregion
-    
     }
 }
-
-
-    
-

@@ -58,7 +58,10 @@ public class GameUI : MonoBehaviour
 
     public GameObject player;
 
-    PlayerMovement playerMoveScript;    
+    PlayerMovement playerMoveScript;
+
+    public GameObject beatPanelTest;
+    public GameObject tileController;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +72,11 @@ public class GameUI : MonoBehaviour
 
         direction = startBar.position - endBar.position;
         distance = direction.magnitude;
+
+        if (tileController.GetComponent<TileController>().turnOffDevTileValues)
+        {
+            beatPanelTest.SetActive(false);
+        }
     }
 
     void Update()

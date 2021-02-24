@@ -10,34 +10,45 @@ namespace Managers
         #region Private & Constant variables
         
         [SerializeField] private GameObject[] _tilesArray;
-        private TileProperties[] _tileScript;
-        private TileProperties _tileProperties;
+        private OnTile[] _onTileScript;
+        private const int s_SpawningRow = 7;
+        private const float s_DeathRow = 0.5f;
         private const int s_ResetTileOccupantValue = 0;
         private const float s_RepositionLastRowToTheStart = -1.25f;
         private Vector3 _directionOfMovement;
         private float _distance;
         private bool _isTilesMoving;
-    
+
+        public bool turnOffDevTileValues;
+        
+        [SerializeField] private GameObject[] _tilesOutsideArray;
+        private OnTile[] _onTileOutsideScript;
+        
+        [SerializeField] private BoxCollider[] _collidersArray;
+        
         #endregion
 
         #region Public & Protected variables
         #endregion
 
         #region Constructors
-    
+
+        private void Awake()
+        {
+            InitScriptsOnLists();
+            InitCollidersOnTiles();
+        }
+
+        
         private void Start()
         {
-            _tileScript = new TileProperties[_tilesArray.Length];
-            for (var i = 0; i < _tilesArray.Length; i++)
-            {
-                _tileScript[i] = _tilesArray[i].GetComponent<TileProperties>();
-            }
-            
             _directionOfMovement = Vector3.back;
             
             SetBeatListeners();
+            DevelopmentTestingFeature();
         }
-    
+
+        
         #endregion
 
         #region Private Methods
@@ -54,12 +65,23 @@ namespace Managers
                 var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (1.25f / 3f));
                 tile.transform.Translate(tileMovement);
 
+                if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
+                {
+                    var index = Array.IndexOf(_tilesArray,tile);
+                    _collidersArray[index].enabled = false;
+                }
+                else
+                {
+                    var index = Array.IndexOf(_tilesArray,tile);
+                    _collidersArray[index].enabled = true;
+                }
+                
                 if (tile.transform.position.z <= s_ResetTileOccupantValue)
                 {
                     var index = Array.IndexOf(_tilesArray,tile);
                     // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
                     // Ready for when it scrolls back to the top of the level to be used again.
-                    _tileScript[index].ResetValue();
+                    _onTileScript[index].ResetTokenOnTile();
                 }
 
                 if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
@@ -77,6 +99,48 @@ namespace Managers
             BeatManager.Instance.AddListener(11, FloorStops);
         }
 
+        private void DevelopmentTestingFeature()
+        {
+            if (turnOffDevTileValues)
+            {
+                foreach (var tile in _onTileScript)
+                {
+                    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
+                }
+
+                foreach (var tile in _onTileOutsideScript)
+                {
+                    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
+                }
+            }
+        }
+
+        private void InitScriptsOnLists()
+        {
+            _onTileScript = new OnTile[_tilesArray.Length];
+            for (var i = 0; i < _tilesArray.Length; i++)
+            {
+                _onTileScript[i] = _tilesArray[i].transform.GetChild(1).GetComponentInChildren<OnTile>();
+            }
+
+            _onTileOutsideScript = new OnTile[_tilesOutsideArray.Length];
+            for (var i = 0; i < _tilesOutsideArray.Length; i++)
+            {
+                _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(1).GetComponentInChildren<OnTile>();
+            }
+        }
+        
+        private void InitCollidersOnTiles()
+        {
+            _collidersArray = new BoxCollider[_onTileScript.Length];
+            for (var i = 0; i < _onTileScript.Length; i++)
+            {
+                _collidersArray[i] = _onTileScript[i].gameObject.GetComponent<BoxCollider>();
+            }
+        }
+        
+        
+        
         private void FloorMoves() 
         {
             _isTilesMoving = true;

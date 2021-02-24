@@ -36,6 +36,7 @@ namespace Mechanics
             tag = gameObject.transform.parent.tag;
         }
 
+
         private void OnTriggerStay(Collider other)
         {
             if ((tag == s_Enemy || tag == s_Coin) && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))

@@ -23,8 +23,7 @@ public class CoinProperties : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("coincollision");
-            anchorScript.anchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
+            // need to address --- anchorScript.anchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
             gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
             Spawner.HasCoinSpawned = false;
             gameObject.SetActive(false);            

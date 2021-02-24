@@ -107,7 +107,6 @@ namespace Scripts.Player
                 {
                     transform.position = location;
                     Debug.Log(transform.position);
-                    tilePropertiesOnNextMoveTileGO.OccupiedDecreased();
                     IsPlayerInputDetected = false;
                 }
             }
