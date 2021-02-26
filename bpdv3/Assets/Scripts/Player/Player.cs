@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Scripts.Player;
+using UnityEngine;
 
-namespace Scripts.Player
+namespace Scripts.A
 {
     [RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
     public class Player : MonoBehaviour
     {
         #region Private & Constant Variables
-
+    
         [SerializeField] private Lives _lives;
         [SerializeField] private Vector3 _startPosition;
         private PlayerMovement _playerMovement;

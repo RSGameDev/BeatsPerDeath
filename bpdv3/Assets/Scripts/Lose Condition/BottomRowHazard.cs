@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using Floor;
 using Mechanics;
 using Scripts.Enemy;
-using Scripts.Player;
+using Scripts.A;
+
 using UnityEngine;
 
 // The last row represented with the flame/laser was the intention from the GDD but we couldnt find laser placeholder for time being.
