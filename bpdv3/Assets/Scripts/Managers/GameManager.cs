@@ -65,17 +65,17 @@ namespace Managers
                 _checkLevelStatus = true;
             }
 
-            if (Timer >= 60 && Timer <= 119 && !_stage2)
-            {
-                _stage2 = true;
-                _checkLevelStatus = true;
-            }
-
-            if (Timer >= 120 && !_stage3)
-            {
-                _stage3 = true;
-                _checkLevelStatus = true;
-            }
+            //if (Timer >= 60 && Timer <= 119 && !_stage2)
+            //{
+            //    _stage2 = true;
+            //    _checkLevelStatus = true;
+            //}
+//
+            //if (Timer >= 120 && !_stage3)
+            //{
+            //    _stage3 = true;
+            //    _checkLevelStatus = true;
+            //}
             
             if (_checkLevelStatus)
             {

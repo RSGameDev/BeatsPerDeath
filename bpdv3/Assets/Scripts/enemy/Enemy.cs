@@ -1,5 +1,10 @@
-﻿using Mechanics;
+using System;
+using System.Runtime.Remoting.Messaging;
+using Floor;
+using Managers;
+using Mechanics;
 using Scripts.A;
+
 using UnityEngine;
 
 namespace Scripts.Enemy
@@ -9,18 +14,23 @@ namespace Scripts.Enemy
     {
         #region Private & Constant Variables
 
-        [SerializeField] private EnemyMovement _enemyMovement;
         [SerializeField] private Transform pushBackTransform = null;
         [SerializeField] private GameObject inFront = null;
         [SerializeField] private bool isInFront = false;
-        private const string s_Player = "Player";
-        private bool _isEnemyAlive = true;
-        
+        private const string s_Ontile = "OnTile";
+
         #endregion
 
         #region Public & Protected Variables
 
-        public bool IsNewEnemy { private get; set; } = true;
+        public enum EnemyType
+        {
+            Shroom,
+            Rook
+        }
+        public EnemyType CurrentEnemyType;
+        public bool token = true;
+
 
         #endregion
 
@@ -28,26 +38,16 @@ namespace Scripts.Enemy
         #endregion
 
         #region Private Methods
-        // Update is called once per frame
-        private void Update()
+      
+        private void OnDisable()
+
         {
-            if (!_isEnemyAlive) return;
-            
-            switch (IsNewEnemy)
-            {
-                case true:
-                    _enemyMovement.FirstMove();
-                    break;
-                case false:
-                    _enemyMovement.Direction();                                
-                    _enemyMovement.Movement();
-                    break;
-            }
+            token = true;
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == s_Player)
+            if (other.tag == "Player")
             {
                 var playerMovement = other.GetComponent<PlayerMovement>();
                 playerMovement.enemy = this;
@@ -56,8 +56,26 @@ namespace Scripts.Enemy
                 other.gameObject.transform.position = pushBackTransform.position;
                 other.gameObject.GetComponent<Player>().DealDamage();
             }
+            
+            if (other.CompareTag(s_Ontile))
+            {
+                if (!other.gameObject.GetComponent<OnTile>().possessToken)
+                {
+                    other.gameObject.GetComponent<OnTile>().possessToken = true;
+                    token = false;
+                }
+            }
         }
-
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag(s_Ontile))
+            {
+                other.gameObject.GetComponent<OnTile>().possessToken = false;
+                token = true;
+            }
+        }
+        
         #endregion
 
         #region Public Methods
@@ -67,15 +85,6 @@ namespace Scripts.Enemy
             return pushBackTransform;
         }
 
-        public enum EnemyType
-        {
-            Shroom, Rook
-        }
-        public EnemyType CurrentEnemyType;
-
         #endregion
     }
 }
-    
-
-

@@ -29,6 +29,8 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI beatUiValue;
         // TODO will be deleted, here for debug purposes
         [SerializeField] private TextMeshProUGUI spawnUiValue;
+
+        private TileController tileController;
         
         #endregion
 
@@ -67,8 +69,11 @@ namespace Managers
         {
             if (SceneManager.GetActiveScene().buildIndex == 1 && !_isReferenced)
             {
+                tileController = GameObject.FindWithTag("TileController").GetComponent<TileController>();
+                
                 _isReferenced = true;
                 var temp = GameObject.Find("BeatUITestValue (TMP)");
+                
                 beatUiValue = temp.GetComponent<TextMeshProUGUI>();
 
                 var temp1 = GameObject.Find("ScoreUITest Value (TMP) (1)");
@@ -120,6 +125,11 @@ namespace Managers
 
         private void UpdateBeatUI() 
         {
+            if (tileController.turnOffDevTileValues)
+            {
+                return;
+            }
+            
             var currentBeat = BeatManager.Instance.BeatIndex % 4;
             beatUiValue.text = currentBeat.ToString();
             
@@ -132,6 +142,11 @@ namespace Managers
 
         private void UpdateSpawnCountUI()
         {
+            if (tileController.turnOffDevTileValues)
+            {
+                return;
+            }
+            
             var currentBeat = BeatManager.Instance.BeatIndex % 8;
             spawnUiValue.text = currentBeat.ToString();
             

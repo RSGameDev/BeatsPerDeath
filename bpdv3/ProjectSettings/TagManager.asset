@@ -23,6 +23,7 @@ TagManager:
   - GameManager
   - SceneController
   - Spawner
+  - TileController
   layers:
   - Default
   - TransparentFX

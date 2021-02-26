@@ -1,4 +1,4 @@
-﻿using Floor;
+using Floor;
 using UnityEngine;
 
 namespace Scripts.A
@@ -106,7 +106,9 @@ namespace Scripts.A
                 if (Vector3.Distance(transform.position, location) < 0.01f)
                 {
                     transform.position = location;
-                    tilePropertiesOnNextMoveTileGO.OccupiedDecreased();
+
+                    Debug.Log(transform.position);
+
                     IsPlayerInputDetected = false;
                 }
             }

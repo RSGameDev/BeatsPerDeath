@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Scripts.Enemy;
+using TMPro;
 using UnityEngine;
 
 // A majority of code in this script was to help with the development process for the enemy AI, seeing the numbers for each tile and to see visually with different colour changes also.
@@ -8,23 +9,22 @@ namespace Floor
     public class TileProperties : MonoBehaviour
     {
         #region Private & Constant Variables
-    
-        [SerializeField] private TextMeshPro _occupancyValue;
+
         [SerializeField] private Material material0;
         [SerializeField] private Material material1;
         [SerializeField] private Material material2;
-        [SerializeField] private Material material3;
         private Renderer _renderer;
+
+        public bool turnOffDevTileValues;
 
         #endregion
 
         #region Public & Protected Variables
 
-        public bool HasEnemy { get; set; }
-        public int OccupiedNumber { get; private set; } = 0;
-    
+        public int tileWithToken;
+
         #endregion
-    
+
         #region Constructors
 
         private void Awake()
@@ -43,14 +43,21 @@ namespace Floor
 
         private void Update()
         {
-            _occupancyValue.text = OccupiedNumber.ToString(); // Dev purpose only - to see the value for each tile, occupancy status.
-            TileColour();
+            if (turnOffDevTileValues)
+            {
+                return;
+            }
+
+            if (!turnOffDevTileValues)
+            {
+                TileColour();
+            }
         }
 
         // Dev purpose only - Visual recognition for tile occupancy
         private void TileColour()
         {
-            switch (OccupiedNumber)
+            switch (tileWithToken)
             {
                 case 0:
                     _renderer.material = material0;
@@ -61,42 +68,12 @@ namespace Floor
                 case 2:
                     _renderer.material = material2;
                     break;
-                case 3:
-                    _renderer.material = material3;
-                    break;
             }
         }
 
         #endregion
 
         #region Public Methods
-
-        public void OccupiedIncreased()
-        {
-            OccupiedNumber++;
-        }
-
-        public void OccupiedDecreased()
-        {
-            OccupiedNumber--;
-            if (OccupiedNumber < 0)
-            {
-                OccupiedNumber = 0;
-            }
-        }
-
-        // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero. Ready for when it scrolls back to the top of the level to be used again.
-        public void ResetValue()
-        {
-            OccupiedNumber = 0;
-        }
-
         #endregion
-    
-    
-
-    
-
-    
     }
 }

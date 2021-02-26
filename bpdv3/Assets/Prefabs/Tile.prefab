@@ -74,6 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeaac38551620e4ab14f84a07d40a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tileProperties: {fileID: -6730872420015256033}
+  possessToken: 0
 --- !u!1 &607809920495890664
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,11 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3b854d73f09ed478e4fef62a44122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _occupancyValue: {fileID: 1347133510364349957}
   material0: {fileID: 2100000, guid: 381b78b4299e1564a8034d7f583e5e04, type: 2}
   material1: {fileID: 2100000, guid: 8a09c78da66da8f43908997cbd4e5b6f, type: 2}
   material2: {fileID: 2100000, guid: 115456002df532340a8df013d8cd8fd5, type: 2}
-  material3: {fileID: 2100000, guid: aaa023e89fec19c448a9fd0194b414f9, type: 2}
+  turnOffDevTileValues: 0
+  tileWithToken: 0
 --- !u!1 &5701259465172064685
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &970516871932923916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -302,7 +304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
