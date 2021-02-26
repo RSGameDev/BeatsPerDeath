@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Runtime.Remoting.Messaging;
 using Floor;
 using Managers;
-using Scripts.Player;
+using Mechanics;
+using Scripts.A;
+
 using UnityEngine;
 
 namespace Scripts.Enemy
@@ -29,6 +31,7 @@ namespace Scripts.Enemy
         public EnemyType CurrentEnemyType;
         public bool token = true;
 
+
         #endregion
 
         #region Constructors
@@ -37,6 +40,7 @@ namespace Scripts.Enemy
         #region Private Methods
       
         private void OnDisable()
+
         {
             token = true;
         }
@@ -50,7 +54,7 @@ namespace Scripts.Enemy
                 playerMovement.isPushBack = true;
                 playerMovement.IsPlayerInputDetected = false;
                 other.gameObject.transform.position = pushBackTransform.position;
-                FindObjectOfType<Player.Player>().DealDamage();
+                other.gameObject.GetComponent<Player>().DealDamage();
             }
             
             if (other.CompareTag(s_Ontile))
