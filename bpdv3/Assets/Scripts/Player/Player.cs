@@ -7,8 +7,8 @@ namespace Scripts.Player
     public class Player : MonoBehaviour
     {
         #region Private & Constant Variables
-    
-        [SerializeField] private GameUI _gameUI;
+
+        [SerializeField] private Lives _lives;
         [SerializeField] private Vector3 _startPosition;
         private PlayerMovement _playerMovement;
         private int _livesCountPlayer = 3;
@@ -38,7 +38,7 @@ namespace Scripts.Player
         public void DealDamage()
         {
             _livesCountPlayer--;
-            _gameUI.PlayerLoseLife(_livesCountPlayer);
+            _lives.PlayerLoseLife(_livesCountPlayer);
 
             if (_livesCountPlayer == 0)
             {
@@ -51,7 +51,7 @@ namespace Scripts.Player
         /// </summary>
         public void OnPlayerDie()
         {
-            _gameUI.enabled = false;
+            //_gameUI.enabled = false;
             /*
          * #TODO a canvas
          * FindObjectOfType<GameOverDisplay>().enabled = true; 
