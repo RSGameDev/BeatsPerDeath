@@ -1,6 +1,5 @@
 ﻿using System;
 using Managers;
-using Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ namespace Floor
         #region Constructors
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void Update()
         {

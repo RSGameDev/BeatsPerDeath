@@ -1,18 +1,13 @@
-using System;
-using System.Runtime.Remoting.Messaging;
 using Floor;
-using Managers;
-using Mechanics;
-using Scripts.A;
-
+using PlayerNS;
 using UnityEngine;
 
-namespace Scripts.Enemy
+namespace EnemyNS
 {
     [RequireComponent(typeof(EnemyMovement))]
     public class Enemy : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         [SerializeField] private Transform pushBackTransform = null;
         [SerializeField] private GameObject inFront = null;
@@ -21,24 +16,25 @@ namespace Scripts.Enemy
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         public enum EnemyType
         {
             Shroom,
             Rook
         }
+
         public EnemyType CurrentEnemyType;
         public bool token = true;
-
 
         #endregion
 
         #region Constructors
+
         #endregion
 
-        #region Private Methods
-      
+        #region Private methods
+
         private void OnDisable()
 
         {
@@ -56,7 +52,7 @@ namespace Scripts.Enemy
                 other.gameObject.transform.position = pushBackTransform.position;
                 other.gameObject.GetComponent<Player>().DealDamage();
             }
-            
+
             if (other.CompareTag(s_Ontile))
             {
                 if (!other.gameObject.GetComponent<OnTile>().possessToken)
@@ -66,7 +62,7 @@ namespace Scripts.Enemy
                 }
             }
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag(s_Ontile))
@@ -75,10 +71,10 @@ namespace Scripts.Enemy
                 token = true;
             }
         }
-        
+
         #endregion
 
-        #region Public Methods
+        #region Public methods
 
         public Transform PushBackTransform()
         {

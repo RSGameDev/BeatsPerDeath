@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core;
-using Floor;
+﻿using Core;
 using Mechanics;
 using UnityEngine;
 

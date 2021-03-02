@@ -1,13 +1,13 @@
-﻿using Scripts.Player;
+﻿using UI.Main;
 using UnityEngine;
 
-namespace Scripts.A
+namespace PlayerNS
 {
     [RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
     public class Player : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
     
         [SerializeField] private Lives _lives;
         [SerializeField] private Vector3 _startPosition;
@@ -16,7 +16,7 @@ namespace Scripts.A
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
         #endregion
 
         #region Constructors
@@ -63,4 +63,6 @@ namespace Scripts.A
         #endregion
     }
 }
+    
+
 

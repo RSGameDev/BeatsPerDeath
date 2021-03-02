@@ -1,12 +1,15 @@
+using EnemyNS;
 using Floor;
+using Managers;
+using UI.Main;
 using UnityEngine;
 
-namespace Scripts.A
+namespace PlayerNS
 {
     [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         [SerializeField] private GameObject _playerDestinationGO;
         [SerializeField] private PlayerDestination _playerDestination;
@@ -19,24 +22,27 @@ namespace Scripts.A
         #region Public & Protected variables
 
         public GameObject nextMoveTileGO;
-        public Enemy.Enemy enemy = null;
+        public Enemy enemy = null;
         public TileProperties tilePropertiesOnNextMoveTileGO;
         public bool IsPlayerInputDetected { get; set; }
+
         public bool isPushBack = false;
         //public bool IsMoving; // not used currently, gameui may use this. planning
 
         #endregion
 
+        [SerializeField] private ComboMetre _comboMetre;
+
         #region Constructor
-        
+
         private void Awake()
         {
             _colliderOfPlayerDestinationGO = _playerDestinationGO.GetComponent<Collider>();
         }
-        
+
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void Update()
         {
@@ -55,6 +61,7 @@ namespace Scripts.A
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     IsPlayerInputDetected = true;
+                    _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.forward);
                     _colliderOfPlayerDestinationGO.enabled = true;
@@ -63,6 +70,7 @@ namespace Scripts.A
                 if (Input.GetKeyDown(KeyCode.S))
                 {
                     IsPlayerInputDetected = true;
+                    _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.back);
                     _colliderOfPlayerDestinationGO.enabled = true;
@@ -71,6 +79,7 @@ namespace Scripts.A
                 if (Input.GetKeyDown(KeyCode.A))
                 {
                     IsPlayerInputDetected = true;
+                    _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.left);
                     _colliderOfPlayerDestinationGO.enabled = true;
@@ -79,6 +88,7 @@ namespace Scripts.A
                 if (Input.GetKeyDown(KeyCode.D))
                 {
                     IsPlayerInputDetected = true;
+                    _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.right);
                     _colliderOfPlayerDestinationGO.enabled = true;
@@ -107,23 +117,19 @@ namespace Scripts.A
                 {
                     transform.position = location;
 
-                    Debug.Log(transform.position);
+                    //Debug.Log(transform.position);
 
                     IsPlayerInputDetected = false;
                 }
             }
+
             isPushBack = false;
         }
 
         #endregion
 
         #region Public Methods
+
         #endregion
-        
     }
 }
-
-
-
-
-

@@ -135,8 +135,8 @@ MonoBehaviour:
   pushBackTransform: {fileID: 6105365929766841669}
   inFront: {fileID: 0}
   isInFront: 0
-  token: 1
   CurrentEnemyType: 0
+  token: 1
 --- !u!114 &592588273473671533
 MonoBehaviour:
   m_ObjectHideFlags: 0

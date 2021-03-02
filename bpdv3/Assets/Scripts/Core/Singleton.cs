@@ -4,13 +4,13 @@
 
     public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
-        #region Private & Const Variables
+        #region Private & Const variables
 
         private static T _instance;
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         public static T Instance
         {
@@ -39,11 +39,11 @@
 
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         #endregion
 
-        #region Public & Protected Methods      
+        #region Public & Protected methods      
 
         protected void Awake()
         {

@@ -8,7 +8,7 @@ namespace Core
     [RequireComponent(typeof(ObjectPool))]
     public class Spawner : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
     
         [SerializeField] private List<GameObject> spawnPoint;
         private GameObject objectPool;
@@ -21,7 +21,7 @@ namespace Core
     
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
         public static bool HasCoinSpawned { get; set; }
     
         #endregion
@@ -37,7 +37,7 @@ namespace Core
 
         #endregion
     
-        #region Private Methods
+        #region Private methods
 
         public void SpawnPattern(int level, int stageOfLevel)
         {

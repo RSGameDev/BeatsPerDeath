@@ -11,6 +11,8 @@ namespace Managers
         
         [SerializeField] private GameObject[] _tilesArray;
         private OnTile[] _onTileScript;
+        private const float s_Distance = 1.25f;
+        private const float s_Time = 3f;
         private const int s_SpawningRow = 7;
         private const float s_DeathRow = 0.5f;
         private const int s_ResetTileOccupantValue = 0;
@@ -62,7 +64,7 @@ namespace Managers
 
             foreach (var tile in _tilesArray)
             {
-                var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (1.25f / 3f));
+                var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
                 tile.transform.Translate(tileMovement);
 
                 if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
