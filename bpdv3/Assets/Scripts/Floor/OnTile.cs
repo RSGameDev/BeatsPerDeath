@@ -25,6 +25,9 @@ namespace Floor
 
         #region Private methods
 
+        // this needs looking at. I dont think the enemy will work with this commented out.
+        // I believe this was done in order for the enemy weakpoint code to work.
+        // So we will have to see how this can be included whilst weakpoint code to function also.
         private void Update()
         {
             //switch (possessToken)
