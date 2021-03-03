@@ -20,6 +20,8 @@ namespace Scripts.Enemy
         [SerializeField] private Transform InFront = null;
         private const string s_Ontile = "OnTile";
 
+        EnemyMovement enemyMovement = null;
+
         #endregion
 
         #region Public & Protected Variables
@@ -40,19 +42,25 @@ namespace Scripts.Enemy
         #endregion
 
         #region Private Methods
-      
-        private void OnDisable() => token = true;
 
+        private void OnDisable()
+        {
+            token = true;
+        }
+        private void Awake()
+        {
+            enemyMovement = GetComponent<EnemyMovement>();
+        }
         private void FixedUpdate()
         {
-            isInFront = IsPlayerInFront();
+            IsPlayerInFront();
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
             {
-                if (isInFront)
+                if (IsPlayerInFront() || enemyMovement.IsEnemyMoving)
                 {
                     HitPlayer(other);
                 }
