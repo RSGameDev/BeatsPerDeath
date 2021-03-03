@@ -1,7 +1,9 @@
 ﻿using UI.Main;
 using UnityEngine;
-
-namespace PlayerNS
+using UnityEngine.SceneManagement;
+using Scripts.Enemy;
+//You can not put a namespace with the same name of the script!!!!
+namespace Scripts.A
 {
     [RequireComponent(typeof(PlayerMovement))]
 // Script attached to the player.
@@ -23,6 +25,11 @@ namespace PlayerNS
         #endregion
 
         #region Private Methods
+        private void Awake()
+        {
+            _gameUI = FindObjectOfType<GameUI>();
+        }
+
         #endregion
 
         #region Public Methods
@@ -39,8 +46,7 @@ namespace PlayerNS
         public void DealDamage()
         {
             _livesCountPlayer--;
-            _lives.PlayerLoseLife(_livesCountPlayer);
-
+            _gameUI.PlayerLoseLife(_livesCountPlayer);
             if (_livesCountPlayer == 0)
             {
                 OnPlayerDie();

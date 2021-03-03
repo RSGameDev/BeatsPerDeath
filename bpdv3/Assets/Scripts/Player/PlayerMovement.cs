@@ -116,9 +116,6 @@ namespace PlayerNS
                 if (Vector3.Distance(transform.position, location) < 0.01f)
                 {
                     transform.position = location;
-
-                    //Debug.Log(transform.position);
-
                     IsPlayerInputDetected = false;
                 }
             }
