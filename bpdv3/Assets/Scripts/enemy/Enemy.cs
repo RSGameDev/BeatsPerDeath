@@ -15,9 +15,7 @@ namespace Scripts.Enemy
         #region Private & Constant Variables
 
         [SerializeField] private Transform pushBackTransform = null;
-        [SerializeField] private Transform[] sneakingPlayer = null;
-        [SerializeField] private Transform player = null;
-        [SerializeField] private Transform InFront = null;
+
         private const string s_Ontile = "OnTile";
 
         EnemyMovement enemyMovement = null;
@@ -33,7 +31,6 @@ namespace Scripts.Enemy
         }
         public EnemyType CurrentEnemyType;
         public bool token = true;
-        private bool isInFront;
 
 
         #endregion
@@ -113,10 +110,7 @@ namespace Scripts.Enemy
             {
                 Debug.DrawRay(transform.position, transform.forward * 50, Color.red);
                 if (hit.transform.gameObject.tag == "Player")
-                {
-                    Debug.Log(hit.collider);
                     return true;
-                }
             }
             return false;
         }
