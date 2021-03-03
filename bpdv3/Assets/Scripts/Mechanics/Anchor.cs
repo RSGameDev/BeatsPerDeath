@@ -1,7 +1,7 @@
 ﻿using System;
+using EnemyNS;
 using Floor;
-using Scripts.Enemy;
-using Scripts.A;
+using PlayerNS;
 using UnityEngine;
 
 // This script is attached to an object beneath the player, enemy, coin. So it can attach itself to the tile. As when the tile moves across the object needs to be moving along with it.

@@ -1,11 +1,11 @@
 ﻿using Floor;
 using UnityEngine;
 
-namespace Scripts.A
+namespace PlayerNS
 {
     public class PlayerDestination : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         const string s_nextMoveLayer = "OnTile";
         const string s_noGoMoveLayer = "AreaLimit";
@@ -14,7 +14,7 @@ namespace Scripts.A
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private Collider _vacantDestinationCollider;

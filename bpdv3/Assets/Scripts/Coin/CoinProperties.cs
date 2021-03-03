@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core;
-using Floor;
+﻿using Core;
 using Mechanics;
 using UnityEngine;
 
@@ -24,7 +21,7 @@ public class CoinProperties : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // need to address --- anchorScript.anchorTileObject.GetComponent<TileProperties>().OccupiedDecreased();
-            gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
+            // after change to gameui script -----gameUiGo.GetComponent<GameUI>().Scoring(coinValue);
             Spawner.HasCoinSpawned = false;
             gameObject.SetActive(false);            
         }

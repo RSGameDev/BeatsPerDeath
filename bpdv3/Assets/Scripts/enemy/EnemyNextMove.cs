@@ -3,28 +3,29 @@ using Floor;
 using Managers;
 using UnityEngine;
 
-namespace Scripts.Enemy
+namespace EnemyNS
 {
     public class EnemyNextMove : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         [SerializeField] private EnemyMovement _enemyMovement;
         private const string s_Ontile = "OnTile";
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         public bool token = true;
-        
-        #endregion
-       
-        
-        #region Constructors
+
         #endregion
 
-        #region Private Methods
+
+        #region Constructors
+
+        #endregion
+
+        #region Private methods
 
         private void OnDisable()
         {
@@ -37,7 +38,7 @@ namespace Scripts.Enemy
             {
                 return;
             }
-            
+
             if (other.CompareTag(s_Ontile))
             {
                 _enemyMovement.NextMoveLocationGO = other.gameObject;
@@ -59,7 +60,7 @@ namespace Scripts.Enemy
 
         #endregion
 
-        #region Public Methods
+        #region Public methods
 
         public void NewCycle()
         {

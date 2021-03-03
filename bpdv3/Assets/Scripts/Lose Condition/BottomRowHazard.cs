@@ -1,9 +1,7 @@
 using System.Collections;
 using Floor;
 using Mechanics;
-using Scripts.Enemy;
-using Scripts.A;
-
+using PlayerNS;
 using UnityEngine;
 
 // The last row represented with the flame/laser was the intention from the GDD but we couldnt find laser placeholder for time being.
@@ -11,14 +9,14 @@ namespace Lose_Condition
 {
     public class BottomRowHazard : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         private const string s_FireHazard = "FireHazard";
         private const string s_Player = "Player";
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         #endregion
 
@@ -26,7 +24,7 @@ namespace Lose_Condition
 
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void OnTriggerStay(Collider other)
         {
@@ -43,8 +41,7 @@ namespace Lose_Condition
 
         #endregion
 
-        #region Public Methods
-
+        #region Public methods
         #endregion
     }
 }

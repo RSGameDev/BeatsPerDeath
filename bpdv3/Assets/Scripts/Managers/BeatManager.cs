@@ -9,7 +9,7 @@ namespace Managers
 {
     public class BeatManager : Singleton<BeatManager>
     {
-        #region Private & Const Variables
+        #region Private & Const variables
 
         /// <summary>
         /// Time between beats in second
@@ -21,7 +21,7 @@ namespace Managers
         /// Period of time that IsOnBeat value stays true
         /// </summary>
         [SerializeField]
-        private float BeatLenght = 0.1f;
+        private float BeatLenght = 0.2f;
 
         /// <summary>
         /// Bool to activate auto beats for debug
@@ -54,7 +54,7 @@ namespace Managers
         /// <summary>
         /// Stays true for BeatLenght second
         /// </summary>
-        private bool _isOnBeat;
+        [SerializeField] private bool _isOnBeat;
 
         private bool _isBeatsStarted = false;
 
@@ -65,7 +65,7 @@ namespace Managers
 
         #endregion
 
-        #region Public & Protected Variables  
+        #region Public & Protected variables  
 
         public bool IsOnBeat => _isOnBeat;
 
@@ -83,7 +83,7 @@ namespace Managers
 
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void Update()
         {

@@ -16,7 +16,7 @@ namespace Managers
         //private int rookCountMinute2;
         //private int rookCountMinute3;
         
-        #region Private & Const Variables
+        #region Private & Const variables
         
         [SerializeField] private TextMeshProUGUI _timerUi;
         private SceneController _sceneController;
@@ -28,7 +28,7 @@ namespace Managers
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
         public float Timer { get; set; }
         
         #endregion

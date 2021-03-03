@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Scripts.A;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,9 +14,8 @@ public class GameOverDisplay : MonoBehaviour
     {
         sceneController.StartGame();
         Debug.Log("Click");
-
-
     }
+    
     public void Quit()
     {
         Application.Quit();

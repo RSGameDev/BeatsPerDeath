@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UI.Main;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scripts.Enemy;
@@ -9,15 +9,16 @@ namespace Scripts.A
 // Script attached to the player.
     public class Player : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
     
-        private GameUI _gameUI;
+        [SerializeField] private Lives _lives;
         [SerializeField] private Vector3 _startPosition;
         private PlayerMovement _playerMovement;
         private int _livesCountPlayer = 3;
 
         #endregion
-        #region Public & Protected Variables
+
+        #region Public & Protected variables
         #endregion
 
         #region Constructors
@@ -57,19 +58,17 @@ namespace Scripts.A
         /// </summary>
         public void OnPlayerDie()
         {
-            _gameUI.enabled = false;
+            //_gameUI.enabled = false;
+            /*
+         * #TODO a canvas
+         * FindObjectOfType<GameOverDisplay>().enabled = true; 
+        */
             Destroy(gameObject);
-            GameOver();
         }
-
-
-        public void GameOver()
-        {
-            SceneManager.LoadScene(2);
-        }
-
-
+    
         #endregion
     }
 }
+    
+
 

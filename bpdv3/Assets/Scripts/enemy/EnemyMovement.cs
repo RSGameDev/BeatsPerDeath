@@ -4,13 +4,13 @@ using Floor;
 using Managers;
 using UnityEngine;
 
-namespace Scripts.Enemy
+namespace EnemyNS
 {
     [RequireComponent(typeof(Enemy))]
 // Added to each enemy in game.
     public class EnemyMovement : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         [SerializeField] private GameObject _designatedTileGameObject;
         [SerializeField] private EnemyDirection _enemyDirection;
@@ -23,7 +23,7 @@ namespace Scripts.Enemy
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         public GameObject NextMoveLocationGO { get; set; }
         public bool IsEnemyMoving { get; private set; }
@@ -34,7 +34,7 @@ namespace Scripts.Enemy
 
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void OnDisable()
         {
@@ -96,7 +96,7 @@ namespace Scripts.Enemy
 
         #endregion
 
-        #region Public Methods
+        #region Public methods
 
         #endregion
     }

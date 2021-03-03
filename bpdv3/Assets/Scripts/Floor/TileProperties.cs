@@ -1,5 +1,4 @@
-﻿using Scripts.Enemy;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 // A majority of code in this script was to help with the development process for the enemy AI, seeing the numbers for each tile and to see visually with different colour changes also.
@@ -8,7 +7,7 @@ namespace Floor
 {
     public class TileProperties : MonoBehaviour
     {
-        #region Private & Constant Variables
+        #region Private & Constant variables
 
         [SerializeField] private Material material0;
         [SerializeField] private Material material1;
@@ -19,7 +18,7 @@ namespace Floor
 
         #endregion
 
-        #region Public & Protected Variables
+        #region Public & Protected variables
 
         public int tileWithToken;
 
@@ -39,7 +38,7 @@ namespace Floor
 
         #endregion
 
-        #region Private Methods
+        #region Private methods
 
         private void Update()
         {
@@ -73,7 +72,7 @@ namespace Floor
 
         #endregion
 
-        #region Public Methods
+        #region Public methods
         #endregion
     }
 }
