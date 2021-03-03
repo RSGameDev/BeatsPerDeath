@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Scripts.Enemy;
 //You can not put a namespace with the same name of the script!!!!
 namespace Scripts.A
 {
@@ -27,6 +28,7 @@ namespace Scripts.A
         {
             _gameUI = FindObjectOfType<GameUI>();
         }
+
         #endregion
 
         #region Public Methods
@@ -44,7 +46,6 @@ namespace Scripts.A
         {
             _livesCountPlayer--;
             _gameUI.PlayerLoseLife(_livesCountPlayer);
-            Debug.Log(_livesCountPlayer);
             if (_livesCountPlayer == 0)
             {
                 OnPlayerDie();

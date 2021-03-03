@@ -15,8 +15,9 @@ namespace Scripts.Enemy
         #region Private & Constant Variables
 
         [SerializeField] private Transform pushBackTransform = null;
-        [SerializeField] private GameObject inFront = null;
-        [SerializeField] private bool isInFront = false;
+        [SerializeField] private Transform[] sneakingPlayer = null;
+        [SerializeField] private Transform player = null;
+        [SerializeField] private Transform InFront = null;
         private const string s_Ontile = "OnTile";
 
         #endregion
@@ -30,6 +31,7 @@ namespace Scripts.Enemy
         }
         public EnemyType CurrentEnemyType;
         public bool token = true;
+        private bool isInFront;
 
 
         #endregion
@@ -39,22 +41,25 @@ namespace Scripts.Enemy
 
         #region Private Methods
       
-        private void OnDisable()
+        private void OnDisable() => token = true;
 
+        private void FixedUpdate()
         {
-            token = true;
+            isInFront = IsPlayerInFront();
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
             {
-                var playerMovement = other.GetComponent<PlayerMovement>();
-                playerMovement.enemy = this;
-                playerMovement.isPushBack = true;
-                playerMovement.IsPlayerInputDetected = false;
-                other.gameObject.transform.position = pushBackTransform.position;
-                other.gameObject.GetComponent<Player>().DealDamage();
+                if (isInFront)
+                {
+                    HitPlayer(other);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
             
             if (other.CompareTag(s_Ontile))
@@ -66,7 +71,23 @@ namespace Scripts.Enemy
                 }
             }
         }
-        
+
+        private void HitPlayer(Collider other)
+        {
+            var playerMovement = other.GetComponent<PlayerMovement>();
+            playerMovement.enemy = this;
+            playerMovement.isPushBack = true;
+            playerMovement.IsPlayerInputDetected = false;
+            other.gameObject.transform.position = pushBackTransform.position;
+            other.gameObject.GetComponent<Player>().DealDamage();
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag != "Player") return;
+            
+            gameObject.SetActive(false);
+        }
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag(s_Ontile))
@@ -76,6 +97,21 @@ namespace Scripts.Enemy
             }
         }
         
+        private bool IsPlayerInFront()
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 200))
+            {
+                Debug.DrawRay(transform.position, transform.forward * 50, Color.red);
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                    Debug.Log(hit.collider);
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
 
         #region Public Methods
