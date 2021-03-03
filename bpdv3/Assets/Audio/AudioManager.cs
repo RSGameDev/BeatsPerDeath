@@ -36,7 +36,6 @@ public class AudioManager : Singleton<AudioManager>
     public void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
     {
         BeatManager.Instance.UpdateBeat();
-        Debug.Log("Beat detected");
     }
 
     public void MusicLayering()
