@@ -7521,10 +7521,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBar: {fileID: 5617595033472507554}
   endBar: {fileID: 5617595032630957681}
-  beatMark1: {fileID: 5617595033542372002}
-  beatMark2: {fileID: 5617595033505514314}
-  beatMark3: {fileID: 5617595033706249483}
-  beatMark4: {fileID: 5617595031967811807}
+  beatMarkers:
+  - {fileID: 5617595033542372002}
+  - {fileID: 5617595033505514314}
+  - {fileID: 5617595033706249483}
+  - {fileID: 5617595031967811807}
   totalTime: 2
   distance: 0
   theCore: {fileID: 5617595031793985264}
