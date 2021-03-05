@@ -74,7 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObj: {fileID: 0}
+  anchorTileObject: {fileID: 0}
+  playermovement: {fileID: 0}
+  enemymovement: {fileID: 0}
 --- !u!1 &8164834600390890592
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8164834600390890604
 Transform:
   m_ObjectHideFlags: 0
