@@ -30,15 +30,15 @@ namespace Floor
         // So we will have to see how this can be included whilst weakpoint code to function also.
         private void Update()
         {
-            //switch (possessToken)
-            //{
-            //    case true:
-            //        _tileProperties.tileWithToken = 1;
-            //        break;
-            //    case false:
-            //        _tileProperties.tileWithToken = 0;
-            //        break;
-            //}
+            switch (possessToken)
+            {
+                case true:
+                    _tileProperties.tileWithToken = 1;
+                    break;
+                case false:
+                    _tileProperties.tileWithToken = 0;
+                    break;
+            }
         }
 
         public void ResetTokenOnTile()

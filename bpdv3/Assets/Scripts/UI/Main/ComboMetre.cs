@@ -19,23 +19,12 @@ namespace UI.Main
         [Range(0f, 80f)] public float speed;
 
         #endregion
-
-        public GameObject beatPanelTest;
-        public GameObject tileController;
+        
         private bool _isIncrementing;
 
         public bool perform;
         private bool _increment;
         private bool _decrement;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            if (tileController.GetComponent<TileController>().turnOffDevTileValues)
-            {
-                beatPanelTest.SetActive(false);
-            }
-        }
 
         // Update is called once per frame
         void Update()
