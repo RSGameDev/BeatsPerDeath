@@ -10,6 +10,7 @@ namespace UI.Main
     {
         #region Grading
 
+        [SerializeField] private Scoring scoring;
         [Header("Grading Dial")] public ParticleSystem pS; // I believe this worked when i tried this out in the past. Adds a particle effect to when a new grade occurs.
         public Animator anim;
         public Slider slider;
@@ -23,26 +24,12 @@ namespace UI.Main
         private bool _isIncrementing;
 
         public bool perform;
-        private bool _increment;
+        public static bool _increment;
         private bool _decrement;
 
         // Update is called once per frame
         void Update()
         {
-            if (perform)
-            {
-                perform = false;
-
-                if (BeatManager.Instance.IsOnBeat)
-                {
-                    _increment = true;
-                }
-                else 
-                {
-                    _decrement = true;
-                }
-            }
-
             if (_increment)
             {
                 Increment();
@@ -73,30 +60,35 @@ namespace UI.Main
                     pS.gameObject.SetActive(true);
                     StartCoroutine(ParticleTermination(3));
                     text.text = "D";
+                    scoring.multi1 = true;
                     return;
                 case "D":
                     anim.Play("PopIn");
                     pS.gameObject.SetActive(true);
                     StartCoroutine(ParticleTermination(3));
                     text.text = "C";
+                    scoring.multi2 = true;
                     return;
                 case "C":
                     anim.Play("PopIn");
                     pS.gameObject.SetActive(true);
                     StartCoroutine(ParticleTermination(3));
                     text.text = "B";
+                    scoring.multi3 = true;
                     return;
                 case "B":
                     anim.Play("PopIn");
                     pS.gameObject.SetActive(true);
                     StartCoroutine(ParticleTermination(3));
                     text.text = "A";
+                    scoring.multi4 = true;
                     return;
                 case "A":
                     anim.Play("PopIn");
                     pS.gameObject.SetActive(true);
                     StartCoroutine(ParticleTermination(3));
                     text.text = "S";
+                    scoring.multi5 = true;
                     return;
             }
 
@@ -113,7 +105,7 @@ namespace UI.Main
             print("stop");
         }
         
-        private void Increment()
+        public void Increment()
         {
             slider.value += speed * Time.deltaTime;
             if (slider.value >= sliderStartValue + 20)

@@ -9,6 +9,8 @@ namespace EnemyNS
     {
         #region Private & Constant variables
 
+        [SerializeField] private Enemy _enemy;
+        private GameObject nextMoveCurrentTile;
         [SerializeField] private EnemyMovement _enemyMovement;
         private const string s_Ontile = "OnTile";
 
@@ -29,7 +31,10 @@ namespace EnemyNS
 
         private void OnDisable()
         {
-            NewCycle();
+            if (_enemy.hasSpawned)
+            {
+                NewCycle();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -42,6 +47,7 @@ namespace EnemyNS
             if (other.CompareTag(s_Ontile))
             {
                 _enemyMovement.NextMoveLocationGO = other.gameObject;
+                nextMoveCurrentTile = other.gameObject;
                 if (!other.gameObject.GetComponent<OnTile>().possessToken)
                 {
                     other.gameObject.GetComponent<OnTile>().possessToken = true;
@@ -64,6 +70,7 @@ namespace EnemyNS
 
         public void NewCycle()
         {
+            nextMoveCurrentTile.GetComponent<OnTile>().possessToken = false;
             token = true;
         }
 

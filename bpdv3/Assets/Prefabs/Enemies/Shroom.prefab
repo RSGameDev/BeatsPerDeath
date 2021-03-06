@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 592588273473671533}
   - component: {fileID: 1052731159642050709}
   m_Layer: 0
-  m_Name: EnemyType
+  m_Name: Shroom
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,14 +137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushBackTransform: {fileID: 6105365929766841669}
-  sneakingPlayer:
-  - {fileID: 7829924788620821727}
-  - {fileID: 2256023161328349592}
-  - {fileID: 8619414652955263545}
-  player: {fileID: 5552700595745662090, guid: 5d890494902a62a4b9e2fb2d2ccf7b1d, type: 3}
-  InFront: {fileID: 8698833144310285220}
   CurrentEnemyType: 0
   token: 1
+  hasSpawned: 0
 --- !u!114 &592588273473671533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 6652264778726549562}
   _enemyMovement: {fileID: 1052731159642050709}
   token: 1
 --- !u!1 &6105365931089644099

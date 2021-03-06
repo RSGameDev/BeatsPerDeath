@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EnemyNS;
 using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -90,6 +91,7 @@ namespace Core
             }
             objectPool.transform.position = SpawnPosition();
             objectPool.SetActive(true);
+            objectPool.GetComponent<Enemy>().hasSpawned = true;
         }
 
         private Vector3 SpawnPosition()

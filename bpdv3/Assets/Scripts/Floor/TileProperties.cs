@@ -20,7 +20,7 @@ namespace Floor
 
         #region Public & Protected variables
 
-        public int tileWithToken;
+        public int tileWithToken = 0;
 
         #endregion
 

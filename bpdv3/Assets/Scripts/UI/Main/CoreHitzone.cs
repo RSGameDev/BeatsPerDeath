@@ -6,18 +6,14 @@ namespace UI.Main
 {
     public class CoreHitzone : MonoBehaviour
     {
-        public bool onBeat;
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            onBeat = true;
-            collision.GetComponent<Image>().color = new Color(0, 0, 255, 255);        
+            BeatBar.thresholdZone = true;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            onBeat = false;
-            collision.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            BeatBar.thresholdZone = false;
         }
     }
 }

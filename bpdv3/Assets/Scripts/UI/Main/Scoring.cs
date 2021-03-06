@@ -9,7 +9,7 @@ namespace UI.Main
     
         [Header("Score")]
         private const int _points = 100;
-        private float _score = 0;
+        private static float _score = 0;
         [SerializeField] private TextMeshProUGUI scoreUiValue;
     
         #endregion
@@ -18,8 +18,13 @@ namespace UI.Main
     
         [Header("Multiplier")]
         [SerializeField] private TextMeshProUGUI multiplierText;
-        private float _multiplierStatus = 1f;
-    
+        private static float _multiplierStatus = 1f;
+        public bool multi1;
+        public bool multi2;
+        public bool multi3;
+        public bool multi4;
+        public bool multi5;
+        
         #endregion
 
         #region Constructors
@@ -35,33 +40,37 @@ namespace UI.Main
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                _score += _points * _multiplierStatus;
-            }
+            //if (Input.GetKeyDown(KeyCode.Y))
+            //{
+            //    _score += _points * _multiplierStatus;
+            //}
 
-            if (_score >= 500)
+            if (multi1)
             {
                 MultiplierStatus(1);
             }
         
-            if (_score >= 1000)
+            if (multi2)
             {
+                multi1 = false;
                 MultiplierStatus(2);
             }
         
-            if (_score >= 1500)
+            if (multi3)
             {
+                multi2 = false;
                 MultiplierStatus(3);
             }
         
-            if (_score >= 2500)
+            if (multi4)
             {
+                multi3 = false;
                 MultiplierStatus(4);
             }
         
-            if (_score >= 4000)
+            if (multi5)
             {
+                multi4 = false;
                 MultiplierStatus(5);
             }
         
@@ -103,6 +112,12 @@ namespace UI.Main
         #endregion
 
         #region Public methods
+
+        public static void ScorePoints()
+        {
+            _score += _points * _multiplierStatus;
+        }
+        
         #endregion
     
     }
