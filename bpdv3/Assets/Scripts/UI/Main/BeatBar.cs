@@ -1,5 +1,8 @@
-﻿using Managers;
+﻿using System;
+using System.Collections;
+using Managers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Main
 {
@@ -11,15 +14,18 @@ namespace UI.Main
         // Beatbar
         // GameObject beatBar;
         public Transform startBar;
-
         public Transform endBar;
         public GameObject[] beatMarkers;
+        public Collider2D coreHitZone;
         private bool newBeats;
-        [Range(0f, 3f)] public float totalTime;
+        [Range(0f, 500f)] public float totalTime;
         Vector3 direction;
         public float distance;
         public GameObject theCore;
         private RectTransform[] _rectTransform;
+        private bool done;
+        public bool threshHoldValue;
+        public static bool thresholdZone;
 
         #endregion
 
@@ -42,6 +48,7 @@ namespace UI.Main
         // Update is called once per frame
         void Update()
         {
+            threshHoldValue = thresholdZone;
             BeatBarBehaviour();
         }
 
@@ -57,27 +64,29 @@ namespace UI.Main
             beatMarkers[1].transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
             beatMarkers[2].transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
             beatMarkers[3].transform.Translate(direction.normalized * (Time.deltaTime * (distance / totalTime)));
-
+            
             // When they reach the end they go back to the start position and repeat scrolling.
-            if (_rectTransform[0].anchoredPosition.x >= 350)
+            if (_rectTransform[0].anchoredPosition.x >= 250)
             {
-                _rectTransform[0].anchoredPosition = new Vector3(-350, 0f, 0);
+                _rectTransform[0].anchoredPosition = new Vector3(-250, 0f, 0);
             }
 
-            if (_rectTransform[1].anchoredPosition.x >= 350)
+            if (_rectTransform[1].anchoredPosition.x >= 250)
             {
-                _rectTransform[1].anchoredPosition = new Vector3(-350, 0f, 0);
+                _rectTransform[1].anchoredPosition = new Vector3(-250, 0f, 0);
             }
 
-            if (_rectTransform[2].anchoredPosition.x >= 350)
+            if (_rectTransform[2].anchoredPosition.x >= 250)
             {
-                _rectTransform[2].anchoredPosition = new Vector3(-350, 0f, 0);
+                _rectTransform[2].anchoredPosition = new Vector3(-250, 0f, 0);
             }
 
-            if (_rectTransform[3].anchoredPosition.x >= 350)
+            if (_rectTransform[3].anchoredPosition.x >= 250)
             {
-                _rectTransform[3].anchoredPosition = new Vector3(-350, 0f, 0);
+                _rectTransform[3].anchoredPosition = new Vector3(-250, 0f, 0);
             }
         }
+
+        
     }
 }

@@ -74,7 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMovement: {fileID: 0}
+  _enemy: {fileID: 3299906874779268462}
+  _enemyMovement: {fileID: 3299906874779268463}
   token: 1
 --- !u!1 &1187053045041737691
 GameObject:
@@ -446,6 +447,7 @@ MonoBehaviour:
   pushBackTransform: {fileID: 0}
   CurrentEnemyType: 0
   token: 1
+  hasSpawned: 0
 --- !u!114 &3299906874779268463
 MonoBehaviour:
   m_ObjectHideFlags: 0

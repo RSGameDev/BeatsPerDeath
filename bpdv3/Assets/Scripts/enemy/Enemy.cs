@@ -1,5 +1,7 @@
 using Floor;
+using Managers;
 using PlayerNS;
+using UI.Main;
 using UnityEngine;
 
 namespace EnemyNS
@@ -9,6 +11,7 @@ namespace EnemyNS
     {
         #region Private & Constant variables
 
+        private GameObject enemyCurrentTile;
         [SerializeField] private Transform pushBackTransform = null;
 
         private const string s_Ontile = "OnTile";
@@ -27,7 +30,8 @@ namespace EnemyNS
 
         public EnemyType CurrentEnemyType;
         public bool token = true;
-
+        public bool hasSpawned = false;
+        
         #endregion
 
         #region Constructors
@@ -38,8 +42,12 @@ namespace EnemyNS
 
         private void OnDisable()
         {
-            token = true;
+            if (hasSpawned)
+            {
+                NewCycle();
+            }
         }
+
         private void Awake()
         {
             enemyMovement = GetComponent<EnemyMovement>();
@@ -59,12 +67,18 @@ namespace EnemyNS
                 }
                 else
                 {
+                    Scoring.ScorePoints();
+                    if (BeatBar.thresholdZone)
+                    {
+                        ComboMetre._increment = true;
+                    }
                     gameObject.SetActive(false);
                 }
             }
 
             if (other.CompareTag(s_Ontile))
             {
+                enemyCurrentTile = other.gameObject;
                 if (!other.gameObject.GetComponent<OnTile>().possessToken)
                 {
                     other.gameObject.GetComponent<OnTile>().possessToken = true;
@@ -110,6 +124,12 @@ namespace EnemyNS
                     return true;
             }
             return false;
+        }
+
+        private void NewCycle()
+        {
+            enemyCurrentTile.GetComponent<OnTile>().possessToken = false;
+            token = true;
         }
         
         #endregion
