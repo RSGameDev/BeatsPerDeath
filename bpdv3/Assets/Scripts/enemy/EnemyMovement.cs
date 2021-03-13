@@ -63,7 +63,7 @@ namespace EnemyNS
 
         private void Movement()
         {
-            if (!_enemyNextMove.token)
+            if (!_enemyNextMove.nextMoveHasToken)
             {
                 IsEnemyMoving = true;
                 _step = _speed * Time.deltaTime;

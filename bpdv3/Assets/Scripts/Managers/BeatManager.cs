@@ -14,20 +14,17 @@ namespace Managers
         /// <summary>
         /// Time between beats in second
         /// </summary>
-        [SerializeField]
-        private const int s_BeatInterval = 2;
+        [SerializeField] private const int s_BeatInterval = 2;
 
         /// <summary>
         /// Period of time that IsOnBeat value stays true
         /// </summary>
-        [SerializeField]
-        private float BeatLenght = 0.2f;
+        [SerializeField] private float BeatLenght = 0.2f;
 
         /// <summary>
         /// Bool to activate auto beats for debug
         /// </summary>
-        [SerializeField]
-        private bool IsAutoBeatOn = false;
+        [SerializeField] private bool IsAutoBeatOn = false;
 
         /// <summary>
         /// Total beats
@@ -50,7 +47,7 @@ namespace Managers
         private int _beatIndex;
 
         public int BeatIndexForLevel { get; private set; }
-    
+
         /// <summary>
         /// Stays true for BeatLenght second
         /// </summary>
@@ -63,15 +60,18 @@ namespace Managers
         /// </summary>
         private Dictionary<int, List<Action>> _beatListeners;
 
+        [SerializeField] private bool disable;
+
         #endregion
 
-        #region Public & Protected variables  
+        #region Public & Protected variables
 
         public bool IsOnBeat => _isOnBeat;
 
         public int BeatIndex => _beatIndex;
 
         public bool AreBeatsStarted => _isBeatsStarted;
+
         #endregion
 
         #region Constructors
@@ -119,14 +119,14 @@ namespace Managers
             Task.Run(() =>
             {
                 _isOnBeat = true;
-                Thread.Sleep((int)(BeatLenght * s_MiliSecondMultiplier));
+                Thread.Sleep((int) (BeatLenght * s_MiliSecondMultiplier));
                 _isOnBeat = false;
             });
         }
 
         #endregion
 
-        #region Public & Protected Methods		
+        #region Public & Protected Methods
 
         /// <summary>
         /// Add listener to a specific beat
@@ -143,6 +143,16 @@ namespace Managers
             }
 
             _beatListeners[indexMod].Add(beatAction);
+        }
+        
+        public void RemoveListener(int beatIndex, Action beatAction)
+        {
+            //var indexMod = beatIndex % s_BeatLimit;
+
+            if (_beatListeners.ContainsKey(beatIndex))
+            {
+                _beatListeners[beatIndex].Remove(beatAction);
+            }
         }
 
         /// <summary>
@@ -175,8 +185,10 @@ namespace Managers
                 return;
             }
 
-            _beatListeners[_beatIndex].ForEach(x => x?.Invoke()); ;
+            _beatListeners[_beatIndex].ForEach(x => x?.Invoke());
         }
+
+        
 
         #endregion
     }

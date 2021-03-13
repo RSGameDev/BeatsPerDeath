@@ -10,32 +10,37 @@ namespace Mechanics
     public class Anchor : MonoBehaviour
     {
         #region Private & Constant variables
-    
+
         private const string s_Enemy = "enemy";
         private const string s_Coin = "coin";
         private const string s_Player = "Player";
         private const string s_FloorLayer = "Floor";
         private Vector3 _newPosition;
-        
+
         #endregion
 
         #region Public & Protected variables
-        
+
         public GameObject anchorTileObject;
-        
+
         #endregion
 
         //new
+        public Enemy enemy;
         public PlayerMovement playermovement;
         public EnemyMovement enemymovement;
 
         private string tag;
 
+        private void OnDisable()
+        {
+            DetachFromTile();
+        }
+
         private void Awake()
         {
             tag = gameObject.transform.parent.tag;
         }
-
 
         private void OnTriggerStay(Collider other)
         {
@@ -62,7 +67,7 @@ namespace Mechanics
                 else
                 {
                     DetachFromTile();
-                }   
+                }
             }
         }
 
@@ -74,12 +79,15 @@ namespace Mechanics
             switch (transform.parent.tag)
             {
                 case s_Enemy:
-                    transform.parent.position = new Vector3(anchorTileObject.transform.position.x, anchorTileObject.transform.position.y+1f, anchorTileObject.transform.position.z);
+                    transform.parent.position = new Vector3(anchorTileObject.transform.position.x,
+                        anchorTileObject.transform.position.y + 1f, anchorTileObject.transform.position.z);
                     break;
                 case s_Player:
-                    transform.parent.position = new Vector3(anchorTileObject.transform.position.x, anchorTileObject.transform.position.y+0.5f, anchorTileObject.transform.position.z);
+                    transform.parent.position = new Vector3(anchorTileObject.transform.position.x,
+                        anchorTileObject.transform.position.y + 0.5f, anchorTileObject.transform.position.z);
                     break;
             }
+
             transform.parent.SetParent(other.transform);
         }
 
@@ -90,11 +98,12 @@ namespace Mechanics
             {
                 transform.parent.SetParent(transform);
             }
-        }   
-    
+        }
+
         public void DetachFromTile()
         {
-            transform.parent.SetParent(transform);
+            //anchorTileObject = null;
+            transform.parent.SetParent(null);
         }
     }
 }

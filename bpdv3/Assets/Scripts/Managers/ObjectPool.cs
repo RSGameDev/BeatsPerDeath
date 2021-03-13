@@ -33,6 +33,10 @@ namespace Managers
             pooledObjectsCoin = new List<GameObject>();
             for (var i = 0; i < amountToPoolCoin; i++)
             {
+                if (objectToPoolCoin == null)
+                {
+                    break;
+                }
                 var obj = Instantiate(objectToPoolCoin);
                 obj.SetActive(false);
                 pooledObjectsCoin.Add(obj);
@@ -49,6 +53,10 @@ namespace Managers
             pooledObjectsRook = new List<GameObject>();
             for (var i = 0; i < amountToPoolRook; i++)
             {
+                if (objectToPoolRook == null)
+                {
+                    break;
+                }
                 var obj = Instantiate(objectToPoolRook);
                 obj.SetActive(false);
                 pooledObjectsRook.Add(obj);

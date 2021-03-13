@@ -1,4 +1,5 @@
 using System.Collections;
+using EnemyNS;
 using Floor;
 using Mechanics;
 using PlayerNS;
@@ -30,6 +31,7 @@ namespace Lose_Condition
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(s_FireHazard))
             {
+                other.gameObject.transform.parent.GetChild(0).GetComponent<Anchor>().DetachFromTile();
                 other.transform.parent.gameObject.SetActive(false);
             }
 

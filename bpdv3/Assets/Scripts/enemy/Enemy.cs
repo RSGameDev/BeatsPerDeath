@@ -1,3 +1,4 @@
+using System;
 using Floor;
 using Managers;
 using PlayerNS;
@@ -11,7 +12,7 @@ namespace EnemyNS
     {
         #region Private & Constant variables
 
-        private GameObject enemyCurrentTile;
+        [SerializeField] private GameObject enemyCurrentTile;
         [SerializeField] private Transform pushBackTransform = null;
 
         private const string s_Ontile = "OnTile";
@@ -33,7 +34,7 @@ namespace EnemyNS
         public bool hasSpawned = false;
         
         #endregion
-
+        
         #region Constructors
 
         #endregion
@@ -44,7 +45,8 @@ namespace EnemyNS
         {
             if (hasSpawned)
             {
-                NewCycle();
+                //NewCycle();
+                OnDeath();
             }
         }
 
@@ -79,9 +81,9 @@ namespace EnemyNS
             if (other.CompareTag(s_Ontile))
             {
                 enemyCurrentTile = other.gameObject;
-                if (!other.gameObject.GetComponent<OnTile>().possessToken)
+                if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
                 {
-                    other.gameObject.GetComponent<OnTile>().possessToken = true;
+                    other.gameObject.GetComponent<OnTile>().tileHasToken = true;
                     token = false;
                 }
             }
@@ -108,7 +110,7 @@ namespace EnemyNS
         {
             if (other.CompareTag(s_Ontile))
             {
-                other.gameObject.GetComponent<OnTile>().possessToken = false;
+                other.gameObject.GetComponent<OnTile>().tileHasToken = false;
                 token = true;
             }
         }
@@ -126,9 +128,14 @@ namespace EnemyNS
             return false;
         }
 
+        public void OnDeath()
+        {
+            enemyCurrentTile.GetComponent<OnTile>().tileHasToken = false;
+            token = true;
+        }
+        
         private void NewCycle()
         {
-            enemyCurrentTile.GetComponent<OnTile>().possessToken = false;
             token = true;
         }
         

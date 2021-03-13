@@ -18,7 +18,7 @@ namespace EnemyNS
 
         #region Public & Protected variables
 
-        public bool token = true;
+        public bool nextMoveHasToken = true;
 
         #endregion
 
@@ -33,7 +33,8 @@ namespace EnemyNS
         {
             if (_enemy.hasSpawned)
             {
-                NewCycle();
+                OnDeath();
+                //NewCycle();
             }
         }
 
@@ -48,10 +49,10 @@ namespace EnemyNS
             {
                 _enemyMovement.NextMoveLocationGO = other.gameObject;
                 nextMoveCurrentTile = other.gameObject;
-                if (!other.gameObject.GetComponent<OnTile>().possessToken)
+                if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
                 {
-                    other.gameObject.GetComponent<OnTile>().possessToken = true;
-                    token = false;
+                    other.gameObject.GetComponent<OnTile>().tileHasToken = true;
+                    nextMoveHasToken = false;
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace EnemyNS
         {
             if (other.CompareTag(s_Ontile))
             {
-                other.gameObject.GetComponent<OnTile>().possessToken = false;
+                other.gameObject.GetComponent<OnTile>().tileHasToken = false;
             }
         }
 
@@ -68,10 +69,15 @@ namespace EnemyNS
 
         #region Public methods
 
+        public void OnDeath()
+        {
+            nextMoveCurrentTile.GetComponent<OnTile>().tileHasToken = false;
+            nextMoveHasToken = true;
+        }
+        
         public void NewCycle()
         {
-            nextMoveCurrentTile.GetComponent<OnTile>().possessToken = false;
-            token = true;
+            nextMoveHasToken = true;
         }
 
         #endregion
