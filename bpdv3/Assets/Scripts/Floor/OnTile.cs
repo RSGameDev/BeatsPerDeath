@@ -16,8 +16,9 @@ namespace Floor
 
         #region Public & Protected variables
         
-        public bool possessToken;
-        
+        public bool tileHasToken;
+        private object changed;
+
         #endregion
      
         #region Constructors
@@ -30,7 +31,7 @@ namespace Floor
         // So we will have to see how this can be included whilst weakpoint code to function also.
         private void Update()
         {
-            switch (possessToken)
+            switch (tileHasToken)
             {
                 case true:
                     _tileProperties.tileWithToken = 1;
@@ -43,7 +44,7 @@ namespace Floor
 
         public void ResetTokenOnTile()
         {
-            possessToken = false;
+            tileHasToken = false;
         }
 
         #endregion

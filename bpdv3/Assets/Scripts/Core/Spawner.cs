@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnemyNS;
 using Managers;
+using UI.Main;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,7 +21,8 @@ namespace Core
         private int _lastSpawnPosition;
         private int _currentLevel;
         private int _currentStageOfLevel;
-    
+        private bool cancel;
+
         #endregion
 
         #region Public & Protected variables
@@ -40,6 +43,22 @@ namespace Core
     
         #region Private methods
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.O) && !cancel)
+            {
+                cancel = true;
+                BeatManager.Instance.RemoveListener(0, SpawnObject);
+                //BeatManager.Instance.RemoveListener(6, SpawnObject);
+            }
+            else if(Input.GetKeyDown(KeyCode.O) && cancel)
+            {
+                cancel = false;
+                BeatManager.Instance.AddListener(0, SpawnObject);
+                //BeatManager.Instance.AddListener(6, SpawnObject);
+            }
+        }
+
         public void SpawnPattern(int level, int stageOfLevel)
         {
             _currentLevel = level;
@@ -51,14 +70,18 @@ namespace Core
                     switch (stageOfLevel)
                     {
                         case 1:
-                            BeatManager.Instance.AddListener(0, SpawnObject);
+                            if (!cancel)
+                            {
+                                BeatManager.Instance.AddListener(0, SpawnObject);
+                                //BeatManager.Instance.AddListener(6, SpawnObject);
+                            }
                             break;
-                        case 2:
-                            BeatManager.Instance.AddListener(2, SpawnObject);
-                            break;
-                        case 3:
-                            BeatManager.Instance.AddListener(4, SpawnObject);
-                            break;
+                        //case 2:
+                        //    BeatManager.Instance.AddListener(2, SpawnObject);
+                        //    break;
+                        //case 3:
+                        //    BeatManager.Instance.AddListener(4, SpawnObject);
+                        //    break;
                     }
                     break;
                 case 2:
