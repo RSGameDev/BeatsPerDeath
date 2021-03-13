@@ -73,7 +73,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8143436687884313958, guid: 772a6293759c18d4888db1609cbfdf50, type: 3}
+  - {fileID: 2100000, guid: e5e2ec9bdd1b18f4f9459fe1f5ea85fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,6 @@ MonoBehaviour:
   CurrentEnemyType: 0
   token: 1
   hasSpawned: 0
-  isAlive: 1
 --- !u!114 &592588273473671533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 6652264778726549562}
   _enemyMovement: {fileID: 1052731159642050709}
-  token: 1
+  nextMoveHasToken: 1
 --- !u!1 &6105365931089644099
 GameObject:
   m_ObjectHideFlags: 0

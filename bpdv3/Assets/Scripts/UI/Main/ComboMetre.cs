@@ -61,6 +61,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "D";
                     scoring.multi1 = true;
+                    // --------- AUDIO can be included here
                     return;
                 case "D":
                     anim.Play("PopIn");
@@ -68,6 +69,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "C";
                     scoring.multi2 = true;
+                    // --------- AUDIO can be included here
                     return;
                 case "C":
                     anim.Play("PopIn");
@@ -75,6 +77,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "B";
                     scoring.multi3 = true;
+                    // --------- AUDIO can be included here
                     return;
                 case "B":
                     anim.Play("PopIn");
@@ -82,6 +85,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "A";
                     scoring.multi4 = true;
+                    // --------- AUDIO can be included here
                     return;
                 case "A":
                     anim.Play("PopIn");
@@ -89,6 +93,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "S";
                     scoring.multi5 = true;
+                    // --------- AUDIO can be included here
                     return;
             }
 
