@@ -50,6 +50,11 @@ namespace EnemyNS
             }
         }
 
+        private void OnEnable()
+        {
+            gameObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        }
+
         private void Awake()
         {
             enemyMovement = GetComponent<EnemyMovement>();

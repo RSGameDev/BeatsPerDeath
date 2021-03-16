@@ -111,7 +111,7 @@ namespace PlayerNS
             else if (!isPushBack && IsPlayerInputDetected)
             {
                 var position = nextMoveTileGO.transform.position;
-                location = new Vector3(position.x, position.y - 0.5f, position.z);
+                location = new Vector3(position.x, position.y, position.z);
                 transform.position = Vector3.MoveTowards(transform.position, location, _step);
                 if (Vector3.Distance(transform.position, location) < 0.01f)
                 {

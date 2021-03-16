@@ -48,12 +48,12 @@ namespace Mechanics
             {
                 if (!enemymovement.IsEnemyMoving)
                 {
-                    //print("anchorattach");
+                    print("anchorattach");
                     AttachObjectToTile(other);
                 }
                 else
                 {
-                    //print("anchordettach");
+                    print("anchordettach");
                     DetachFromTile();
                 }
             }
@@ -80,11 +80,12 @@ namespace Mechanics
             {
                 case s_Enemy:
                     transform.parent.position = new Vector3(anchorTileObject.transform.position.x,
-                        anchorTileObject.transform.position.y + 1f, anchorTileObject.transform.position.z);
+                        //anchorTileObject.transform.position.y + 1f, anchorTileObject.transform.position.z);
+                        anchorTileObject.transform.position.y + 0.25f, anchorTileObject.transform.position.z);
                     break;
                 case s_Player:
                     transform.parent.position = new Vector3(anchorTileObject.transform.position.x,
-                        anchorTileObject.transform.position.y + 0.5f, anchorTileObject.transform.position.z);
+                        anchorTileObject.transform.position.y + 0.25f, anchorTileObject.transform.position.z);
                     break;
             }
 
