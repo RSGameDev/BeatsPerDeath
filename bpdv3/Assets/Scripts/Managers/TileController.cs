@@ -122,13 +122,13 @@ namespace Managers
             _onTileScript = new OnTile[_tilesArray.Length];
             for (var i = 0; i < _tilesArray.Length; i++)
             {
-                _onTileScript[i] = _tilesArray[i].transform.GetChild(1).GetComponentInChildren<OnTile>();
+                _onTileScript[i] = _tilesArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
             }
 
             _onTileOutsideScript = new OnTile[_tilesOutsideArray.Length];
             for (var i = 0; i < _tilesOutsideArray.Length; i++)
             {
-                _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(1).GetComponentInChildren<OnTile>();
+                _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
             }
         }
         

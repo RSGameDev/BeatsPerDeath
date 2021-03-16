@@ -23,6 +23,8 @@ namespace EnemyNS
 
         #endregion
 
+        [SerializeField] private Vector3 location;
+
         #region Public & Protected variables
 
         public GameObject NextMoveLocationGO { get; set; }
@@ -67,16 +69,34 @@ namespace EnemyNS
             {
                 IsEnemyMoving = true;
                 _step = _speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position,
-                    _designatedTileGameObject.transform.position, _step);
+                
+                var position = _designatedTileGameObject.transform.position;
+                location = new Vector3(position.x, position.y, position.z);
 
-                if (Vector3.Distance(transform.position, _designatedTileGameObject.transform.position) < 0.01f)
+                transform.position = Vector3.MoveTowards(transform.position, location, _step);
+
+                if (Vector3.Distance(transform.position, location) < 0.01f)
                 {
-                    transform.position = _designatedTileGameObject.transform.position;
+                    transform.position = location;
                     IsEnemyMoving = false;
                     _enemyNextMove.NewCycle();
                 }
             }
+            
+            //if (!_enemyNextMove.nextMoveHasToken)
+            //{
+            //    IsEnemyMoving = true;
+            //    _step = _speed * Time.deltaTime;
+            //    transform.position = Vector3.MoveTowards(transform.position,
+            //        nextMovePos, _step);
+//
+            //    if (Vector3.Distance(transform.position, nextMovePos) < 0.01f)
+            //    {
+            //        transform.position = nextMovePos;
+            //        IsEnemyMoving = false;
+            //        _enemyNextMove.NewCycle();
+            //    }
+            //}
         }
 
         private void AssignNextTile()

@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2176821013286377458}
+  - component: {fileID: 122640358}
+  - component: {fileID: 122640361}
   m_Layer: 0
-  m_Name: Enemy Spawner
-  m_TagString: Untagged
+  m_Name: Spawner
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,3 +32,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122640358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176821013286377456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc1a0d9a6174a74284b60469ab30435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &122640361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176821013286377456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d013897f37ff2234ebef65a8339f18df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjectsCoin: []
+  amountToPoolCoin: 10
+  objectToPoolCoin: {fileID: 0}
+  pooledObjectsShroom: []
+  amountToPoolShroom: 10
+  objectToPoolShroom: {fileID: 2005201981275641533, guid: b3aba4fe140c92b408ed44cf57aa5db7,
+    type: 3}
+  pooledObjectsRook: []
+  amountToPoolRook: 10
+  objectToPoolRook: {fileID: 0}
