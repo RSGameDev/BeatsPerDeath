@@ -20,7 +20,8 @@ namespace UI.Main
         [Range(0f, 80f)] public float speed;
 
         #endregion
-        
+        //Audio code added to communicate with AudioManager script
+        public AudioManager audioManagerObj;
         private bool _isIncrementing;
 
         public bool perform;
@@ -41,6 +42,8 @@ namespace UI.Main
                 Decrement();
                 Grading(slider.value);
             }
+
+
         }
 
         void Grading(float value)
@@ -61,6 +64,8 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "D";
                     scoring.multi1 = true;
+                    audioManagerObj.MusicLayering("D");
+
                     // --------- AUDIO can be included here
                     return;
                 case "D":
@@ -69,6 +74,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "C";
                     scoring.multi2 = true;
+                    audioManagerObj.MusicLayering("B");
                     // --------- AUDIO can be included here
                     return;
                 case "C":
@@ -108,8 +114,9 @@ namespace UI.Main
             yield return new WaitForSeconds(seconds);
             pS.gameObject.SetActive(false);
             print("stop");
+
         }
-        
+
         public void Increment()
         {
             slider.value += speed * Time.deltaTime;
@@ -130,7 +137,7 @@ namespace UI.Main
                 _decrement = false;
                 return;
             }
-        
+
             slider.value -= speed * Time.deltaTime;
             if (slider.value <= sliderStartValue - 20)
             {

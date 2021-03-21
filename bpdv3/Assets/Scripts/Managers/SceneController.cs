@@ -73,8 +73,9 @@ namespace Managers
                 InitLevelOneReferences();
                 DevModeOnOrOff();
             }
-
-            audioManagerObj.MusicLayering();
+            //following audio code sustitution in ComboMetre
+            //audioManagerObj.MusicLayering();
+            audioManagerObj.TestLayering();
         }
 
         private void SetSceneSettings()
@@ -100,7 +101,7 @@ namespace Managers
         private void InitLevelOneReferences()
         {
             tileController = GameObject.FindWithTag("TileController").GetComponent<TileController>();
-            
+
             var temp = GameObject.Find("Beat Header (TMP)");
             beatHeader = temp.GetComponent<TextMeshProUGUI>();
 

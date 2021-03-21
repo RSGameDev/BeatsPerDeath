@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         menuEvent.Stop(gameObject);
         gPlayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
-       
+        ResetAudioStates();
     }
 
     public void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
@@ -38,26 +38,55 @@ public class AudioManager : Singleton<AudioManager>
         BeatManager.Instance.UpdateBeat();
     }
 
-    public void MusicLayering()
+    public void CstateMusic()
+    {
+        AkSoundEngine.SetState("C_State", "Play");
+    }
+
+    //This approach with variable declared works with pressing keys, not yet with the letter changing 
+    public void MusicLayering(string status)
+    {
+        switch (status)
+        {
+            case "D":
+                AkSoundEngine.SetState("C_State", "Play");
+                //track B connected now to C state. 
+                break;
+
+            case "B":
+                AkSoundEngine.SetState("B_State", "Play");
+                //track D connected now to B state.
+                break;
+
+            case " ":
+                ResetAudioStates();
+                break;
+        }
+    }
+
+    public void TestLayering()
     {
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            AkSoundEngine.SetState("C_State", "Play");
+            MusicLayering("D");
+            //AkSoundEngine.SetState("C_State", "Play");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            AkSoundEngine.SetState("B_State", "Play");
+            MusicLayering("B");
+            //AkSoundEngine.SetState("B_State", "Play");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            AkSoundEngine.SetState("A_State", "Play");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             ResetAudioStates();
+            //AkSoundEngine.SetState("A_State", "Play");
         }
+
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    ResetAudioStates();
+        //}
     }
 
     public void ResetAudioStates()
@@ -82,4 +111,3 @@ public class AudioManager : Singleton<AudioManager>
     //} 
 
 }
-

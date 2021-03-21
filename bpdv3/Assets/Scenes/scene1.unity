@@ -8341,6 +8341,8 @@ MonoBehaviour:
   sliderStartValue: 0
   text: {fileID: 5617595032699126541}
   speed: 30
+  audioManagerObj: {fileID: 2657907478572666389, guid: 60d3318fbf3814355a5c72d5ab7b99c4,
+    type: 3}
   perform: 0
 --- !u!114 &1151763814
 MonoBehaviour:
