@@ -49,13 +49,23 @@ public class AudioManager : Singleton<AudioManager>
         switch (status)
         {
             case "D":
+                AkSoundEngine.SetState("D_State", "Play");               
+                break;
+
+            case "C":
                 AkSoundEngine.SetState("C_State", "Play");
-                //track B connected now to C state. 
                 break;
 
             case "B":
                 AkSoundEngine.SetState("B_State", "Play");
-                //track D connected now to B state.
+                break;
+
+            case "A":
+                AkSoundEngine.SetState("A_State", "Play");
+                break;
+
+            case "S":
+                AkSoundEngine.SetState("S_State", "Play");
                 break;
 
             case " ":
@@ -95,6 +105,8 @@ public class AudioManager : Singleton<AudioManager>
         AkSoundEngine.SetState("A_State", "Stop");
         AkSoundEngine.SetState("B_State", "Stop");
         AkSoundEngine.SetState("C_State", "Stop");
+        AkSoundEngine.SetState("D_State", "Stop");
+        AkSoundEngine.SetState("S_State", "Stop");
     }
 
 

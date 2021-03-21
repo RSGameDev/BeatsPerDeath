@@ -2,11 +2,16 @@ Event	ID	Name			Wwise Object Path	Notes
 	2667809542	GPlay_Music			\Music\GPlay_Music	
 
 State Group	ID	Name			Wwise Object Path	Notes
+	217379157	D_State			\GPlayStates\D_State	
 	1589478550	C_State			\GPlayStates\C_State	
 	2234821919	B_State			\GPlayStates\B_State	
 	2896168400	A_State			\GPlayStates\A_State	
+	3224201094	S_State			\GPlayStates\S_State	
 
 State	ID	Name	State Group			Notes
+	748895195	None	D_State			
+	788884573	Stop	D_State			
+	1256202815	Play	D_State			
 	748895195	None	C_State			
 	788884573	Stop	C_State			
 	1256202815	Play	C_State			
@@ -16,15 +21,22 @@ State	ID	Name	State Group			Notes
 	748895195	None	A_State			
 	788884573	Stop	A_State			
 	1256202815	Play	A_State			
+	748895195	None	S_State			
+	788884573	Stop	S_State			
+	1256202815	Play	S_State			
 
 Custom State	ID	Name	State Group	Owner		Notes
-	165185375	Stop	B_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		
-	265390218	Stop	C_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		
-	276029171	Stop	A_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		
+	116943893	Stop	C_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\C_120bpm4-4_L8M-P0		
+	508647823	Stop	S_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		
+	663756813	Stop	D_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		
+	696699967	Stop	A_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\A_120bpm4-4_L8M-P0		
+	948268668	Stop	B_State	\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	35435106	D_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\D_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		3454556
-	576404282	S_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\S_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		3071244
-	669491340	B_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\B_120bpm4-4_L8M-P0_291027D2.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		3074712
-	901612342	Blank_120bpm4-4_L8M-P0	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\GamePlayFinal\Blank_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\Blank_120bpm4-4_L8M-P0		3073084
+	35435106	D_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\D_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\D_120bpm4-4_L8M-P0		3454556
+	558755697	C_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\C_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\C_120bpm4-4_L8M-P0		3454556
+	576404282	S_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\S_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\S_120bpm4-4_L8M-P0		3071244
+	669491340	B_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\B_120bpm4-4_L8M-P0_A6DF291D.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\B_120bpm4-4_L8M-P0		3074712
+	691516134	A_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\A_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\A_120bpm4-4_L8M-P0		3456256
+	901612342	Blank_120bpm4-4_L8M-P0	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\GamePlayFinal\Blank_120bpm4-4_L8M-P0_D79FB2B7.wem		\Interactive Music Hierarchy\Music\GamePlayMusic\GamePlayFinal\Blank_120bpm4-4_L8M-P0		3073084
 

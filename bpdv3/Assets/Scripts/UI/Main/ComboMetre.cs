@@ -65,7 +65,6 @@ namespace UI.Main
                     text.text = "D";
                     scoring.multi1 = true;
                     audioManagerObj.MusicLayering("D");
-
                     // --------- AUDIO can be included here
                     return;
                 case "D":
@@ -74,7 +73,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "C";
                     scoring.multi2 = true;
-                    audioManagerObj.MusicLayering("B");
+                    audioManagerObj.MusicLayering("C");
                     // --------- AUDIO can be included here
                     return;
                 case "C":
@@ -83,6 +82,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "B";
                     scoring.multi3 = true;
+                    audioManagerObj.MusicLayering("B");
                     // --------- AUDIO can be included here
                     return;
                 case "B":
@@ -91,6 +91,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "A";
                     scoring.multi4 = true;
+                    audioManagerObj.MusicLayering("A");
                     // --------- AUDIO can be included here
                     return;
                 case "A":
@@ -99,6 +100,7 @@ namespace UI.Main
                     StartCoroutine(ParticleTermination(3));
                     text.text = "S";
                     scoring.multi5 = true;
+                    audioManagerObj.MusicLayering("S");
                     // --------- AUDIO can be included here
                     return;
             }
