@@ -49,13 +49,13 @@ namespace Core
             {
                 cancel = true;
                 BeatManager.Instance.RemoveListener(0, SpawnObject);
-                //BeatManager.Instance.RemoveListener(6, SpawnObject);
+                BeatManager.Instance.RemoveListener(3, SpawnObject);
             }
             else if(Input.GetKeyDown(KeyCode.O) && cancel)
             {
                 cancel = false;
                 BeatManager.Instance.AddListener(0, SpawnObject);
-                //BeatManager.Instance.AddListener(6, SpawnObject);
+                BeatManager.Instance.AddListener(3, SpawnObject);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Core
                             if (!cancel)
                             {
                                 BeatManager.Instance.AddListener(0, SpawnObject);
-                                //BeatManager.Instance.AddListener(6, SpawnObject);
+                                BeatManager.Instance.AddListener(3, SpawnObject);
                             }
                             break;
                         //case 2:

@@ -32,10 +32,10 @@ namespace Mechanics
 
         private string tag;
 
-        private void OnDisable()
-        {
-            DetachFromTile();
-        }
+        //private void OnDisable()
+        //{
+        //    DetachFromTile();
+        //}
 
         private void Awake()
         {
@@ -46,14 +46,19 @@ namespace Mechanics
         {
             if ((tag == s_Enemy || tag == s_Coin) && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
             {
-                if (!enemymovement.IsEnemyMoving)
+                if (enemy.isAlive)
                 {
-                    print("anchorattach");
-                    AttachObjectToTile(other);
+                    if (!enemymovement.IsEnemyMoving)
+                    {
+                        AttachObjectToTile(other);
+                    }
+                    else
+                    {
+                        DetachFromTile();
+                    }
                 }
                 else
                 {
-                    print("anchordettach");
                     DetachFromTile();
                 }
             }
@@ -103,8 +108,12 @@ namespace Mechanics
 
         public void DetachFromTile()
         {
-            //anchorTileObject = null;
             transform.parent.SetParent(null);
+        }
+
+        private void LateUpdate()
+        {
+            
         }
     }
 }
