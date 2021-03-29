@@ -1557,6 +1557,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3996352260429321867, guid: a476992be5ae1494ba98db1d3cb5c574,
         type: 3}
+    - target: {fileID: 122640361, guid: 624a37c32c31569468f20b3035266e67, type: 3}
+      propertyPath: amountToPoolShroom
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2176821013286377456, guid: 624a37c32c31569468f20b3035266e67,
         type: 3}
       propertyPath: m_Name
@@ -31911,6 +31915,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2262608510817008050, guid: 9b52d46ff02dcba4c9bf60845144eac5,
+        type: 3}
+      propertyPath: _lives
+      value: 
+      objectReference: {fileID: 7713163339104011140}
     - target: {fileID: 2262608510817008051, guid: 9b52d46ff02dcba4c9bf60845144eac5,
         type: 3}
       propertyPath: _comboMetre
@@ -55263,6 +55272,7 @@ GameObject:
   - component: {fileID: 7713163339104011138}
   - component: {fileID: 7713163339104011139}
   - component: {fileID: 7713163339104011136}
+  - component: {fileID: 7713163339104011140}
   - component: {fileID: 1151763813}
   - component: {fileID: 1151763814}
   - component: {fileID: 1151763815}
@@ -55316,6 +55326,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &7713163339104011140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713163339104011137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1264dd32a2b9d7e4d85fd011769e4da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeCount:
+  - {fileID: 5617595033231533386}
+  - {fileID: 5617595033178343072}
+  - {fileID: 5617595031932944812}
 --- !u!224 &7713163339104011149
 RectTransform:
   m_ObjectHideFlags: 0

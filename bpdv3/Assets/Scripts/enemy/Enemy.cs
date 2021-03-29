@@ -12,7 +12,7 @@ namespace EnemyNS
     {
         #region Private & Constant variables
 
-        [SerializeField] private GameObject enemyCurrentTile;
+        [SerializeField] public GameObject enemyCurrentTile;
         [SerializeField] private Transform pushBackTransform = null;
 
         private const string s_Ontile = "OnTile";
@@ -30,8 +30,9 @@ namespace EnemyNS
         }
 
         public EnemyType CurrentEnemyType;
-        public bool token = true;
+        //public bool token = true;
         public bool hasSpawned = false;
+        public bool isAlive;
         
         #endregion
         
@@ -53,6 +54,7 @@ namespace EnemyNS
         private void OnEnable()
         {
             gameObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            isAlive = true;
         }
 
         private void Awake()
@@ -62,6 +64,14 @@ namespace EnemyNS
         private void FixedUpdate()
         {
             IsPlayerInFront();
+        }
+
+        private void Update()
+        {
+            if (!isAlive)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -86,11 +96,8 @@ namespace EnemyNS
             if (other.CompareTag(s_Ontile))
             {
                 enemyCurrentTile = other.gameObject;
-                if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
-                {
-                    other.gameObject.GetComponent<OnTile>().tileHasToken = true;
-                    token = false;
-                }
+                other.gameObject.GetComponent<OnTile>().tileHasToken = true;
+                
             }
         }
 
@@ -116,7 +123,7 @@ namespace EnemyNS
             if (other.CompareTag(s_Ontile))
             {
                 other.gameObject.GetComponent<OnTile>().tileHasToken = false;
-                token = true;
+                //token = true;
             }
         }
         
@@ -136,14 +143,9 @@ namespace EnemyNS
         public void OnDeath()
         {
             enemyCurrentTile.GetComponent<OnTile>().tileHasToken = false;
-            token = true;
+            //token = true;
         }
-        
-        private void NewCycle()
-        {
-            token = true;
-        }
-        
+
         #endregion
 
         #region Public methods

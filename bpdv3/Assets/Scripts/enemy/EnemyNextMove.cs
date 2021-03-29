@@ -40,19 +40,22 @@ namespace EnemyNS
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_enemyMovement.IsEnemyMoving)
+            if (_enemy.isAlive)
             {
-                return;
-            }
-
-            if (other.CompareTag(s_Ontile))
-            {
-                _enemyMovement.NextMoveLocationGO = other.gameObject;
-                nextMoveCurrentTile = other.gameObject;
-                if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
+                if (_enemyMovement.IsEnemyMoving)
                 {
-                    other.gameObject.GetComponent<OnTile>().tileHasToken = true;
-                    nextMoveHasToken = false;
+                    return;
+                }
+
+                if (other.CompareTag(s_Ontile))
+                {
+                    _enemyMovement.NextMoveLocationGO = other.gameObject;
+                    nextMoveCurrentTile = other.gameObject;
+                    if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
+                    {
+                        other.gameObject.GetComponent<OnTile>().tileHasToken = true;
+                        nextMoveHasToken = false;
+                    }
                 }
             }
         }

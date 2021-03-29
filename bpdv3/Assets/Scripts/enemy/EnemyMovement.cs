@@ -13,6 +13,7 @@ namespace EnemyNS
         #region Private & Constant variables
 
         [SerializeField] private GameObject _designatedTileGameObject;
+        [SerializeField] private Enemy _enemy;
         [SerializeField] private EnemyDirection _enemyDirection;
         [SerializeField] private EnemyNextMove _enemyNextMove;
         [SerializeField] private float _speed = 2.0f;
@@ -24,6 +25,7 @@ namespace EnemyNS
         #endregion
 
         [SerializeField] private Vector3 location;
+        private bool isEnemyStartVacated;
 
         #region Public & Protected variables
 
@@ -45,21 +47,24 @@ namespace EnemyNS
 
         private void Update()
         {
-            if (BeatManager.Instance.BeatIndex == 4 ||
-                (BeatManager.Instance.BeatIndex == 0 && _enemyDirection.hasFacedDirection) && !_hasStartedMovement)
+            if (_enemy.isAlive)
             {
-                _hasStartedMovement = true;
-            }
+                if (BeatManager.Instance.BeatIndex == 4 ||
+                    (BeatManager.Instance.BeatIndex == 0 && _enemyDirection.hasFacedDirection) && !_hasStartedMovement)
+                {
+                    _hasStartedMovement = true;
+                }
 
-            if (_hasStartedMovement)
-            {
-                AssignNextTile();
-                Movement();
-            }
+                if (_hasStartedMovement)
+                {
+                    AssignNextTile();
+                    Movement();
+                }
 
-            if (BeatManager.Instance.BeatIndex == 5 || (BeatManager.Instance.BeatIndex == 1))
-            {
-                NewCycle();
+                if (BeatManager.Instance.BeatIndex == 5 || (BeatManager.Instance.BeatIndex == 1))
+                {
+                    NewCycle();
+                }
             }
         }
 
@@ -67,6 +72,7 @@ namespace EnemyNS
         {
             if (!_enemyNextMove.nextMoveHasToken)
             {
+                VacateEnemyStartTile();
                 IsEnemyMoving = true;
                 _step = _speed * Time.deltaTime;
                 
@@ -99,6 +105,15 @@ namespace EnemyNS
             //}
         }
 
+        private void VacateEnemyStartTile()
+        {
+            if (!isEnemyStartVacated)
+            {
+                isEnemyStartVacated = true;
+                _enemy.enemyCurrentTile.GetComponent<OnTile>().tileHasToken = false;
+            }
+        }
+
         private void AssignNextTile()
         {
             if (!_assignNextTile)
@@ -110,6 +125,8 @@ namespace EnemyNS
 
         private void NewCycle()
         {
+            IsEnemyMoving = false;
+            isEnemyStartVacated = false;
             _hasStartedMovement = false;
             _assignNextTile = false;
         }

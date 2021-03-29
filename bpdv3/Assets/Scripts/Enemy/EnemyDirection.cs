@@ -29,15 +29,18 @@ namespace EnemyNS
 
         private void Update()
         {
-            if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
+            if (_enemy.isAlive)
             {
-                hasFacedDirection = true;
-                FaceDirection();
-            }
+                if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
+                {
+                    hasFacedDirection = true;
+                    FaceDirection();
+                }
 
-            if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5)
-            {
-                NewCycle();
+                if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5)
+                {
+                    NewCycle();
+                }
             }
         }
 

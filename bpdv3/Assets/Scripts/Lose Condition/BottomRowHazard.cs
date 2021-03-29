@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EnemyNS;
 using Floor;
@@ -20,7 +21,7 @@ namespace Lose_Condition
         #region Public & Protected variables
 
         #endregion
-
+        
         #region Constructors
 
         #endregion
@@ -31,8 +32,7 @@ namespace Lose_Condition
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(s_FireHazard))
             {
-                other.gameObject.transform.parent.GetChild(0).GetComponent<Anchor>().DetachFromTile();
-                other.transform.parent.gameObject.SetActive(false);
+                other.gameObject.transform.parent.GetComponent<Enemy>().isAlive = false;
             }
 
             if (other.gameObject.CompareTag(s_Player))
