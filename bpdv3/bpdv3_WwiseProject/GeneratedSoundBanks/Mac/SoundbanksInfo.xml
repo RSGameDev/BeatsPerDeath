@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>/Users/Jonatan/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Desktop/BeatsPerDeathNew-develop-2/bpdv3/bpdv3_WwiseProject/</ProjectRoot>
-		<SourceFilesRoot>/Users/Jonatan/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Desktop/BeatsPerDeathNew-develop-2/bpdv3/bpdv3_WwiseProject/.cache/Mac/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/Jonatan/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Desktop/BeatsPerDeathNew-develop-2/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ProjectRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/</ProjectRoot>
+		<SourceFilesRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/Jonatan/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Desktop/BeatsPerDeathNew-develop-2/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="710938993" Language="SFX" Hash="4189250782">
+		<SoundBank Id="710938993" Language="SFX" Hash="3078822999">
 			<ObjectPath>\SoundBanks\Music\GPlayMusicBank</ObjectPath>
 			<ShortName>GPlayMusicBank</ShortName>
 			<Path>GPlayMusicBank.bnk</Path>
@@ -22,13 +22,21 @@
 							<ShortName>D_120bpm4-4_L8M-P0.wav</ShortName>
 							<Path>SFX/D_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
 						</File>
+						<File Id="558755697" Language="SFX">
+							<ShortName>C_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/C_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
 						<File Id="576404282" Language="SFX">
 							<ShortName>S_120bpm4-4_L8M-P0.wav</ShortName>
 							<Path>SFX/S_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
 						</File>
 						<File Id="669491340" Language="SFX">
 							<ShortName>B_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/B_120bpm4-4_L8M-P0_291027D2.wem</Path>
+							<Path>SFX/B_120bpm4-4_L8M-P0_A6DF291D.wem</Path>
+						</File>
+						<File Id="691516134" Language="SFX">
+							<ShortName>A_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/A_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
 						</File>
 						<File Id="901612342" Language="SFX">
 							<ShortName>GamePlayFinal\Blank_120bpm4-4_L8M-P0.wav</ShortName>
@@ -38,12 +46,12 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2713587596">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2996704905">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="2595390611" Language="SFX" Hash="2664766516">
+		<SoundBank Id="2595390611" Language="SFX" Hash="2700048453">
 			<ObjectPath>\SoundBanks\Music\MenuMusicBank</ObjectPath>
 			<ShortName>MenuMusicBank</ShortName>
 			<Path>MenuMusicBank.bnk</Path>
@@ -62,7 +70,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2761892727" Language="SFX" Hash="3231518116">
+		<SoundBank Id="2761892727" Language="SFX" Hash="57514893">
 			<ObjectPath>\SoundBanks\UISounds\UISounds</ObjectPath>
 			<ShortName>UISounds</ShortName>
 			<Path>UISounds.bnk</Path>

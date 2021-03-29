@@ -24,6 +24,20 @@
 						<State Name="Stop" ID="{E6B54359-932A-46AC-9B10-AD55E4879AB8}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="D_State" ID="{B7703492-9330-4856-A132-C1B3268AC89F}">
+					<ChildrenList>
+						<State Name="None" ID="{65007D46-7CFB-4B00-9BDE-44FF7ECDA8D8}"/>
+						<State Name="Play" ID="{798CE3F1-6D43-4E4E-AA6C-B6D2E7EC8B61}"/>
+						<State Name="Stop" ID="{ECE29EB0-6874-49C4-AE9E-59A704C18D96}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="S_State" ID="{DE9D4B2A-9189-4DF9-A834-87C960CD7A7B}">
+					<ChildrenList>
+						<State Name="None" ID="{41435D31-2357-48B7-A532-F07340463C7E}"/>
+						<State Name="Play" ID="{B635EEE0-FB29-4FB9-AD01-866E12C71FA7}"/>
+						<State Name="Stop" ID="{20ADD67F-ABC6-4CE3-A054-0776C1252E9E}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

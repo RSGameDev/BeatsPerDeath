@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         menuEvent.Stop(gameObject);
         gPlayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
-       
+        ResetAudioStates();
     }
 
     public void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
@@ -38,26 +38,65 @@ public class AudioManager : Singleton<AudioManager>
         BeatManager.Instance.UpdateBeat();
     }
 
-    public void MusicLayering()
+    public void CstateMusic()
+    {
+        AkSoundEngine.SetState("C_State", "Play");
+    }
+
+    //This approach with variable declared works with pressing keys, not yet with the letter changing 
+    public void MusicLayering(string status)
+    {
+        switch (status)
+        {
+            case "D":
+                AkSoundEngine.SetState("D_State", "Play");               
+                break;
+
+            case "C":
+                AkSoundEngine.SetState("C_State", "Play");
+                break;
+
+            case "B":
+                AkSoundEngine.SetState("B_State", "Play");
+                break;
+
+            case "A":
+                AkSoundEngine.SetState("A_State", "Play");
+                break;
+
+            case "S":
+                AkSoundEngine.SetState("S_State", "Play");
+                break;
+
+            case " ":
+                ResetAudioStates();
+                break;
+        }
+    }
+
+    public void TestLayering()
     {
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            AkSoundEngine.SetState("C_State", "Play");
+            MusicLayering("D");
+            //AkSoundEngine.SetState("C_State", "Play");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            AkSoundEngine.SetState("B_State", "Play");
+            MusicLayering("B");
+            //AkSoundEngine.SetState("B_State", "Play");
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            AkSoundEngine.SetState("A_State", "Play");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             ResetAudioStates();
+            //AkSoundEngine.SetState("A_State", "Play");
         }
+
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    ResetAudioStates();
+        //}
     }
 
     public void ResetAudioStates()
@@ -66,6 +105,8 @@ public class AudioManager : Singleton<AudioManager>
         AkSoundEngine.SetState("A_State", "Stop");
         AkSoundEngine.SetState("B_State", "Stop");
         AkSoundEngine.SetState("C_State", "Stop");
+        AkSoundEngine.SetState("D_State", "Stop");
+        AkSoundEngine.SetState("S_State", "Stop");
     }
 
 
@@ -82,4 +123,3 @@ public class AudioManager : Singleton<AudioManager>
     //} 
 
 }
-

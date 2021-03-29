@@ -2,6 +2,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	4055567060	Menu_Music			\Music\Menu_Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	15936007	MenuMusic_157BPM_Master	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\MenuMusic_157BPM_Master_D79FB2B7.wem		\Interactive Music Hierarchy\Music\MenuMusic\MenuMusic\MenuMusic_157BPM_Master		12032628
-	47794588	MenuMusic_120BPM_Master	Y:\Desktop\BeatsPerDeathNew-develop-2\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\MenuMusic_120BPM_Master_D79FB2B7.wem		\Interactive Music Hierarchy\Music\MenuMusic\MenuMusicTwo\MenuMusic_120BPM_Master		10365904
+	15936007	MenuMusic_157BPM_Master	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\MenuMusic_157BPM_Master_D79FB2B7.wem		\Interactive Music Hierarchy\Music\MenuMusic\MenuMusic\MenuMusic_157BPM_Master		12032628
+	47794588	MenuMusic_120BPM_Master	Y:\Documents\GitHub\BeatsPerDeath\bpdv3\bpdv3_WwiseProject\.cache\Windows\SFX\MenuMusic_120BPM_Master_D79FB2B7.wem		\Interactive Music Hierarchy\Music\MenuMusic\MenuMusicTwo\MenuMusic_120BPM_Master		10365904
 
