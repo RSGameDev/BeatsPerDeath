@@ -59,6 +59,12 @@ namespace Core
             }
         }
 
+        public void ClearListeners()
+        {
+            BeatManager.Instance.RemoveListener(0, SpawnObject);
+            BeatManager.Instance.RemoveListener(3, SpawnObject);
+        }
+
         public void SpawnPattern(int level, int stageOfLevel)
         {
             _currentLevel = level;

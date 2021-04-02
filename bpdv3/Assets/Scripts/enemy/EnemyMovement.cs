@@ -110,6 +110,10 @@ namespace EnemyNS
             if (!isEnemyStartVacated)
             {
                 isEnemyStartVacated = true;
+                
+                // removes error message in console for non reference of enemyCurrentTile
+                if (_enemy.enemyCurrentTile == null) return;
+                
                 _enemy.enemyCurrentTile.GetComponent<OnTile>().tileHasToken = false;
             }
         }

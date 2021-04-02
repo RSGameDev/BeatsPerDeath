@@ -35,7 +35,10 @@ public class AudioManager : Singleton<AudioManager>
 
     public void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
     {
-        BeatManager.Instance.UpdateBeat();
+        if (SceneController.Instance.activeScene != "GameOver")
+        {
+            BeatManager.Instance.UpdateBeat();
+        }
     }
 
     public void CstateMusic()
