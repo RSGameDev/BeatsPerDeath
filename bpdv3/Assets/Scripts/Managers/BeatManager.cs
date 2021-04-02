@@ -154,7 +154,7 @@ namespace Managers
                 _beatListeners[beatIndex].Remove(beatAction);
             }
         }
-
+        
         /// <summary>
         /// Add listener to every beat
         /// </summary>

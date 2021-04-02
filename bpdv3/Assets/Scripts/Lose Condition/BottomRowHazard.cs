@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Core;
 using EnemyNS;
 using Floor;
 using Mechanics;
@@ -15,6 +16,7 @@ namespace Lose_Condition
 
         private const string s_FireHazard = "FireHazard";
         private const string s_Player = "Player";
+        [SerializeField] private Spawner _spawner;
 
         #endregion
 
@@ -37,6 +39,7 @@ namespace Lose_Condition
 
             if (other.gameObject.CompareTag(s_Player))
             {
+                _spawner.ClearListeners();
                 other.GetComponent<Player>().OnPlayerDie();
             }
         }

@@ -37,6 +37,7 @@ namespace Managers
         #region Public and Protected variables
 
         public AudioManager audioManagerObj;
+        public string activeScene;
         public int CurrentSceneIndex { get; private set; }
 
         #endregion
@@ -47,13 +48,20 @@ namespace Managers
         {
             base.Awake();
 
+            activeScene = SceneManager.GetActiveScene().name;
+            
+            audioManagerObj.ResetAudioStates();
+
+            if (activeScene == "GameOver") return;
+
             _warningScreen.transform.localScale = Vector3.zero;
             _mainMenu.transform.localScale = Vector3.zero;
             _optionsMenu.transform.localScale = Vector3.zero;
             _gameplayMenu.transform.localScale = Vector3.zero;
             _soundsMenu.transform.localScale = Vector3.zero;
             _creditsScreen.transform.localScale = Vector3.zero;
-            audioManagerObj.ResetAudioStates();
+            
+            
         }
 
         private void Start()
@@ -105,6 +113,7 @@ namespace Managers
             var temp = GameObject.Find("Beat Header (TMP)");
             beatHeader = temp.GetComponent<TextMeshProUGUI>();
 
+            print("init");
             var temp1 = GameObject.Find("BeatUITestValue (TMP)");
             beatUiValue = temp1.GetComponent<TextMeshProUGUI>();
 
@@ -149,6 +158,11 @@ namespace Managers
         private void UpdateBeatUI()
         {
             var currentBeat = BeatManager.Instance.BeatIndex % 4;
+
+            // added as an error in console can appear if this function is called before update runs one time.
+            // beatUiValue does not reference until Update runs once.
+            if (beatUiValue == null) return;
+            
             beatUiValue.text = currentBeat.ToString();
 
             if (currentBeat == 0)
@@ -161,6 +175,11 @@ namespace Managers
         private void UpdateSpawnCountUI()
         {
             var currentBeat = BeatManager.Instance.BeatIndex % 8;
+            
+            // added as an error in console can appear if this function is called before update runs one time.
+            // spawnUiValue does not reference until Update runs once.
+            if (spawnUiValue == null) return;
+            
             spawnUiValue.text = currentBeat.ToString();
 
             if (currentBeat == 0)
