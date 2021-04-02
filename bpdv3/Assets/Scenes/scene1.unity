@@ -447,7 +447,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 125, y: 0}
-  m_SizeDelta: {x: 50, y: 120}
+  m_SizeDelta: {x: 78.125, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115900796
 MonoBehaviour:
@@ -506,7 +506,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 46.875, y: 50}
+  m_Size: {x: 78.125, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &115900799
 MonoBehaviour:
