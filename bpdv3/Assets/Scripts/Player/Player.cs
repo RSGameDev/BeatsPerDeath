@@ -48,7 +48,7 @@ namespace PlayerNS
         {
             _livesCountPlayer--;
             _lives.PlayerLoseLife(_livesCountPlayer);
-            if (_livesCountPlayer == 0)
+            if (_livesCountPlayer == 0) 
             {
                 OnPlayerDie();
             }

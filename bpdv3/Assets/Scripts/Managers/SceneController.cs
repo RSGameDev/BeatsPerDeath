@@ -52,6 +52,7 @@ namespace Managers
             
             audioManagerObj.ResetAudioStates();
 
+            // Removes an error appearing in the console. Regarding referencing of objects below.
             if (activeScene == "GameOver") return;
 
             _warningScreen.transform.localScale = Vector3.zero;
