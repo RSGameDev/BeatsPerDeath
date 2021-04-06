@@ -3980,6 +3980,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68ea34d432856dc47a0b2c13dd55a64c, type: 3}
+--- !u!1 &1406047211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2262608510817008048, guid: 9b52d46ff02dcba4c9bf60845144eac5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4736118990116047161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406047212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406047211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9667099ae35568145bb5e8ecb3febb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: ebebaf21be3b4014ba025b56414082b0, type: 2}
+  - {fileID: 2100000, guid: c9af850c916e90f4caba7568dadd19f8, type: 2}
+  - {fileID: 2100000, guid: 481bb9cffc9c14d4881ce8e19b9738f7, type: 2}
+  defaultColour: {r: 0, g: 0.044077396, b: 1, a: 0}
+  hurtColour: {r: 1, g: 0, b: 0, a: 0}
+  warningColour: {r: 1, g: 0.95441306, b: 0, a: 0}
 --- !u!1 &1410142512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6371260715351007763, guid: 68ea34d432856dc47a0b2c13dd55a64c,
