@@ -46,6 +46,7 @@ namespace PlayerNS
         /// </summary>
         public void DealDamage()
         {
+            GetComponent<PlayerColourState>().PlayerHit();
             _livesCountPlayer--;
             _lives.PlayerLoseLife(_livesCountPlayer);
             if (_livesCountPlayer == 0) 
