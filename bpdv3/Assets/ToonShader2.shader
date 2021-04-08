@@ -10,6 +10,7 @@
         Vector1_43871BB6("EmissionMultiplier", Float) = 0
         [NoScaleOffset]Texture2D_D50361F9("EmissionMap", 2D) = "white" {}
         Color_5F33D9E9("Emission Tint", Color) = (1, 1, 1, 0)
+        Vector1_32752908("EmissionColorMultiplier", Float) = 0
         Vector1_8160168B("RimLightSize", Float) = 0.35
         Vector1_110F99D6("RimLightBlend", Float) = 0.7
         Color_56C8FC5C("RimColor", Color) = (0.7830189, 0.7830189, 0.7830189, 0)
@@ -246,6 +247,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -672,6 +674,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -855,7 +858,10 @@
                         Unity_Add_float3((_Multiply_D2293F43_Out_2.xyz), _Multiply_F35DAC42_Out_2, _Add_5D87E12B_Out_2);
                         float _Property_8AAFA98B_Out_0 = Boolean_A31288B0;
                         float _Vector1_8DB034FF_Out_0 = 1;
+                        float _Property_B2985F35_Out_0 = Vector1_32752908;
                         float4 _Property_BF13B8E1_Out_0 = Color_5F33D9E9;
+                        float4 _Multiply_50BE207B_Out_2;
+                        Unity_Multiply_float((_Property_B2985F35_Out_0.xxxx), _Property_BF13B8E1_Out_0, _Multiply_50BE207B_Out_2);
                         float4 _SampleTexture2D_1C01226B_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_D50361F9, samplerTexture2D_D50361F9, IN.uv0.xy);
                         float _SampleTexture2D_1C01226B_R_4 = _SampleTexture2D_1C01226B_RGBA_0.r;
                         float _SampleTexture2D_1C01226B_G_5 = _SampleTexture2D_1C01226B_RGBA_0.g;
@@ -865,7 +871,7 @@
                         float4 _Multiply_FFD43A71_Out_2;
                         Unity_Multiply_float(_SampleTexture2D_1C01226B_RGBA_0, (_Property_48CC362A_Out_0.xxxx), _Multiply_FFD43A71_Out_2);
                         float4 _Multiply_FC33E876_Out_2;
-                        Unity_Multiply_float(_Property_BF13B8E1_Out_0, _Multiply_FFD43A71_Out_2, _Multiply_FC33E876_Out_2);
+                        Unity_Multiply_float(_Multiply_50BE207B_Out_2, _Multiply_FFD43A71_Out_2, _Multiply_FC33E876_Out_2);
                         float4 _Add_C33048EC_Out_2;
                         Unity_Add_float4((_Vector1_8DB034FF_Out_0.xxxx), _Multiply_FC33E876_Out_2, _Add_C33048EC_Out_2);
                         float _Property_638BCD7C_Out_0 = Vector1_43871BB6;
@@ -1239,6 +1245,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -1629,6 +1636,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -2032,6 +2040,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -2462,6 +2471,7 @@
                     float Boolean_A31288B0;
                     float Vector1_43871BB6;
                     float4 Color_5F33D9E9;
+                    float Vector1_32752908;
                     float Vector1_8160168B;
                     float Vector1_110F99D6;
                     float4 Color_56C8FC5C;
@@ -2645,7 +2655,10 @@
                         Unity_Add_float3((_Multiply_D2293F43_Out_2.xyz), _Multiply_F35DAC42_Out_2, _Add_5D87E12B_Out_2);
                         float _Property_8AAFA98B_Out_0 = Boolean_A31288B0;
                         float _Vector1_8DB034FF_Out_0 = 1;
+                        float _Property_B2985F35_Out_0 = Vector1_32752908;
                         float4 _Property_BF13B8E1_Out_0 = Color_5F33D9E9;
+                        float4 _Multiply_50BE207B_Out_2;
+                        Unity_Multiply_float((_Property_B2985F35_Out_0.xxxx), _Property_BF13B8E1_Out_0, _Multiply_50BE207B_Out_2);
                         float4 _SampleTexture2D_1C01226B_RGBA_0 = SAMPLE_TEXTURE2D(Texture2D_D50361F9, samplerTexture2D_D50361F9, IN.uv0.xy);
                         float _SampleTexture2D_1C01226B_R_4 = _SampleTexture2D_1C01226B_RGBA_0.r;
                         float _SampleTexture2D_1C01226B_G_5 = _SampleTexture2D_1C01226B_RGBA_0.g;
@@ -2655,7 +2668,7 @@
                         float4 _Multiply_FFD43A71_Out_2;
                         Unity_Multiply_float(_SampleTexture2D_1C01226B_RGBA_0, (_Property_48CC362A_Out_0.xxxx), _Multiply_FFD43A71_Out_2);
                         float4 _Multiply_FC33E876_Out_2;
-                        Unity_Multiply_float(_Property_BF13B8E1_Out_0, _Multiply_FFD43A71_Out_2, _Multiply_FC33E876_Out_2);
+                        Unity_Multiply_float(_Multiply_50BE207B_Out_2, _Multiply_FFD43A71_Out_2, _Multiply_FC33E876_Out_2);
                         float4 _Add_C33048EC_Out_2;
                         Unity_Add_float4((_Vector1_8DB034FF_Out_0.xxxx), _Multiply_FC33E876_Out_2, _Add_C33048EC_Out_2);
                         float _Property_638BCD7C_Out_0 = Vector1_43871BB6;
