@@ -48,21 +48,21 @@ namespace Core
             if (Input.GetKeyDown(KeyCode.O) && !cancel)
             {
                 cancel = true;
-                BeatManager.Instance.RemoveListener(0, SpawnObject);
-                BeatManager.Instance.RemoveListener(3, SpawnObject);
+                //BeatManager.Instance.RemoveListener(0, SpawnObject);
+                BeatManager.Instance.RemoveListener(4, SpawnObject);
             }
             else if(Input.GetKeyDown(KeyCode.O) && cancel)
             {
                 cancel = false;
-                BeatManager.Instance.AddListener(0, SpawnObject);
-                BeatManager.Instance.AddListener(3, SpawnObject);
+                //BeatManager.Instance.AddListener(0, SpawnObject);
+                BeatManager.Instance.AddListener(4, SpawnObject);
             }
         }
 
         public void ClearListeners()
         {
-            BeatManager.Instance.RemoveListener(0, SpawnObject);
-            BeatManager.Instance.RemoveListener(3, SpawnObject);
+            //BeatManager.Instance.RemoveListener(0, SpawnObject);
+            BeatManager.Instance.RemoveListener(4, SpawnObject);
         }
 
         public void SpawnPattern(int level, int stageOfLevel)
@@ -78,8 +78,8 @@ namespace Core
                         case 1:
                             if (!cancel)
                             {
-                                BeatManager.Instance.AddListener(0, SpawnObject);
-                                BeatManager.Instance.AddListener(3, SpawnObject);
+                                //BeatManager.Instance.AddListener(0, SpawnObject);
+                                BeatManager.Instance.AddListener(4, SpawnObject);
                             }
                             break;
                         //case 2:
@@ -120,7 +120,7 @@ namespace Core
             }
             objectPool.transform.position = SpawnPosition();
             objectPool.SetActive(true);
-            objectPool.GetComponent<Enemy>().hasSpawned = true;
+            //objectPool.GetComponent<Enemy>().hasSpawned = true;
         }
 
         private Vector3 SpawnPosition()
@@ -152,6 +152,9 @@ namespace Core
                     startPos = spawnPoint[4].transform.position;
                     break;
             }
+            
+            _hasFunctionExecutedBefore = true;
+            
             return startPos;
         }
 

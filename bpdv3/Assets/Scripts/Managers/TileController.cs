@@ -8,7 +8,7 @@ namespace Managers
     public class TileController : MonoBehaviour {
 
         #region Private & Constant variables
-        
+
         [SerializeField] private GameObject[] _tilesArray;
         private OnTile[] _onTileScript;
         private const float s_Distance = 1.25f;
@@ -23,8 +23,8 @@ namespace Managers
 
         public bool turnOffDevTileValues;
         
-        [SerializeField] private GameObject[] _tilesOutsideArray;
-        private OnTile[] _onTileOutsideScript;
+        //[SerializeField] private GameObject[] _tilesOutsideArray;
+        //private OnTile[] _onTileOutsideScript;
         
         [SerializeField] private BoxCollider[] _collidersArray;
         
@@ -67,16 +67,16 @@ namespace Managers
                 var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
                 tile.transform.Translate(tileMovement);
 
-                if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
-                {
-                    var index = Array.IndexOf(_tilesArray,tile);
-                    _collidersArray[index].enabled = false;
-                }
-                else
-                {
-                    var index = Array.IndexOf(_tilesArray,tile);
-                    _collidersArray[index].enabled = true;
-                }
+                //if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
+                //{
+                //    var index = Array.IndexOf(_tilesArray,tile);
+                //    _collidersArray[index].enabled = false;
+                //}
+                //else
+                //{
+                //    var index = Array.IndexOf(_tilesArray,tile);
+                //    _collidersArray[index].enabled = true;
+                //}
                 
                 if (tile.transform.position.z <= s_ResetTileOccupantValue)
                 {
@@ -110,10 +110,10 @@ namespace Managers
                     tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
                 }
 
-                foreach (var tile in _onTileOutsideScript)
-                {
-                    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
-                }
+                //foreach (var tile in _onTileOutsideScript)
+                //{
+                //    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
+                //}
             }
         }
 
@@ -125,11 +125,11 @@ namespace Managers
                 _onTileScript[i] = _tilesArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
             }
 
-            _onTileOutsideScript = new OnTile[_tilesOutsideArray.Length];
-            for (var i = 0; i < _tilesOutsideArray.Length; i++)
-            {
-                _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
-            }
+            //_onTileOutsideScript = new OnTile[_tilesOutsideArray.Length];
+            //for (var i = 0; i < _tilesOutsideArray.Length; i++)
+            //{
+            //    _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
+            //}
         }
         
         private void InitCollidersOnTiles()
@@ -140,7 +140,15 @@ namespace Managers
                 _collidersArray[i] = _onTileScript[i].gameObject.GetComponent<BoxCollider>();
             }
         }
-        
+
+        public void TilePermissionCheck()
+        {
+            foreach (var tile in _tilesArray)
+            {
+                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().PermissionToMove();
+                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().ContinueOrHold();
+            }
+        }
         
         
         private void FloorMoves() 

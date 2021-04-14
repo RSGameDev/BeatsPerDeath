@@ -7,34 +7,24 @@ namespace EnemyNS
 {
     public class EnemyNextMove : MonoBehaviour
     {
-        #region Private & Constant variables
-
         [SerializeField] private Enemy _enemy;
-        private GameObject nextMoveCurrentTile;
         [SerializeField] private EnemyMovement _enemyMovement;
+        
         private const string s_Ontile = "OnTile";
+        private const string s_Enemy = "enemy";
 
-        #endregion
+        //public bool nextMoveHasPermission;
+        public bool hasPermission;
+        private bool isAssigned;
 
-        #region Public & Protected variables
-
-        public bool nextMoveHasToken = true;
-
-        #endregion
-
-
-        #region Constructors
-
-        #endregion
-
-        #region Private methods
-
-        private void OnDisable()
+        public GameObject enemyOnTile;
+        
+        private void Update()
         {
-            if (_enemy.hasSpawned)
+            if (hasPermission && !isAssigned)
             {
-                OnDeath();
-                //NewCycle();
+                isAssigned = true;
+                _enemyMovement.AssignNextTile();
             }
         }
 
@@ -42,21 +32,30 @@ namespace EnemyNS
         {
             if (_enemy.isAlive)
             {
-                if (_enemyMovement.IsEnemyMoving)
-                {
-                    return;
-                }
+                //if (_enemyMovement.IsEnemyMoving)
+                //{
+                //    return;
+                //}
 
                 if (other.CompareTag(s_Ontile))
                 {
-                    _enemyMovement.NextMoveLocationGO = other.gameObject;
-                    nextMoveCurrentTile = other.gameObject;
-                    if (!other.gameObject.GetComponent<OnTile>().tileHasToken)
+                    if (transform.position.z > 6.25f)
                     {
-                        other.gameObject.GetComponent<OnTile>().tileHasToken = true;
-                        nextMoveHasToken = false;
+                        return;
                     }
+                    _enemyMovement.NextMoveLocationGO = other.gameObject;
+                    //if (other.gameObject.GetComponent<OnTile>().tileHasToken == 0)
+                    //{
+                        other.gameObject.GetComponent<OnTile>().NextMoveGameObjects.Add(gameObject); 
+                        other.gameObject.GetComponent<OnTile>().tileHasToken += 1;
+                    //}
                 }
+
+                if (other.CompareTag(s_Enemy))
+                {
+                    enemyOnTile = other.gameObject;
+                }
+                    
             }
         }
 
@@ -64,25 +63,15 @@ namespace EnemyNS
         {
             if (other.CompareTag(s_Ontile))
             {
-                other.gameObject.GetComponent<OnTile>().tileHasToken = false;
+                other.gameObject.GetComponent<OnTile>().tileHasToken -= 1;
+                other.gameObject.GetComponent<OnTile>().NextMoveGameObjects.Remove(gameObject); 
             }
         }
 
-        #endregion
-
-        #region Public methods
-
-        public void OnDeath()
+        public void ResetValues()
         {
-            nextMoveCurrentTile.GetComponent<OnTile>().tileHasToken = false;
-            nextMoveHasToken = true;
+            isAssigned = false;
+            hasPermission = false;
         }
-        
-        public void NewCycle()
-        {
-            nextMoveHasToken = true;
-        }
-
-        #endregion
     }
 }

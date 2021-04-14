@@ -15,22 +15,27 @@ namespace Managers
         private int _currentStage;
         //private int rookCountMinute2;
         //private int rookCountMinute3;
-        
+
         #region Private & Const variables
-        
+
         [SerializeField] private TextMeshProUGUI _timerUi;
         private SceneController _sceneController;
         private Spawner _spawner;
         private bool _stage1;
-        private bool _stage2; 
-        private bool _stage3; 
+        private bool _stage2;
+        private bool _stage3;
         private bool _checkLevelStatus;
+        public bool hasAssignedTile;
+        private bool hasResetValues;
 
+        [SerializeField] private TileController _tileController;
+        
         #endregion
 
         #region Public & Protected variables
+
         public float Timer { get; set; }
-        
+
         #endregion
 
         #region Constructor
@@ -47,7 +52,7 @@ namespace Managers
         }
 
         #endregion
-        
+
         #region Private Methods
 
         private void Update()
@@ -55,6 +60,19 @@ namespace Managers
             GameTimer();
 
             StageOfLevel();
+
+            if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasAssignedTile)
+            {
+                hasAssignedTile = true;
+                hasResetValues = false;
+                _tileController.TilePermissionCheck();
+            }
+
+            if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasResetValues)
+            {
+                hasResetValues = true;
+                ResetValue();
+            }
         }
 
         private void StageOfLevel()
@@ -76,7 +94,7 @@ namespace Managers
             //    _stage3 = true;
             //    _checkLevelStatus = true;
             //}
-            
+
             if (_checkLevelStatus)
             {
                 _checkLevelStatus = false;
@@ -102,18 +120,19 @@ namespace Managers
                 case 1:
                     if (_stage1)
                     {
-                        _spawner.SpawnPattern(levelNumber,1);
+                        _spawner.SpawnPattern(levelNumber, 1);
                     }
-                    
+
                     if (_stage2)
                     {
-                        _spawner.SpawnPattern(levelNumber,2);
+                        _spawner.SpawnPattern(levelNumber, 2);
                     }
-                    
+
                     if (_stage3)
                     {
-                        _spawner.SpawnPattern(levelNumber,3);
+                        _spawner.SpawnPattern(levelNumber, 3);
                     }
+
                     break;
 
 
@@ -121,45 +140,48 @@ namespace Managers
                     //SpawnLevelThreeEnemies();
                     break;
             }
-
-            return;
-
-            ////void SpawnLevelOneEnemies()
-            //{
-            //    ShroomPoolObject();
-            //}
-//
-            ////void SpawnLevelTwoEnemies()
-            //{
-            //    rookCountMinute2++;
-            //    if (rookCountMinute2 == 3)
-            //    {
-            //        RookPoolObject();
-            //        rookCountMinute2 = 0;
-            //    }
-            //    else
-            //    {
-            //        ShroomPoolObject();
-            //    }
-            //}
-//
-            ////void SpawnLevelThreeEnemies()
-            //{
-            //    rookCountMinute3++;
-            //    if (rookCountMinute3 == 2)
-            //    {
-            //        RookPoolObject();
-            //        rookCountMinute3 = 0;
-            //    }
-            //    else
-            //    {
-            //        ShroomPoolObject();
-            //    }
-            //}
         }
         
-        #endregion
-        
-        
+        void ResetValue()
+        {
+            hasAssignedTile = false;
+        }
+
+        ////void SpawnLevelOneEnemies()
+        //{
+        //    ShroomPoolObject();
+        //}
+//
+        ////void SpawnLevelTwoEnemies()
+        //{
+        //    rookCountMinute2++;
+        //    if (rookCountMinute2 == 3)
+        //    {
+        //        RookPoolObject();
+        //        rookCountMinute2 = 0;
+        //    }
+        //    else
+        //    {
+        //        ShroomPoolObject();
+        //    }
+        //}
+//
+        ////void SpawnLevelThreeEnemies()
+        //{
+        //    rookCountMinute3++;
+        //    if (rookCountMinute3 == 2)
+        //    {
+        //        RookPoolObject();
+        //        rookCountMinute3 = 0;
+        //    }
+        //    else
+        //    {
+        //        ShroomPoolObject();
+        //    }
+        //}
     }
+    #endregion
 }
+
+
+

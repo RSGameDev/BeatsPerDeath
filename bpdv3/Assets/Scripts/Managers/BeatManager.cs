@@ -175,7 +175,7 @@ namespace Managers
             _isBeatsStarted = true;
 
             StartOnBeatInterval();
-
+           
             _beatIndex++;
             BeatIndexForLevel = _beatIndex;
             _beatIndex %= s_BeatLimit;
