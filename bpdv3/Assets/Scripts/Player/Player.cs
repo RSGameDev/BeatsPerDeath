@@ -1,4 +1,5 @@
-﻿using UI.Main;
+﻿using System.Collections;
+using UI.Main;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,12 +50,18 @@ namespace PlayerNS
             GetComponent<PlayerColourState>().PlayerHit();
             _livesCountPlayer--;
             _lives.PlayerLoseLife(_livesCountPlayer);
-            if (_livesCountPlayer == 0) 
+            if (_livesCountPlayer == 0)
             {
-                OnPlayerDie();
+                StartCoroutine(DeathDelay(2));
             }
         }
 
+        IEnumerator DeathDelay(int delay)
+        {
+            yield return new WaitForSeconds(delay);
+            OnPlayerDie();
+        }
+        
         /// <summary>
         /// OnPlayerDie should call when you want to kill the player!
         /// </summary>

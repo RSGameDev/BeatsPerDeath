@@ -8,13 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tile 2
-  m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
+  m_Shader: {fileID: 4800000, guid: a5ba783bdaa31c346b8e0aadee21f4be, type: 3}
   m_ShaderKeywords: _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap: {}
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
@@ -24,6 +25,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_562BEFE:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8E6BE180:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_D50361F9:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -141,6 +154,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_A31288B0: 1
+    - Boolean_B9B667AD: 0
+    - Vector1_110F99D6: 0.7
+    - Vector1_27D35017: 0.8
+    - Vector1_32752908: 0
+    - Vector1_43871BB6: 0
+    - Vector1_8160168B: 0.35
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -272,6 +292,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - Color_114CD0F1: {r: 0.9716981, g: 0.50799656, b: 0, a: 0}
+    - Color_56C8FC5C: {r: 0.7830188, g: 0.7830188, b: 0.7830188, a: 0}
+    - Color_5F33D9E9: {r: 1, g: 1, b: 1, a: 0}
+    - Color_F18481CC: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 0.9811321, g: 0.75652045, b: 0.3285867, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.9811321, g: 0.75652045, b: 0.32858667, a: 1}

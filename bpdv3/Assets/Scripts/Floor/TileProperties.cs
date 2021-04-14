@@ -1,5 +1,7 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // A majority of code in this script was to help with the development process for the enemy AI, seeing the numbers for each tile and to see visually with different colour changes also.
 // There is a core purpose for this script to, that takes the value of occupancy 'OccupiedNumber'. Which another script retrieves the value for it's own purposes.
@@ -13,6 +15,8 @@ namespace Floor
         [SerializeField] private Material material1;
         [SerializeField] private Material material2;
         private Renderer _renderer;
+
+        [SerializeField] private Text text;
 
         public bool turnOffDevTileValues;
 
@@ -51,6 +55,16 @@ namespace Floor
             {
                 TileColour();
             }
+
+            //LowestValue();
+        }
+
+        private void LowestValue()
+        {
+            if (tileWithToken <= 0)
+            {
+                tileWithToken = 0;
+            }
         }
 
         // Dev purpose only - Visual recognition for tile occupancy
@@ -68,6 +82,7 @@ namespace Floor
                     _renderer.material = material2;
                     break;
             }
+            text.text = tileWithToken.ToString();
         }
 
         #endregion
