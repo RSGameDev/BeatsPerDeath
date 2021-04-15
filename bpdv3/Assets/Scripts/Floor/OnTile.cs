@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using EnemyNS;
 using Managers;
 using UnityEngine;
@@ -52,6 +53,12 @@ namespace Floor
 
             switch (tileHasToken)
             {
+                case -2:
+                    _tileProperties.tileWithToken = -2;
+                    break;
+                case -1:
+                    _tileProperties.tileWithToken = -1;
+                    break;
                 case 0:
                     _tileProperties.tileWithToken = 0;
                     break;
@@ -61,8 +68,18 @@ namespace Floor
                 case 2:
                     _tileProperties.tileWithToken = 2;
                     break;
+                case 3:
+                    _tileProperties.tileWithToken = 3;
+                    break;
+                case 4:
+                    _tileProperties.tileWithToken = 4;
+                    break;
             }
+
+            
         }
+
+        
 
         private void ClearObjectList()
         {
