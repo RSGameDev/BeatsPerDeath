@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using Floor;
 using Managers;
+using PlayerNS;
 using UnityEngine;
 
 namespace EnemyNS
