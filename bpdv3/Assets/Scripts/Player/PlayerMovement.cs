@@ -11,6 +11,7 @@ namespace PlayerNS
     {
         #region Private & Constant variables
 
+        [SerializeField] private PlayerAnimations _playerAnimations;
         [SerializeField] private GameObject _playerDestinationGO;
         [SerializeField] private PlayerDestination _playerDestination;
         private Collider _colliderOfPlayerDestinationGO;
@@ -60,6 +61,7 @@ namespace PlayerNS
             {
                 if (Input.GetKeyDown(KeyCode.W))
                 {
+                    _playerAnimations.Jump();
                     IsPlayerInputDetected = true;
                     _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
@@ -69,6 +71,7 @@ namespace PlayerNS
 
                 if (Input.GetKeyDown(KeyCode.S))
                 {
+                    _playerAnimations.Jump();
                     IsPlayerInputDetected = true;
                     _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
@@ -78,6 +81,7 @@ namespace PlayerNS
 
                 if (Input.GetKeyDown(KeyCode.A))
                 {
+                    _playerAnimations.Jump();
                     IsPlayerInputDetected = true;
                     _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
@@ -87,6 +91,7 @@ namespace PlayerNS
 
                 if (Input.GetKeyDown(KeyCode.D))
                 {
+                    _playerAnimations.Jump();
                     IsPlayerInputDetected = true;
                     _comboMetre.perform = true;
                     _playerDestination.IsDestinationObtained = false;
