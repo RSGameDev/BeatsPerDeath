@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 1775537584880601321}
   - component: {fileID: 5110366376786192602}
   - component: {fileID: 2558297767892090065}
+  - component: {fileID: 2751109640678943157}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -457,7 +458,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &1775537584880601321
 MonoBehaviour:
@@ -485,9 +486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f08bfaa43dff1e4b9f78c099a2dbde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDestinationGO: {fileID: 0}
-  _playerDestination: {fileID: 0}
-  _speed: 1
+  _playerAnimations: {fileID: 2751109640678943157}
+  _playerDestinationGO: {fileID: 5032436504030191336}
+  _playerDestination: {fileID: 2116173124092919715}
+  _speed: 3
   nextMoveTileGO: {fileID: 0}
   enemy: {fileID: 0}
   tilePropertiesOnNextMoveTileGO: {fileID: 0}
@@ -509,6 +511,19 @@ MonoBehaviour:
   defaultColour: {r: 0, g: 0, b: 0, a: 0}
   hurtColour: {r: 0, g: 0, b: 0, a: 0}
   warningColour: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &2751109640678943157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093003680986737014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec800d3f1f517744e88e189b45e4c310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 8594963817274616246}
 --- !u!1 &3331610984426133692
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,9 +574,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2759627030230460689, guid: 0f86ab52f8c6ccb46ba425b84d8f8ae6, type: 3}
-  - {fileID: 2855121235435381786, guid: 0f86ab52f8c6ccb46ba425b84d8f8ae6, type: 3}
-  - {fileID: 7866403722241132255, guid: 0f86ab52f8c6ccb46ba425b84d8f8ae6, type: 3}
+  - {fileID: 2100000, guid: ebebaf21be3b4014ba025b56414082b0, type: 2}
+  - {fileID: 2100000, guid: c9af850c916e90f4caba7568dadd19f8, type: 2}
+  - {fileID: 2100000, guid: 481bb9cffc9c14d4881ce8e19b9738f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
