@@ -23,6 +23,8 @@ namespace Core
         private int _currentStageOfLevel;
         private bool cancel;
 
+        private EnemyCollection _enemyCollection;
+        
         #endregion
 
         #region Public & Protected variables
@@ -119,8 +121,9 @@ namespace Core
                         break;
             }
             objectPool.transform.position = SpawnPosition();
-            objectPool.SetActive(true);
             //objectPool.GetComponent<Enemy>().hasSpawned = true;
+            //_enemyCollection.enemies.Add(objectPool);
+            objectPool.SetActive(true);
         }
 
         private Vector3 SpawnPosition()

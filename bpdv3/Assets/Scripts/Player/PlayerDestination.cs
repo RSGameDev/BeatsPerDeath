@@ -42,8 +42,7 @@ namespace PlayerNS
                 if (!IsDestinationObtained)
                 {
                     _playerMovement.nextMoveTileGO = other.gameObject;
-                    _playerMovement.tilePropertiesOnNextMoveTileGO =
-                        other.gameObject.GetComponentInParent<TileProperties>();
+                    // **** was included, check line of code / _playerMovement.tilePropertiesOnNextMoveTileGO = other.gameObject.GetComponentInParent<TileProperties>(); 
                     CheckBoundaries(other);
                     gameObject.GetComponent<Collider>().enabled = false;
                 }

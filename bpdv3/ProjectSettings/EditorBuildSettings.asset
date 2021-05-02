@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/scene1.unity
     guid: f9a6b18f86d928344b1e96eb5235ec46
   - enabled: 0
-    path: Assets/Scenes/scene1 Rich Test.unity
-    guid: 959e63346431ef847bb9eb84c9348f32
+    path: Assets/Scenes/scene1 Test.unity
+    guid: beb91231653f72a409cfec7d77f85067
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 4a900aa913d81fd499ab6803a9940439

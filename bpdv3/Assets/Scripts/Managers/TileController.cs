@@ -78,13 +78,14 @@ namespace Managers
                 //    _collidersArray[index].enabled = true;
                 //}
                 
-                if (tile.transform.position.z <= s_ResetTileOccupantValue)
-                {
-                    var index = Array.IndexOf(_tilesArray,tile);
-                    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
-                    // Ready for when it scrolls back to the top of the level to be used again.
-                    _onTileScript[index].ResetTokenOnTile();
-                }
+                // ************ consider including again
+                //if (tile.transform.position.z <= s_ResetTileOccupantValue)
+                //{
+                //    var index = Array.IndexOf(_tilesArray,tile);
+                //    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
+                //    // Ready for when it scrolls back to the top of the level to be used again.
+                //    _onTileScript[index].ResetTokenOnTile();
+                //}
 
                 if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
                 {
@@ -107,7 +108,7 @@ namespace Managers
             {
                 foreach (var tile in _onTileScript)
                 {
-                    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
+                    //tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true; ******* consider including again
                 }
 
                 //foreach (var tile in _onTileOutsideScript)
