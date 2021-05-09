@@ -1,5 +1,6 @@
 ﻿using System;
 using Managers;
+using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,29 +10,45 @@ namespace EnemyNS
     {
         [SerializeField] private Enemy _enemy;
         [SerializeField] private GameObject _nextMoveGO;
-        private Collider _collider;
-        
-        private bool firstMove = true;
+
         private int _randomDirectionForShroomToFace = 1;
 
-        private void Awake()
+        private void OnDisable()
         {
-            _collider = _nextMoveGO.GetComponent<Collider>();
+            _randomDirectionForShroomToFace = 1;
         }
 
+        private void Update()
+        {
+            //if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasReset)
+            //{
+            //    hasReset = true;
+            //    hasFacedDirection = false;
+            //}
+//
+            //if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
+            //{
+            //    hasReset = false;
+            //    hasFacedDirection = true;
+            //    FaceDirection();
+            //}
+        }
+
+        
+        
         public void FaceDirection()
         {
             var num = _randomDirectionForShroomToFace;
             _randomDirectionForShroomToFace = Random.Range(0, 4);
 
-            //// If the direction is the same as the last turn. the collider needs to trigger again.
+            // If the direction is the same as the last turn. the collider needs to trigger again.
             //if (num == _randomDirectionForShroomToFace)
             //{
-            //    _collider.enabled = false;
-            //    _collider.enabled = true;
+            //    reassignNextObj = true;
+            //    _nextMoveCollider.enabled = true;
             //}
 
-            var enemyType = _enemy.CurrentEnemyType;
+            var enemyType = _enemy.currentEnemyType;
 
             switch (enemyType)
             {

@@ -11,6 +11,7 @@ namespace Managers
 
         [SerializeField] private GameObject[] _tilesArray;
         private OnTile[] _onTileScript;
+        private TileDisplay[] _tileDisplayScript;
         private const float s_Distance = 1.25f;
         private const float s_Time = 3f;
         private const int s_SpawningRow = 7;
@@ -39,6 +40,7 @@ namespace Managers
         {
             InitScriptsOnLists();
             InitCollidersOnTiles();
+            InitTileDisplayList();
         }
 
         
@@ -78,12 +80,14 @@ namespace Managers
                 //    _collidersArray[index].enabled = true;
                 //}
                 
+                // ************ consider including again
                 if (tile.transform.position.z <= s_ResetTileOccupantValue)
                 {
                     var index = Array.IndexOf(_tilesArray,tile);
                     // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
                     // Ready for when it scrolls back to the top of the level to be used again.
-                    _onTileScript[index].ResetTokenOnTile();
+                    //_onTileScript[index].ResetTokenOnTile();
+                    _tileDisplayScript[index].ResetTokenOnTile();
                 }
 
                 if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
@@ -107,7 +111,7 @@ namespace Managers
             {
                 foreach (var tile in _onTileScript)
                 {
-                    tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true;
+                    //tile.GetComponentInParent<TileProperties>().turnOffDevTileValues = true; ******* consider including again
                 }
 
                 //foreach (var tile in _onTileOutsideScript)
@@ -140,17 +144,17 @@ namespace Managers
                 _collidersArray[i] = _onTileScript[i].gameObject.GetComponent<BoxCollider>();
             }
         }
-
-        public void TilePermissionCheck()
+        
+        private void InitTileDisplayList()
         {
-            foreach (var tile in _tilesArray)
+            _tileDisplayScript = new TileDisplay[_tilesArray.Length];
+            for (var i = 0; i < _tilesArray.Length; i++)
             {
-                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().PermissionToMove();
-                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().ContinueOrHold();
+                _tileDisplayScript[i] = _tilesArray[i].gameObject.GetComponent<TileDisplay>();
             }
         }
-        
-        
+
+
         private void FloorMoves() 
         {
             _isTilesMoving = true;

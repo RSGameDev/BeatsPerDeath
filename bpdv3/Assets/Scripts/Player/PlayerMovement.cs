@@ -24,7 +24,7 @@ namespace PlayerNS
 
         public GameObject nextMoveTileGO;
         public Enemy enemy = null;
-        public TileProperties tilePropertiesOnNextMoveTileGO;
+        // ***** include again /public TileProperties tilePropertiesOnNextMoveTileGO;
         public bool IsPlayerInputDetected { get; set; }
 
         public bool isPushBack = false;
@@ -109,8 +109,8 @@ namespace PlayerNS
             if (isPushBack)
             {
                 IsPlayerInputDetected = false;
-                location = enemy.PushBackTransform().position;
-                transform.position = location;
+                // ***** include again / location = enemy.PushBackTransform().position;
+                // ***** include again / transform.position = location;
                 isPushBack = false;
             }
             else if (!isPushBack && IsPlayerInputDetected)

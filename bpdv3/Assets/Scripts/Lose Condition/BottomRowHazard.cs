@@ -30,11 +30,11 @@ namespace Lose_Condition
 
         #region Private methods
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(s_FireHazard))
             {
-                other.gameObject.transform.parent.GetComponent<Enemy>().isAlive = false;
+                other.gameObject.transform.parent.gameObject.SetActive(false);
             }
 
             if (other.gameObject.CompareTag(s_Player))

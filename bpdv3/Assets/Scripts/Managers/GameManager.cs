@@ -61,18 +61,19 @@ namespace Managers
 
             StageOfLevel();
 
-            if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasAssignedTile)
-            {
-                hasAssignedTile = true;
-                hasResetValues = false;
-                _tileController.TilePermissionCheck();
-            }
+           //if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasResetValues)
+           //{
+           //    hasResetValues = true;
+           //    hasAssignedTile = false;
+           //    
+           //}
 
-            if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasResetValues)
-            {
-                hasResetValues = true;
-                ResetValue();
-            }
+           //if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasAssignedTile)
+           //{
+           //    hasAssignedTile = true;
+           //    hasResetValues = false;
+           //    _tileController.TilePermissionCheck();
+           //}
         }
 
         private void StageOfLevel()
@@ -140,11 +141,6 @@ namespace Managers
                     //SpawnLevelThreeEnemies();
                     break;
             }
-        }
-        
-        void ResetValue()
-        {
-            hasAssignedTile = false;
         }
 
         ////void SpawnLevelOneEnemies()

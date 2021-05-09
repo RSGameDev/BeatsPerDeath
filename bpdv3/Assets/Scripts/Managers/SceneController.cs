@@ -22,6 +22,7 @@ namespace Managers
         [SerializeField] private GameObject _creditsScreen;
         [SerializeField] private int s_SplashDelay = 4; //make const 4sec
         [SerializeField] private int s_warningDelay = 3; //make const 3sec
+        //private const string s_startGameSceneName = "scene1 Test";
         private const string s_startGameSceneName = "scene1";
         private bool _isReferenced;
 
@@ -114,7 +115,6 @@ namespace Managers
             var temp = GameObject.Find("Beat Header (TMP)");
             beatHeader = temp.GetComponent<TextMeshProUGUI>();
 
-            print("init");
             var temp1 = GameObject.Find("BeatUITestValue (TMP)");
             beatUiValue = temp1.GetComponent<TextMeshProUGUI>();
 

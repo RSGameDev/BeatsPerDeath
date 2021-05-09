@@ -164,10 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyMovement: {fileID: 2172518628861862385}
   anchorTileObject: {fileID: 0}
-  enemy: {fileID: 5569668026118951816}
-  playermovement: {fileID: 0}
-  enemymovement: {fileID: 2172518628861862385}
 --- !u!1 &2999797027332976480
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,15 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badd00b316731ed4d98c5194a1eaad30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyDirection: {fileID: 7775657953017165734}
-  _enemyMovement: {fileID: 2172518628861862385}
-  _enemyNextMove: {fileID: 8989221585858790151}
   enemyCurrentTile: {fileID: 0}
-  pushBackTransform: {fileID: 5314999145640620692}
-  isAlive: 0
+  _enemyMovement: {fileID: 2172518628861862385}
   isNew: 1
-  CurrentEnemyType: 0
-  _nextMoveCollider: {fileID: 0}
+  currentEnemyType: 0
 --- !u!114 &7775657953017165734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,13 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 5569668026118951816}
   _enemyNextMove: {fileID: 8989221585858790151}
-  _designatedTileGameObject: {fileID: 0}
-  NextMoveLocationGO: {fileID: 0}
   _speed: 3
-  location: {x: 0, y: 0, z: 0}
-  IsEnemyMoving: 0
-  hasBegunMove: 0
+  _canMove: 0
 --- !u!1 &4302740096633667627
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5569668026118951816}
+  _enemyDirection: {fileID: 7775657953017165734}
   _enemyMovement: {fileID: 2172518628861862385}
+  nextMoveLocation: {fileID: 0}
   hasPermission: 0
-  enemyOnTile: {fileID: 0}
