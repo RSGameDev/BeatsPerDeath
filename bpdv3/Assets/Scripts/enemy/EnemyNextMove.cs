@@ -15,9 +15,12 @@ namespace EnemyNS
         private const string s_Ontile = "OnTile";
 
         public bool hasPermission;
-        private bool _resetValues;
-        private bool _deductTile;
 
+        private void OnDisable()
+        {
+            nextMoveLocation = null;
+            hasPermission = false;
+        }
 
         //private void Update()
         //{
@@ -39,13 +42,14 @@ namespace EnemyNS
             
         private void OnTriggerEnter(Collider other)
         {
-            if (_enemyMovement._isMoving)
+            if (_enemyMovement._canMove)
             {
                 return;
             }
             
             if (other.CompareTag(s_Ontile))
             {
+                print("hit");
                 if (transform.position.z > 7f)
                 {
                     //noNextMove = true;
@@ -55,7 +59,7 @@ namespace EnemyNS
                 nextMoveLocation = other.gameObject;
                 //if (other.gameObject.GetComponent<OnTile>().tileHasToken == 0)
                 //{
-                nextMoveLocation.GetComponent<OnTile>().NextMoveGameObjects.Add(gameObject);
+                //nextMoveLocation.GetComponent<OnTile>().NextMoveGameObjects.Add(gameObject);
 
                 //if (_enemyDirection.reassignNextObj)
                 //{
@@ -63,7 +67,16 @@ namespace EnemyNS
                 //    return;
                 //}
                 //nextMoveLocation.GetComponentInParent<TileDisplay>().isOccupied += 1;
-                nextMoveLocation.GetComponentInParent<TileDisplay>().isOccupied = true;
+                if (!nextMoveLocation.GetComponentInParent<TileDisplay>().isOccupied)
+                {
+                    nextMoveLocation.GetComponentInParent<TileDisplay>().isOccupied = true;
+                    hasPermission = true;
+                }
+                else
+                {
+                    hasPermission = false;
+                }
+                
 
                 //}
             }

@@ -8,35 +8,38 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    private List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
     private bool hasFacedDirection;
+    private bool hasMoved;
+    private bool hasResetValuesOne;
+    private bool hasResetValuesTwo;
 
     private void Update()
     {
-        if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasResetValues)
+        if ((BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5) && !hasResetValuesOne)
         {
-            hasResetValues = true;
-            hasAssignedTile = false;
+            hasResetValuesOne = true;
+            hasFacedDirection = false;
         }
         
-        if (BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6 && !hasFacedDirection)
+        if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
         {
+            hasResetValuesOne = false;
             hasFacedDirection = true;
             FaceDirection();
         }
 
-        if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasAssignedTile)
+        if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasResetValuesTwo)
         {
-            hasAssignedTile = true;
-            hasResetValues = false;
-            _tileController.TilePermissionCheck();
+            hasResetValuesTwo = true;
+            hasMoved = false;
         }
         
-        if (BeatManager.Instance.BeatIndex == 4 || BeatManager.Instance.BeatIndex == 0 && !hasMoved)
+        if ((BeatManager.Instance.BeatIndex == 4 || BeatManager.Instance.BeatIndex == 0) && !hasMoved)
         {
+            hasResetValuesTwo = false;
             hasMoved = true;
             Move();
-            FaceDirection();
         }
     }
 
@@ -44,7 +47,7 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[0].GetComponent<EnemyDirection>().FaceDirection();
+            enemies[i].GetComponent<EnemyDirection>().FaceDirection();
         }
     }
 
@@ -52,7 +55,7 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[0].GetComponent<EnemyMovement>().Movement();
+            enemies[i].GetComponent<EnemyMovement>()._canMove = true;
         }
     }
 }

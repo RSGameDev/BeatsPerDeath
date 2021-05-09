@@ -34,7 +34,7 @@ namespace Lose_Condition
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(s_FireHazard))
             {
-                //other.gameObject.transform.parent.GetComponent<Enemy>().isAlive = false;
+                other.gameObject.transform.parent.gameObject.SetActive(false);
             }
 
             if (other.gameObject.CompareTag(s_Player))

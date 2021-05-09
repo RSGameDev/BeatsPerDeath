@@ -23,7 +23,7 @@ namespace Core
         private int _currentStageOfLevel;
         private bool cancel;
 
-        private EnemyCollection _enemyCollection;
+        [SerializeField] private EnemyController _enemyController;
         
         #endregion
 
@@ -122,7 +122,7 @@ namespace Core
             }
             objectPool.transform.position = SpawnPosition();
             //objectPool.GetComponent<Enemy>().hasSpawned = true;
-            //_enemyCollection.enemies.Add(objectPool);
+            _enemyController.enemies.Add(objectPool);
             objectPool.SetActive(true);
         }
 

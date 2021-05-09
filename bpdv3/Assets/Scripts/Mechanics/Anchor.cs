@@ -24,13 +24,18 @@ namespace Mechanics
             tag = gameObject.transform.parent.tag;
         }
 
+        private void OnDisable()
+        {
+            anchorTileObject = null;
+        }
+
         private void OnTriggerStay(Collider other)
         {
             if ((tag == s_Enemy || tag == s_Coin) && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
             {
                 //if (enemy.isAlive)
                 //{
-                if (!_enemyMovement._isMoving)
+                if (!_enemyMovement._canMove)
                 {
                     AttachObjectToTile(other);
                 }
@@ -92,7 +97,6 @@ namespace Mechanics
 
         public void DetachFromTile()
         {
-            print("detach");
             //anchorTileObject = null;
             transform.parent.SetParent(null);
         }

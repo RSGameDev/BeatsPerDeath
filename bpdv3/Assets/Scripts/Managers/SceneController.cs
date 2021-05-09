@@ -115,7 +115,6 @@ namespace Managers
             var temp = GameObject.Find("Beat Header (TMP)");
             beatHeader = temp.GetComponent<TextMeshProUGUI>();
 
-            print("init");
             var temp1 = GameObject.Find("BeatUITestValue (TMP)");
             beatUiValue = temp1.GetComponent<TextMeshProUGUI>();
 

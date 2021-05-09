@@ -12,32 +12,34 @@ namespace Floor
 {
     public class OnTile : MonoBehaviour
     {
-        public List<GameObject> NextMoveGameObjects = new List<GameObject>();
-        public List<GameObject> GOonTile = new List<GameObject>();
+        //public List<GameObject> NextMoveGameObjects = new List<GameObject>();
+        //public List<GameObject> GOonTile = new List<GameObject>();
         
         private GameObject _nextMoveAllowedGO;
         private bool _hasClearedList;
         private bool hasReset;
 
-        private void Update()
-        {
-            if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !_hasClearedList)
-            {
-                _hasClearedList = true;
-                hasReset = false;
-                ClearObjectList();
-            }
+        //private void Update()
+        //{
+        //    
+        //    
+        //    if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !_hasClearedList)
+        //    {
+        //        _hasClearedList = true;
+        //        hasReset = false;
+        //        ClearObjectList();
+        //    }
+//
+        //    if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasReset)
+        //    {
+        //        hasReset = true;
+        //        _hasClearedList = false;
+        //    }
+        //    
+        //    
+        //}
 
-            if ((BeatManager.Instance.BeatIndex == 3 || BeatManager.Instance.BeatIndex == 7) && !hasReset)
-            {
-                hasReset = true;
-                _hasClearedList = false;
-            }
-            
-            
-        }
-
-        public void PermissionToMove()
+        /*public void PermissionToMove()
         {
             //if (NextMoveGameObjects.Count == 0)
             //{
@@ -102,7 +104,7 @@ namespace Floor
         private void ClearObjectList()
         {
             NextMoveGameObjects.Clear();
-        }
+        }*/
     }
 }
 

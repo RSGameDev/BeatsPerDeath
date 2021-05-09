@@ -21,9 +21,13 @@ namespace EnemyNS
             Rook
         }
         public EnemyType currentEnemyType;
-        private bool isValueReset;
         private bool hasReset;
-        
+
+        private void OnDisable()
+        {
+            enemyCurrentTile = null;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             //if (other.tag == "Player")
@@ -46,8 +50,9 @@ namespace EnemyNS
             if (other.CompareTag(s_Ontile))
             {
                 enemyCurrentTile = other.gameObject;
-                enemyCurrentTile.GetComponent<OnTile>().GOonTile.Add(gameObject);
+                //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Add(gameObject);
                 //enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied += 1;
+                
                 enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied = true;
             }
         }
@@ -56,7 +61,7 @@ namespace EnemyNS
         {
             if (other.CompareTag(s_Ontile))
             {
-                enemyCurrentTile.GetComponent<OnTile>().GOonTile.Remove(gameObject);
+                //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Remove(gameObject);
                 //other.GetComponentInParent<TileDisplay>().isOccupied -= 1;
                 other.GetComponentInParent<TileDisplay>().isOccupied = false;
             }

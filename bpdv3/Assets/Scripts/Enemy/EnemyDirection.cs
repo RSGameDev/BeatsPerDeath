@@ -12,31 +12,33 @@ namespace EnemyNS
         [SerializeField] private GameObject _nextMoveGO;
         private Collider _nextMoveCollider;
 
-        private bool firstMove = true;
         private int _randomDirectionForShroomToFace = 1;
-        private bool hasFacedDirection;
-        private bool hasReset;
-        public bool reassignNextObj;
 
         private void Awake()
         {
             _nextMoveCollider = _nextMoveGO.GetComponent<Collider>();
         }
 
+        private void OnDisable()
+        {
+            _nextMoveCollider.enabled = false;
+            _randomDirectionForShroomToFace = 1;
+        }
+
         private void Update()
         {
-            if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasReset)
-            {
-                hasReset = true;
-                hasFacedDirection = false;
-            }
-
-            if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
-            {
-                hasReset = false;
-                hasFacedDirection = true;
-                FaceDirection();
-            }
+            //if (BeatManager.Instance.BeatIndex == 1 || BeatManager.Instance.BeatIndex == 5 && !hasReset)
+            //{
+            //    hasReset = true;
+            //    hasFacedDirection = false;
+            //}
+//
+            //if ((BeatManager.Instance.BeatIndex == 2 || BeatManager.Instance.BeatIndex == 6) && !hasFacedDirection)
+            //{
+            //    hasReset = false;
+            //    hasFacedDirection = true;
+            //    FaceDirection();
+            //}
         }
 
         

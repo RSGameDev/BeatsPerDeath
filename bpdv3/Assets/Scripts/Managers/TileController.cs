@@ -142,14 +142,14 @@ namespace Managers
             }
         }
 
-        public void TilePermissionCheck()
-        {
-            foreach (var tile in _tilesArray)
-            {
-                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().PermissionToMove();
-                tile.transform.GetChild(0).GetComponentInChildren<OnTile>().ContinueOrHold();
-            }
-        }
+        //public void TilePermissionCheck()
+        //{
+        //    foreach (var tile in _tilesArray)
+        //    {
+        //        tile.transform.GetChild(0).GetComponentInChildren<OnTile>().PermissionToMove();
+        //        tile.transform.GetChild(0).GetComponentInChildren<OnTile>().ContinueOrHold();
+        //    }
+        //}
         
         
         private void FloorMoves() 
