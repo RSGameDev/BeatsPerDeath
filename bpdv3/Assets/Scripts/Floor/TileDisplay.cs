@@ -76,7 +76,7 @@ namespace Floor
         
         public void ResetTokenOnTile()
         {
-            //isOccupied = 0;
+            isOccupied = false;
         }
         
         public void LowestValue()

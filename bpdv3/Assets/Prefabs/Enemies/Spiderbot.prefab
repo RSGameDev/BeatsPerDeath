@@ -349,7 +349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 5569668026118951816}
   _nextMoveGO: {fileID: 8174570741126056458}
-  reassignNextObj: 0
 --- !u!114 &2172518628861862385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,9 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 5569668026118951816}
   _enemyNextMove: {fileID: 8989221585858790151}
-  hasStartedMove: 0
   _speed: 3
-  _isMoving: 0
+  _canMove: 0
 --- !u!1 &4302740096633667627
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +481,7 @@ BoxCollider:
   m_GameObject: {fileID: 8174570741126056458}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}

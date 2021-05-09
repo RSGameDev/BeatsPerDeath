@@ -10,18 +10,11 @@ namespace EnemyNS
     {
         [SerializeField] private Enemy _enemy;
         [SerializeField] private GameObject _nextMoveGO;
-        private Collider _nextMoveCollider;
 
         private int _randomDirectionForShroomToFace = 1;
 
-        private void Awake()
-        {
-            _nextMoveCollider = _nextMoveGO.GetComponent<Collider>();
-        }
-
         private void OnDisable()
         {
-            _nextMoveCollider.enabled = false;
             _randomDirectionForShroomToFace = 1;
         }
 
@@ -45,15 +38,6 @@ namespace EnemyNS
         
         public void FaceDirection()
         {
-            if (_enemy.isNew)
-            {
-                //reassignNextObj = true;
-                _nextMoveCollider.enabled = true;
-                return;
-            }
-
-            _nextMoveCollider.enabled = true;
-            
             var num = _randomDirectionForShroomToFace;
             _randomDirectionForShroomToFace = Random.Range(0, 4);
 

@@ -16,20 +16,11 @@ namespace EnemyNS
 
         private bool _isFirstTime = true;
         public bool _canMove;
-        private Collider _nextMoveCollider;
-
-
-        private void Awake()
-        {
-            _nextMoveCollider = _enemyNextMove.GetComponent<Collider>();
-        }
 
         private void OnDisable()
         {
             _isFirstTime = true;
             _canMove = false;
-            _nextMoveCollider.enabled = true;
-            
         }
 
         private void Update()
@@ -69,7 +60,6 @@ namespace EnemyNS
                 if (_enemyNextMove.hasPermission)
                 {
                     //isEnemyMoving = true;
-                    _nextMoveCollider.enabled = false;
 
                     _step = _speed * Time.deltaTime;
 
