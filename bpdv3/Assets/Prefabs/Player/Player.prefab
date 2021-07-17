@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 2751109640678943157}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +492,6 @@ MonoBehaviour:
   _speed: 3
   nextMoveTileGO: {fileID: 0}
   enemy: {fileID: 0}
-  tilePropertiesOnNextMoveTileGO: {fileID: 0}
   isPushBack: 0
   _comboMetre: {fileID: 0}
 --- !u!114 &2558297767892090065
@@ -689,10 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyMovement: {fileID: 0}
   anchorTileObject: {fileID: 0}
-  enemy: {fileID: 0}
-  playermovement: {fileID: 5110366376786192602}
-  enemymovement: {fileID: 0}
 --- !u!54 &7042215364368153963
 Rigidbody:
   m_ObjectHideFlags: 0

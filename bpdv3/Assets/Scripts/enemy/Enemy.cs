@@ -13,6 +13,8 @@ namespace EnemyNS
         [SerializeField] public GameObject enemyCurrentTile;
         [SerializeField] private EnemyMovement _enemyMovement;
         
+        [SerializeField] private Transform pushBackTransform = null;
+        
         public bool isNew = true;
         
         public enum EnemyType
@@ -30,12 +32,13 @@ namespace EnemyNS
 
         private void OnTriggerEnter(Collider other)
         {
-            //if (other.tag == "Player")
-            //{
-            //    if (IsPlayerInFront() || enemyMovement.IsEnemyMoving)
-            //    {
-            //        HitPlayer(other);
-            //    }
+            if (other.tag == "Player")
+            {
+                //if (IsPlayerInFront() || enemyMovement.IsEnemyMoving)
+                    if (IsPlayerInFront())
+                {
+                    HitPlayer(other);
+                }
             //    else
             //    {
             //        Scoring.ScorePoints();
@@ -45,7 +48,7 @@ namespace EnemyNS
             //        }
             //        gameObject.SetActive(false);
             //    }
-            //}
+            }
             
             if (other.CompareTag(s_Ontile))
             {
@@ -66,6 +69,48 @@ namespace EnemyNS
                 other.GetComponentInParent<TileDisplay>().isOccupied = false;
             }
         }
+        
+        private void FixedUpdate()
+        {
+            IsPlayerInFront();
+        }
+        
+        private bool IsPlayerInFront()
+        {
+            RaycastHit hit;
+
+            var temp = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
+            
+            if (Physics.Raycast(temp, transform.forward, out hit, 10))
+            {
+                Debug.DrawRay(temp, transform.forward * 50, Color.red);
+                if (hit.transform.gameObject.tag == "Player")
+                    return true;
+            }
+            return false;
+        }
+        
+        private void HitPlayer(Collider other)
+        {
+            var playerMovement = other.GetComponent<PlayerMovement>();
+            playerMovement.enemy = this;
+            playerMovement.isPushBack = true;
+            playerMovement.IsPlayerInputDetected = false;
+            other.gameObject.transform.position = pushBackTransform.position;
+            //other.gameObject.GetComponent<Player>().DealDamage();
+        }
+        
+        public Transform PushBackTransform()
+        {
+            return pushBackTransform;
+        }
+        
+        //private void OnCollisionEnter(Collision collision)
+        //{
+        //    if (collision.gameObject.tag != "Player") return;
+        //    
+        //    gameObject.SetActive(false);
+        //}
     }
 }
 

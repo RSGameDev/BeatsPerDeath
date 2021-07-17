@@ -18,10 +18,12 @@ namespace Mechanics
 
         private Vector3 _newPosition;
         public GameObject anchorTileObject;
-        
+        private PlayerMovement playermovement;
+
         private void Awake()
         {
             tag = gameObject.transform.parent.tag;
+            playermovement = GetComponentInParent<PlayerMovement>();
         }
 
         private void OnDisable()
@@ -51,17 +53,18 @@ namespace Mechanics
                 //}
             }
 
-            //if (tag == s_Player && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
-            //{
-            //    if (!playermovement.IsPlayerInputDetected)
-            //    {
-            //        AttachObjectToTile(other);
-            //    }
-            //    else
-            //    {
-            //        DetachFromTile();
-            //    }
-            //}
+            if (tag == s_Player && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
+            {
+                if (!playermovement.IsPlayerInputDetected)
+                {
+                    print("no input");
+                    AttachObjectToTile(other);
+                }
+                else
+                {
+                    DetachFromTile();
+                }
+            }
         }
 
         // This function was made so that the objects will stick to the tiles as the level scrolls. Otherwise the objects would stay in place and the level moves underneath them.
