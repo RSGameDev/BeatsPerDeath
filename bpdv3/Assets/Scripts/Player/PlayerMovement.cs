@@ -33,12 +33,13 @@ namespace PlayerNS
         #endregion
 
         [SerializeField] private ComboMetre _comboMetre;
+        private Vector3 nextMovePosition;
 
         #region Constructor
 
         private void Awake()
         {
-            _colliderOfPlayerDestinationGO = _playerDestinationGO.GetComponent<Collider>();
+            //_colliderOfPlayerDestinationGO = _playerDestinationGO.GetComponent<Collider>();
         }
 
         #endregion
@@ -49,83 +50,93 @@ namespace PlayerNS
         {
             InputCapture();
 
-            if (_playerDestination.IsDestinationObtained)
-            {
+            //if (_playerDestination.IsDestinationObtained)
+            //{
                 Move();
-            }
+            //}
         }
 
         private void InputCapture()
         {
-            if (!IsPlayerInputDetected)
-            {
+            //if (!IsPlayerInputDetected)
+            //{
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    _playerAnimations.Jump();
+                    //_playerAnimations.Jump();
                     IsPlayerInputDetected = true;
-                    _comboMetre.perform = true;
-                    _playerDestination.IsDestinationObtained = false;
+                    //_comboMetre.perform = true;
+                    //_playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.forward);
-                    _colliderOfPlayerDestinationGO.enabled = true;
+                    AssignPosition();
+                    //_colliderOfPlayerDestinationGO.enabled = true;
                 }
-
+//
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    _playerAnimations.Jump();
+                    //_playerAnimations.Jump();
                     IsPlayerInputDetected = true;
-                    _comboMetre.perform = true;
-                    _playerDestination.IsDestinationObtained = false;
+                    //_comboMetre.perform = true;
+                    //_playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.back);
-                    _colliderOfPlayerDestinationGO.enabled = true;
+                    AssignPosition();
+                    //_colliderOfPlayerDestinationGO.enabled = true;
                 }
-
+//
                 if (Input.GetKeyDown(KeyCode.A))
                 {
-                    _playerAnimations.Jump();
+                    //_playerAnimations.Jump();
                     IsPlayerInputDetected = true;
-                    _comboMetre.perform = true;
-                    _playerDestination.IsDestinationObtained = false;
+                    //_comboMetre.perform = true;
+                    //_playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.left);
-                    _colliderOfPlayerDestinationGO.enabled = true;
+                    AssignPosition();
+                    //_colliderOfPlayerDestinationGO.enabled = true;
                 }
-
+//
                 if (Input.GetKeyDown(KeyCode.D))
                 {
-                    _playerAnimations.Jump();
+                    //_playerAnimations.Jump();
                     IsPlayerInputDetected = true;
-                    _comboMetre.perform = true;
-                    _playerDestination.IsDestinationObtained = false;
+                    //_comboMetre.perform = true;
+                    //_playerDestination.IsDestinationObtained = false;
                     transform.LookAt(transform.position + Vector3.right);
-                    _colliderOfPlayerDestinationGO.enabled = true;
+                    AssignPosition();
+                    //_colliderOfPlayerDestinationGO.enabled = true;
                 }
-            }
+            
         }
 
+        void AssignPosition()
+        {
+            nextMovePosition = nextMoveTileGO.transform.position;
+            nextMoveTileGO.SetActive(false);
+        }
+        
         private void Move()
         {
             _step = _speed * Time.deltaTime;
             Vector3 location;
-
-            if (isPushBack)
+//
+            //if (isPushBack)
+            //{
+            //    IsPlayerInputDetected = false;
+            //    // ***** include again / location = enemy.PushBackTransform().position;
+            //    // ***** include again / transform.position = location;
+            //    isPushBack = false;
+            //}
+            //else if (!isPushBack && IsPlayerInputDetected)
+            if (IsPlayerInputDetected)
             {
-                IsPlayerInputDetected = false;
-                // ***** include again / location = enemy.PushBackTransform().position;
-                // ***** include again / transform.position = location;
-                isPushBack = false;
-            }
-            else if (!isPushBack && IsPlayerInputDetected)
-            {
-                var position = nextMoveTileGO.transform.position;
-                location = new Vector3(position.x, position.y, position.z);
-                transform.position = Vector3.MoveTowards(transform.position, location, _step);
-                if (Vector3.Distance(transform.position, location) < 0.01f)
+                //location = new Vector3(position.x, position.y, position.z);
+                transform.position = Vector3.MoveTowards(transform.position, nextMovePosition, _step);
+                if (Vector3.Distance(transform.position, nextMovePosition) < 0.01f)
                 {
-                    transform.position = location;
+                    transform.position = nextMovePosition;
                     IsPlayerInputDetected = false;
                 }
             }
-
-            isPushBack = false;
+//
+            //isPushBack = false;
         }
 
         #endregion

@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCurrentTile: {fileID: 0}
+  _enemyMovement: {fileID: 0}
   pushBackTransform: {fileID: 6105365929766841669}
-  CurrentEnemyType: 0
-  token: 1
-  hasSpawned: 0
+  isNew: 1
+  currentEnemyType: 0
 --- !u!114 &592588273473671533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,10 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 6652264778726549562}
-  _randomDirectionForShroomToFace: 1
-  sameDirection: 0
-  hasFacedDirection: 0
-  firstMove: 0
   _nextMoveGO: {fileID: 6105365929920215920}
 --- !u!114 &1052731159642050709
 MonoBehaviour:
@@ -171,11 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b1b9f27a945247a855b5433d4475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _designatedTileGameObject: {fileID: 0}
-  _enemyDirection: {fileID: 592588273473671533}
+  _enemy: {fileID: 0}
   _enemyNextMove: {fileID: 6105365929920215926}
   _speed: 8
-  location: {x: 0, y: 0, z: 0}
+  _canMove: 0
 --- !u!1 &2051942964264705727
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,10 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6b6f05ad1f6364f89aab29ea5db06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyMovement: {fileID: 0}
   anchorTileObject: {fileID: 0}
-  enemy: {fileID: 6652264778726549562}
-  playermovement: {fileID: 0}
-  enemymovement: {fileID: 1052731159642050709}
 --- !u!1 &6105365929766841670
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,9 +441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be63178e4a5b5c64fa6d0b85e6a8c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 6652264778726549562}
+  _enemyDirection: {fileID: 0}
   _enemyMovement: {fileID: 1052731159642050709}
-  nextMoveHasToken: 1
+  nextMoveLocation: {fileID: 0}
+  hasPermission: 0
 --- !u!1 &6105365931089644099
 GameObject:
   m_ObjectHideFlags: 0

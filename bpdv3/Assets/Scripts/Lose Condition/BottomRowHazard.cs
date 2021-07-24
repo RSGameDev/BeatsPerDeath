@@ -37,11 +37,11 @@ namespace Lose_Condition
                 other.gameObject.transform.parent.gameObject.SetActive(false);
             }
 
-            if (other.gameObject.CompareTag(s_Player))
-            {
-                _spawner.ClearListeners();
-                other.GetComponent<Player>().OnPlayerDie();
-            }
+            //if (other.gameObject.CompareTag(s_Player))
+            //{
+            //    _spawner.ClearListeners();
+            //    other.GetComponent<Player>().OnPlayerDie();
+            //}
         }
 
         #endregion

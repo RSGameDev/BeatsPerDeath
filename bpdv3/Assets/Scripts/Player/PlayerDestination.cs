@@ -33,9 +33,9 @@ namespace PlayerNS
 
         #region Private Methods
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other) //TODO START FROM HERE NEXT 
         {
-            _vacantDestinationCollider = other;
+            //_vacantDestinationCollider = other;
 
             if (other.gameObject.layer == LayerMask.NameToLayer(s_nextMoveLayer))
             {

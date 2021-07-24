@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentTile: {fileID: 0}
   _enemyMovement: {fileID: 2172518628861862385}
+  pushBackTransform: {fileID: 0}
   isNew: 1
   currentEnemyType: 0
 --- !u!114 &7775657953017165734

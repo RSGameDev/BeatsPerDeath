@@ -56,14 +56,15 @@ namespace Managers
             // Removes an error appearing in the console. Regarding referencing of objects below.
             if (activeScene == "GameOver") return;
 
-            _warningScreen.transform.localScale = Vector3.zero;
-            _mainMenu.transform.localScale = Vector3.zero;
-            _optionsMenu.transform.localScale = Vector3.zero;
-            _gameplayMenu.transform.localScale = Vector3.zero;
-            _soundsMenu.transform.localScale = Vector3.zero;
-            _creditsScreen.transform.localScale = Vector3.zero;
-            
-            
+            if (activeScene == "Intro Screen")
+            {
+                _warningScreen.transform.localScale = Vector3.zero;
+                _mainMenu.transform.localScale = Vector3.zero;
+                _optionsMenu.transform.localScale = Vector3.zero;
+                _gameplayMenu.transform.localScale = Vector3.zero;
+                _soundsMenu.transform.localScale = Vector3.zero;
+                _creditsScreen.transform.localScale = Vector3.zero;
+            }
         }
 
         private void Start()
@@ -112,17 +113,17 @@ namespace Managers
         {
             tileController = GameObject.FindWithTag("TileController").GetComponent<TileController>();
 
-            var temp = GameObject.Find("Beat Header (TMP)");
-            beatHeader = temp.GetComponent<TextMeshProUGUI>();
-
-            var temp1 = GameObject.Find("BeatUITestValue (TMP)");
-            beatUiValue = temp1.GetComponent<TextMeshProUGUI>();
-
-            var temp2 = GameObject.Find("Score Header (TMP) (1)");
-            spawnHeader = temp2.GetComponent<TextMeshProUGUI>();
-
-            var temp3 = GameObject.Find("ScoreUITest Value (TMP) (1)");
-            spawnUiValue = temp3.GetComponent<TextMeshProUGUI>();
+            //var temp = GameObject.Find("Beat Header (TMP)");
+            //beatHeader = temp.GetComponent<TextMeshProUGUI>();
+//
+            //var temp1 = GameObject.Find("BeatUITestValue (TMP)");
+            //beatUiValue = temp1.GetComponent<TextMeshProUGUI>();
+//
+            //var temp2 = GameObject.Find("Score Header (TMP) (1)");
+            //spawnHeader = temp2.GetComponent<TextMeshProUGUI>();
+//
+            //var temp3 = GameObject.Find("ScoreUITest Value (TMP) (1)");
+            //spawnUiValue = temp3.GetComponent<TextMeshProUGUI>();
         }
 
         private void DevModeOnOrOff()

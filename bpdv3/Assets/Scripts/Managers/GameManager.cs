@@ -42,13 +42,13 @@ namespace Managers
 
         private void Awake()
         {
-            _sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
-            _spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+            //_sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
+              //_spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
         }
 
         private void Start()
         {
-            _currentStage = _sceneController.CurrentSceneIndex;
+//            _currentStage = _sceneController.CurrentSceneIndex;
         }
 
         #endregion
