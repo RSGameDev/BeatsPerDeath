@@ -1,6 +1,7 @@
 using EnemyNS;
 using Floor;
 using Managers;
+using Mechanics;
 using UI.Main;
 using UnityEngine;
 
@@ -11,10 +12,11 @@ namespace PlayerNS
     {
         #region Private & Constant variables
 
-        [SerializeField] private PlayerAnimations _playerAnimations;
-        [SerializeField] private GameObject _playerDestinationGO;
+        //[SerializeField] private PlayerAnimations _playerAnimations;
+        //[SerializeField] private GameObject _playerDestinationGO;
         [SerializeField] private PlayerDestination _playerDestination;
-        private Collider _colliderOfPlayerDestinationGO;
+        [SerializeField] private Anchor _anchor;
+        //private Collider _colliderOfPlayerDestinationGO;
         [SerializeField] private float _speed = 1.0f;
         private float _step;
 
@@ -22,7 +24,7 @@ namespace PlayerNS
 
         #region Public & Protected variables
 
-        public GameObject nextMoveTileGO;
+        
         public Enemy enemy = null;
         // ***** include again /public TileProperties tilePropertiesOnNextMoveTileGO;
         public bool IsPlayerInputDetected { get; set; }
@@ -33,7 +35,9 @@ namespace PlayerNS
         #endregion
 
         [SerializeField] private ComboMetre _comboMetre;
-        private Vector3 nextMovePosition;
+        [SerializeField] private GameObject nextMoveGameObject;
+        public GameObject nextMoveDestinationGO;
+        private bool assignedPosition;
 
         #region Constructor
 
@@ -48,7 +52,11 @@ namespace PlayerNS
 
         private void Update()
         {
-            InputCapture();
+            if (Input.anyKey)
+            {
+                InputCapture();
+            }
+            
 
             //if (_playerDestination.IsDestinationObtained)
             //{
@@ -62,81 +70,95 @@ namespace PlayerNS
             //{
                 if (Input.GetKeyDown(KeyCode.W))
                 {
+                    
+                    //nextMoveGameObject.SetActive(true);
+                    _anchor.isMoving = true;
                     //_playerAnimations.Jump();
-                    IsPlayerInputDetected = true;
                     //_comboMetre.perform = true;
-                    //_playerDestination.IsDestinationObtained = false;
+                    _playerDestination.isObtainingDestination = true;
                     transform.LookAt(transform.position + Vector3.forward);
-                    AssignPosition();
                     //_colliderOfPlayerDestinationGO.enabled = true;
                 }
 //
                 if (Input.GetKeyDown(KeyCode.S))
                 {
+                    //nextMoveGameObject.SetActive(true);
+                    _anchor.isMoving = true;
                     //_playerAnimations.Jump();
-                    IsPlayerInputDetected = true;
                     //_comboMetre.perform = true;
-                    //_playerDestination.IsDestinationObtained = false;
+                    _playerDestination.isObtainingDestination = true;
                     transform.LookAt(transform.position + Vector3.back);
-                    AssignPosition();
                     //_colliderOfPlayerDestinationGO.enabled = true;
                 }
 //
                 if (Input.GetKeyDown(KeyCode.A))
                 {
+                    //nextMoveGameObject.SetActive(true);
+                    _anchor.isMoving = true;
                     //_playerAnimations.Jump();
-                    IsPlayerInputDetected = true;
                     //_comboMetre.perform = true;
-                    //_playerDestination.IsDestinationObtained = false;
+                    _playerDestination.isObtainingDestination = true;
                     transform.LookAt(transform.position + Vector3.left);
-                    AssignPosition();
                     //_colliderOfPlayerDestinationGO.enabled = true;
                 }
 //
                 if (Input.GetKeyDown(KeyCode.D))
                 {
+                    //nextMoveGameObject.SetActive(true);
+                    _anchor.isMoving = true;
                     //_playerAnimations.Jump();
-                    IsPlayerInputDetected = true;
                     //_comboMetre.perform = true;
-                    //_playerDestination.IsDestinationObtained = false;
+                    _playerDestination.isObtainingDestination = true;
                     transform.LookAt(transform.position + Vector3.right);
-                    AssignPosition();
                     //_colliderOfPlayerDestinationGO.enabled = true;
                 }
             
         }
 
-        void AssignPosition()
+        public void AssignPosition()
         {
-            nextMovePosition = nextMoveTileGO.transform.position;
-            nextMoveTileGO.SetActive(false);
+            assignedPosition = true;
+            IsPlayerInputDetected = true;
+            //nextMoveGameObject.SetActive(false);
         }
         
         private void Move()
         {
-            _step = _speed * Time.deltaTime;
-            Vector3 location;
-//
-            //if (isPushBack)
-            //{
-            //    IsPlayerInputDetected = false;
-            //    // ***** include again / location = enemy.PushBackTransform().position;
-            //    // ***** include again / transform.position = location;
-            //    isPushBack = false;
-            //}
-            //else if (!isPushBack && IsPlayerInputDetected)
-            if (IsPlayerInputDetected)
+            if (!nextMoveDestinationGO)
             {
-                //location = new Vector3(position.x, position.y, position.z);
-                transform.position = Vector3.MoveTowards(transform.position, nextMovePosition, _step);
-                if (Vector3.Distance(transform.position, nextMovePosition) < 0.01f)
-                {
-                    transform.position = nextMovePosition;
-                    IsPlayerInputDetected = false;
-                }
+                return;
             }
+
+            if (assignedPosition)
+            {
+                _step = _speed * Time.deltaTime;
+                //Vector3 location;
 //
-            //isPushBack = false;
+                //if (isPushBack)
+                //{
+                //    IsPlayerInputDetected = false;
+                //    // ***** include again / location = enemy.PushBackTransform().position;
+                //    // ***** include again / transform.position = location;
+                //    isPushBack = false;
+                //}
+                //else if (!isPushBack && IsPlayerInputDetected)
+                if (IsPlayerInputDetected)
+                {
+                    //location = new Vector3(position.x, position.y, position.z);
+                    transform.position = Vector3.MoveTowards(transform.position, nextMoveDestinationGO.transform.position, _step);
+                    if (Vector3.Distance(transform.position, nextMoveDestinationGO.transform.position) < 0.01f)
+                    {
+                        print("done");
+                        transform.position = nextMoveDestinationGO.transform.position;
+                        IsPlayerInputDetected = false;
+                        _anchor.isMoving = false;
+                        _playerDestination.isObtainingDestination = false;
+                        assignedPosition = false;
+                    }
+                }
+//
+                //isPushBack = false;
+            }
         }
 
         #endregion

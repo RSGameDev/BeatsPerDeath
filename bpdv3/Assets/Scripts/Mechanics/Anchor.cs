@@ -20,6 +20,7 @@ namespace Mechanics
         public GameObject anchorTileObject;
         private PlayerMovement playermovement;
         public Vector3 currentTilePosition;
+        public bool isMoving;
 
         //private void Awake()
         //{
@@ -32,15 +33,18 @@ namespace Mechanics
         //    anchorTileObject = null;
         //}
 //
-        //private void Update()
-        //{
-        //    transform.parent.transform.position = currentTilePosition;
-//
-        //}
+        private void Update()
+        {
+            if (!isMoving)
+            {
+                transform.parent.transform.position = currentTilePosition; //
+            }
+        }
 
         private void OnTriggerStay(Collider other)
         {
-            currentTilePosition = other.transform.position;
+            currentTilePosition = new Vector3(other.transform.position.x, 0,
+                other.transform.position.z);
             //    if ((tag == s_Enemy || tag == s_Coin) && other.gameObject.layer == LayerMask.NameToLayer(s_FloorLayer))
             //    {
             //        //if (enemy.isAlive)

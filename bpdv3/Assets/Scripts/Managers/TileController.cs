@@ -12,8 +12,8 @@ namespace Managers
         [SerializeField] private GameObject[] _tilesArray;
         private OnTile[] _onTileScript;
         private TileDisplay[] _tileDisplayScript;
-        private const float s_Distance = 1.25f;
-        private const float s_Time = 3f;
+        public float s_Distance = 1.25f;
+        public float s_Time = 3f;
         private const int s_SpawningRow = 7;
         private const float s_DeathRow = 0.5f;
         private const int s_ResetTileOccupantValue = 0;
@@ -28,7 +28,9 @@ namespace Managers
         //private OnTile[] _onTileOutsideScript;
         
         [SerializeField] private BoxCollider[] _collidersArray;
-        
+        public float timePassed;
+        private float tempTime;
+
         #endregion
 
         #region Public & Protected variables
@@ -48,7 +50,8 @@ namespace Managers
         {
             _directionOfMovement = Vector3.back;
             
-            SetBeatListeners();
+            //SetBeatListeners();
+            
             DevelopmentTestingFeature();
         }
 
@@ -59,51 +62,69 @@ namespace Managers
 
         private void Update()
         {
-            if (!_isTilesMoving)
+            TimePassed();
+            
+            if (timePassed >= 2f)
             {
-                return;
-            }
-
-            foreach (var tile in _tilesArray)
-            {
-                var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
-                tile.transform.Translate(tileMovement);
-
-                //if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
+                tempTime += Time.deltaTime;
+                //if (!_isTilesMoving)
                 //{
-                //    var index = Array.IndexOf(_tilesArray,tile);
-                //    _collidersArray[index].enabled = false;
+                //    return;
                 //}
-                //else
-                //{
-                //    var index = Array.IndexOf(_tilesArray,tile);
-                //    _collidersArray[index].enabled = true;
-                //}
+
+                foreach (var tile in _tilesArray)
+                {
+                    print("tilemove");
+                    var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
+                    tile.transform.Translate(tileMovement);
+
+                    //if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
+                    //{
+                    //    var index = Array.IndexOf(_tilesArray,tile);
+                    //    _collidersArray[index].enabled = false;
+                    //}
+                    //else
+                    //{
+                    //    var index = Array.IndexOf(_tilesArray,tile);
+                    //    _collidersArray[index].enabled = true;
+                    //}
                 
-                // ************ consider including again
-                if (tile.transform.position.z <= s_ResetTileOccupantValue)
-                {
-                    var index = Array.IndexOf(_tilesArray,tile);
-                    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
-                    // Ready for when it scrolls back to the top of the level to be used again.
-                    //_onTileScript[index].ResetTokenOnTile();
-                    _tileDisplayScript[index].ResetTokenOnTile();
+                    // ************ consider including again
+                    //if (tile.transform.position.z <= s_ResetTileOccupantValue)
+                    //    //{
+                    //    //    var index = Array.IndexOf(_tilesArray,tile);
+                    //    //    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
+                    //    //    // Ready for when it scrolls back to the top of the level to be used again.
+                    //    //    //_onTileScript[index].ResetTokenOnTile();
+                    //    //    _tileDisplayScript[index].ResetTokenOnTile();
+                    //    //}
+//
+                    //    if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
+                    //    {
+                    //        var position = tile.transform.position;
+                    //        position = new Vector3(position.x, position.y, 8.75f);
+                    //        tile.transform.position = position;
+                    //    }
                 }
 
-                if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
+                if (tempTime >= s_Time)
                 {
-                    var position = tile.transform.position;
-                    position = new Vector3(position.x, position.y, 8.75f);
-                    tile.transform.position = position;
+                    timePassed = 0;
+                    tempTime = 0;
                 }
             }
         }
 
-        private void SetBeatListeners()
+        void TimePassed()
         {
-            BeatManager.Instance.AddListener(5, FloorMoves);
-            BeatManager.Instance.AddListener(11, FloorStops);
+            timePassed += Time.deltaTime;
         }
+        
+        //private void SetBeatListeners()
+        //{
+        //    BeatManager.Instance.AddListener(5, FloorMoves);
+        //    BeatManager.Instance.AddListener(11, FloorStops);
+        //}
 
         private void DevelopmentTestingFeature()
         {
