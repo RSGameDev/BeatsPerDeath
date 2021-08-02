@@ -5,8 +5,8 @@ using UnityEngine;
 // Handles the scrolling of the floor.
 namespace Managers
 {
-    public class TileController : MonoBehaviour {
-
+    public class TileController : MonoBehaviour
+    {
         #region Private & Constant variables
 
         [SerializeField] private GameObject[] _tilesArray;
@@ -23,10 +23,10 @@ namespace Managers
         private bool _isTilesMoving;
 
         public bool turnOffDevTileValues;
-        
+
         //[SerializeField] private GameObject[] _tilesOutsideArray;
         //private OnTile[] _onTileOutsideScript;
-        
+
         [SerializeField] private BoxCollider[] _collidersArray;
         public float timePassed;
         private float tempTime;
@@ -34,6 +34,7 @@ namespace Managers
         #endregion
 
         #region Public & Protected variables
+
         #endregion
 
         #region Constructors
@@ -45,86 +46,68 @@ namespace Managers
             InitTileDisplayList();
         }
 
-        
+
         private void Start()
         {
             _directionOfMovement = Vector3.back;
-            
+
             //SetBeatListeners();
-            
+
             DevelopmentTestingFeature();
         }
 
-        
         #endregion
 
         #region Private Methods
 
         private void Update()
         {
-            TimePassed();
-            
-            if (timePassed >= 2f)
+            if (!_isTilesMoving)
             {
-                tempTime += Time.deltaTime;
-                //if (!_isTilesMoving)
+                return;
+            }
+
+            foreach (var tile in _tilesArray)
+            {
+                print("tilemove");
+                var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
+                tile.transform.Translate(tileMovement);
+
+                //if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
                 //{
-                //    return;
+                //    var index = Array.IndexOf(_tilesArray,tile);
+                //    _collidersArray[index].enabled = false;
+                //}
+                //else
+                //{
+                //    var index = Array.IndexOf(_tilesArray,tile);
+                //    _collidersArray[index].enabled = true;
                 //}
 
-                foreach (var tile in _tilesArray)
-                {
-                    print("tilemove");
-                    var tileMovement = _directionOfMovement.normalized * (Time.deltaTime * (s_Distance / s_Time));
-                    tile.transform.Translate(tileMovement);
-
-                    //if (tile.transform.position.z >= s_SpawningRow || tile.transform.position.z <= s_DeathRow)
-                    //{
-                    //    var index = Array.IndexOf(_tilesArray,tile);
-                    //    _collidersArray[index].enabled = false;
-                    //}
-                    //else
-                    //{
-                    //    var index = Array.IndexOf(_tilesArray,tile);
-                    //    _collidersArray[index].enabled = true;
-                    //}
-                
-                    // ************ consider including again
-                    //if (tile.transform.position.z <= s_ResetTileOccupantValue)
-                    //    //{
-                    //    //    var index = Array.IndexOf(_tilesArray,tile);
-                    //    //    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
-                    //    //    // Ready for when it scrolls back to the top of the level to be used again.
-                    //    //    //_onTileScript[index].ResetTokenOnTile();
-                    //    //    _tileDisplayScript[index].ResetTokenOnTile();
-                    //    //}
+                // ************ consider including again
+                //if (tile.transform.position.z <= s_ResetTileOccupantValue)
+                //    //{
+                //    //    var index = Array.IndexOf(_tilesArray,tile);
+                //    //    // Once a row has passed the last row hazard point (flames/laser). It's values can reset to zero.
+                //    //    // Ready for when it scrolls back to the top of the level to be used again.
+                //    //    //_onTileScript[index].ResetTokenOnTile();
+                //    //    _tileDisplayScript[index].ResetTokenOnTile();
+                //    //}
 //
-                    //    if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
-                    //    {
-                    //        var position = tile.transform.position;
-                    //        position = new Vector3(position.x, position.y, 8.75f);
-                    //        tile.transform.position = position;
-                    //    }
-                }
-
-                if (tempTime >= s_Time)
+                if (tile.transform.position.z <= s_RepositionLastRowToTheStart)
                 {
-                    timePassed = 0;
-                    tempTime = 0;
+                    var position = tile.transform.position;
+                    position = new Vector3(position.x, position.y, 8.75f);
+                    tile.transform.position = position;
                 }
             }
         }
 
-        void TimePassed()
+        private void SetBeatListeners()
         {
-            timePassed += Time.deltaTime;
+            BeatManager.Instance.AddListener(5, FloorMoves);
+            BeatManager.Instance.AddListener(11, FloorStops);
         }
-        
-        //private void SetBeatListeners()
-        //{
-        //    BeatManager.Instance.AddListener(5, FloorMoves);
-        //    BeatManager.Instance.AddListener(11, FloorStops);
-        //}
 
         private void DevelopmentTestingFeature()
         {
@@ -156,7 +139,7 @@ namespace Managers
             //    _onTileOutsideScript[i] = _tilesOutsideArray[i].transform.GetChild(0).GetComponentInChildren<OnTile>();
             //}
         }
-        
+
         private void InitCollidersOnTiles()
         {
             _collidersArray = new BoxCollider[_onTileScript.Length];
@@ -165,7 +148,7 @@ namespace Managers
                 _collidersArray[i] = _onTileScript[i].gameObject.GetComponent<BoxCollider>();
             }
         }
-        
+
         private void InitTileDisplayList()
         {
             _tileDisplayScript = new TileDisplay[_tilesArray.Length];
@@ -176,12 +159,12 @@ namespace Managers
         }
 
 
-        private void FloorMoves() 
+        private void FloorMoves()
         {
             _isTilesMoving = true;
         }
 
-        private void FloorStops() 
+        private void FloorStops()
         {
             _isTilesMoving = false;
         }
@@ -189,6 +172,7 @@ namespace Managers
         #endregion
 
         #region Public Methods
+
         #endregion
     }
 }

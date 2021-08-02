@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EnemyNS
 {
-    public class EnemyNextMove : MonoBehaviour
+    public class EnemyDestination : MonoBehaviour
     {
         [SerializeField] private EnemyDirection _enemyDirection;
         [SerializeField] private EnemyMovement _enemyMovement;

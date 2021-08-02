@@ -26,10 +26,10 @@ namespace Managers
         private const string s_startGameSceneName = "scene1";
         private bool _isReferenced;
 
-        private TextMeshProUGUI beatHeader;
-        private TextMeshProUGUI beatUiValue;
-        private TextMeshProUGUI spawnHeader;
-        private TextMeshProUGUI spawnUiValue;
+        [SerializeField] private TextMeshProUGUI beatHeader;
+        [SerializeField] private TextMeshProUGUI beatUiValue;
+        [SerializeField] private TextMeshProUGUI spawnHeader;
+        [SerializeField] private TextMeshProUGUI spawnUiValue;
 
         private TileController tileController;
 

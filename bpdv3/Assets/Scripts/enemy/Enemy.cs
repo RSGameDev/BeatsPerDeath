@@ -25,92 +25,92 @@ namespace EnemyNS
         public EnemyType currentEnemyType;
         private bool hasReset;
 
-        private void OnDisable()
-        {
-            enemyCurrentTile = null;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Player")
-            {
-                //if (IsPlayerInFront() || enemyMovement.IsEnemyMoving)
-                    if (IsPlayerInFront())
-                {
-                    HitPlayer(other);
-                }
-            //    else
-            //    {
-            //        Scoring.ScorePoints();
-            //        if (BeatBar.thresholdZone)
-            //        {
-            //            ComboMetre._increment = true;
-            //        }
-            //        gameObject.SetActive(false);
-            //    }
-            }
-            
-            if (other.CompareTag(s_Ontile))
-            {
-                enemyCurrentTile = other.gameObject;
-                //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Add(gameObject);
-                //enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied += 1;
-                
-                enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied = true;
-            }
-        }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag(s_Ontile))
-            {
-                //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Remove(gameObject);
-                //other.GetComponentInParent<TileDisplay>().isOccupied -= 1;
-                other.GetComponentInParent<TileDisplay>().isOccupied = false;
-            }
-        }
-        
-        private void FixedUpdate()
-        {
-            IsPlayerInFront();
-        }
-        
-        private bool IsPlayerInFront()
-        {
-            RaycastHit hit;
-
-            var temp = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
-            
-            if (Physics.Raycast(temp, transform.forward, out hit, 10))
-            {
-                Debug.DrawRay(temp, transform.forward * 50, Color.red);
-                if (hit.transform.gameObject.tag == "Player")
-                    return true;
-            }
-            return false;
-        }
-        
-        private void HitPlayer(Collider other)
-        {
-            var playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.enemy = this;
-            playerMovement.isPushBack = true;
-            playerMovement.IsPlayerInputDetected = false;
-            other.gameObject.transform.position = pushBackTransform.position;
-            //other.gameObject.GetComponent<Player>().DealDamage();
-        }
-        
-        public Transform PushBackTransform()
-        {
-            return pushBackTransform;
-        }
-        
-        //private void OnCollisionEnter(Collision collision)
+        //private void OnDisable()
         //{
-        //    if (collision.gameObject.tag != "Player") return;
-        //    
-        //    gameObject.SetActive(false);
+        //    enemyCurrentTile = null;
         //}
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.tag == "Player")
+        //    {
+        //        //if (IsPlayerInFront() || enemyMovement.IsEnemyMoving)
+        //            if (IsPlayerInFront())
+        //        {
+        //            HitPlayer(other);
+        //        }
+        //    //    else
+        //    //    {
+        //    //        Scoring.ScorePoints();
+        //    //        if (BeatBar.thresholdZone)
+        //    //        {
+        //    //            ComboMetre._increment = true;
+        //    //        }
+        //    //        gameObject.SetActive(false);
+        //    //    }
+        //    }
+        //    
+        //    if (other.CompareTag(s_Ontile))
+        //    {
+        //        enemyCurrentTile = other.gameObject;
+        //        //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Add(gameObject);
+        //        //enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied += 1;
+        //        
+        //        enemyCurrentTile.GetComponentInParent<TileDisplay>().isOccupied = true;
+        //    }
+        //}
+        
+        //private void OnTriggerExit(Collider other)
+        //{
+        //    if (other.CompareTag(s_Ontile))
+        //    {
+        //        //enemyCurrentTile.GetComponent<OnTile>().GOonTile.Remove(gameObject);
+        //        //other.GetComponentInParent<TileDisplay>().isOccupied -= 1;
+        //        other.GetComponentInParent<TileDisplay>().isOccupied = false;
+        //    }
+        //}
+        
+        //private void FixedUpdate()
+        //{
+        //    IsPlayerInFront();
+        //}
+        
+        //private bool IsPlayerInFront()
+        //{
+        //    RaycastHit hit;
+//
+        //    var temp = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
+        //    
+        //    if (Physics.Raycast(temp, transform.forward, out hit, 10))
+        //    {
+        //        Debug.DrawRay(temp, transform.forward * 50, Color.red);
+        //        if (hit.transform.gameObject.tag == "Player")
+        //            return true;
+        //    }
+        //    return false;
+        //}
+        
+        //private void HitPlayer(Collider other)
+        //{
+        //    var playerMovement = other.GetComponent<PlayerMovement>();
+        //    playerMovement.enemy = this;
+        //    playerMovement.isPushBack = true;
+        //    playerMovement.IsPlayerInputDetected = false;
+        //    other.gameObject.transform.position = pushBackTransform.position;
+        //    //other.gameObject.GetComponent<Player>().DealDamage();
+        //}
+        
+        //public Transform PushBackTransform()
+        //{
+        //    return pushBackTransform;
+        //}
+        
+        //////private void OnCollisionEnter(Collision collision)
+        //////{
+        //////    if (collision.gameObject.tag != "Player") return;
+        //////    
+        //////    gameObject.SetActive(false);
+        //////}
     }
 }
 

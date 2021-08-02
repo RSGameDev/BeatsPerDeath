@@ -8,7 +8,7 @@ namespace EnemyNS
     public class EnemyMovement : MonoBehaviour
     {
         [SerializeField] private Enemy _enemy;
-        [SerializeField] EnemyNextMove _enemyNextMove;
+        [SerializeField] EnemyDestination _enemyNextMove;
 
         private float _step;
         [SerializeField] private float _speed = 2.0f;
@@ -17,34 +17,35 @@ namespace EnemyNS
         private bool _isFirstTime = true;
         public bool _canMove;
 
-        private void OnDisable()
-        {
-            _isFirstTime = true;
-            _canMove = false;
-        }
+        //private void OnDisable()
+        //{
+        //    _isFirstTime = true;
+        //    _canMove = false;
+        //}
 
         private void Update()
         {
             if (BeatManager.Instance.BeatIndex == 5)
             {
+                print("5)");
                 _isFirstTime = false;
             }
-
-
-            if (_canMove)
-            {
-                Movement();
-            }
-
-
-            //if ((BeatManager.Instance.BeatIndex == 4 || BeatManager.Instance.BeatIndex == 0) && !isMoving)
-            //{
-            //    isMoving = true;
-            //    if (_enemyNextMove.hasPermission)
-            //    {
-            //        hasBegunMove = true;
-            //    }
-            //}
+//
+//
+        //    if (_canMove)
+        //    {
+        //        Movement();
+        //    }
+//
+//
+        //    //if ((BeatManager.Instance.BeatIndex == 4 || BeatManager.Instance.BeatIndex == 0) && !isMoving)
+        //    //{
+        //    //    isMoving = true;
+        //    //    if (_enemyNextMove.hasPermission)
+        //    //    {
+        //    //        hasBegunMove = true;
+        //    //    }
+        //    //}
         }
 
         public void Movement()
