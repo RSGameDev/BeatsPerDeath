@@ -70,6 +70,7 @@ namespace Managers
         private void Start()
         {
             SetSceneSettings();
+            audioManagerObj.ResetAudioStates();
         }
 
         #endregion
@@ -92,6 +93,7 @@ namespace Managers
         private void SetSceneSettings()
         {
             CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            
 
             switch (CurrentSceneIndex)
             {
