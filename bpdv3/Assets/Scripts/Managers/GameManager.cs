@@ -29,6 +29,8 @@ namespace Managers
         private bool hasResetValues;
 
         [SerializeField] private TileController _tileController;
+
+        public AudioManager audioManagerObj;
         
         #endregion
 
@@ -48,6 +50,8 @@ namespace Managers
 
         private void Start()
         {
+             audioManagerObj.SetGamePlaySceneSettings();
+            
 //            _currentStage = _sceneController.CurrentSceneIndex;
         }
 

@@ -23,7 +23,7 @@ namespace Managers
         [SerializeField] private int s_SplashDelay = 4; //make const 4sec
         [SerializeField] private int s_warningDelay = 3; //make const 3sec
         //private const string s_startGameSceneName = "scene1 Test";
-        private const string s_startGameSceneName = "scene1";
+        private const string s_startGameSceneName = "scene1 AUDIO";
         private bool _isReferenced;
 
         [SerializeField] private TextMeshProUGUI beatHeader;
@@ -51,7 +51,7 @@ namespace Managers
 
             activeScene = SceneManager.GetActiveScene().name;
             
-            audioManagerObj.ResetAudioStates();
+//            audioManagerObj.ResetAudioStates();
 
             // Removes an error appearing in the console. Regarding referencing of objects below.
             if (activeScene == "GameOver") return;
@@ -70,6 +70,7 @@ namespace Managers
         private void Start()
         {
             SetSceneSettings();
+            audioManagerObj.ResetAudioStates();
         }
 
         #endregion
@@ -92,6 +93,7 @@ namespace Managers
         private void SetSceneSettings()
         {
             CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            
 
             switch (CurrentSceneIndex)
             {
@@ -206,13 +208,19 @@ namespace Managers
             _optionsMenu.transform.localScale = Vector3.zero;
         }
 
-        public void StartGame()
+        /// <summary>
+        /// ** AUDIO JON this loads into scene, the main game. AUDIO *********************************
+        /// </summary>
+        public void StartGame() 
         {
             SceneManager.LoadScene(s_startGameSceneName);
             CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
             audioManagerObj.SetGamePlaySceneSettings();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        
         public void LoadOptionsScreen()
         {
             _optionsMenu.transform.localScale = Vector3.one;

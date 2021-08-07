@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/</ProjectRoot>
+		<SourceFilesRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/.cache/Windows/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Windows/</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>/Users/jonatanarriaga/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/BeatsPerDeath/bpdv3/bpdv3_WwiseProject/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="710938993" Language="SFX" Hash="3078822999">
+			<ObjectPath>\SoundBanks\Music\GPlayMusicBank</ObjectPath>
+			<ShortName>GPlayMusicBank</ShortName>
+			<Path>GPlayMusicBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2667809542" Name="GPlay_Music" ObjectPath="\Events\Music\GPlay_Music" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="35435106" Language="SFX">
+							<ShortName>D_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/D_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="558755697" Language="SFX">
+							<ShortName>C_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/C_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="576404282" Language="SFX">
+							<ShortName>S_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/S_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="669491340" Language="SFX">
+							<ShortName>B_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/B_120bpm4-4_L8M-P0_A6DF291D.wem</Path>
+						</File>
+						<File Id="691516134" Language="SFX">
+							<ShortName>A_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/A_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
+						<File Id="901612342" Language="SFX">
+							<ShortName>GamePlayFinal\Blank_120bpm4-4_L8M-P0.wav</ShortName>
+							<Path>SFX/GamePlayFinal/Blank_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="2022398155">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2595390611" Language="SFX" Hash="2700048453">
+			<ObjectPath>\SoundBanks\Music\MenuMusicBank</ObjectPath>
+			<ShortName>MenuMusicBank</ShortName>
+			<Path>MenuMusicBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4055567060" Name="Menu_Music" ObjectPath="\Events\Music\Menu_Music" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="15936007" Language="SFX">
+							<ShortName>MenuMusic_157BPM_Master.wav</ShortName>
+							<Path>SFX/MenuMusic_157BPM_Master_D79FB2B7.wem</Path>
+						</File>
+						<File Id="47794588" Language="SFX">
+							<ShortName>MenuMusic_120BPM_Master.wav</ShortName>
+							<Path>SFX/MenuMusic_120BPM_Master_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="2761892727" Language="SFX" Hash="57514893">
+			<ObjectPath>\SoundBanks\UISounds\UISounds</ObjectPath>
+			<ShortName>UISounds</ShortName>
+			<Path>UISounds.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3753593413" Name="Hover" ObjectPath="\Events\SFX\Hover" DurationType="OneShot" DurationMin="0.234376" DurationMax="0.234376">
+					<IncludedMemoryFiles>
+						<File Id="916675540" Language="SFX">
+							<ShortName>Button_Hover.wav</ShortName>
+							<Path>SFX/Button_Hover_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3930794392" Name="Quit" ObjectPath="\Events\SFX\Quit" DurationType="OneShot" DurationMin="0.937506" DurationMax="0.937506">
+					<IncludedMemoryFiles>
+						<File Id="269038420" Language="SFX">
+							<ShortName>Button_Cancel.wav</ShortName>
+							<Path>SFX/Button_Cancel_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1432588725" Name="Select" ObjectPath="\Events\SFX\Select" DurationType="OneShot" DurationMin="0.234376" DurationMax="0.234376">
+					<IncludedMemoryFiles>
+						<File Id="215519574" Language="SFX">
+							<ShortName>Button_Select.wav</ShortName>
+							<Path>SFX/Button_Select_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

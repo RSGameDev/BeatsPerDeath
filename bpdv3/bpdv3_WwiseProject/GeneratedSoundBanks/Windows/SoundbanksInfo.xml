@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="710938993" Language="SFX" Hash="3078822999">
+		<SoundBank Id="710938993" Language="SFX" Hash="220386011">
 			<ObjectPath>\SoundBanks\Music\GPlayMusicBank</ObjectPath>
 			<ShortName>GPlayMusicBank</ShortName>
 			<Path>GPlayMusicBank.bnk</Path>
@@ -51,7 +51,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="2595390611" Language="SFX" Hash="2700048453">
+		<SoundBank Id="2595390611" Language="SFX" Hash="2306287885">
 			<ObjectPath>\SoundBanks\Music\MenuMusicBank</ObjectPath>
 			<ShortName>MenuMusicBank</ShortName>
 			<Path>MenuMusicBank.bnk</Path>
@@ -70,7 +70,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2761892727" Language="SFX" Hash="57514893">
+		<SoundBank Id="2761892727" Language="SFX" Hash="3353065019">
 			<ObjectPath>\SoundBanks\UISounds\UISounds</ObjectPath>
 			<ShortName>UISounds</ShortName>
 			<Path>UISounds.bnk</Path>
