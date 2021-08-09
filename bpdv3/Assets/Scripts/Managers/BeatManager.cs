@@ -21,10 +21,10 @@ namespace Managers
         /// </summary>
         [SerializeField] private float BeatLenght = 0.2f;
 
-        /// <summary>
-        /// Bool to activate auto beats for debug
-        /// </summary>
-        [SerializeField] private bool IsAutoBeatOn = false;
+        ///// <summary>
+        ///// Bool to activate auto beats for debug
+        ///// </summary>
+        //[SerializeField] private bool IsAutoBeatOn = false;
 
         /// <summary>
         /// Total beats
@@ -85,13 +85,13 @@ namespace Managers
 
         #region Private methods
 
-        private void Update()
-        {
-            if (IsAutoBeatOn)
-            {
-                UpdateAutoBeat();
-            }
-        }
+        //private void Update()
+        //{
+        //    if (IsAutoBeatOn)
+        //    {
+        //        UpdateAutoBeat();
+        //    }
+        //}
 
         /// <summary>
         /// Used for test purposes
@@ -177,6 +177,7 @@ namespace Managers
             StartOnBeatInterval();
            
             _beatIndex++;
+            print(BeatIndex);
             BeatIndexForLevel = _beatIndex;
             _beatIndex %= s_BeatLimit;
 
