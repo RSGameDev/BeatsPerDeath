@@ -101,10 +101,10 @@ namespace Managers
                     print("number 0");
                     audioManagerObj.SetIntroSceneSettings();
                     break;
-                case 1:
-                    print("number 1");
-                    audioManagerObj.SetGamePlaySceneSettings();
-                    break;
+                //case 1:                       REDUNDANT CODE
+                //    print("number 1");
+                //    audioManagerObj.SetGamePlaySceneSettings();
+                //    break;
             }
 
             // TODO will be deleted, here for debug purposes
@@ -214,7 +214,7 @@ namespace Managers
         {
             SceneManager.LoadScene(s_startGameSceneName);
             CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            //----------------------------------------------------audioManagerObj.SetGamePlaySceneSettings();
+            //-------------audioManagerObj.SetGamePlaySceneSettings();
         }
         
         public void LoadOptionsScreen()

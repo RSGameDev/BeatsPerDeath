@@ -50,8 +50,8 @@ namespace Managers
 
         private void Start()
         {
-             /////////////////////////---------------------audioManagerObj.SetGamePlaySceneSettings();
-            
+              audioManagerObj.SetGamePlaySceneSettings();
+
 //            _currentStage = _sceneController.CurrentSceneIndex;
         }
 
