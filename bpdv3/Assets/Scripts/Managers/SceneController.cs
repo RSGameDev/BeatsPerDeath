@@ -98,9 +98,11 @@ namespace Managers
             switch (CurrentSceneIndex)
             {
                 case 0:
+                    print("number 0");
                     audioManagerObj.SetIntroSceneSettings();
                     break;
                 case 1:
+                    print("number 1");
                     audioManagerObj.SetGamePlaySceneSettings();
                     break;
             }
@@ -207,19 +209,13 @@ namespace Managers
             _mainMenu.transform.localScale = Vector3.one;
             _optionsMenu.transform.localScale = Vector3.zero;
         }
-
-        /// <summary>
-        /// ** AUDIO JON this loads into scene, the main game. AUDIO *********************************
-        /// </summary>
+        
         public void StartGame() 
         {
             SceneManager.LoadScene(s_startGameSceneName);
             CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            audioManagerObj.SetGamePlaySceneSettings();
+            //----------------------------------------------------audioManagerObj.SetGamePlaySceneSettings();
         }
-        /// <summary>
-        /// 
-        /// </summary>
         
         public void LoadOptionsScreen()
         {

@@ -51,7 +51,7 @@ namespace Managers
         {
             _directionOfMovement = Vector3.back;
 
-            //SetBeatListeners();
+            SetBeatListeners();
 
             DevelopmentTestingFeature();
         }

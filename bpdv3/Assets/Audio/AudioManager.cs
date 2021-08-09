@@ -28,10 +28,8 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SetGamePlaySceneSettings()
     {
-        
         menuEvent.Stop(gameObject);
         gPlayEvent.Post(gameObject, (uint)AkCallbackType.AK_MusicSyncBeat, CallBackBeatFunction);
-        
     }
 
     public void CallBackBeatFunction(object in_cookie, AkCallbackType in_type, object in_info)
