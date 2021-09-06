@@ -33,7 +33,7 @@
 				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="8slQtWUYwUajE4m81+dRnAGOWAD/////hAxSGDxABkeetJFNiH90ywGOWAD/////"/>
 				<Property Name="Interactive Music\x64_{14057406-8DF8-4BD6-9AFA-32C39F79C9BF} - SegmentEditorZoomInfo" Type="string" Value="pVSYeD9y6j8AAAAAAADwP/shPfqTVidAAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAA"/>
 				<Property Name="Interactive Music\x64_{BC99A24A-3AFA-46FD-AE06-BD2769492F5D} - SegmentEditorZoomInfo" Type="string" Value="3e9bVsUK6D8AAAAAAADwP/shPfqTVidAAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAA"/>
-				<Property Name="Interactive Music\x64_{D6AA8082-A6B1-4C4C-9483-E9C455D1A423} - SegmentEditorZoomInfo" Type="string" Value="AAAAAAAA8D8AAAAAAADwP0erfmH1f0FAAAAAAAAA8D8AAAAAAIBIQAAAAAAAYGhA"/>
+				<Property Name="Interactive Music\x64_{D6AA8082-A6B1-4C4C-9483-E9C455D1A423} - SegmentEditorZoomInfo" Type="string" Value="AAAAAAAA8D8AAAAAAADwP0erfmH1f0FAAAAAAAAA8D8AAAAAAAAAAAAAAAAAwH1A"/>
 				<Property Name="MeterView\LastObject1" Type="string" Value="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 				<Property Name="MeterView\MeterMode1" Type="int32" Value="1"/>
 				<Property Name="Mixing Desk\LastSession" Type="string" Value="{00000000-0000-0000-0000-000000000000}"/>
@@ -62,7 +62,7 @@
 				<Property Name="ProjectExplorer\FirstVisible_8_1" Type="string" Value="{41093F77-829F-4D88-8601-E8B25F3D4781}"/>
 				<Property Name="ProjectExplorer\x64_Expanded_10_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_11_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_12_1" Type="string" Value="54feQlVyIESA4doJlhMn31eO1MBJHcdJqEIXJ9QPAbaCgKrWsaZMTJSD6cRV0aQj"/>
+				<Property Name="ProjectExplorer\x64_Expanded_12_1" Type="string" Value="54feQlVyIESA4doJlhMn34KAqtaxpkxMlIPpxFXRpCM="/>
 				<Property Name="ProjectExplorer\x64_Expanded_13_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_14_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_15_1" Type="string" Value=""/>

@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{EF1FB117-196D-4625-A976-15B00C82F7EB}" SchemaVersion="97">
 	<States>
-		<WorkUnit Name="GPlayStates" ID="{EF1FB117-196D-4625-A976-15B00C82F7EB}" PersistMode="Standalone">
-			<ChildrenList>
-				<StateGroup Name="A_State" ID="{3570E5E7-515C-4ED3-AE05-520AFFEFCF58}">
-					<ChildrenList>
-						<State Name="None" ID="{8A09AB31-C432-4232-9E0B-54F9D953841E}"/>
-						<State Name="Play" ID="{65C34A14-9C79-49AF-9FA4-74B1AFCA9A32}"/>
-						<State Name="Stop" ID="{FDAEA16F-AA01-41F2-B330-0DCD921A89E8}"/>
-					</ChildrenList>
-				</StateGroup>
-				<StateGroup Name="B_State" ID="{D0E3B781-E5B6-408A-8899-BDE7897B0874}">
-					<ChildrenList>
-						<State Name="None" ID="{908C1468-553E-40DA-BF88-81AF81D58E77}"/>
-						<State Name="Play" ID="{FF28900E-0A0C-4B57-B888-D8EC841B9B7D}"/>
-						<State Name="Stop" ID="{F1B6B351-2BA7-405C-B596-FBC2CD6EFCFB}"/>
-					</ChildrenList>
-				</StateGroup>
-				<StateGroup Name="C_State" ID="{6E55ED1A-FE69-4F01-906D-5344072F9D3E}">
-					<ChildrenList>
-						<State Name="None" ID="{28841A17-4406-4B59-8CA7-ABC496168179}"/>
-						<State Name="Play" ID="{62C623A2-EC99-4867-AD3A-0BF37A3123D0}"/>
-						<State Name="Stop" ID="{E6B54359-932A-46AC-9B10-AD55E4879AB8}"/>
-					</ChildrenList>
-				</StateGroup>
-				<StateGroup Name="D_State" ID="{B7703492-9330-4856-A132-C1B3268AC89F}">
-					<ChildrenList>
-						<State Name="None" ID="{65007D46-7CFB-4B00-9BDE-44FF7ECDA8D8}"/>
-						<State Name="Play" ID="{798CE3F1-6D43-4E4E-AA6C-B6D2E7EC8B61}"/>
-						<State Name="Stop" ID="{ECE29EB0-6874-49C4-AE9E-59A704C18D96}"/>
-					</ChildrenList>
-				</StateGroup>
-				<StateGroup Name="S_State" ID="{DE9D4B2A-9189-4DF9-A834-87C960CD7A7B}">
-					<ChildrenList>
-						<State Name="None" ID="{41435D31-2357-48B7-A532-F07340463C7E}"/>
-						<State Name="Play" ID="{B635EEE0-FB29-4FB9-AD01-866E12C71FA7}"/>
-						<State Name="Stop" ID="{20ADD67F-ABC6-4CE3-A054-0776C1252E9E}"/>
-					</ChildrenList>
-				</StateGroup>
-			</ChildrenList>
-		</WorkUnit>
+		<WorkUnit Name="GPlayStates" ID="{EF1FB117-196D-4625-A976-15B00C82F7EB}" PersistMode="Standalone"/>
 	</States>
 </WwiseDocument>

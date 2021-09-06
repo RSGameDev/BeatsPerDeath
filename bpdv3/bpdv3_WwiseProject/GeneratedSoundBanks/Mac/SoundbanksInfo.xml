@@ -11,33 +11,13 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="710938993" Language="SFX" Hash="220386011">
+		<SoundBank Id="710938993" Language="SFX" Hash="3954278410">
 			<ObjectPath>\SoundBanks\Music\GPlayMusicBank</ObjectPath>
 			<ShortName>GPlayMusicBank</ShortName>
 			<Path>GPlayMusicBank.bnk</Path>
 			<IncludedEvents>
 				<Event Id="2667809542" Name="GPlay_Music" ObjectPath="\Events\Music\GPlay_Music" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="35435106" Language="SFX">
-							<ShortName>D_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/D_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
-						</File>
-						<File Id="558755697" Language="SFX">
-							<ShortName>C_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/C_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
-						</File>
-						<File Id="576404282" Language="SFX">
-							<ShortName>S_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/S_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
-						</File>
-						<File Id="669491340" Language="SFX">
-							<ShortName>B_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/B_120bpm4-4_L8M-P0_A6DF291D.wem</Path>
-						</File>
-						<File Id="691516134" Language="SFX">
-							<ShortName>A_120bpm4-4_L8M-P0.wav</ShortName>
-							<Path>SFX/A_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
-						</File>
 						<File Id="901612342" Language="SFX">
 							<ShortName>GamePlayFinal\Blank_120bpm4-4_L8M-P0.wav</ShortName>
 							<Path>SFX/GamePlayFinal/Blank_120bpm4-4_L8M-P0_D79FB2B7.wem</Path>
@@ -46,7 +26,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2996704905">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2953616821">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

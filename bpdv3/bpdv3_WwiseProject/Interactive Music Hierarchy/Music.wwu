@@ -255,6 +255,11 @@
 								</MusicTrack>
 								<MusicTrack Name="S_120bpm4-4_L8M-P0" ID="{B096E1DB-DA1E-44C8-837A-9AD70F1B1F47}" ShortID="1027873975">
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-3</Value>
@@ -275,27 +280,6 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
-									<StateInfo>
-										<StateGroupList>
-											<StateGroupInfo>
-												<StateGroupRef Name="S_State" ID="{DE9D4B2A-9189-4DF9-A834-87C960CD7A7B}"/>
-											</StateGroupInfo>
-										</StateGroupList>
-										<CustomStateList>
-											<CustomState>
-												<StateRef Name="Stop" ID="{20ADD67F-ABC6-4CE3-A054-0776C1252E9E}"/>
-												<CustomState Name="" ID="{4045BE71-5CC7-4B44-8E0C-ED8D40381284}" ShortID="508647823">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64" Value="-96"/>
-													</PropertyList>
-												</CustomState>
-											</CustomState>
-											<CustomState>
-												<StateRef Name="Play" ID="{B635EEE0-FB29-4FB9-AD01-866E12C71FA7}"/>
-												<CustomState Name="" ID="{26C3A633-0F99-452D-B18E-4F6069ACB848}" ShortID="657848725"/>
-											</CustomState>
-										</CustomStateList>
-									</StateInfo>
 									<TransitionList>
 										<MusicTransition Name="Root" ID="{8C5C3828-2229-4B7B-B0E7-754A83E11F29}">
 											<PropertyList>
@@ -321,6 +305,11 @@
 								</MusicTrack>
 								<MusicTrack Name="D_120bpm4-4_L8M-P0" ID="{D30BC443-7915-4E78-AF0A-CC8C67AD9059}" ShortID="745831247">
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-4</Value>
@@ -341,27 +330,6 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
-									<StateInfo>
-										<StateGroupList>
-											<StateGroupInfo>
-												<StateGroupRef Name="D_State" ID="{B7703492-9330-4856-A132-C1B3268AC89F}"/>
-											</StateGroupInfo>
-										</StateGroupList>
-										<CustomStateList>
-											<CustomState>
-												<StateRef Name="Stop" ID="{ECE29EB0-6874-49C4-AE9E-59A704C18D96}"/>
-												<CustomState Name="" ID="{4C03A10E-248F-4488-A3F9-ABE79207D497}" ShortID="663756813">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64" Value="-96"/>
-													</PropertyList>
-												</CustomState>
-											</CustomState>
-											<CustomState>
-												<StateRef Name="Play" ID="{798CE3F1-6D43-4E4E-AA6C-B6D2E7EC8B61}"/>
-												<CustomState Name="" ID="{3C9786E2-429C-429C-80F8-C019617DBC51}" ShortID="639002158"/>
-											</CustomState>
-										</CustomStateList>
-									</StateInfo>
 									<TransitionList>
 										<MusicTransition Name="Root" ID="{DE2D6CD4-4635-4794-B0B6-9AD136F47B1E}">
 											<PropertyList>
@@ -387,6 +355,11 @@
 								</MusicTrack>
 								<MusicTrack Name="B_120bpm4-4_L8M-P0" ID="{1004C9D2-2A3A-4ADB-A645-B00A52F90F6A}" ShortID="738166846">
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>3</Value>
@@ -430,27 +403,6 @@
 											</PluginInnerObjectList>
 										</AudioFileSource>
 									</ChildrenList>
-									<StateInfo>
-										<StateGroupList>
-											<StateGroupInfo>
-												<StateGroupRef Name="B_State" ID="{D0E3B781-E5B6-408A-8899-BDE7897B0874}"/>
-											</StateGroupInfo>
-										</StateGroupList>
-										<CustomStateList>
-											<CustomState>
-												<StateRef Name="Stop" ID="{F1B6B351-2BA7-405C-B596-FBC2CD6EFCFB}"/>
-												<CustomState Name="" ID="{6FCBFFA7-50A9-4DF3-B193-7CC84D85FBDA}" ShortID="948268668">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64" Value="-96"/>
-													</PropertyList>
-												</CustomState>
-											</CustomState>
-											<CustomState>
-												<StateRef Name="Play" ID="{FF28900E-0A0C-4B57-B888-D8EC841B9B7D}"/>
-												<CustomState Name="" ID="{909BC78F-76EE-418E-A948-24AFCAD58BBE}" ShortID="972634063"/>
-											</CustomState>
-										</CustomStateList>
-									</StateInfo>
 									<TransitionList>
 										<MusicTransition Name="Root" ID="{792D203F-F271-4AB4-83E8-B090703774DF}">
 											<PropertyList>
@@ -670,6 +622,13 @@
 									</SequenceList>
 								</MusicTrack>
 								<MusicTrack Name="A_120bpm4-4_L8M-P0" ID="{58B330AC-A045-4403-8EEA-25DD0FA67A9B}" ShortID="32982675">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7A75F1A5-56E2-44C5-B477-937411CAF6A6}"/>
@@ -684,27 +643,6 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
-									<StateInfo>
-										<StateGroupList>
-											<StateGroupInfo>
-												<StateGroupRef Name="A_State" ID="{3570E5E7-515C-4ED3-AE05-520AFFEFCF58}"/>
-											</StateGroupInfo>
-										</StateGroupList>
-										<CustomStateList>
-											<CustomState>
-												<StateRef Name="Stop" ID="{FDAEA16F-AA01-41F2-B330-0DCD921A89E8}"/>
-												<CustomState Name="" ID="{A4261E6A-4471-4898-A9A3-B5FCACF85369}" ShortID="696699967">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64" Value="-96"/>
-													</PropertyList>
-												</CustomState>
-											</CustomState>
-											<CustomState>
-												<StateRef Name="Play" ID="{65C34A14-9C79-49AF-9FA4-74B1AFCA9A32}"/>
-												<CustomState Name="" ID="{D87BEA9F-13FE-477A-A45F-32A2EA520DD5}" ShortID="259169353"/>
-											</CustomState>
-										</CustomStateList>
-									</StateInfo>
 									<TransitionList>
 										<MusicTransition Name="Root" ID="{16BE9F5C-ED4B-4409-8BFF-6CCC34B0155B}">
 											<PropertyList>
@@ -729,6 +667,13 @@
 									</SequenceList>
 								</MusicTrack>
 								<MusicTrack Name="C_120bpm4-4_L8M-P0" ID="{2C84E683-6D14-43FD-A057-9906596A5BC3}" ShortID="879489632">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7A75F1A5-56E2-44C5-B477-937411CAF6A6}"/>
@@ -743,27 +688,6 @@
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
-									<StateInfo>
-										<StateGroupList>
-											<StateGroupInfo>
-												<StateGroupRef Name="C_State" ID="{6E55ED1A-FE69-4F01-906D-5344072F9D3E}"/>
-											</StateGroupInfo>
-										</StateGroupList>
-										<CustomStateList>
-											<CustomState>
-												<StateRef Name="Stop" ID="{E6B54359-932A-46AC-9B10-AD55E4879AB8}"/>
-												<CustomState Name="" ID="{937FE310-60E0-4813-B2C7-8E65A7D61074}" ShortID="116943893">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64" Value="-96"/>
-													</PropertyList>
-												</CustomState>
-											</CustomState>
-											<CustomState>
-												<StateRef Name="Play" ID="{62C623A2-EC99-4867-AD3A-0BF37A3123D0}"/>
-												<CustomState Name="" ID="{868AC830-56D4-4B1E-9456-80961854F929}" ShortID="898203619"/>
-											</CustomState>
-										</CustomStateList>
-									</StateInfo>
 									<TransitionList>
 										<MusicTransition Name="Root" ID="{FABC4F28-FFCB-4041-84B5-1DA8DC8CF450}">
 											<PropertyList>
